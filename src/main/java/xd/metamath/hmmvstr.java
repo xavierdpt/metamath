@@ -11,8 +11,6 @@ public class hmmvstr {
 
 
 
-#ifndef METAMATH_MMVSTR_H_
-#define METAMATH_MMVSTR_H_
 
 typedef char* vstring;
 #define vstringdef(x) vstring x = ""
@@ -67,5 +65,4 @@ extern long g_startTempAllocStack;
 
 
 void makeTempAlloc(vstring s);
-#endif
 }

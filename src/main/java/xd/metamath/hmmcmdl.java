@@ -8,8 +8,6 @@ public class hmmcmdl {
 
 
 
-#ifndef METAMATH_MMCMDL_H_
-#define METAMATH_MMCMDL_H_
 
 
 flag processCommandLine(void);
@@ -45,5 +43,4 @@ extern flag g_sourceHasBeenRead;
 extern vstring g_rootDirectory;
 
 
-#endif
 }

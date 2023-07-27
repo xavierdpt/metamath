@@ -8,8 +8,6 @@ public class hmmveri {
 
 
 
-#ifndef METAMATH_MMVERI_H_
-#define METAMATH_MMVERI_H_
 
 
 char verifyProof(long statemNum);
@@ -38,5 +36,4 @@ struct getStep_struct {
 };
 extern struct getStep_struct getStep;
 
-#endif
 }

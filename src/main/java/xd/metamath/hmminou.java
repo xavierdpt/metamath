@@ -8,8 +8,6 @@ public class hmminou {
 
 
 
-#ifndef METAMATH_MMINOU_H_
-#define METAMATH_MMINOU_H_
 
 
 
@@ -70,5 +68,4 @@ double getRunTime(double *timeSinceLastCall);
 
 void freeInOu(void);
 
-#endif
 }

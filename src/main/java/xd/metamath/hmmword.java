@@ -8,8 +8,6 @@ public class hmmword {
 
 
 
-#ifndef METAMATH_MMWORD_H_
-#define METAMATH_MMWORD_H_
 
 
 
@@ -30,5 +28,4 @@ long getRevision(vstring line);
 void gosub_7320(void);
 void gosub_7330(void);
 
-#endif
 }

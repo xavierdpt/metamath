@@ -8,8 +8,6 @@ public class hmmcmds {
 
 
 
-#ifndef METAMATH_MMCMDS_H_
-#define METAMATH_MMCMDS_H_
 
 
 
@@ -135,5 +133,4 @@ void outputMidi(long plen, nmbrString *indentationLevels,
   nmbrString *logicalFlags, vstring g_midiParameter, vstring statementLabel);
 
 
-#endif
 }

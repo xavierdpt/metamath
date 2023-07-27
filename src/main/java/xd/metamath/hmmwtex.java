@@ -8,8 +8,6 @@ public class hmmwtex {
 
 
 
-#ifndef METAMATH_MMWTEX_H_
-#define METAMATH_MMWTEX_H_
 
 
 
@@ -184,5 +182,4 @@ void assignMathboxInfo(void);
 long getMathboxLoc(nmbrString **mathboxStart, nmbrString **mathboxEnd,
     pntrString **mathboxUser);
 
-#endif
 }

@@ -8,8 +8,6 @@ public class hmmunif {
 
 
 
-#ifndef METAMATH_MMUNIF_H_
-#define METAMATH_MMUNIF_H_
 
 
 extern long g_minSubstLen;
@@ -66,5 +64,4 @@ void purgeStateVector(pntrString **stateVector);
 
 void printSubst(pntrString *stateVector);
 
-#endif
 }

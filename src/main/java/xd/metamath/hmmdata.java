@@ -9,8 +9,6 @@ public class hmmdata {
 
 
 
-#ifndef METAMATH_MMDATA_H_
-#define METAMATH_MMDATA_H_
 
 
 extern long db,db0,db1,db2,db3,db4,db5,db6,db7,db8,db9;
@@ -406,5 +404,4 @@ int qsortStringCmp(const void *p1, const void *p2);
 
 void freeData(void);
 
-#endif
 }

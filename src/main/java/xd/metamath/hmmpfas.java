@@ -8,8 +8,6 @@ public class hmmpfas {
 
 
 
-#ifndef METAMATH_MMPFAS_H_
-#define METAMATH_MMPFAS_H_
 
 
 extern long g_proveStatement;
@@ -153,5 +151,4 @@ long processUndoStack(struct pip_struct *proofStruct,
     vstring info,
     long newStackSize);
 
-#endif
 }

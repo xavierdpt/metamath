@@ -8,8 +8,6 @@ public class hmmpars {
 
 
 
-#ifndef METAMATH_MMPARS_H_
-#define METAMATH_MMPARS_H_
 
 
 char *readRawSource(
@@ -153,5 +151,4 @@ char *readInclude(vstring fileBuf, long fileBufOffset,
      vstring sourceFileName,
     long *size, long parentLineNum, flag *errorFlag);
 
-#endif
 }
