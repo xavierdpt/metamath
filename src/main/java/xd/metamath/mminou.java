@@ -12,7 +12,6 @@ public class mminou {
 #ifdef __WATCOMC__
 
 #ifndef _CONIO_H_INCLUDED
-extern int cprintf(const char *f__mt,...);
 #define _CONIO_H_INCLUDED
 #endif
 #endif

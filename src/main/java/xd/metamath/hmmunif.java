@@ -10,22 +10,13 @@ public class hmmunif {
 
 
 
-extern long g_minSubstLen;
-extern long g_userMaxUnifTrials;
-
-extern long g_unifTrialCount;
-
-extern long g_unifTimeouts;
-extern flag g_hentyFilter;
 
 
-extern flag g_bracketMatchInit;
 
 
-extern nmbrString *g_firstConst;
 
-extern nmbrString *g_lastConst;
-extern nmbrString *g_oneConst;
+
+
 
 
 nmbrString *makeSubstUnif(flag *newVarFlag,

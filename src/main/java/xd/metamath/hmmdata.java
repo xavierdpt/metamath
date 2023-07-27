@@ -11,11 +11,8 @@ public class hmmdata {
 
 
 
-extern long db,db0,db1,db2,db3,db4,db5,db6,db7,db8,db9;
 typedef char flag;
 
-extern flag g_listMode;
-extern flag g_toolsMode;
 
 typedef long nmbrString;
 typedef void* pntrString;
@@ -36,7 +33,6 @@ enum mTokenType { var_, con_ };
 #define sc_ '.'
 #define illegal_ '?'
 
-extern int g_currentScope;
 
 
 struct statement_struct {
@@ -81,7 +77,6 @@ struct statement_struct {
   };
 
 
-extern long *g_labelKey;
 
 struct includeCall_struct {
   vstring source_fn;
@@ -105,24 +100,13 @@ struct mathToken_struct {
   };
 
 
-extern long *g_mathKey;
-
-extern long g_MAX_STATEMENTS;
-extern long g_MAX_MATHTOKENS;
-extern struct statement_struct *g_Statement;
 
 
 
-extern struct mathToken_struct *g_MathToken;
-extern long g_statements,  g_mathTokens;
 
 
-extern long g_MAX_INCLUDECALLS;
-extern struct includeCall_struct *g_IncludeCall;
-extern long g_includeCalls;
 
-extern char *g_sourcePtr;
-extern long g_sourceLen;
+
 
 
 
@@ -149,12 +133,8 @@ extern long g_sourceLen;
 
 
 
-extern vstring g_contributorName;
 #define DEFAULT_CONTRIBUTOR "?who?"
 
-extern vstring g_proofDiscouragedMarkup;
-extern vstring g_usageDiscouragedMarkup;
-extern flag g_globalDiscouragement;
 
 
 void *poolFixedMalloc(long size );
@@ -185,7 +165,6 @@ struct nullNmbrStruct {
     long allocSize;
     long actualSize;
     nmbrString nullElement; };
-extern struct nullNmbrStruct g_NmbrNull;
 #define NULL_NMBRSTRING &(g_NmbrNull.nullElement)
 
 
@@ -194,7 +173,6 @@ struct nullPntrStruct {
     long allocSize;
     long actualSize;
     pntrString nullElement; };
-extern struct nullPntrStruct g_PntrNull;
 #define NULL_PNTRSTRING &(g_PntrNull.nullElement)
 
 
@@ -213,8 +191,6 @@ flag matches(vstring testString, vstring pattern, char wildCard,
 
 
 
-extern long g_nmbrTempAllocStackTop;
-extern long g_nmbrStartTempAllocStack;
 
 
 void nmbrMakeTempAlloc(nmbrString *s);
@@ -308,8 +284,6 @@ long compressedProofSize(nmbrString *proof, long statemNum);
 
 
 
-extern long g_pntrTempAllocStackTop;
-extern long g_pntrStartTempAllocStack;
 
 
 void pntrMakeTempAlloc(pntrString *s);
@@ -395,7 +369,6 @@ void buildDate(long dd, long mmm, long yyyy, vstring *dateStr);
 flag compareDates(vstring date1, vstring date2);
 
 
-extern vstring g_qsortKey;
 
 
 int qsortStringCmp(const void *p1, const void *p2);

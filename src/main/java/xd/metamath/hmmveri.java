@@ -34,6 +34,5 @@ struct getStep_struct {
   nmbrString *targetSubstsNmbr;
   pntrString *targetSubstsPntr;
 };
-extern struct getStep_struct getStep;
 
 }

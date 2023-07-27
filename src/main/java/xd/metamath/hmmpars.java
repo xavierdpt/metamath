@@ -61,12 +61,9 @@ long proofTokenLen(char *ptr);
 
 long countLines(vstring start, long length);
 
-extern long *g_allLabelKeyBase;
-extern long g_numAllLabelKeys;
 
 
 
-extern long g_wrkProofMaxSize;
 struct sortHypAndLoc {
   long labelTokenNum;
   void *labelName;
@@ -99,7 +96,6 @@ struct wrkProof_struct {
   long compressedPfNumLabels;
 
 };
-extern struct wrkProof_struct g_WrkProof;
 
 nmbrString *parseMathTokens(vstring userText, long statemNum);
 

@@ -10,13 +10,8 @@ public class hmmpfas {
 
 
 
-extern long g_proveStatement;
-extern flag g_proofChangedFlag;
 
-extern long g_userMaxProveFloat;
 
-extern long g_dummyVars;
-extern long g_pipDummyVars;
 
 
 
@@ -26,7 +21,6 @@ struct pip_struct {
   pntrString *source;
   pntrString *user;
 };
-extern struct pip_struct g_ProofInProgress;
 
 
 void interactiveMatch(long step, long maxEssential);

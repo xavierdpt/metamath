@@ -60,8 +60,6 @@ long entryPosition(long element, vstring list);
 
 
 
-extern long g_tempAllocStackTop;
-extern long g_startTempAllocStack;
 
 
 void makeTempAlloc(vstring s);

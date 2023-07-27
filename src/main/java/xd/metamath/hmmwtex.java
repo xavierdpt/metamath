@@ -22,23 +22,11 @@ public class hmmwtex {
 
 
 
-extern flag g_oldTexFlag;
 
 
-extern flag g_htmlFlag;
-extern flag g_altHtmlFlag;
-extern flag g_briefHtmlFlag;
-extern long g_extHtmlStmt;
-extern vstring g_extHtmlTitle;
-extern vstring g_htmlVarColor;
 
-extern vstring g_htmlHome;
 
-extern vstring g_htmlBibliography;
-extern vstring g_extHtmlBibliography;
-extern vstring g_htmlCSS;
 
-extern vstring g_htmlFont;
 
 void eraseTexDefs(void);
 
@@ -47,12 +35,10 @@ flag readTexDefs(
   flag errorsOnly,
   flag noGifCheck   );
 
-extern flag g_texDefsRead;
 struct texDef_struct {
   vstring tokenName;
   vstring texEquiv;
 };
-extern struct texDef_struct *g_TexDefs;
 
 
 long texDefWhiteSpaceLen(char *ptr);
@@ -125,8 +111,6 @@ flag getSectionHeadings(long stmt, vstring *hugeHdrTitle,
 
 
 
-extern flag g_texFileOpenFlag;
-extern FILE *g_texFilePtr;
 
 
 
@@ -165,11 +149,6 @@ flag writeBibliography(vstring bibFile,
     flag noFileCheck);
 
 
-extern long g_mathboxStmt;
-extern long g_mathboxes;
-extern nmbrString *g_mathboxStart;
-extern nmbrString *g_mathboxEnd;
-extern pntrString *g_mathboxUser;
 
 
 

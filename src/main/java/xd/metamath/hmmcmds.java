@@ -123,12 +123,9 @@ long getStatementNum(vstring stmtName,
 
 
 
-extern flag g_printHelp;
 void H(vstring helpLine);
 
 
-extern flag g_midiFlag;
-extern vstring g_midiParam;
 void outputMidi(long plen, nmbrString *indentationLevels,
   nmbrString *logicalFlags, vstring g_midiParameter, vstring statementLabel);
 
