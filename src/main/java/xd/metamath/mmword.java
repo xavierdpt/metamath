@@ -24,9 +24,9 @@ char strcmpe(vstring s1, vstring s2);
 vstring stripAndTag(vstring line, vstring tag, flag tagBlankLines);
 
 long r0,r1,r2,i0,i1_,i2_,d,t,i9;
-FILE *f1_fp_;
-FILE *f2_fp_;
-FILE *f3_fp_;
+File f1_fp_;
+File f2_fp_;
+File f3_fp_;
 char eof1, eof2;
 vstring ctlz_ = "";
 vstring l1_ = "";
@@ -46,7 +46,7 @@ flag printedAtLeastOne;
      vstring reserve2_[MAX_BUF];
 
 
-void revise(FILE *f1_fp, FILE *f2_fp, FILE *f3_fp, vstring addTag, long m)
+void revise(File f1_fp, File f2_fp, File f3_fp, vstring addTag, long m)
 {
 
   vstring blanksPrefix = "";
@@ -527,7 +527,7 @@ long highestRevision(vstring fileName)
   vstring str1 = "";
   long revision;
   long largest = 0;
-  FILE *fp;
+  File fp;
 
   fp = fopen(fileName, "r");
   if (!fp) return 0;

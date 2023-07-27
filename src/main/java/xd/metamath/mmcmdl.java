@@ -1709,7 +1709,7 @@ flag getFullArg(long arg, vstring cmdList1)
   vstring errorLine = "";
   vstring keyword = "";
   vstring cmdList = "";
-  FILE *tmpFp;
+  File tmpFp;
 
   let(&cmdList,cmdList1);
 

@@ -165,7 +165,7 @@ vstring cat(vstring string1,...)
 
 
 
-int linput(FILE *stream, const char* ask, vstring *target)
+int linput(File stream, const char* ask, vstring *target)
 {
   char f[10001];
   int result = 0;

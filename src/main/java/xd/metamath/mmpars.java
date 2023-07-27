@@ -4888,7 +4888,7 @@ vstring writeSourceToBuffer(void)
 
  void writeSplitSource(vstring *fileBuf, vstring fileName,
     flag noVersioningFlag, flag noDeleteFlag) {
-  FILE *fp;
+  File fp;
   vstring tmpStr1 = "";
   vstring tmpFileName = "";
   vstring includeBuf = "";
@@ -5016,7 +5016,7 @@ vstring writeSourceToBuffer(void)
 
 
  void deleteSplits(vstring *fileBuf, flag noVersioningFlag) {
-  FILE *fp;
+  File fp;
   vstring includeFn = "";
   vstring fileNameWithPath = "";
   long startOffset;

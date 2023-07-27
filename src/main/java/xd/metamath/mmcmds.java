@@ -3571,7 +3571,7 @@ void writeSource(
   vstring buffer = "";
   vstring fullOutput_fn = "";
 
-  FILE *fp;
+  File fp;
 
   let(&fullOutput_fn, cat(g_rootDirectory, g_output_fn, NULL));
 
@@ -3688,7 +3688,7 @@ void writeExtractedSource(
   vstring undeclaredV = "";
   long extractedStmts;
   vstring hdrSuffix = "";
-  FILE *fp;
+  File fp;
   vstring buf = "";
 
 
@@ -5229,7 +5229,7 @@ void verifyMarkup(vstring labelMatch,
 
 void processMarkup(vstring inputFileName, vstring outputFileName,
     flag processCss, long actionBits) {
-  FILE *outputFilePtr;
+  File outputFilePtr;
   vstring inputFileContent = "";
   long size;
   long p;
@@ -5677,7 +5677,7 @@ void outputMidi(long plen, nmbrString *indentationLevels,
   long midiPreviousFormulaStep;
   long midiPreviousLogicalStep;
   vstring midiFileName = "";
-  FILE *midiFilePtr;
+  File midiFilePtr;
   long midiBaseline;
   long midiMaxIndent;
   long midiMinKey;

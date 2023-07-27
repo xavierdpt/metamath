@@ -26,14 +26,14 @@ int g_errorCount = 0;
 
 
 flag g_logFileOpenFlag = 0;
-FILE *g_logFilePtr;
-FILE *g_listFile_fp = NULL;
+File g_logFilePtr;
+File g_listFile_fp = NULL;
 
 flag g_outputToString = 0;
 vstring g_printString = "";
 
 long g_commandFileNestingLevel = 0;
-FILE *g_commandFilePtr[MAX_COMMAND_FILE_NESTING + 1];
+File g_commandFilePtr[MAX_COMMAND_FILE_NESTING + 1];
 vstring g_commandFileName[MAX_COMMAND_FILE_NESTING + 1];
 flag g_commandFileSilent[MAX_COMMAND_FILE_NESTING + 1];
 flag g_commandFileSilentFlag = 0;
@@ -599,7 +599,7 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
 }
 
 
-vstring cmdInput(FILE *stream, vstring ask)
+vstring cmdInput(File stream, vstring ask)
 {
   vstring g = "";
   long i;
@@ -914,9 +914,9 @@ void errorMessage(vstring line, long lineNum, long column, long tokenLength,
 
 
 
-FILE *fSafeOpen(vstring fileName, vstring mode, flag noVersioningFlag)
+File fSafeOpen(vstring fileName, vstring mode, flag noVersioningFlag)
 {
-  FILE *fp;
+  File fp;
   vstring prefix = "";
   vstring postfix = "";
   vstring bakName = "";
@@ -1062,7 +1062,7 @@ int fSafeRename(vstring oldFileName, vstring newFileName)
 {
   int error = 0;
   int i;
-  FILE *fp;
+  File fp;
 
   fp = fSafeOpen(newFileName, "w", 0);
   if (!fp) error = -1;
@@ -1103,7 +1103,7 @@ int fSafeRename(vstring oldFileName, vstring newFileName)
 
 vstring fGetTmpName(vstring filePrefix)
 {
-  FILE *fp;
+  File fp;
   vstring fname = "";
   static long counter = 0;
   while (1) {
@@ -1128,7 +1128,7 @@ vstring fGetTmpName(vstring filePrefix)
 
 
 vstring readFileToString(vstring fileName, char verbose, long *charCount) {
-  FILE *inputFp;
+  File inputFp;
   long fileBufSize;
 
   char *fileBuf;

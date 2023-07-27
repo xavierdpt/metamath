@@ -11,7 +11,7 @@ public class hmmword {
 
 
 
-void revise(FILE *f1_fp, FILE *f2_fp, FILE *f3_fp, vstring addTag, long m);
+void revise(File f1_fp, File f2_fp, File f3_fp, vstring addTag, long m);
 
 
 

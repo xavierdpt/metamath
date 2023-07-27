@@ -161,7 +161,7 @@ void command(int argc, char *argv[])
   long fromLine, toLine;
   flag joinFlag;
   long searchWindow;
-  FILE *type_fp;
+  File type_fp;
   long maxEssential;
   nmbrString *essentialFlags = NULL_NMBRSTRING;
 
@@ -224,9 +224,9 @@ void command(int argc, char *argv[])
 
 
   flag commandProcessedFlag = 0;
-  FILE *list1_fp;
-  FILE *list2_fp;
-  FILE *list3_fp;
+  File list1_fp;
+  File list2_fp;
+  File list3_fp;
   vstring list2_fname = "", list2_ftmpname = "";
   vstring list3_ftmpname = "";
   vstring oldstr = "", newstr = "";

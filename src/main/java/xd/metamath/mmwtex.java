@@ -30,7 +30,7 @@ pntrString *g_mathboxUser = NULL_PNTRSTRING;
 #define CLOSING_PUNCTUATION ".,;)?!:]'\"_-"
 
 
-FILE *g_texFilePtr = NULL;
+File g_texFilePtr = NULL;
 flag g_texFileOpenFlag = 0;
 
 
@@ -120,7 +120,7 @@ flag readTexDefs(
   long parsePass;
   vstring token = "";
   vstring partialToken = "";
-  FILE *tmpFp;
+  File mpFp;
   static flag saveHtmlFlag = -1;
   static flag saveAltHtmlFlag = 1;
   flag warningFound = 0;
@@ -3075,7 +3075,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
   long subsectionCntr;
   long subsubsectionCntr;
   vstring outputFileName = "";
-  FILE *outputFilePtr;
+  File outputFilePtr;
   long passNumber;
 
 
@@ -5179,8 +5179,8 @@ flag writeBibliography(vstring bibFile,
     flag noFileCheck)
 {
   flag errFlag;
-  FILE *list1_fp = NULL;
-  FILE *list2_fp = NULL;
+  File list1_fp = NULL;
+  File list2_fp = NULL;
   long lines, p2, i, j, jend, k, l, m, n, p, q, s, pass1refs;
   vstring str1 = "", str2 = "", str3 = "", str4 = "", newstr = "", oldstr = "";
   pntrString *pntrTmp = NULL_PNTRSTRING;
