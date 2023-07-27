@@ -11,8 +11,6 @@ public class hmmcmdl {
 #ifndef METAMATH_MMCMDL_H_
 #define METAMATH_MMCMDL_H_
 
-#include "mmvstr.h"
-#include "mmdata.h"
 
 flag processCommandLine(void);
 flag getFullArg(long arg, vstring cmdList);

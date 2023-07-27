@@ -11,8 +11,6 @@ public class hmmpfas {
 #ifndef METAMATH_MMPFAS_H_
 #define METAMATH_MMPFAS_H_
 
-#include "mmvstr.h"
-#include "mmdata.h"
 
 extern long g_proveStatement;
 extern flag g_proofChangedFlag;

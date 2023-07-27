@@ -11,7 +11,6 @@ public class hmmunif {
 #ifndef METAMATH_MMUNIF_H_
 #define METAMATH_MMUNIF_H_
 
-#include "mmdata.h"
 
 extern long g_minSubstLen;
 extern long g_userMaxUnifTrials;

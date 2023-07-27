@@ -11,15 +11,7 @@ public class mmvstr {
 
 
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <time.h>
-#include <ctype.h>
-#include "mmvstr.h"
 
-#include "mmdata.h"
 
 long db1=0;
 #ifdef NDEBUG

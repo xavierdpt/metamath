@@ -10,20 +10,6 @@ public class mmcmdl {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mmcmdl.h"
-#include "mminou.h"
-#include "mmpfas.h"
-#include "mmunif.h"
-#include "mmwtex.h"
-#include "mmword.h"
 
 
 pntrString *g_rawArgPntr = NULL_PNTRSTRING;

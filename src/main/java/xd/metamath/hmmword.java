@@ -11,7 +11,6 @@ public class hmmword {
 #ifndef METAMATH_MMWORD_H_
 #define METAMATH_MMWORD_H_
 
-#include "mmvstr.h"
 
 
 void revise(FILE *f1_fp, FILE *f2_fp, FILE *f3_fp, vstring addTag, long m);

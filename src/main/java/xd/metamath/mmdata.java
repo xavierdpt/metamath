@@ -9,22 +9,7 @@ public class mmdata {
 
 
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <time.h>
-#include <ctype.h>
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mminou.h"
-#include "mmpars.h"
-#include "mmcmdl.h"
-#include "mmpfas.h"
-#include "mmwtex.h"
 
-#include <limits.h>
-#include <setjmp.h>
 long db=0,db0=0,db2=0,db3=0,db4=0,db5=0,db6=0,db7=0,db8=0,db9=0;
 flag g_listMode = 0;
 flag g_toolsMode = 0;

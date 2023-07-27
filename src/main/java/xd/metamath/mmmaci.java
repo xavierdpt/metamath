@@ -8,7 +8,6 @@ public class mmmaci {
 
 
 
-#include <string.h>
 
 
 
@@ -16,7 +15,6 @@ public class mmmaci {
 
 #ifdef THINK_C
 
-#include "mmmaci.h"
 
 #define kBaseResID 128
 #define kMoveToFront (WindowPtr)-1L

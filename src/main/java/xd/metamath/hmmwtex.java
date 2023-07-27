@@ -11,8 +11,6 @@ public class hmmwtex {
 #ifndef METAMATH_MMWTEX_H_
 #define METAMATH_MMWTEX_H_
 
-#include "mmvstr.h"
-#include "mmdata.h"
 
 
 #define GREEN_TITLE_COLOR "\"#006633\""

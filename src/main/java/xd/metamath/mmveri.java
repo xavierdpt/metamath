@@ -8,18 +8,6 @@ public class mmveri {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include <setjmp.h>
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mminou.h"
-#include "mmpars.h"
-#include "mmveri.h"
 
 
 

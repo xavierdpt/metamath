@@ -49,32 +49,10 @@ public class metamath {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
 
 #ifdef THINK_C
-#include <console.h>
 #endif
-#include "mmutil.h"
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mmcmdl.h"
-#include "mmcmds.h"
-#include "mmhlpa.h"
-#include "mmhlpb.h"
-#include "mminou.h"
-#include "mmpars.h"
-#include "mmveri.h"
-#include "mmpfas.h"
-#include "mmunif.h"
-#include "mmword.h"
-#include "mmwtex.h"
 #ifdef THINK_C
-#include "mmmaci.h"
 #endif
 
 void command(int argc, char *argv[]);

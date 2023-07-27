@@ -11,7 +11,6 @@ public class hmmveri {
 #ifndef METAMATH_MMVERI_H_
 #define METAMATH_MMVERI_H_
 
-#include "mmdata.h"
 
 char verifyProof(long statemNum);
 

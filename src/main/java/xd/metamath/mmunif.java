@@ -10,20 +10,6 @@ public class mmunif {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include <setjmp.h>
-#include <time.h>
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mminou.h"
-#include "mmpars.h"
-#include "mmunif.h"
-#include "mmpfas.h"
 
 
 long g_minSubstLen = 1;

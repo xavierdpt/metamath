@@ -8,18 +8,6 @@ public class mminou {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include <setjmp.h>
-#include <time.h>
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mminou.h"
-#include "mmcmdl.h"
 
 #ifdef __WATCOMC__
 
@@ -30,7 +18,6 @@ extern int cprintf(const char *f__mt,...);
 #endif
 
 #ifdef THINK_C
-#include <console.h>
 #endif
 
 #define QUOTED_SPACE 3

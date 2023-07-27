@@ -11,17 +11,6 @@ public class mmword {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include <setjmp.h>
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mminou.h"
-#include "mmword.h"
 
 
 #define LINE_LENGTH 80

@@ -10,23 +10,6 @@ public class mmcmds {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include <time.h>
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mmcmdl.h"
-#include "mmcmds.h"
-#include "mminou.h"
-#include "mmpars.h"
-#include "mmveri.h"
-#include "mmwtex.h"
-#include "mmpfas.h"
-#include "mmunif.h"
 
 
 

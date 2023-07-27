@@ -10,19 +10,6 @@ public class mmwtex {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include "mmutil.h"
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mminou.h"
-#include "mmpars.h"
-#include "mmwtex.h"
-#include "mmcmdl.h"
 
 
 flag g_oldTexFlag = 0;

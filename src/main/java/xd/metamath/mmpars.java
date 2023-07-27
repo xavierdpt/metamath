@@ -8,21 +8,7 @@ public class mmpars {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include <setjmp.h>
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mminou.h"
-#include "mmpars.h"
 
-#include "mmpfas.h"
-#include "mmunif.h"
-#include "mmcmdl.h"
 
 long potentialStatements;
 flag illegalLabelChar[256];

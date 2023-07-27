@@ -11,10 +11,7 @@ public class hmminou {
 #ifndef METAMATH_MMINOU_H_
 #define METAMATH_MMINOU_H_
 
-#include <stdio.h>
 
-#include "mmvstr.h"
-#include "mmdata.h"
 
 extern int g_errorCount;
 

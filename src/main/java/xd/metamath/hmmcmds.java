@@ -11,8 +11,6 @@ public class hmmcmds {
 #ifndef METAMATH_MMCMDS_H_
 #define METAMATH_MMCMDS_H_
 
-#include "mmvstr.h"
-#include "mmdata.h"
 
 
 void typeStatement(long statemNum,

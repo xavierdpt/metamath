@@ -10,12 +10,6 @@ public class mmhlpa {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mmcmds.h"
-#include "mmhlpa.h"
 
 
 void help0(vstring helpCmd)

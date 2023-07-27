@@ -11,12 +11,6 @@ public class mmhlpb {
 
 
 
-#include <string.h>
-#include <stdio.h>
-#include "mmvstr.h"
-#include "mmdata.h"
-#include "mmcmds.h"
-#include "mmhlpb.h"
 
 void help2(vstring helpCmd)
 {

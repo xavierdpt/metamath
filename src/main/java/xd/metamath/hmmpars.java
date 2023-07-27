@@ -11,8 +11,6 @@ public class hmmpars {
 #ifndef METAMATH_MMPARS_H_
 #define METAMATH_MMPARS_H_
 
-#include "mmvstr.h"
-#include "mmdata.h"
 
 char *readRawSource(
     vstring inputBuf, long *size);
