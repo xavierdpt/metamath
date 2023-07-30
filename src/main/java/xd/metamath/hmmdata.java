@@ -19,7 +19,7 @@ public class hmmdata {
 
 
 
-enum mTokenType { var_, con_ };
+
 static final char lb_ = D.lb_;
 static final char rb_ = D.lb_;
 static final char v_ = D.v_;
