@@ -11,11 +11,11 @@ public class hmmdata {
 
 
 
-typedef char flag;
 
 
-typedef long nmbrString;
-typedef void* pntrString;
+
+
+
 
 
 
