@@ -1504,7 +1504,7 @@ static final long SYNTAX =D.SYNTAX;
         fprintf(list2_fp, "%s\n", str1);
         if (!strcmp(str1, "<!-- #START# -->")) break;
       }
-      if (tmpFlag) goto wrrecent_error;
+      if (tmpFlag) C.go2("wrrecent_error");
 
 
       parseDate(date(), &k , &l , &m );
@@ -1681,7 +1681,7 @@ static final long SYNTAX =D.SYNTAX;
           break;
         }
       }
-      if (tmpFlag) goto wrrecent_error;
+      if (tmpFlag) C.go2("wrrecent_error");
 
 
       while (1) {
@@ -1847,7 +1847,7 @@ static final long SYNTAX =D.SYNTAX;
         if (strcmp(g_fullArg[2], "*")) {
           print2(
               "?For BRIEF_HTML or BRIEF_ALT_HTML, the label must be \"*\"\n");
-          goto htmlDone;
+          C.go2("htmlDone");
         }
         g_briefHtmlFlag = 1;
       } else {
@@ -1913,13 +1913,13 @@ static final long SYNTAX =D.SYNTAX;
         print2("Creating HTML file \"%s\"...\n", g_texFileName);
         g_texFilePtr = fSafeOpen(g_texFileName, "w",
             noVersioning );
-        if (!g_texFilePtr) goto htmlDone;
+        if (!g_texFilePtr) C.go2("htmlDone");
         g_texFileOpenFlag = 1;
         printTexHeader((s > 0) ? 1 : 0 );
         if (!g_texDefsRead) {
           print2("?HTML generation was aborted due to the error above.\n");
           s = g_statements + 1;
-          goto ABORT_S;
+          C.go2("ABORT_S");
         }
 
         if (s <= 0) {

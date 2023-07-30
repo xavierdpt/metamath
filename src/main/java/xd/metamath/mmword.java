@@ -92,7 +92,7 @@ l7100:
                 gosub_7320();
                 gosub_7330();
                 if (strcmpe(l1_,ctlz_) || strcmpe(l2_,ctlz_) ) {
-                        goto l7100;
+                    C.go2("l7100");
                 } else {
                         fclose(f1_fp_);
                         fclose(f2_fp_);
@@ -152,15 +152,15 @@ l7140:  if (strcmpe(line1_[i1_+t-m+1], line2_[i+t])) {
 
                 t=t+1;
                 if (t==m) {
-                        goto l7200;
+                    C.go2("l7200");
                 } else {
-                        goto l7140;
+                    C.go2("l7140");
                 }
         }
 
         i=i+1;
         if (i<=i2_-m+1) {
-                goto l7140;
+            C.go2("l7140");
         }
         gosub_7330();
         i2_=i2_+1;
@@ -183,16 +183,16 @@ l7170:
 
                 t=t+1;
                 if (t==m) {
-                        goto l7220;
+                    C.go2("l7220");
                 } else {
-                        goto l7170;
+                    C.go2("l7170");
                 }
         }
         i=i+1;
         if (i<=i1_-m+1) {
-                goto l7170;
+            C.go2("l7170");
         }
-        goto l7130;
+    C.go2("l7130");
 l7200:  i=i+m-1;
         if (r2) {
           for (j=r2-1; j>=0; j--) {
@@ -211,7 +211,7 @@ l7200:  i=i+m-1;
           exit(0);
         }
         i2_=i;
-        goto l7240;
+    C.go2("l7240");
 l7220:  i=i+m-1;
         if (r1) {
           for (j=r1-1; j>=0; j--) {
@@ -231,7 +231,7 @@ l7220:  i=i+m-1;
           exit(0);
         }
         i1_=i;
-        goto l7240;
+    C.go2("l7240");
 l7240:
 
        printedAtLeastOne = 0;
@@ -305,7 +305,7 @@ l7240:
 
        let(&l1_,ctlz_);
        let(&l2_,ctlz_);
-       goto l7100;
+    C.go2("l7100");
 
 }
 
@@ -335,7 +335,7 @@ void gosub_7320()
       let(&l1_, edit(l1_, 4 + 128 + 2048));
       if (!l1_[0]) {
         let(&tmpLin, cat(tmpLin, "\n", NULL));
-        goto next_l1;
+        C.go2("next_l1");
       }
     }
   }
@@ -374,7 +374,7 @@ void gosub_7330() {
 
 
           stripDeletedSectionMode = 1;
-          goto next_l2;
+           C.go2("next_l2");
         }
       }
       if (stripDeletedSectionMode) {
@@ -383,7 +383,7 @@ void gosub_7330() {
             getRevision(l2_) == getRevision(addTag_) ) {
           stripDeletedSectionMode = 0;
         }
-        goto next_l2;
+         C.go2("next_l2");
       }
 
       if (getRevision(l2_) == getRevision(addTag_)) {
@@ -394,7 +394,7 @@ void gosub_7330() {
 
       if (!l2_[0]) {
         let(&tmpLin, cat(tmpLin, "\n", NULL));
-        goto next_l2;
+         C.go2("next_l2");
       }
     }
   }

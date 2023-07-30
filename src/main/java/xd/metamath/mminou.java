@@ -174,7 +174,7 @@ flag print2(char* fmt,...)
       while (c != '\n') c = (char)(getchar());
     }
     if (backFromCmdInput)
-      goto PRINT2_RETURN;
+      C.go2("PRINT2_RETURN");
     printedLines = 0;
     if (!g_quitPrint) {
       backBufferPos++;
@@ -186,7 +186,7 @@ flag print2(char* fmt,...)
 
 
   if (g_quitPrint && !g_outputToString) {
-    goto PRINT2_RETURN;
+    C.go2("PRINT2_RETURN");
   }
 
 
@@ -224,7 +224,7 @@ flag print2(char* fmt,...)
     } else {
       printLongLine(left(printBuffer, lineLen - 1), "", "");
     }
-    goto PRINT2_RETURN;
+    C.go2("PRINT2_RETURN");
   }
 
   if (!g_outputToString && !g_commandFileSilentFlag) {
@@ -512,7 +512,7 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
           if (p <= 0) {
             g_screenWidth++;
 
-            goto HTML_RESTART;
+            C.go2("HTML_RESTART");
           }
 
           if (breakMatch1[0] == '&') {
@@ -921,7 +921,7 @@ File fSafeOpen(vstring fileName, vstring mode, flag noVersioningFlag)
 
   if (!strcmp(mode, "w")
       || !strcmp(mode, "d")) {
-    if (noVersioningFlag) goto skip_backup;
+    if (noVersioningFlag) C.go2("skip_backup");
 
     fp = fopen(fileName, "r");
 

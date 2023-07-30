@@ -3134,7 +3134,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
         cat("mmtheorems", (page > 0) ? str((double)page) : "", ".html", NULL));
     print2("Creating %s\n", outputFileName);
     outputFilePtr = fSafeOpen(outputFileName, "w", noVersioning);
-    if (!outputFilePtr) goto TL_ABORT;
+    if (!outputFilePtr) C.go2("TL_ABORT");
 
 
 
@@ -3706,7 +3706,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-    if (page == 0) goto SKIP_LIST;
+    if (page == 0) C.go2("SKIP_LIST");
 
 
 
@@ -3864,7 +3864,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
         let(&str1, "<B><FONT COLOR=\"#00CC00\">Syntax</FONT></B>");
       }
 
-      if (s == s + 0) goto skip_date;
+      if (s == s + 0) C.go2("skip_date");
 
 
       let(&str1, space(g_Statement[s + 1].labelSectionLen));
@@ -4744,7 +4744,7 @@ vstring spectrumToRGB(long color, long maxColor) {
   static double blueRef[PARTITIONS +  1];
   static long i = -1;
 
-  if (i > -1) goto SKIP_INIT;
+  if (i > -1) C.go2("SKIP_INIT");
   i = -1;
 
 #define L53empirical
@@ -5216,7 +5216,7 @@ flag writeBibliography(vstring bibFile,
     g_htmlFlag = 1;
     if (2 == readTexDefs(errorsOnly, noFileCheck)) {
       errFlag = 2;
-      goto BIB_ERROR;
+      C.go2("BIB_ERROR");
     }
   }
 
@@ -5235,7 +5235,7 @@ flag writeBibliography(vstring bibFile,
       }
       if (!strcmp(str1, "<!-- #START# -->")) break;
     }
-    if (errFlag) goto BIB_ERROR;
+    if (errFlag) C.go2("BIB_ERROR");
   }
 
   p2 = 1;
@@ -5564,7 +5564,7 @@ flag writeBibliography(vstring bibFile,
         break;
       }
     }
-    if (errFlag) goto BIB_ERROR;
+    if (errFlag) C.go2("BIB_ERROR");
   }
 
   if (noFileCheck == 0 && errorsOnly == 0) {
@@ -5695,7 +5695,7 @@ long getMathboxLoc(nmbrString **mathboxStart, nmbrString **mathboxEnd,
     let((vstring *)(&((*mathboxUser)[mathboxes - 1])), user);
     nmbrLet(&(*mathboxStart), nmbrAddElement(*mathboxStart, stmt));
   }
-  if (mathboxes == 0) goto RETURN_POINT;
+  if (mathboxes == 0) C.go2("RETURN_POINT");
 
   nmbrLet(&(*mathboxEnd), nmbrSpace(mathboxes));
   for (m = 0; m < mathboxes - 1; m++) {

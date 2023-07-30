@@ -1823,7 +1823,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
   if (lab != localLabels) bug(1347);
 
 
-  if (oldCompressionAlgorithm) goto OLD_ALGORITHM;
+  if (oldCompressionAlgorithm) C.go2("OLD_ALGORITHM");
 
 
 
@@ -2942,7 +2942,7 @@ vstring getContrib(long stmtNum, char mode) {
 
 
   if (g_Statement[stmtNum].type != a_ && g_Statement[stmtNum].type != p_) {
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   if (init == 0) {
@@ -3092,12 +3092,12 @@ vstring getContrib(long stmtNum, char mode) {
   }
 
 
-  if (errorCheckFlag == 0) goto RETURN_POINT;
+  if (errorCheckFlag == 0) C.go2("RETURN_POINT");
 
   if (g_Statement[stmtNum].type == a_
       && strcmp(left(g_Statement[stmtNum].labelName, 3), "df-")
       && strcmp(left(g_Statement[stmtNum].labelName, 3), "ax-")) {
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   if (cStart == 0) {
@@ -3282,7 +3282,7 @@ vstring getContrib(long stmtNum, char mode) {
   #ifdef DATE_BELOW_PROOF
 
   if (g_Statement[stmtNum].type != p_) {
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
   getProofDate(stmtNum, &tmpDate1, &tmpDate2);
   if (tmpDate1[0] == 0) {

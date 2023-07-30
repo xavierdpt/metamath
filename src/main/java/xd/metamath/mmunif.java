@@ -417,7 +417,7 @@ if(db5)printLongLine(cat("schemeB is ",
     }
 
 
-    goto backtrack;
+    C.go2("backtrack");
    reEntry1:
     reEntryFlag = 0;
 
@@ -445,12 +445,12 @@ if(db6)print2("First mismatch: p=%ld\n",p);
       if (schA[p] <= g_mathTokens &&
           schB[p] <= g_mathTokens) {
 if(db6)print2("Backtracked because end-of-string\n");
-        goto backtrack;
+        C.go2("backtrack");
       }
     } else {
       if (schA[p + 1] == -1) {
 
-        goto done;
+        C.go2("done");
       }
     }
   }
@@ -462,10 +462,10 @@ if(db6)print2("Backtracked because end-of-string\n");
 
     if (g_MathToken[schB[p]].tmp == -1) {
 
-      goto schAUnk;
+      C.go2("schAUnk");
     } else {
       if (g_MathToken[schA[p]].tmp != -1) bug(1902);
-      goto schBUnk;
+      C.go2("schBUnk");
     }
   }
 
@@ -511,7 +511,7 @@ if(db6)print2("schB has unknown variable\n");
     }
     nmbrLet(&substitution, nmbrMid(schA, p + 1,
         stackUnkVarLen[stackTop]));
-    goto substitute;
+    C.go2("substitute");
   }
 
  schAUnk:
@@ -554,11 +554,11 @@ print2("schA %s\nschB %s\n",nmbrCvtMToVString(schA),nmbrCvtMToVString(schB));
     }
     nmbrLet(&substitution, nmbrMid(schB, p + 1,
         stackUnkVarLen[stackTop]));
-    goto substitute;
+    C.go2("substitute");
   }
 
 if(db6)print2("Neither scheme has unknown variable\n");
-  goto backtrack;
+  C.go2("backtrack");
 
 
  substitute:
@@ -573,7 +573,7 @@ for (d = 0; d <= stackTop; d++) {
 
   if (nmbrElementIn(1, substitution, substToken)) {
 if(db6)print2("Substituted token occurs in substitution string\n");
-    goto backtrack;
+    C.go2("backtrack");
   }
 
   if (substitution[0] == g_mathTokens) {
@@ -581,7 +581,7 @@ if(db6)print2("End of string token occurs in substitution string\n");
 
     g_MathToken[stackUnkVar[stackTop]].tmp = -1;
     stackTop--;
-    goto backtrack;
+    C.go2("backtrack");
   }
 
 
@@ -714,7 +714,7 @@ if(db6)print2("bracketMatchOn = %ld\n", (long)bracketMatchOn);
     }
   }
 
-  if (bracketMismatchFound) goto backtrack;
+  if (bracketMismatchFound) C.go2("backtrack");
 
 
   j = nmbrLen(substitution);
@@ -734,7 +734,7 @@ if(db6)print2("bracketMatchOn = %ld\n", (long)bracketMatchOn);
     }
     if (impossible) {
 if(db6)print2("Impossible subst: %s\n", nmbrCvtMToVString(substitution));
-      goto backtrack;
+      C.go2("backtrack");
     }
   }
 
@@ -814,12 +814,12 @@ for (d = 0; d <= stackTop; d++) {
   if(db6)print2("  Its start is %ld; its length is %ld.\n",
       stackUnkVarStart[d],stackUnkVarLen[d]);
 }
-  goto scan;
+  C.go2("scan");
 
  backtrack:
 if(db6)print2("Entered backtrack with p=%ld stackTop=%ld\n",p,stackTop);
   if (stackTop < 0) {
-    goto abort;
+    C.go2("abort");
   }
   if (g_unifTrialCount > 0) {
     g_unifTrialCount++;
@@ -828,7 +828,7 @@ if(db6)print2("Entered backtrack with p=%ld stackTop=%ld\n",p,stackTop);
 if(db5)print2("Aborted due to timeout: %ld > %ld\n",
     g_unifTrialCount, g_userMaxUnifTrials);
       timeoutAbortFlag = 1;
-      goto abort;
+      C.go2("abort");
     }
   }
 
@@ -870,12 +870,12 @@ if(db6)print2("Switched var-var match to scheme B token %s\n",
         nmbrTmpPtr = (nmbrString *)(stackSaveUnkVarLen[stackTop]);
         nmbrTmpPtr[stackTop] = g_minSubstLen;
 
-        goto switchVarToB;
+        C.go2("switchVarToB");
       }
 
 
       stackTop--;
-      goto backtrack;
+      C.go2("backtrack");
     }
   } else {
 
@@ -886,12 +886,12 @@ if(db6)print2("It was in scheme B; overflowed scheme A: p=%ld, len=%ld.\n",
 
       g_MathToken[stackUnkVar[stackTop]].tmp = -1;
       stackTop--;
-      goto backtrack;
+      C.go2("backtrack");
     }
   }
 if(db6)print2("Exited backtrack with p=%ld stackTop=%ld\n",p,stackTop);
-  if (reEntryFlag) goto reEntry1;
-  goto scan;
+  if (reEntryFlag) C.go2("reEntry1");
+  C.go2("scan");
 
  done:
 
@@ -1343,7 +1343,7 @@ void hentyNormalize(nmbrString **hentyVars, nmbrString **hentyVarStart,
 
 
   n = vars;
-  if (n < 2) goto heapExit;
+  if (n < 2) C.go2("heapExit");
   el = n / 2 + 1;
   ir = n;
  label10:
@@ -1364,7 +1364,7 @@ void hentyNormalize(nmbrString **hentyVars, nmbrString **hentyVarStart,
       (*hentyVars)[0] = rra;
       (*hentyVarStart)[0] = rrb;
       (*hentyVarLen)[0] = rrc;
-      goto heapExit;
+      C.go2("heapExit");
     }
   }
   i = el;
@@ -1383,12 +1383,12 @@ void hentyNormalize(nmbrString **hentyVars, nmbrString **hentyVarStart,
     } else {
       j = ir + 1;
     }
-    goto label20;
+    C.go2("label20");
   }
   (*hentyVars)[i - 1] = rra;
   (*hentyVarStart)[i - 1] = rrb;
   (*hentyVarLen)[i - 1] = rrc;
-  goto label10;
+  C.go2("label10");
 
  heapExit:
 

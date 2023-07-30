@@ -848,7 +848,7 @@ nmbrString *replaceStatement(long replStatemNum, long prfStep,
 
 
 
-    goto returnPoint;
+    C.go2("returnPoint");
 
   }
 
@@ -1085,7 +1085,7 @@ nmbrString *expandProof(
 
     bug(1871);
     nmbrLet(&expandedTargetProof, targetProof);
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   while (1) {
@@ -1113,7 +1113,7 @@ nmbrString *expandProof(
       if (totalSubpLen != targetSubpLen - 1) {
         bug(1872);
         nmbrLet(&expandedTargetProof, targetProof);
-        goto RETURN_POINT;
+        C.go2("RETURN_POINT");
       }
 
 
@@ -1275,7 +1275,7 @@ char checkStmtMatch(long statemNum, long step)
       }
       if (!breakFlag) {
         targetFlag = 0;
-        goto returnPoint;
+        C.go2("returnPoint");
       }
     }
 
@@ -1287,7 +1287,7 @@ char checkStmtMatch(long statemNum, long step)
       userFlag = unifyH((g_ProofInProgress.user)[step],
         g_Statement[statemNum].mathString, &stateVector, 0);
     }
-    goto returnPoint;
+    C.go2("returnPoint");
   }
 
   mString = g_Statement[statemNum].mathString;
@@ -1303,7 +1303,7 @@ char checkStmtMatch(long statemNum, long step)
       firstSymbsAreConstsFlag = 1;
       if (stsym != tasym) {
         targetFlag = 0;
-        goto returnPoint;
+        C.go2("returnPoint");
       }
     }
   }
@@ -1314,7 +1314,7 @@ char checkStmtMatch(long statemNum, long step)
     if (g_MathToken[stsym].tokenType == (char)con_) {
       if (g_MathToken[tasym].tokenType == (char)con_) {
         targetFlag = 0;
-        goto returnPoint;
+        C.go2("returnPoint");
       }
     }
   }
@@ -1326,7 +1326,7 @@ char checkStmtMatch(long statemNum, long step)
       if (g_MathToken[stsym].tokenType == (char)con_) {
         if (g_MathToken[tasym].tokenType == (char)con_) {
           targetFlag = 0;
-          goto returnPoint;
+          C.go2("returnPoint");
         }
       }
     }
@@ -1450,14 +1450,14 @@ if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
     print2(
 "Exceeded trial limit at step %ld.  You may increase with SET SEARCH_LIMIT.\n",
         (long)(step + 1));
-    goto returnPoint;
+    C.go2("returnPoint");
   }
 
 
   if (maxDepthExceeded) {
 
     nmbrLet(&proof, NULL_NMBRSTRING);
-    goto returnPoint;
+    C.go2("returnPoint");
   }
 
   static final long  MAX_DEPTH=D.MAX_DEPTH;
@@ -1472,7 +1472,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
        "\".  Your axiom system may have an error ",
        "or you may have to SET EMPTY_SUBSTITUTION ON.", NULL), " ", " ");
     maxDepthExceeded = 1;
-    goto returnPoint;
+    C.go2("returnPoint");
   }
 
 
@@ -1482,7 +1482,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
         g_Statement[g_Statement[statemNum].reqHypList[hyp]].mathString)) {
       nmbrLet(&proof, nmbrAddElement(NULL_NMBRSTRING,
           g_Statement[statemNum].reqHypList[hyp]));
-      goto returnPoint;
+      C.go2("returnPoint");
     }
   }
   optHyps = nmbrLen(g_Statement[statemNum].optHypList);
@@ -1491,7 +1491,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
         g_Statement[g_Statement[statemNum].optHypList[hyp]].mathString)) {
       nmbrLet(&proof, nmbrAddElement(NULL_NMBRSTRING,
           g_Statement[statemNum].optHypList[hyp]));
-      goto returnPoint;
+      C.go2("returnPoint");
     }
   }
 
@@ -1513,7 +1513,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
         continue;
       }
 
-      goto returnPoint;
+      C.go2("returnPoint");
     }
   }
 
@@ -1696,7 +1696,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Proving hyp. ",
          }
 
          nmbrLet(&proof, NULL_NMBRSTRING);
-         goto returnPoint;
+         C.go2("returnPoint");
        }
 
 
@@ -1756,7 +1756,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Proving hyp. ",
         nmbrLet((nmbrString **)(&hypList[hyp]), NULL_NMBRSTRING);
         nmbrLet((nmbrString **)(&hypProofList[hyp]), NULL_NMBRSTRING);
       }
-      goto returnPoint;
+      C.go2("returnPoint");
 
     }
 
@@ -2215,7 +2215,7 @@ void assignKnownSteps(long startStep, long sbProofLen)
             "\n(This may take a while; please wait...)",
             NULL), "", " ");
         purgeStateVector(&stateVector);
-        goto returnPoint;
+        C.go2("returnPoint");
       }
 
       nmbrLet((nmbrString **)(&((g_ProofInProgress.source)[pos])), NULL_NMBRSTRING);
@@ -2269,14 +2269,14 @@ void interactiveUnifyStep(long step, char messageFlag)
       if (messageFlag == 0) print2("Step %ld:\n", step + 1);
       unifFlag = interactiveUnify((g_ProofInProgress.target)[step],
         (g_ProofInProgress.user)[step], &stateVector);
-      goto subAndReturn;
+      C.go2("subAndReturn");
     }
     if (nmbrLen((g_ProofInProgress.source)[step])) {
       if (!nmbrEq((g_ProofInProgress.source)[step], (g_ProofInProgress.user)[step])) {
         if (messageFlag == 0) print2("Step %ld:\n", step + 1);
         unifFlag = interactiveUnify((g_ProofInProgress.source)[step],
           (g_ProofInProgress.user)[step], &stateVector);
-        goto subAndReturn;
+        C.go2("subAndReturn");
       }
     }
   } else {
@@ -2285,7 +2285,7 @@ void interactiveUnifyStep(long step, char messageFlag)
         if (messageFlag == 0) print2("Step %ld:\n", step + 1);
         unifFlag = interactiveUnify((g_ProofInProgress.target)[step],
           (g_ProofInProgress.source)[step], &stateVector);
-        goto subAndReturn;
+        C.go2("subAndReturn");
       }
     }
   }
@@ -2361,7 +2361,7 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
 "assign some variables (LET VARIABLE) or the step (LET STEP) manually.\n");
 
       returnValue = 2;
-      goto returnPoint;
+      C.go2("returnPoint");
     }
     if (!unifFlag) break;
     reEntryFlag = 1;
@@ -2412,7 +2412,7 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
     printf("The unification is not possible.  The proof has an error.\n");
 
     returnValue = 0;
-    goto returnPoint;
+    C.go2("returnPoint");
   }
   if (unifCount > 1) {
     printLongLine(cat("There are ", str((double)unifCount),
@@ -2445,7 +2445,7 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
         print2("Step was successfully unified.\n");
 
         returnValue = 1;
-        goto returnPoint;
+        C.go2("returnPoint");
       }
 
       unifTrials++;
@@ -2473,7 +2473,7 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
         if (!tmpStr[0]) {
 
           returnValue = 1;
-          goto returnPoint;
+          C.go2("returnPoint");
         }
         if (tmpStr[0] == 'R' || tmpStr[0] == 'r') {
           if (!tmpStr[1]) {
@@ -2485,14 +2485,14 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
           if (!tmpStr[1]) {
 
             returnValue = 3;
-            goto returnPoint;
+            C.go2("returnPoint");
           }
         }
         if (tmpStr[0] == 'A' || tmpStr[0] == 'a') {
           if (!tmpStr[1]) {
 
             returnValue = 1;
-            goto returnPoint;
+            C.go2("returnPoint");
           }
         }
         let(&tmpStr, "");
@@ -2507,7 +2507,7 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
 
 
   returnValue = 3;
-  goto returnPoint;
+  C.go2("returnPoint");
 
  returnPoint:
   let(&tmpStr, "");
@@ -2756,13 +2756,13 @@ char checkDummyVarIsolation(long testStep)
   }
   if (nmbrLen(dummyVarList) == 0) {
     dummyVarIndicator = 0;
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   proofLen = nmbrLen(g_ProofInProgress.proof);
   if (testStep == proofLen - 1) {
     dummyVarIndicator = 1;
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   parentStep = getParentStep(testStep);
@@ -2773,7 +2773,7 @@ char checkDummyVarIsolation(long testStep)
     if (token > g_mathTokens) {
       if (nmbrElementIn(1, dummyVarList, token)) {
         dummyVarIndicator = 2;
-        goto RETURN_POINT;
+        C.go2("RETURN_POINT");
       }
     }
   }
@@ -2799,7 +2799,7 @@ char checkDummyVarIsolation(long testStep)
         if (token > g_mathTokens) {
           if (nmbrElementIn(1, dummyVarList, token)) {
             dummyVarIndicator = 2;
-            goto RETURN_POINT;
+            C.go2("RETURN_POINT");
           }
         }
       }

@@ -189,7 +189,7 @@ void typeStatement(long showStmt,
       }
     }
   }
-  if (commentOnlyFlag && !briefFlag) goto returnPoint;
+  if (commentOnlyFlag && !briefFlag) C.go2("returnPoint");
 
   if ((briefFlag && !texFlag) ||
        (htmlFlg && texFlag) ) {
@@ -479,7 +479,7 @@ void typeStatement(long showStmt,
     }
   }
 
-  if (briefFlag) goto returnPoint;
+  if (briefFlag) C.go2("returnPoint");
 
   switch (type) {
     case a_:
@@ -980,7 +980,7 @@ vstring htmlDummyVars(long showStmt)
   if (strcmp("|-", g_MathToken[
             (g_Statement[showStmt].mathString)[0]].tokenName)) {
 
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   optDVA = g_Statement[showStmt].optDisjVarsA;
@@ -991,7 +991,7 @@ vstring htmlDummyVars(long showStmt)
 
   if (numDVs == 0) {
 
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   dummyVarCount = 0;
@@ -1107,12 +1107,12 @@ vstring htmlAllowedSubst(long showStmt)
   if (strcmp("|-", g_MathToken[
             (g_Statement[showStmt].mathString)[0]].tokenName)) {
 
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   if (numDVs == 0) {
 
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
 
@@ -1444,7 +1444,7 @@ void typeProof(long statemNum,
   if (g_midiFlag) {
     outputMidi(plen, indentationLevel,
         essentialFlags, g_midiParam, g_Statement[statemNum].labelName);
-    goto typeProof_return;
+    C.go2("typeProof_return");
   }
 
 
@@ -2733,7 +2733,7 @@ flag traceProof(long statemNum,
 
       foundFlag = 1;
       if (testOnlyFlag) {
-        goto TRACE_RETURN;
+        C.go2("TRACE_RETURN");
       }
       if (axiomFlag) {
         if (g_Statement[stmt].type == a_) {
@@ -2754,7 +2754,7 @@ flag traceProof(long statemNum,
 
 
   if (testOnlyFlag) {
-    goto TRACE_RETURN;
+    C.go2("TRACE_RETURN");
   }
 
   if (outputString[0]) {
@@ -3148,7 +3148,7 @@ double countSteps(long statemNum, flag essentialFlag)
     let(&stepBigCount, "1");
     stepNodeCount = 0;
     stmtDist[statemNum] = 0;
-    goto returnPoint;
+    C.go2("returnPoint");
   }
 
 
@@ -3538,7 +3538,7 @@ void readInput(void)
   if (g_sourcePtr == NULL) {
     print2(
 "?Source was not read due to error(s).  Please correct and try again.\n");
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   g_sourcePtr = readRawSource(
@@ -3588,7 +3588,7 @@ void writeSource(
        noVersioningFlag
        );
 
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   if (reformatFlag > 0) {
@@ -3620,7 +3620,7 @@ void writeSource(
 "?The output was not written because the main output file name is\n");
         print2(
 "  the same as an included file.  Use a different name.\n");
-        goto RETURN_POINT;
+        C.go2("RETURN_POINT");
       }
     }
 
@@ -4003,7 +4003,7 @@ void writeExtractedSource(
   fp = fSafeOpen(fullOutput_fn, "w", noVersioningFlag);
   if (fp == NULL) {
     print2("?Error trying to write \"%s\".\n", fp);
-    goto EXTRACT_RETURN;
+    C.go2("EXTRACT_RETURN");
   }
 
 
@@ -5238,7 +5238,7 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
 
   if (2 == readTexDefs(0 ,
       1   )) {
-    goto PROCESS_MARKUP_RETURN;
+    C.go2("PROCESS_MARKUP_RETURN");
   }
 
   print2("Reading \"%s\"...\n", inputFileName);
@@ -5248,7 +5248,7 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
   if (inputFileContent == NULL) {
 
     inputFileContent = "";
-    goto PROCESS_MARKUP_RETURN;
+    C.go2("PROCESS_MARKUP_RETURN");
   }
 
   print2("Creating \"%s\"...\n", outputFileName);
@@ -5266,7 +5266,7 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
   if (outputFilePtr == NULL) {
 
 
-    goto PROCESS_MARKUP_RETURN;
+    C.go2("PROCESS_MARKUP_RETURN");
   }
 
   g_outputToString = 0;
@@ -5373,7 +5373,7 @@ long getStepNum(vstring relStep,
       print2("?The step must be in the range from 1 to %ld.\n", pfLen);
       actualStepVal = -1;
     }
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   } else if (!strcmp(relStepCaps, left("FIRST", (long)(strlen(relStepCaps))))) {
     negFlag = 0;
     relStepVal = 0;
@@ -5385,14 +5385,14 @@ long getStepNum(vstring relStep,
     if (strcmp(right(relStepCaps, 2), str((double)relStepVal))) {
       print2("?The characters after '+' are not a number.\n");
       actualStepVal = -1;
-      goto RETURN_POINT;
+      C.go2("RETURN_POINT");
     }
   } else if (relStepCaps[0] == '-') {
     negFlag = 1;
     if (strcmp(right(relStepCaps, 2), str((double)(- relStepVal)))) {
       print2("?The characters after '-' are not a number.\n");
       actualStepVal = -1;
-      goto RETURN_POINT;
+      C.go2("RETURN_POINT");
     }
     relStepVal = - relStepVal;
   } else if (!strcmp(relStepCaps, left("ALL", (long)(strlen(relStepCaps))))) {
@@ -5400,10 +5400,10 @@ long getStepNum(vstring relStep,
 
       print2("?You must specify FIRST, LAST, nn, +nn, or -nn.\n");
       actualStepVal = -1;
-      goto RETURN_POINT;
+      C.go2("RETURN_POINT");
     }
     actualStepVal = 0;
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   } else {
     if (allFlag) {
       print2("?You must specify FIRST, LAST, nn, +nn, -nn, or ALL.\n");
@@ -5411,7 +5411,7 @@ long getStepNum(vstring relStep,
       print2("?You must specify FIRST, LAST, nn, +nn, or -nn.\n");
     }
     actualStepVal = -1;
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
   nmbrLet(&essentialFlags, nmbrGetEssential(pfInProgress));
@@ -5457,7 +5457,7 @@ long getStepNum(vstring relStep,
         relStepVal + 1);
     }
     actualStepVal = -1;
-    goto RETURN_POINT;
+    C.go2("RETURN_POINT");
   }
 
  RETURN_POINT:
@@ -5865,7 +5865,7 @@ void outputMidi(long plen, nmbrString *indentationLevels,
   midiFilePtr = fSafeOpen(midiFileName, "w", 0);
   if (midiFilePtr == NULL) {
     print2("?Couldn't open %s\n", midiFileName);
-    goto midi_return;
+    C.go2("midi_return");
   }
 
 

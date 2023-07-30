@@ -1203,7 +1203,7 @@ void parseStatements(void)
 
 
             origSymbolLen = origSymbolLen - symbolLen;
-            goto nextAdjToken;
+            C.go2("nextAdjToken");
           }
         }
 
@@ -3342,7 +3342,7 @@ void sourceError(char *ptr, long tokLen, long stmtNum, vstring errMsg)
 
   if (!stmtNum) {
     lineNum = 0;
-    goto SKIP_LINE_NUM;
+    C.go2("SKIP_LINE_NUM");
   }
   if (ptr < g_sourcePtr || ptr > g_sourcePtr + g_sourceLen) {
 
@@ -3370,7 +3370,7 @@ void sourceError(char *ptr, long tokLen, long stmtNum, vstring errMsg)
     }
 
     lineNum = 0;
-    goto SKIP_LINE_NUM;
+    C.go2("SKIP_LINE_NUM");
   }
 
 
@@ -4546,7 +4546,7 @@ nmbrString *parseMathTokens(vstring userText, long statemNum)
 
 
             origSymbolLen = origSymbolLen - symbolLen;
-            goto nextAdjToken;
+            C.go2("nextAdjToken");
           }
         }
 
@@ -4662,7 +4662,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
       }
       if (*cmdType == '?') {
 
-        goto GET_PASSED_END_OF_COMMENT;
+        C.go2("GET_PASSED_END_OF_COMMENT");
       } else {
 
         fbPtr = fbPtr + j;
@@ -4670,7 +4670,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
         j = rawTokenLen(fbPtr);
         if (j != 2 || strncmp("$[", fbPtr, (size_t)j)) {
 
-          goto GET_PASSED_END_OF_COMMENT;
+          C.go2("GET_PASSED_END_OF_COMMENT");
         }
         fbPtr = fbPtr + j;
         fbPtr = fbPtr + rawWhiteSpaceLen(fbPtr);
@@ -4683,7 +4683,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
           if (strncmp(*fileName, fbPtr, (size_t)j)) {
 
 
-            goto GET_PASSED_END_OF_COMMENT;
+            C.go2("GET_PASSED_END_OF_COMMENT");
           }
         }
         fbPtr = fbPtr + j;
@@ -4692,7 +4692,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
         if (j != 2 || strncmp("$]", fbPtr, (size_t)j)) {
 
 
-          goto GET_PASSED_END_OF_COMMENT;
+          C.go2("GET_PASSED_END_OF_COMMENT");
         }
         fbPtr = fbPtr + j;
         fbPtr = fbPtr + rawWhiteSpaceLen(fbPtr);
@@ -4700,7 +4700,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
         if (j != 2 || strncmp("$)", fbPtr, (size_t)j)) {
 
 
-          goto GET_PASSED_END_OF_COMMENT;
+          C.go2("GET_PASSED_END_OF_COMMENT");
         }
 
         fbPtr = fbPtr + j;

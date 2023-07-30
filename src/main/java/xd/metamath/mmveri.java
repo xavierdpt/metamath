@@ -271,7 +271,7 @@ nmbrString *assignVar(nmbrString *bigSubstSchemeAss,
 
       if (!unkHypFlag) bug(2109);
     }
-    goto returnPoint;
+    C.go2("returnPoint");
   }
 
   nmbrLet(&substSchemeFrstVarOcc,nmbrSpace(bigSubstSchemeVarLen));
@@ -280,10 +280,10 @@ nmbrString *assignVar(nmbrString *bigSubstSchemeAss,
 
   if (bigSubstSchemeVarLen != nmbrLen(g_Statement[substScheme].reqVarList)) {
     if (unkHypFlag) {
-      goto returnPoint;
+      C.go2("returnPoint");
     } else {
       if (!g_WrkProof.errorCount) bug(2103);
-      goto returnPoint;
+      C.go2("returnPoint");
     }
   }
 
@@ -435,7 +435,7 @@ if(db7)print2(
   if (v == -1) {
     if (ambiguityCheckFlag) {
 
-      goto returnPoint;
+      C.go2("returnPoint");
     }
     if (!g_WrkProof.errorCount) {
       let(&tmpStr, "");
@@ -463,7 +463,7 @@ if(db7)print2(
       let(&tmpStr2, "");
     }
     g_WrkProof.errorCount++;
-    goto returnPoint;
+    C.go2("returnPoint");
   }
   if (p != bigSubstSchemeLen - 1 || q != bigSubstInstLen - 1
       || v != bigSubstSchemeVarLen - 1) bug(2107);
@@ -471,7 +471,7 @@ if(db7)print2(
   if (ambiguityCheckFlag) {
     if (unkHypFlag) {
       nmbrLet(&result,NULL_NMBRSTRING);
-      goto returnPoint;
+      C.go2("returnPoint");
     }
     nmbrLet(&saveResult, result);
     nmbrLet(&result, NULL_NMBRSTRING);
@@ -737,14 +737,14 @@ if(db7)printLongLine(cat("result ", nmbrCvtMToVString(result), NULL),""," ");
           "\" to see the proof attempt.",NULL));
     }
     g_WrkProof.errorCount++;
-    goto returnPoint;
+    C.go2("returnPoint");
   } else {
 
 
     while (1) {
       v--;
       if (v < 0) {
-        goto returnPoint;
+        C.go2("returnPoint");
       }
       varAssLen[v]++;
       p = substSchemeFrstVarOcc[v] + 1;
@@ -753,7 +753,7 @@ if(db7)printLongLine(cat("result ", nmbrCvtMToVString(result), NULL),""," ");
       if (q >= bigSubstInstLen) bug(2110);
     }
     ambiguityCheckFlag = 1;
-    goto ambiguityCheck;
+    C.go2("ambiguityCheck");
   }
 
 
