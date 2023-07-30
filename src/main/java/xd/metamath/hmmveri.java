@@ -10,14 +10,11 @@ public class hmmveri {
 
 
 
-char verifyProof(long statemNum);
 
-nmbrString *assignVar(nmbrString *bigSubstSchemeAss,
-  nmbrString *bigSubstInstAss, long substScheme,
 
-  long statementNum, long step, flag unkHypFlag);
 
-void cleanWrkProof(void);
+
+
 
 
 

@@ -137,26 +137,26 @@ struct mathToken_struct {
 
 
 
-void *poolFixedMalloc(long size );
-void *poolMalloc(long size );
-void poolFree(void *ptr);
-void addToUsedPool(void *ptr);
-
-void memFreePoolPurge(flag untilOK);
-
-void getPoolStats(long *freeAlloc, long *usedAlloc, long *usedActual);
 
 
-void initBigArrays(void);
 
 
-long getFreeSpace(long max);
 
 
-void outOfMemory(vstring msg);
 
 
-void bug(int bugNum);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -177,12 +177,8 @@ struct nullPntrStruct {
 
 
 
-flag matchesList(vstring testString, vstring pattern, char wildCard,
-    char oneCharWildCard);
 
 
-flag matches(vstring testString, vstring pattern, char wildCard,
-    char oneCharWildCard);
 
 
 
@@ -193,90 +189,53 @@ flag matches(vstring testString, vstring pattern, char wildCard,
 
 
 
-void nmbrMakeTempAlloc(nmbrString *s);
 
 
 
 
 
-void nmbrLet(nmbrString **target,nmbrString *source);
 
 
-nmbrString *nmbrCat(nmbrString *string1,...);
 
 
-nmbrString *nmbrSeg(nmbrString *sin, long p1, long p2);
-nmbrString *nmbrMid(nmbrString *sin, long p, long l);
-nmbrString *nmbrLeft(nmbrString *sin, long n);
-nmbrString *nmbrRight(nmbrString *sin, long n);
 
 
-nmbrString *nmbrSpace(long n);
 
-long nmbrLen(nmbrString *s);
-long nmbrAllocLen(nmbrString *s);
-void nmbrZapLen(nmbrString *s, long length);
 
 
-long nmbrInstr(long start, nmbrString *sin, nmbrString *s);
 
 
 
-long nmbrRevInstr(long start_position,nmbrString *string1,
-    nmbrString *string2);
 
 
-int nmbrEq(nmbrString *sout,nmbrString *sin);
 
 
-vstring nmbrCvtMToVString(nmbrString *s);
 
 
 
-vstring nmbrCvtRToVString(nmbrString *s,
-    flag explicitTargets,
-    long statemNum);
 
 
-nmbrString *nmbrGetProofStepNumbs(nmbrString *reason);
 
-vstring nmbrCvtAnyToVString(nmbrString *s);
 
 
-nmbrString *nmbrExtractVars(nmbrString *m);
 
 
-long nmbrElementIn(long start, nmbrString *g, long element);
 
 
-nmbrString *nmbrAddElement(nmbrString *g, long element);
 
-nmbrString *nmbrUnion(nmbrString *m1,nmbrString *m2);
 
-nmbrString *nmbrIntersection(nmbrString *m1,nmbrString *m2);
 
-nmbrString *nmbrSetMinus(nmbrString *m1,nmbrString *m2);
 
 
 
-long nmbrGetSubproofLen(nmbrString *proof, long step);
 
-nmbrString *nmbrSquishProof(nmbrString *proof);
 
-nmbrString *nmbrUnsquishProof(nmbrString *proof);
 
-nmbrString *nmbrGetIndentation(nmbrString *proof,
-  long startingLevel);
 
-nmbrString *nmbrGetEssential(nmbrString *proof);
 
-nmbrString *nmbrGetTargetHyp(nmbrString *proof, long statemNum);
 
-vstring compressProof(nmbrString *proof, long statemNum,
-    flag oldCompressionAlgorithm);
 
 
-long compressedProofSize(nmbrString *proof, long statemNum);
 
 
 
@@ -286,95 +245,87 @@ long compressedProofSize(nmbrString *proof, long statemNum);
 
 
 
-void pntrMakeTempAlloc(pntrString *s);
 
 
 
 
 
-void pntrLet(pntrString **target,pntrString *source);
 
 
-pntrString *pntrCat(pntrString *string1,...);
 
 
-pntrString *pntrSeg(pntrString *sin, long p1, long p2);
-pntrString *pntrMid(pntrString *sin, long p, long length);
-pntrString *pntrLeft(pntrString *sin, long n);
-pntrString *pntrRight(pntrString *sin, long n);
 
 
-pntrString *pntrSpace(long n);
 
-pntrString *pntrNSpace(long n);
 
-pntrString *pntrPSpace(long n);
 
-long pntrLen(pntrString *s);
-long pntrAllocLen(pntrString *s);
-void pntrZapLen(pntrString *s, long length);
 
 
-long pntrInstr(long start, pntrString *sin, pntrString *s);
 
 
 
-long pntrRevInstr(long start_position,pntrString *string1,
-    pntrString *string2);
 
 
-int pntrEq(pntrString *sout,pntrString *sin);
 
 
-pntrString *pntrAddElement(pntrString *g);
 
 
-pntrString *pntrAddGElement(pntrString *g);
 
 
 
 
-long knapsack01(long items, long *size, long *worth, long maxSize,
-       char *itemIncluded );
 
 
-long **alloc2DMatrix(size_t xsize, size_t ysize);
-void free2DMatrix(long **matrix, size_t xsize );
 
-long getSourceIndentation(long statemNum);
 
 
-vstring getDescription(long statemNum);
 
-vstring getDescriptionAndLabel(long statemNum);
 
 
 
-flag getMarkupFlag(long statemNum, char mode);
 
 
-vstring getContrib(long stmtNum, char mode);
 
 
 
 
-void getProofDate(long stmtNum, vstring *date1, vstring *date2);
 
 
-flag parseDate(vstring dateStr, long *dd, long *mmm, long *yyyy);
 
 
-void buildDate(long dd, long mmm, long yyyy, vstring *dateStr);
 
-flag compareDates(vstring date1, vstring date2);
 
 
 
 
-int qsortStringCmp(const void *p1, const void *p2);
 
 
 
-void freeData(void);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
