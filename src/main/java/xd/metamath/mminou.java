@@ -9,15 +9,9 @@ public class mminou {
 
 
 
-#ifdef __WATCOMC__
 
-#ifndef _CONIO_H_INCLUDED
-#define _CONIO_H_INCLUDED
-#endif
-#endif
 
-#ifdef THINK_C
-#endif
+
 
     static final long QUOTED_SPACE=D.QUOTED_SPACE;
 
@@ -62,9 +56,7 @@ flag print2(char* fmt,...)
   va_list ap;
   char c;
   long nlpos, lineLen, charsPrinted;
-#ifdef THINK_C
-  int ii, jj;
-#endif
+
   long i;
 
 
@@ -238,16 +230,11 @@ flag print2(char* fmt,...)
   if (!g_outputToString && !g_commandFileSilentFlag) {
     if (nlpos == 0) {
 
-#ifdef __WATCOMC__
-      cprintf("%s", printBuffer);
-#else
+
       printf("%s", printBuffer);
-#endif
 
-#ifdef THINK_C
 
-      cgetxy(&ii, &jj, stdout);
-#endif
+
 
 #if __STDC__
       fflush(stdout);
@@ -944,39 +931,10 @@ File fSafeOpen(vstring fileName, vstring mode, flag noVersioningFlag)
 static final long VERSIONS =D.VERSIONS;
 
 
-#if defined __WATCOMC__
-
-      i = instr(1, fileName, ".");
-      if (i) {
-        let(&prefix, left(fileName, i - 1));
-        let(&postfix, right(fileName, i));
-      } else {
-        let(&prefix, fileName);
-        let(&postfix, "");
-      }
-      let(&prefix, cat(left(prefix, 5), "~", NULL));
-      let(&postfix, cat("~", postfix, NULL));
-      if (0) goto skip_backup;
-
-#elif defined __GNUC__
-      let(&prefix, cat(fileName, "~", NULL));
-      let(&postfix, "");
-
-#elif defined THINK_C
-      let(&prefix, cat(fileName, "~", NULL));
-      let(&postfix, "");
-
-#elif defined VAXC
-
-
-      goto skip_backup;
-
-#else
 
       let(&prefix, cat(fileName, "~", NULL));
       let(&postfix, "");
 
-#endif
 
 
 

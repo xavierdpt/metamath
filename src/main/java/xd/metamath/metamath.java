@@ -2,58 +2,11 @@ package xd.metamath;
 
 public class metamath {
 
-
-
-
-
-
-
-
-
-
-
-
-
    static final String MVERSION =D.MVERSION;
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#ifdef THINK_C
-#endif
-#ifdef THINK_C
-#endif
 
 void command(int argc, char *argv[]);
 
@@ -61,20 +14,9 @@ int main(int argc, char *argv[])
 {
 
 
-#ifdef THINK_C
-
-console_options.pause_atexit = 0;
-console_options.title = (unsigned char*)"\pMetamath";
-#endif
-
-#ifdef THINK_C
-  cshow(stdout);
 
 
 
-
-
-#endif
 
 
   g_listMode = 0;
@@ -315,13 +257,9 @@ static final long SYNTAX =D.SYNTAX;
 
     if (g_memoryStatus) {
 
-#ifdef THINK_C
-      print2("Memory:  string %ld xxxString %ld free %ld\n",db,db3,(long)FreeMem());
-      getPoolStats(&i, &j, &k);
-      print2("Pool:  free alloc %ld  used alloc %ld  used actual %ld\n",i,j,k);
-#else
+
       print2("Memory:  string %ld xxxString %ld\n",db,db3);
-#endif
+
       getPoolStats(&i, &j, &k);
       print2("Pool:  free alloc %ld  used alloc %ld  used actual %ld\n",i,j,k);
     }
@@ -412,9 +350,7 @@ static final long SYNTAX =D.SYNTAX;
         }
 
         (void)system(str1);
-#ifdef VAXC
-        printf("\n");
-#endif
+
         continue;
       }
     }
@@ -2505,11 +2441,9 @@ static final long SYNTAX =D.SYNTAX;
     if (cmdMatches("SHOW MEMORY")) {
 
       j = 32000000;
-#ifdef THINK_C
-      i = FreeMem();
-#else
+
       i = getFreeSpace(j);
-#endif
+
       if (i > j-3) {
         print2("At least %ld bytes of memory are free.\n",j);
       } else {

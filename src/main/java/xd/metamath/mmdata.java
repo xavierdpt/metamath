@@ -413,13 +413,7 @@ void outOfMemory(vstring msg)
 "inclusions to reduce the size of your input source.\n");
   print2(
 "Monitor memory periodically with SHOW MEMORY.\n");
-#ifdef THINK_C
-  print2(
-"You may also increase the \"Application Memory Size\" under \"Get Info\"\n");
-  print2(
-"under \"File\" in the Finder after clicking once on the Metamath\n");
-  print2("application icon.\n");
-#endif
+
   print2("\n");
   print2("Press <return> to exit Metamath.\n");
   tmpStr = cmdInput1("");
@@ -520,9 +514,7 @@ void bug(int bugNum)
     return;
   }
   let(&tmpStr, "");
-#ifdef THINK_C
-  cmdInput1("Program has crashed.  Press <return> to leave.");
-#endif
+
 
   print2("\n");
 

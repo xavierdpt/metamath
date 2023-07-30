@@ -4430,13 +4430,9 @@ void verifyProofs(vstring labelMatch, flag verifyFlag) {
   clock_t clockStart;
 #endif
 
-#ifdef __WATCOMC__
-  vstring tmpStr="";
-#endif
 
-#ifdef VAXC
-  vstring tmpStr="";
-#endif
+
+
 
 #ifdef CLOCKS_PER_SEC
   clockStart = clock();

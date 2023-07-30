@@ -878,9 +878,7 @@ void parseStatements(void)
 
   for (stmt = 1; stmt <= g_statements; stmt++) {
 
-#ifdef VAXC
-    stmt = stmt;
-#endif
+
 
     g_Statement[stmt].beginScopeStatementNum = beginScopeStmtNum;
 
