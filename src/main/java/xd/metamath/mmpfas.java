@@ -97,7 +97,7 @@ void interactiveMatch(long step, long maxEssential)
     return;
   }
 
-#define MATCH_LIMIT 100
+  static final long MATCH_LIMIT=D.MATCH_LIMIT;
   if (matchCount > MATCH_LIMIT) {
     let(&tmpStr1, cat("There are ", str((double)matchCount), " matches for step ",
       str((double)step + 1), ".  View them (Y, N) <N>? ", NULL));
@@ -1460,7 +1460,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
     goto returnPoint;
   }
 
-#define MAX_DEPTH 40
+  static final long  MAX_DEPTH=D.MAX_DEPTH;
   if (depth > MAX_DEPTH) {
     nmbrLet(&proof, NULL_NMBRSTRING);
 
@@ -1955,7 +1955,7 @@ void minimizeProof(long repStatemNum, long prvStatemNum,
 
     if (!foundFlag) break;
 
-#define MAX_GROWTH_FACTOR 2
+    static final long MAX_GROWTH_FACTOR =D.MAX_GROWTH_FACTOR;
     if (allowGrowthFlag && plen > MAX_GROWTH_FACTOR * startingPlen) {
 
       print2("Suppressed excessive ALLOW_GROWTH growth.\n");
@@ -2984,7 +2984,7 @@ void deallocProofStruct(struct pip_struct *proofStruct)
 
 
 
-#define DEFAULT_UNDO_STACK_SIZE 20
+  static final long  DEFAULT_UNDO_STACK_SIZE =D.DEFAULT_UNDO_STACK_SIZE;
 long processUndoStack(struct pip_struct *proofStruct,
     char action,
     vstring info,

@@ -13,7 +13,7 @@ public class mmword {
 
 
 
-#define LINE_LENGTH 80
+static final long  LINE_LENGTH =D.LINE_LENGTH;
 
 
 
@@ -38,8 +38,8 @@ vstring delStartTag_ = "";
 vstring delEndTag_ = "";
 flag printedAtLeastOne;
 
-#define MAX_LINES 10000
-#define MAX_BUF 1000
+    static final long  MAX_LINES= D.MAX_LINES;
+    static final long MAX_BUF =D.MAX_BUF;
      vstring line1_[MAX_LINES];
      vstring line2_[MAX_LINES];
      vstring reserve1_[MAX_BUF];

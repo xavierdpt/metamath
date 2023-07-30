@@ -14,7 +14,7 @@ public class metamath {
 
 
 
-#define MVERSION "0.198 7-Aug-2021"
+   static final String MVERSION =D.MVERSION;
 
 
 
@@ -117,7 +117,7 @@ void command(int argc, char *argv[])
   long  i, j, k, m, l, n, p, q, r, s ;
   long stmt, step;
   int subType = 0;
-#define SYNTAX 4
+static final long SYNTAX =D.SYNTAX;
   vstring str1 = "", str2 = "", str3 = "", str4 = "", str5= "";
   nmbrString *nmbrTmpPtr;
   nmbrString *nmbrTmp = NULL_NMBRSTRING;
@@ -629,17 +629,17 @@ void command(int argc, char *argv[])
 
     if (g_toolsMode) {
 
-#define ADD_MODE 1
-#define DELETE_MODE 2
-#define CLEAN_MODE 3
-#define SUBSTITUTE_MODE 4
-#define SWAP_MODE 5
-#define INSERT_MODE 6
-#define BREAK_MODE 7
-#define BUILD_MODE 8
-#define MATCH_MODE 9
-#define RIGHT_MODE 10
-#define TAG_MODE 11
+      static final long ADD_MODE =D.ADD_MODE;
+      static final long DELETE_MODE =D.DELETE_MODE;
+      static final long CLEAN_MODE =D.CLEAN_MODE;
+      static final long SUBSTITUTE_MODE =D.SUBSTITUTE_MODE;
+      static final long SWAP_MODE =D.SWAP_MODE;
+      static final long INSERT_MODE =D.INSERT_MODE;
+      static final long BREAK_MODE =D.BREAK_MODE;
+      static final long BUILD_MODE =D.BUILD_MODE;
+      static final long MATCH_MODE =D.MATCH_MODE;
+      static final long RIGHT_MODE =D.RIGHT_MODE;
+      static final long TAG_MODE =D.TAG_MODE;
       cmdMode = 0;
       if (cmdMatches("ADD")) cmdMode = ADD_MODE;
       else if (cmdMatches("DELETE")) cmdMode = DELETE_MODE;
@@ -990,11 +990,11 @@ void command(int argc, char *argv[])
         continue;
       }
 
-#define SORT_MODE 1
-#define UNDUPLICATE_MODE 2
-#define DUPLICATE_MODE 3
-#define UNIQUE_MODE 4
-#define REVERSE_MODE 5
+      static final long SORT_MODE =D.SORT_MODE;
+      static final long UNDUPLICATE_MODE =D.UNDUPLICATE_MODE;
+      static final long DUPLICATE_MODE =D.DUPLICATE_MODE;
+      static final long UNIQUE_MODE =D.UNIQUE_MODE;
+      static final long REVERSE_MODE =D.REVERSE_MODE;
       cmdMode = 0;
       if (cmdMatches("SORT")) cmdMode = SORT_MODE;
       else if (cmdMatches("UNDUPLICATE")) cmdMode = UNDUPLICATE_MODE;
@@ -1451,7 +1451,7 @@ void command(int argc, char *argv[])
 
     if (cmdMatches("WRITE THEOREM_LIST")) {
 
-#define THEOREMS_PER_PAGE 100
+      static final long THEOREMS_PER_PAGE =D.THEOREMS_PER_PAGE;
 
 
       i = switchPos("/ THEOREMS_PER_PAGE");
@@ -1503,7 +1503,7 @@ void command(int argc, char *argv[])
     if (cmdMatches("WRITE RECENT_ADDITIONS")) {
 
 
-#define RECENT_COUNT 100
+      static final long RECENT_COUNT =D.RECENT_COUNT;
 
 
       i = switchPos("/ LIMIT");
@@ -1574,7 +1574,7 @@ void command(int argc, char *argv[])
       parseDate(date(), &k , &l , &m );
 
 
-#define START_YEAR 93
+      static final long START_YEAR=D.START_YEAR;
       n = 0;
       while (n < i  && m > START_YEAR + 1900 - 1) {
 
@@ -1793,8 +1793,8 @@ void command(int argc, char *argv[])
       j = 0;
       k = 0;
       let(&str2, "");
-#define COL 20
-#define MIN_SPACE 2
+      static final long COL =D.COL;
+      static final long MIN_SPACE =D.MIN_SPACE;
       for (i = 1; i <= g_statements; i++) {
         if (!g_Statement[i].labelName[0]) continue;
         if (!m && g_Statement[i].type != (char)p_ &&

@@ -20,7 +20,7 @@ long db1=0;
 # define INCDB1(x) db1 += (x)
 #endif
 
-#define MAX_ALLOC_STACK 100
+  static final long MAX_ALLOC_STACK= D.MAX_ALLOC_STACK;
 long g_tempAllocStackTop = 0;
 long g_startTempAllocStack = 0;
 void *tempAllocStack[MAX_ALLOC_STACK];
@@ -125,7 +125,7 @@ if (sourceLength) {
 }
 
 vstring cat(vstring string1,...)
-#define MAX_CAT_ARGS 50
+  static final long  MAX_CAT_ARGS=D.MAX_CAT_ARGS;
 {
   va_list ap;
   vstring arg[MAX_CAT_ARGS];

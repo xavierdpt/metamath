@@ -132,13 +132,14 @@ void initProofStruct(struct pip_struct *proofStruct, nmbrString *proof,
 void deallocProofStruct(struct pip_struct *proofStruct);
 
 
-#define PUS_INIT 1
-#define PUS_PUSH 2
-#define PUS_UNDO 3
-#define PUS_REDO 4
-#define PUS_NEW_SIZE 5
-#define PUS_GET_SIZE 6
-#define PUS_GET_STATUS 7
+
+     static final long PUS_INIT = D.PUS_INIT;
+     static final long PUS_PUSH = D.PUS_PUSH;
+     static final long PUS_UNDO = D.PUS_UNDO;
+     static final long PUS_REDO = D.PUS_REDO;
+     static final long PUS_NEW_SIZE = D.PUS_NEW_SIZE;
+     static final long PUS_GET_SIZE = D.PUS_GET_SIZE;
+     static final long PUS_GET_STATUS = D.PUS_GET_STATUS;
 
 long processUndoStack(struct pip_struct *proofStruct,
     char action,

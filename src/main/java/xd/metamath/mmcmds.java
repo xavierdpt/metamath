@@ -83,10 +83,10 @@ void typeStatement(long showStmt,
 
       if (!(htmlFlg && texFlag)) {
       } else {
-#define SYNTAX 1
-#define DEFINITION 2
-#define AXIOM 3
-#define THEOREM 4
+         static final long SYNTAX =D.SYNTAX2;
+         static final long DEFINITION =D.DEFINITION;
+         static final long AXIOM =D.AXIOM;
+         static final long THEOREM =D.THEOREM;
         if (g_Statement[showStmt].type == (char)p_) {
           subType = THEOREM;
         } else {
@@ -1691,7 +1691,7 @@ void typeProof(long statemNum,
     }
 
 
-#define PF_INDENT_INC 2
+     static final long PF_INDENT_INC =D.PF_INDENT_INC;
 
     if (stepPrintFlag) {
 
@@ -2952,8 +2952,8 @@ void traceProofTreeRec(long statemNum,
     }
   }
 
-#define INDENT_INCR 3
-#define MAX_LINE_LEN 79
+  static final long INDENT_INCR =D.INDENT_INCR;
+  static final long MAX_LINE_LEN =D.MAX_LINE_LEN;
 
   if ((recursDepth * INDENT_INCR - indentShift) >
       (g_screenWidth - MAX_LINE_LEN) + 50) {
@@ -4189,7 +4189,7 @@ void fixUndefinedLabels(vstring extractNeeded,
   vstring newLabelWithTilde = "";
   vstring restOfComment = "";
   int mathMode;
-#define ASCII_4 4
+  static final long   ASCII_4 =D.ASCII_4;
 
 
   p1 = (long)strlen(*buf);
@@ -5662,12 +5662,11 @@ void outputMidi(long plen, nmbrString *indentationLevels,
 
 
 
-#define TEMPO 48
+  public static final long TEMPO =D.TEMPO;
 
 
-
-#define MIN_NOTE 28
-#define MAX_NOTE 103
+  public static final long MIN_NOTE =D.MIN_NOTE;
+  public static final long MIN_NOTE =D.;
 
 
   long step;
@@ -5688,9 +5687,9 @@ void outputMidi(long plen, nmbrString *indentationLevels,
   long midiTempo;
   vstring midiLocalParam = "";
   vstring tmpStr = "";
-#define ALLKEYSFLAG 1
-#define WHITEKEYSFLAG 2
-#define BLACKKEYSFLAG 3
+  static final long ALLKEYSFLAG =D.ALLKEYSFLAG;
+  static final long WHITEKEYSFLAG =D.WHITEKEYSFLAG;
+  static final long BLACKKEYSFLAG =D.BLACKKEYSFLAG;
   flag keyboardType;
   long absMinKey;
   long absMaxKey;
@@ -5699,9 +5698,9 @@ void outputMidi(long plen, nmbrString *indentationLevels,
   long i;
 
 
-#define ALLKEYS 128
-#define WHITEKEYS 75
-#define BLACKKEYS 53
+  static final long ALLKEYS =D.ALLKEYS;
+  static final long WHITEKEYS =D.WHITEKEYS;
+  static final long BLACKKEYS =D.BLACKKEYS;
   long allKeys[ALLKEYS] =
       {  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,
         12,  13,  14,  15,  16,  17,  18,  19,  20,  21,  22,  23,

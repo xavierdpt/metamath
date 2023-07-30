@@ -11,14 +11,11 @@ public class hmmwtex {
 
 
 
-#define GREEN_TITLE_COLOR "\"#006633\""
-#define MINT_BACKGROUND_COLOR "\"#EEFFFA\""
-#define PINK_NUMBER_COLOR "\"#FA8072\""
-#define PURPLISH_BIBLIO_COLOR "\"#FAEEFF\""
-
-
-
-#define SANDBOX_COLOR "\"#FFFFD9\""
+    static final String GREEN_TITLE_COLOR= D.GREEN_TITLE_COLOR;
+    static final String MINT_BACKGROUND_COLOR= D.MINT_BACKGROUND_COLOR;
+    static final String PINK_NUMBER_COLOR= D.PINK_NUMBER_COLOR;
+    static final String PURPLISH_BIBLIO_COLOR= D.PURPLISH_BIBLIO_COLOR;
+    static final String SANDBOX_COLOR= D.SANDBOX_COLOR;
 
 
 
@@ -62,20 +59,18 @@ flag printTexComment(vstring commentPtr,
     long actionBits,
     flag noFileCheck );
 
-#define ERRORS_ONLY 1
-#define PROCESS_SYMBOLS 2
-#define PROCESS_LABELS 4
-#define ADD_COLORED_LABEL_NUMBER 8
-#define PROCESS_BIBREFS 16
-#define PROCESS_UNDERSCORES 32
+    static final long ERRORS_ONLY =D.ERRORS_ONLY;
+    static final long PROCESS_SYMBOLS  =D.PROCESS_SYMBOLS;
+    static final long PROCESS_LABELS  =D.PROCESS_LABELS;
+    static final long ADD_COLORED_LABEL_NUMBER  =D.ADD_COLORED_LABEL_NUMBER;
+    static final long PROCESS_BIBREFS  =D.PROCESS_BIBREFS;
+    static final long PROCESS_UNDERSCORES  =D.PROCESS_UNDERSCORES;
 
-#define CONVERT_TO_HTML 64
+    static final long CONVERT_TO_HTML  =D.CONVERT_TO_HTML;
 
-#define METAMATH_COMMENT 128
+    static final long METAMATH_COMMENT  =D.METAMATH_COMMENT;
 
-#define PROCESS_EVERYTHING PROCESS_SYMBOLS + PROCESS_LABELS \
-     + ADD_COLORED_LABEL_NUMBER + PROCESS_BIBREFS \
-     + PROCESS_UNDERSCORES + CONVERT_TO_HTML + METAMATH_COMMENT
+    static final long PROCESS_EVERYTHING =D.PROCESS_EVERYTHING;
 
 void printTexLongMath(nmbrString *proofStep, vstring startPrefix,
     vstring contPrefix, long hypStmt, long indentationLevel);
@@ -84,10 +79,10 @@ void printTexTrailer(flag texHeaderFlag);
 void writeTheoremList(long theoremsPerPage, flag showLemmas,
     flag noVersioning);
 
-#define HUGE_DECORATION "####"
-#define BIG_DECORATION "#*#*"
-#define SMALL_DECORATION "=-=-"
-#define TINY_DECORATION "-.-."
+    static final String  HUGE_DECORATION= D.HUGE_DECORATION;
+    static final String  BIG_DECORATION= D.BIG_DECORATION;
+    static final String  SMALL_DECORATION= D.SMALL_DECORATION;
+    static final String  TINY_DECORATION =D.TINY_DECORATION;
 
 
 
@@ -122,7 +117,7 @@ vstring pinkHTML(long statemNum);
 
 vstring pinkRangeHTML(long statemNum1, long statemNum2);
 
-#define PINK_NBSP "&nbsp;"
+    static final String PINK_NBSP = D.PINK_NBSP;
 #define RAINBOW_OPTION
 
 #ifdef RAINBOW_OPTION

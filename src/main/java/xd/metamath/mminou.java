@@ -19,7 +19,7 @@ public class mminou {
 #ifdef THINK_C
 #endif
 
-#define QUOTED_SPACE 3
+    static final long QUOTED_SPACE=D.QUOTED_SPACE;
 
 
 int g_errorCount = 0;
@@ -603,7 +603,7 @@ vstring cmdInput(File stream, vstring ask)
 {
   vstring g = "";
   long i;
-#define CMD_BUFFER_SIZE 2000
+    static final long  CMD_BUFFER_SIZE =D.CMD_BUFFER_SIZE;
 
   while (1) {
     if (ask != NULL && !g_commandFileSilentFlag) {
@@ -941,7 +941,7 @@ File fSafeOpen(vstring fileName, vstring mode, flag noVersioningFlag)
     if (fp) {
       fclose(fp);
 
-#define VERSIONS 9
+static final long VERSIONS =D.VERSIONS;
 
 
 #if defined __WATCOMC__
@@ -1143,7 +1143,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
   }
 #ifndef SEEK_END
 
-#define SEEK_END 2
+    static final long  SEEK_END=D.SEEK_END;
 #endif
   if (fseek(inputFp, 0, SEEK_END)) {
 

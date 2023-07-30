@@ -19,7 +19,7 @@ long switchPos(vstring swString);
 void printCommandError(vstring line, long arg, vstring errorMsg);
 void freeCommandLine(void);
 
-#define DEFAULT_COLUMN 16
+    static final long DEFAULT_COLUMN= D.DEFAULT_COLUMN;
 
 
 

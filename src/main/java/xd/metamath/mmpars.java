@@ -3768,8 +3768,8 @@ vstring outputStatement(long stmt,
 
   if (reformatFlag > 0) {
 
-#define INDENT_FIRST 2
-#define INDENT_INCR 2
+    static final long INDENT_FIRST =D.INDENT_FIRST;
+    static final long  INDENT_INCR =D.INDENT_INCR2;
     indent = INDENT_FIRST + (INDENT_INCR * g_Statement[stmt].scope);
 
     if (g_Statement[stmt].type == rb_) indent = indent - INDENT_INCR;
@@ -3960,7 +3960,7 @@ vstring outputStatement(long stmt,
           let(&comment, g_printString);
           let(&g_printString, "");
           g_outputToString = 0;
-#define ASCII_4 4
+          static final long ASCII_4 =D.ASCII_4;
 
           length = (long)strlen(comment);
           for (pos = 2; pos < length - 2; pos++) {
@@ -4144,10 +4144,10 @@ vstring outputStatement(long stmt,
 vstring rewrapComment(vstring comment1)
 {
 
-#define OPENING_PUNCTUATION "(['\""
+  static final String OPENING_PUNCTUATION=D.OPENING_PUNCTUATION2;
 
-#define CLOSING_PUNCTUATION ".,;)?!:]'\""
-#define SENTENCE_END_PUNCTUATION ")'\""
+  static final String CLOSING_PUNCTUATION=D.CLOSING_PUNCTUATION2;
+  static final String SENTENCE_END_PUNCTUATION=D.SENTENCE_END_PUNCTUATION;
   vstring comment = "";
   vstring commentTemplate = "";
   long length, pos, i, j;

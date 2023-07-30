@@ -15,7 +15,8 @@ public class hmminou {
 
 
 
-#define MAX_COMMAND_FILE_NESTING 10
+
+static final long MAX_COMMAND_FILE_NESTING = D.MAX_COMMAND_FILE_NESTING;
 
 
 
@@ -24,8 +25,9 @@ public class hmminou {
 
 
 flag print2(char* fmt,...);
-#define MAX_LEN 79
-#define SCREEN_HEIGHT 23
+
+     static final long MAX_LEN = D.MAX_LEN;
+     static final long SCREEN_HEIGHT = D.SCREEN_HEIGHT;
 
 
 void printLongLine(vstring line, vstring startNextLine, vstring breakMatch);

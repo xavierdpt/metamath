@@ -26,8 +26,8 @@ nmbrString *g_mathboxStart = NULL_NMBRSTRING;
 nmbrString *g_mathboxEnd = NULL_NMBRSTRING;
 pntrString *g_mathboxUser = NULL_PNTRSTRING;
 
-#define OPENING_PUNCTUATION "(['\""
-#define CLOSING_PUNCTUATION ".,;)?!:]'\"_-"
+  static final String OPENING_PUNCTUATION=D.OPENING_PUNCTUATION;
+  static final String CLOSING_PUNCTUATION=D.CLOSING_PUNCTUATION;
 
 
 File g_texFilePtr = NULL;
@@ -40,7 +40,7 @@ struct texDef_struct *g_TexDefs;
 
 
 long numSymbs;
-#define DOLLAR_SUBST 2
+  static final long  DOLLAR_SUBST =D.DOLLAR_SUBST;
 
 
 
@@ -196,26 +196,26 @@ flag readTexDefs(
 
 
 
-#define LATEXDEF 1
-#define HTMLDEF 2
-#define HTMLVARCOLOR 3
-#define HTMLTITLE 4
-#define HTMLHOME 5
+  static final long LATEXDEF =D.LATEXDEF;
+  static final long HTMLDEF =D.HTMLDEF;
+  static final long HTMLVARCOLOR =D.HTMLVARCOLOR;
+  static final long HTMLTITLE =D.HTMLTITLE;
+  static final long HTMLHOME =D.HTMLHOME;
 
-#define ALTHTMLDEF 6
-#define EXTHTMLTITLE 7
-#define EXTHTMLHOME 8
-#define EXTHTMLLABEL 9
-#define HTMLDIR 10
-#define ALTHTMLDIR 11
+  static final long ALTHTMLDEF =D.ALTHTMLDEF;
+  static final long EXTHTMLTITLE =D.EXTHTMLTITLE;
+  static final long EXTHTMLHOME =D.EXTHTMLHOME;
+  static final long EXTHTMLLABEL =D.EXTHTMLLABEL;
+  static final long HTMLDIR =D.HTMLDIR;
+  static final long ALTHTMLDIR =D.ALTHTMLDIR;
 
-#define HTMLBIBLIOGRAPHY 12
-#define EXTHTMLBIBLIOGRAPHY 13
+  static final long HTMLBIBLIOGRAPHY =D.HTMLBIBLIOGRAPHY;
+  static final long EXTHTMLBIBLIOGRAPHY =D.EXTHTMLBIBLIOGRAPHY;
 
-#define HTMLCSS 14
-#define HTMLFONT 15
+  static final long HTMLCSS =D.HTMLCSS;
+  static final long HTMLFONT =D.HTMLFONT;
 
-#define HTMLEXTURL 16
+  static final long HTMLEXTURL =D.HTMLEXTURL;
 
   startPtr = fileBuf;
 
@@ -2709,7 +2709,7 @@ void printTexLongMath(nmbrString *mathString,
     long hypStmt,
     long indentationLevel)
 {
-#define INDENTATION_OFFSET 1
+  static final long INDENTATION_OFFSET =D.INDENTATION_OFFSET;
   long i;
   long pos;
   vstring tex = "";
@@ -2811,7 +2811,7 @@ void printTexLongMath(nmbrString *mathString,
 
 
     } else {
-#define TRIMTHRESHOLD 60
+      static final long  TRIMTHRESHOLD =D.TRIMTHRESHOLD;
       i = (long)strlen(tex);
       while (i > TRIMTHRESHOLD) {
         if (tex[i] == '\\') {
@@ -2896,7 +2896,7 @@ void printTexLongMath(nmbrString *mathString,
           let(&descr, "");
           descr = getDescription(hypStmt);
           let(&descr, edit(descr, 4 + 16));
-#define MAX_DESCR_LEN 87
+          static final long MAX_DESCR_LEN =D.MAX_DESCR_LEN;
           if (strlen(descr) > MAX_DESCR_LEN) {
             i = MAX_DESCR_LEN - 3;
             while (i >= 0) {
@@ -4738,7 +4738,7 @@ vstring spectrumToRGB(long color, long maxColor) {
   double fraction, fractionInPartition;
   long j, red, green, blue, partition;
 
-#define PARTITIONS 28
+  static final long PARTITIONS =D.PARTITIONS;
   static double redRef[PARTITIONS +  1];
   static double greenRef[PARTITIONS +  1];
   static double blueRef[PARTITIONS +  1];
@@ -5642,7 +5642,7 @@ long getMathboxNum(long stmt) {
 
 
 
-#define MB_LABEL "mathbox"
+  static final String MB_LABEL =D.MB_LABEL;
 void assignMathboxInfo(void) {
   if (g_mathboxStmt == 0) {
     g_mathboxStmt = lookupLabel(MB_LABEL);
@@ -5660,7 +5660,7 @@ void assignMathboxInfo(void) {
 
 
 
-#define MB_TAG "Mathbox for "
+  static final String MB_TAG=D.MB_TAG;
 long getMathboxLoc(nmbrString **mathboxStart, nmbrString **mathboxEnd,
     pntrString **mathboxUser) {
   long m, p, q, tagLen, stmt;

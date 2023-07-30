@@ -16,11 +16,11 @@ public class mmmaci {
 #ifdef THINK_C
 
 
-#define kBaseResID 128
+  static final long kBaseResID =D.kBaseResID;
 #define kMoveToFront (WindowPtr)-1L
 
-#define kHorizontalPixel 30
-#define kVerticalPixel 50
+  static final long kHorizontalPixel =D.kHorizontalPixel;
+  static final long kVerticalPixel =D.kVerticalPixel;
 
 
 

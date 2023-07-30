@@ -65,7 +65,7 @@ vstring g_qsortKey;
 
 
 
-#define MEM_POOL_GROW 1000
+  static final long  MEM_POOL_GROW =D.MEM_POOL_GROW;
 
 long poolAbsoluteMax = 1000000;
 long poolTotalFree = 0;
@@ -537,7 +537,7 @@ void bug(int bugNum)
 }
 
 
-#define M_MAX_ALLOC_STACK 100
+  static final long  M_MAX_ALLOC_STACK =D.M_MAX_ALLOC_STACK;
 
 
 flag matchesList(vstring testString, vstring pattern, char wildCard,
@@ -869,7 +869,7 @@ if(db9)getPoolStats(&i1,&j1_,&k1); if(db9)printf("k1: pool %ld stat %ld\n",poolT
 
 
 nmbrString *nmbrCat(nmbrString *string1,...)
-#define M_MAX_CAT_ARGS 30
+  static final long  M_MAX_CAT_ARGS =D.M_MAX_CAT_ARGS;
 {
   va_list ap;
   nmbrString *arg[M_MAX_CAT_ARGS];
@@ -1983,7 +1983,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
 
 
   outputLen = 0;
-#define COMPR_INC 1000
+  static final long COMPR_INC =D.COMPR_INC;
   let(&output, space(COMPR_INC));
   outputAllocated = COMPR_INC;
 
@@ -2878,10 +2878,10 @@ vstring getContrib(long stmtNum, char mode) {
   flag errorCheckFlag = 0;
   flag err = 0;
   vstring returnStr = "";
-#define CONTRIB_MATCH " (Contributed by "
-#define REVISE_MATCH " (Revised by "
-#define SHORTEN_MATCH " (Proof shortened by "
-#define END_MATCH ".) "
+  static final String CONTRIB_MATCH = D.CONTRIB_MATCH;
+  static final String REVISE_MATCH = D.REVISE_MATCH;
+  static final String SHORTEN_MATCH = D.SHORTEN_MATCH;
+  static final String END_MATCH = D.END_MATCH;
 
 
   if (mode == GC_ERROR_CHECK_SILENT || mode == GC_ERROR_CHECK_PRINT) {
@@ -3454,12 +3454,12 @@ flag parseDate(vstring dateStr, long *dd, long *mmm, long *yyyy) {
   flag err = 0;
   j = instr(1, dateStr, "-");
   *dd = (long)val(left(dateStr, j - 1));
-#define MONTHS "JanFebMarAprMayJunJulAugSepOctNovDec"
+  static final String  MONTHS=D. MONTHS;
   *mmm = ((instr(1, MONTHS, mid(dateStr, j + 1, 3)) - 1) / 3) + 1;
   j = instr(j + 1, dateStr, "-");
   *yyyy = (long)val(right(dateStr, j + 1));
   if (*yyyy < 100) {
-#define START_YEAR 93
+    static final long  START_YEAR =D.START_YEAR;
     if (*yyyy < START_YEAR) {
       *yyyy = *yyyy + 2000;
     } else {
