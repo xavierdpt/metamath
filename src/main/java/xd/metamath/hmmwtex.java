@@ -2,52 +2,11 @@ package xd.metamath;
 
 public class hmmwtex {
 
-
-
-
-
-
-
-
-
-
     static final String GREEN_TITLE_COLOR= D.GREEN_TITLE_COLOR;
     static final String MINT_BACKGROUND_COLOR= D.MINT_BACKGROUND_COLOR;
     static final String PINK_NUMBER_COLOR= D.PINK_NUMBER_COLOR;
     static final String PURPLISH_BIBLIO_COLOR= D.PURPLISH_BIBLIO_COLOR;
     static final String SANDBOX_COLOR= D.SANDBOX_COLOR;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-struct texDef_struct {
-  vstring tokenName;
-  vstring texEquiv;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     static final long ERRORS_ONLY =D.ERRORS_ONLY;
     static final long PROCESS_SYMBOLS  =D.PROCESS_SYMBOLS;
@@ -63,66 +22,17 @@ struct texDef_struct {
     static final long PROCESS_EVERYTHING =D.PROCESS_EVERYTHING;
 
 
-
-
-
     static final String  HUGE_DECORATION= D.HUGE_DECORATION;
     static final String  BIG_DECORATION= D.BIG_DECORATION;
     static final String  SMALL_DECORATION= D.SMALL_DECORATION;
     static final String  TINY_DECORATION =D.TINY_DECORATION;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     static final String PINK_NBSP = D.PINK_NBSP;
 #define RAINBOW_OPTION
 
-#ifdef RAINBOW_OPTION
 
-
-#endif
 
 #define INDENT_HTML_PROOFS
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

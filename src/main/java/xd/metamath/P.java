@@ -5,7 +5,7 @@ package xd.metamath;
  */
 public class P<T> {
 
-    M<T> memory;
+    Mem<T> memory;
 
 
 }

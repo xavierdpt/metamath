@@ -2,6 +2,6 @@ package xd.metamath;
 /*
 Memory for pointers
  */
-public class M<T> {
+public class Mem<T> {
     T[] content;
 }

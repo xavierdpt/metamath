@@ -36,69 +36,13 @@ static final char illegal_ = D.illegal_;
 
 
 
-struct statement_struct {
-  long lineNum;
-  vstring fileName;
-  vstring labelName;
-  flag uniqueLabel;
-  char type;
-  int scope;
-  long beginScopeStatementNum;
-  long endScopeStatementNum;
-  vstring statementPtr;
-  vstring labelSectionPtr;
-  long labelSectionLen;
-
-  char labelSectionChanged;
-  vstring mathSectionPtr;
-  long mathSectionLen;
-
-  char mathSectionChanged;
-  vstring proofSectionPtr;
-  long proofSectionLen;
-
-  char proofSectionChanged;
-  nmbrString *mathString;
-  long mathStringLen;
-  nmbrString *proofString;
-  nmbrString *reqHypList;
-  nmbrString *optHypList;
-  long numReqHyp;
-  nmbrString *reqVarList;
-  nmbrString *optVarList;
-  nmbrString *reqDisjVarsA;
-  nmbrString *reqDisjVarsB;
-  nmbrString *reqDisjVarsStmt;
-  nmbrString *optDisjVarsA;
-  nmbrString *optDisjVarsB;
-  nmbrString *optDisjVarsStmt;
-  long pinkNumber;
-
-  long headerStartStmt;
-  };
 
 
 
-struct includeCall_struct {
-  vstring source_fn;
-  vstring included_fn;
-  long current_offset;
-  long current_line;
-  flag pushOrPop;
-  vstring current_includeSource;
-  long current_includeLength;
-  };
 
-struct mathToken_struct {
-  vstring tokenName;
-  long length;
-  char tokenType;
-  flag active;
-  int scope;
-  long tmp;
-  long statement;
-  long endStatement;
-  };
+
+
+
 
 
 
@@ -160,19 +104,11 @@ struct mathToken_struct {
 
 
 
-struct nullNmbrStruct {
-    long poolLoc;
-    long allocSize;
-    long actualSize;
-    nmbrString nullElement; };
+
 #define NULL_NMBRSTRING &(g_NmbrNull.nullElement)
 
 
-struct nullPntrStruct {
-    long poolLoc;
-    long allocSize;
-    long actualSize;
-    pntrString nullElement; };
+
 #define NULL_PNTRSTRING &(g_PntrNull.nullElement)
 
 
