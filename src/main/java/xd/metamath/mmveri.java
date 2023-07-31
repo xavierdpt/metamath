@@ -310,7 +310,7 @@ nmbrString *assignVar(nmbrString *bigSubstSchemeAss,
   v = -1;
   p = 0;
   q = 0;
- ambiguityCheck:
+  C.label("ambiguityCheck");
   while (p != bigSubstSchemeLen-1 || q != bigSubstInstLen-1) {
 if(db7&&v>=0)printLongLine(cat("p ", str((double)p), " q ", str((double)q), " VAR ",str((double)v),
     " ASSIGNED ", nmbrCvtMToVString(
@@ -757,7 +757,7 @@ if(db7)printLongLine(cat("result ", nmbrCvtMToVString(result), NULL),""," ");
   }
 
 
- returnPoint:
+  C.label("returnPoint");
 
 
   for (i = 0; i < bigSubstSchemeVarLen; i++) {

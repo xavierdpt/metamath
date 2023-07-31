@@ -418,7 +418,7 @@ if(db5)printLongLine(cat("schemeB is ",
 
 
     C.go2("backtrack");
-   reEntry1:
+    C.label("reEntry1");
     reEntryFlag = 0;
 
 
@@ -426,7 +426,7 @@ if(db5)printLongLine(cat("schemeB is ",
 
 
 
- scan:
+  C.label("scan");
 if(db6)print2("Entered scan: p=%ld\n",p);
 if(db6)print2("Enter scn sbA %s\n",nmbrCvtMToVString(schA));
 if(db6)print2("Enter scn sbB %s\n",nmbrCvtMToVString(schB));
@@ -469,7 +469,7 @@ if(db6)print2("Backtracked because end-of-string\n");
     }
   }
 
- schBUnk:
+  C.label("schBUnk");
   if (schB[p] > g_mathTokens) {
 if(db6)print2("schB has unknown variable\n");
 
@@ -514,7 +514,7 @@ if(db6)print2("schB has unknown variable\n");
     C.go2("substitute");
   }
 
- schAUnk:
+  C.label("schAUnk");
   if (schA[p] > g_mathTokens) {
 if(db6)print2("schA has unknown variable\n");
 
@@ -561,7 +561,7 @@ if(db6)print2("Neither scheme has unknown variable\n");
   C.go2("backtrack");
 
 
- substitute:
+  C.label("substitute");
 if(db6)print2("Entering substitute...\n");
 for (d = 0; d <= stackTop; d++) {
   if(db6)print2("Unknown var %ld is %s.\n",d,
@@ -816,7 +816,7 @@ for (d = 0; d <= stackTop; d++) {
 }
   C.go2("scan");
 
- backtrack:
+  C.label("backtrack");
 if(db6)print2("Entered backtrack with p=%ld stackTop=%ld\n",p,stackTop);
   if (stackTop < 0) {
     C.go2("abort");
@@ -840,7 +840,7 @@ if(db5)print2("Aborted due to timeout: %ld > %ld\n",
   nmbrLet(&schB, (nmbrString *)(stackSaveSchemeB[stackTop]));
 
   p = stackUnkVarStart[stackTop];
- switchVarToB:
+  C.label("switchVarToB");
 
   nmbrLet(&stackUnkVarLen, (nmbrString *)(stackSaveUnkVarLen[stackTop]));
 
@@ -893,7 +893,7 @@ if(db6)print2("Exited backtrack with p=%ld stackTop=%ld\n",p,stackTop);
   if (reEntryFlag) C.go2("reEntry1");
   C.go2("scan");
 
- done:
+  C.label("done");
 
 
   nmbrLet(&unifiedScheme, nmbrLeft(schA, nmbrLen(schA) - 1));
@@ -923,7 +923,7 @@ if(db5)printSubst(*stateVector);
   nmbrLet(&substitution, NULL_NMBRSTRING);
   return (1);
 
- abort:
+  C.label("abort");
 if(db5)print2("Backtrack count was %ld\n",g_unifTrialCount);
 
   nmbrLet(&unkVars,NULL_NMBRSTRING);
@@ -1346,7 +1346,7 @@ void hentyNormalize(nmbrString **hentyVars, nmbrString **hentyVarStart,
   if (n < 2) C.go2("heapExit");
   el = n / 2 + 1;
   ir = n;
- label10:
+  C.label("label10");
   if (el > 1) {
     el = el - 1;
     rra = (*hentyVars)[el - 1];
@@ -1369,7 +1369,7 @@ void hentyNormalize(nmbrString **hentyVars, nmbrString **hentyVarStart,
   }
   i = el;
   j = el + el;
- label20:
+  C.label("label20");
   if (j <= ir) {
     if (j < ir) {
       if ((*hentyVars)[j - 1] < (*hentyVars)[j]) j = j + 1;
@@ -1390,7 +1390,7 @@ void hentyNormalize(nmbrString **hentyVars, nmbrString **hentyVarStart,
   (*hentyVarLen)[i - 1] = rrc;
   C.go2("label10");
 
- heapExit:
+  C.label("heapExit");
 
   totalSubstLen = 0;
   for (i = 0; i < vars; i++) {

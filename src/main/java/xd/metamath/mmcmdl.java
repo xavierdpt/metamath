@@ -1657,7 +1657,7 @@ flag processCommandLine(void)
 
 
 
- pclgood:
+  C.label("pclgood");
 
   if (!strcmp(g_fullArg[pntrLen(g_fullArg) - 1], chr(3))) {
     let((vstring *)(&g_fullArg[pntrLen(g_fullArg) - 1]), "");
@@ -1686,7 +1686,7 @@ flag processCommandLine(void)
   let(&tmpStr, "");
   return (1);
 
- pclbad:
+  C.label("pclbad");
 
   let(&defaultArg, "");
   let(&tmpStr, "");
@@ -1958,7 +1958,7 @@ flag getFullArg(long arg, vstring cmdList1)
   let(&keyword,possCmd[j]);
   C.go2("return1");
 
- return1:
+  C.label("return1");
   if (keyword[0] == 0) {
     if (g_rawArgs > arg && strcmp(defaultCmd, "<>")) {
 
@@ -1985,7 +1985,7 @@ flag getFullArg(long arg, vstring cmdList1)
   let(&cmdList, "");
   return(1);
 
- return0:
+  C.label("return0");
 
   j = pntrLen(possCmd);
   for (i = 0; i < j; i++) let((vstring *)(&possCmd[i]), "");

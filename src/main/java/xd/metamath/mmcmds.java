@@ -941,7 +941,7 @@ void typeStatement(long showStmt,
 
   if (g_printStringForReferencedBy[0]) bug(243);
 
- returnPoint:
+  C.label("returnPoint");
 
   nmbrLet(&nmbrDDList, NULL_NMBRSTRING);
   let(&str1, "");
@@ -1062,7 +1062,7 @@ vstring htmlDummyVars(long showStmt)
   }
 
 
- RETURN_POINT:
+  C.label("RETURN_POINT");
 
   let(&dummyVarUsed, "");
   let(&str1, "");
@@ -1212,7 +1212,7 @@ vstring htmlAllowedSubst(long showStmt)
 
   }
 
- RETURN_POINT:
+  C.label("RETURN_POINT");
 
   if (htmlAllowedList[0] != 0) {
     let(&htmlAllowedList, cat("<CENTER>",
@@ -2169,7 +2169,7 @@ void typeProof(long statemNum,
     g_outputToString = 0;
   }
 
- typeProof_return:
+  C.label("typeProof_return");
   let(&tmpStr, "");
   let(&tmpStr1, "");
   let(&statementUsedFlags, "");
@@ -2778,7 +2778,7 @@ flag traceProof(long statemNum,
     printLongLine(outputString, "  ", " ");
   }
 
- TRACE_RETURN:
+  C.label("TRACE_RETURN");
 
   let(&outputString, "");
   let(&statementUsedFlags, "");
@@ -3234,7 +3234,7 @@ double countSteps(long statemNum, flag essentialFlag)
 
   }
 
- returnPoint:
+  C.label("returnPoint");
 
 
   stmtCount[statemNum] = stepCount;
@@ -3549,7 +3549,7 @@ void readInput(void)
   parseStatements();
   g_sourceHasBeenRead = 1;
 
- RETURN_POINT:
+  C.label("RETURN_POINT");
   let(&fullInput_fn, "");
 
 }
@@ -3642,7 +3642,7 @@ void writeSource(
 
 
 
- RETURN_POINT:
+  C.label("RETURN_POINT");
   let(&buffer,"");
   let(&fullOutput_fn,"");
   return;
@@ -4154,7 +4154,7 @@ void writeExtractedSource(
 "Extracted %ld statements incl. %ld $a (%ld \"ax-\", %ld \"df-\"), %ld $p.\n",
       j, p1, p3, p4, p2);
 
- EXTRACT_RETURN:
+  C.label("EXTRACT_RETURN");
 
   let(&extractNeeded, "");
   let(&statementUsedFlags, "");
@@ -5281,7 +5281,7 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
   fclose(g_texFilePtr);
   g_texFilePtr = NULL;
 
- PROCESS_MARKUP_RETURN:
+  C.label("PROCESS_MARKUP_RETURN");
 
   let(&inputFileContent, "");
   let(&g_printString, "");
@@ -5460,7 +5460,7 @@ long getStepNum(vstring relStep,
     C.go2("RETURN_POINT");
   }
 
- RETURN_POINT:
+  C.label("RETURN_POINT");
 
   let(&relStepCaps, "");
   nmbrLet(&essentialFlags, NULL_NMBRSTRING);
@@ -5948,7 +5948,7 @@ void outputMidi(long plen, nmbrString *indentationLevels,
 
   print2(" length = %ld sec\n", (long)(midiTime / (2 * midiTempo)));
 
- midi_return:
+  C.label("midi_return");
   let(&midiFileName, "");
   let(&tmpStr, "");
   let(&midiLocalParam, "");

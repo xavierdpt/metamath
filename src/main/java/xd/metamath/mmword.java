@@ -83,7 +83,7 @@ void revise(File f1_fp, File f2_fp, File f3_fp, vstring addTag, long m)
   eof1=eof2=0;
   d=0;
 
-l7100:
+    C.label("l7100");
 
         if (!strcmpe(l1_,l2_)) {
                 if (strcmpe(l2_,ctlz_)) {
@@ -174,7 +174,7 @@ l7140:  if (strcmpe(line1_[i1_+t-m+1], line2_[i+t])) {
         let(&line2_[i2_],l2_);
         t=0;
         i=0;
-l7170:
+    C.label("l7170");
         if (strcmpe(line1_[i+t], line2_[i2_+t-m+1])) {
                 t=0;
         } else {
@@ -232,7 +232,7 @@ l7220:  i=i+m-1;
         }
         i1_=i;
     C.go2("l7240");
-l7240:
+    C.label("l7240");
 
        printedAtLeastOne = 0;
        for (i=0; i<=i1_-m; i++) {
@@ -325,7 +325,7 @@ void gosub_7320()
     if (eof1) {
       let(&l1_,ctlz_);
     } else {
-     next_l1:
+        C.label("next_l1");
       if (!linput(f1_fp_,NULL,&l1_)) {
         eof1 = 1;
         let(&l1_,ctlz_);
@@ -360,7 +360,7 @@ void gosub_7330() {
       let(&l2_,ctlz_);
     } else {
      stripDeletedSectionMode = 0;
-     next_l2:
+        C.label("next_l2");
       if (!linput(f2_fp_,NULL,&l2_)) {
         eof2 = 1;
         let(&l2_, ctlz_);

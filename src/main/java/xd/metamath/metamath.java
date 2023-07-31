@@ -1700,7 +1700,7 @@ static final long SYNTAX =D.SYNTAX;
 
       print2("The %ld most recent theorem(s) were written.\n", n);
 
-     wrrecent_error:
+     C.label("wrrecent_error");
       fclose(list1_fp);
       fclose(list2_fp);
       if (tmpFlag) {
@@ -2002,7 +2002,7 @@ static final long SYNTAX =D.SYNTAX;
                   "The list of syntax, axioms (ax-) and definitions (df-) for",
                   " the <B><FONT COLOR=", GREEN_TITLE_COLOR, ">",
                   (i == g_extHtmlStmt) ?
-                    g_extHtmlTitle :
+                          C.label("g_extHtmlTitle") ;
 
 
                     "User Mathboxes",
@@ -2148,7 +2148,7 @@ static final long SYNTAX =D.SYNTAX;
 
         }
 
-       ABORT_S:
+        C.label("ABORT_S");
 
         printTexTrailer(1 );
         fclose(g_texFilePtr);
@@ -2165,7 +2165,7 @@ static final long SYNTAX =D.SYNTAX;
         continue;
       }
 
-     htmlDone:
+      C.label("htmlDone"):
       continue;
     }
 

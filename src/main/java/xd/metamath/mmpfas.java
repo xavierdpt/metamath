@@ -854,7 +854,7 @@ nmbrString *replaceStatement(long replStatemNum, long prfStep,
 
   nmbrLet(&proof, NULL_NMBRSTRING);
 
- returnPoint:
+    C.label("returnPoint");
 
 
   for (hyp = 0; hyp < schReqHyps; hyp++) {
@@ -1174,7 +1174,7 @@ nmbrString *expandProof(
   }
 
 
- RETURN_POINT:
+    C.label("RETURN_POINT");
   if (nmbrEq(origTargetProof, expandedTargetProof)) {
   } else {
     if (hasDummyVar == 1) {
@@ -1361,7 +1361,7 @@ char checkStmtMatch(long statemNum, long step)
       scheme, &stateVector, 0);
   }
 
- returnPoint:
+  C.label("returnPoint");
   nmbrLet(&scheme, NULL_NMBRSTRING);
   purgeStateVector(&stateVector);
 
@@ -1770,7 +1770,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Proving hyp. ",
 
   nmbrLet(&proof, NULL_NMBRSTRING);
 
- returnPoint:
+  C.label("returnPoint");
 
   purgeStateVector(&stateVector);
 
@@ -2236,7 +2236,7 @@ void assignKnownSteps(long startStep, long sbProofLen)
 
   if (stackPtr != 1) bug(1816);
 
- returnPoint:
+  C.label("returnPoint");
 
   for (pos = startStep; pos < startStep + sbProofLen - 1; pos++) {
     nmbrLet((nmbrString **)(&((g_ProofInProgress.target)[pos])),
@@ -2296,7 +2296,7 @@ void interactiveUnifyStep(long step, char messageFlag)
   }
   unifFlag = 0;
 
- subAndReturn:
+  C.label("subAndReturn");
   if (unifFlag == 1) {
 
     g_proofChangedFlag = 1;
@@ -2509,7 +2509,7 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
   returnValue = 3;
   C.go2("returnPoint");
 
- returnPoint:
+  C.label("returnPoint");
   let(&tmpStr, "");
   nmbrLet(&unifWeight, NULL_NMBRSTRING);
   nmbrLet(&substResult, NULL_NMBRSTRING);
@@ -2811,7 +2811,7 @@ char checkDummyVarIsolation(long testStep)
 
   dummyVarIndicator = 1;
 
- RETURN_POINT:
+  C.label("RETURN_POINT");
   nmbrLet(&dummyVarList, NULL_NMBRSTRING);
   return dummyVarIndicator;
 }

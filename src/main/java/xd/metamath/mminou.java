@@ -308,7 +308,7 @@ flag print2(char* fmt,...)
 
   free(printBuffer);
 
- PRINT2_RETURN:
+    C.label("PRINT2_RETURN");
   return (!g_quitPrint);
 }
 
@@ -462,7 +462,7 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
     }
 
     saveScreenWidth = g_screenWidth;
-   HTML_RESTART:
+      C.label("HTML_RESTART");
     firstLine = 1;
 
     startNextLineLen = (long)strlen(startNextLine1);
@@ -979,7 +979,7 @@ static final long VERSIONS =D.VERSIONS;
       rename(fileName, bakName);
 
     }
-   skip_backup:
+      C.label("skip_backup");
 
     if (!strcmp(mode, "w")) {
       fp = fopen(fileName, "w");

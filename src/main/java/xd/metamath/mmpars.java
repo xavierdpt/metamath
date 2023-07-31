@@ -1060,7 +1060,7 @@ void parseStatements(void)
           if (!origSymbolLen) break;
 
 
-         nextAdjToken:
+          C.label("nextAdjToken");
 
 
 
@@ -3377,7 +3377,7 @@ void sourceError(char *ptr, long tokLen, long stmtNum, vstring errMsg)
 
   fileName = getFileAndLineNum(locSourcePtr, ptr, &lineNum);
 
- SKIP_LINE_NUM:
+  C.label("SKIP_LINE_NUM");
 
   if (lineNum != 0 && ptr > locSourcePtr) {
     startLine = ptr - 1;
@@ -4436,7 +4436,7 @@ nmbrString *parseMathTokens(vstring userText, long statemNum)
           if (!origSymbolLen) break;
 
 
-         nextAdjToken:
+          C.label("nextAdjToken");
 
           if (origSymbolLen > maxSymbolLen) {
             symbolLen = maxSymbolLen;
@@ -4729,7 +4729,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
       continue;
     }
     bug(1746);
-   GET_PASSED_END_OF_COMMENT:
+    C.label("GET_PASSED_END_OF_COMMENT");
 
 
 

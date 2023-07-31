@@ -3878,7 +3878,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
       } else {
         let(&str1, "");
       }
-     skip_date:
+      C.label("skip_date");
 
       let(&str3, "");
       str3 = getDescription(s);
@@ -4223,7 +4223,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     print2("\n");
 
 
-   SKIP_LIST:
+    C.label("SKIP_LIST");
     g_outputToString = 1;
 
 
@@ -4337,7 +4337,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     fclose(outputFilePtr);
   }
 
- TL_ABORT:
+  C.label("TL_ABORT");
 
   let(&str1, "");
   let(&str3, "");
@@ -4861,7 +4861,7 @@ vstring spectrumToRGB(long color, long maxColor) {
     bug(2326);
   }
 
- SKIP_INIT:
+  C.label("SKIP_INIT");
   if (color == -1) {
     let(&str1, "000000");
     return str1;
@@ -5590,7 +5590,7 @@ flag writeBibliography(vstring bibFile,
   }
 
 
- BIB_ERROR:
+  C.label("BIB_ERROR");
   if (noFileCheck == 0) {
     fclose(list1_fp);
     if (errorsOnly == 0) {
@@ -5702,7 +5702,7 @@ long getMathboxLoc(nmbrString **mathboxStart, nmbrString **mathboxEnd,
     (*mathboxEnd)[m] = (*mathboxStart)[m + 1] - 1;
   }
   (*mathboxEnd)[mathboxes - 1] = g_statements;
- RETURN_POINT:
+  C.label("RETURN_POINT");
   let(&comment, "");
   let(&user, "");
   return mathboxes;

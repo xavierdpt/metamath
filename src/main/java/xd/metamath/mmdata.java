@@ -1969,7 +1969,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
 
 
 
- OLD_ALGORITHM:
+  C.label("OLD_ALGORITHM");
 
   nmbrLet(&labelList, nmbrCat(hypList, assertionList, localList, NULL));
 
@@ -3387,7 +3387,7 @@ vstring getContrib(long stmtNum, char mode) {
   }
 
 
- RETURN_POINT:
+  C.label("RETURN_POINT");
 
   let(&description, "");
 
