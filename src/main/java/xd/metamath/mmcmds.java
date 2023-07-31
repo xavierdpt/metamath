@@ -143,7 +143,7 @@ void typeStatement(long showStmt,
 #endif
 
         ) {
-      print2("?Warning: Statement \"%s\" has no comment\n",
+      mminou.print2("?Warning: Statement \"%s\" has no comment\n",
           g_Statement[showStmt].labelName);
 
       if (texFlag && !htmlFlg && !g_oldTexFlag) {
@@ -343,14 +343,14 @@ void typeStatement(long showStmt,
         g_outputToString = 1;
       }
       if (texFlag && htmlFlg) {
-        print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
+        mminou.print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
             MINT_BACKGROUND_COLOR);
 
-        print2("SUMMARY=\"%s\">\n", (k == 1) ? "Hypothesis" : "Hypotheses");
-        print2("<CAPTION><B>%s</B></CAPTION>\n",
+        mminou.print2("SUMMARY=\"%s\">\n", (k == 1) ? "Hypothesis" : "Hypotheses");
+        mminou.print2("<CAPTION><B>%s</B></CAPTION>\n",
             (k == 1) ? "Hypothesis" : "Hypotheses");
-        print2("<TR><TH>Ref\n");
-        print2("</TH><TH>Expression</TH></TR>\n");
+        mminou.print2("<TR><TH>Ref\n");
+        mminou.print2("</TH><TH>Expression</TH></TR>\n");
       }
       for (i = 0; i < j; i++) {
         k = g_Statement[showStmt].reqHypList[i];
@@ -384,7 +384,7 @@ void typeStatement(long showStmt,
             }
           } else {
             g_outputToString = 1;
-            print2("<TR ALIGN=LEFT><TD>%s</TD><TD>\n",
+            mminou.print2("<TR ALIGN=LEFT><TD>%s</TD><TD>\n",
                 g_Statement[k].labelName);
 
             printTexLongMath(g_Statement[k].mathString, "", "", 0, 0);
@@ -393,7 +393,7 @@ void typeStatement(long showStmt,
       }
       if (texFlag && htmlFlg) {
         g_outputToString = 1;
-        print2("</TABLE></CENTER>\n");
+        mminou.print2("</TABLE></CENTER>\n");
       }
     }
   }
@@ -416,7 +416,7 @@ void typeStatement(long showStmt,
       if (!g_oldTexFlag) {
 
         g_outputToString = 1;
-        print2("\\begin{align}\n");
+        mminou.print2("\\begin{align}\n");
         let(&str3, "");
 
         str3 = getTexOrHtmlHypAndAssertion(showStmt);
@@ -434,7 +434,7 @@ void typeStatement(long showStmt,
 
               null), "    ", " ");
 
-        print2("\\end{align}\n");
+        mminou.print2("\\end{align}\n");
 
 
 
@@ -449,7 +449,7 @@ void typeStatement(long showStmt,
         } else {
           let(&str3, "theorem");
         }
-        print2("%s\n", cat("\\end{", str3, "}", null));
+        mminou.print2("%s\n", cat("\\end{", str3, "}", null));
 
         fprintf(g_texFilePtr, "%s", g_printString);
         let(&g_printString, "");
@@ -462,20 +462,20 @@ void typeStatement(long showStmt,
       }
     } else {
       g_outputToString = 1;
-      print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
+      mminou.print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
           MINT_BACKGROUND_COLOR);
 
-      print2("SUMMARY=\"Assertion\">\n");
-      print2("<CAPTION><B>Assertion</B></CAPTION>\n");
-      print2("<TR><TH>Ref\n");
-      print2("</TH><TH>Expression</TH></TR>\n");
+      mminou.print2("SUMMARY=\"Assertion\">\n");
+      mminou.print2("<CAPTION><B>Assertion</B></CAPTION>\n");
+      mminou.print2("<TR><TH>Ref\n");
+      mminou.print2("</TH><TH>Expression</TH></TR>\n");
       printLongLine(cat(
        "<TR ALIGN=LEFT><TD><FONT COLOR=",
           GREEN_TITLE_COLOR, "><B>", g_Statement[showStmt].labelName,
           "</B></FONT></TD><TD>", null), "      ", " ");
       printTexLongMath(g_Statement[showStmt].mathString, "", "", 0, 0);
       g_outputToString = 1;
-      print2("</TABLE></CENTER>\n");
+      mminou.print2("</TABLE></CENTER>\n");
     }
   }
 
@@ -486,13 +486,13 @@ void typeStatement(long showStmt,
     case p_:
       if (texFlag && htmlFlg) {
         g_outputToString = 1;
-        print2("\n");
+        mminou.print2("\n");
         g_outputToString = 0;
       }
 
 
       if (!texFlag) {
-        print2("Its mandatory hypotheses in RPN order are:\n");
+        mminou.print2("Its mandatory hypotheses in RPN order are:\n");
       }
 
       j = nmbrLen(g_Statement[showStmt].reqHypList);
@@ -516,11 +516,11 @@ void typeStatement(long showStmt,
       }
       if (texFlag && htmlFlg) {
         g_outputToString = 1;
-        print2("\n");
+        mminou.print2("\n");
         g_outputToString = 0;
       }
 
-      if (j == 0 && !texFlag) print2("  (None)\n");
+      if (j == 0 && !texFlag) mminou.print2("  (None)\n");
       let(&str1, "");
       nmbrTmpPtr1 = g_Statement[showStmt].reqDisjVarsA;
       nmbrTmpPtr2 = g_Statement[showStmt].reqDisjVarsB;
@@ -630,7 +630,7 @@ void typeStatement(long showStmt,
 
       if (texFlag) {
         g_outputToString = 1;
-        if (htmlFlg && texFlag) print2("<HR NOSHADE SIZE=1>\n");
+        if (htmlFlg && texFlag) mminou.print2("<HR NOSHADE SIZE=1>\n");
         g_outputToString = 0;
         break;
       }
@@ -1317,47 +1317,47 @@ void typeProof(long statemNum,
       let(&tmpStr, "");
       tmpStr = htmlDummyVars(statemNum);
       if (tmpStr[0] != 0) {
-        print2("<CENTER><B>Proof of Theorem <FONT\n");
+        mminou.print2("<CENTER><B>Proof of Theorem <FONT\n");
         printLongLine(cat("   COLOR=", GREEN_TITLE_COLOR, ">",
             asciiToTt(g_Statement[statemNum].labelName),
             "</FONT></B></CENTER>", null), "", "\"");
 
         printLongLine(tmpStr, "", "\"");
         let(&tmpStr, "");
-        print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
+        mminou.print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
             MINT_BACKGROUND_COLOR);
-        print2("SUMMARY=\"Proof of theorem\">\n");
+        mminou.print2("SUMMARY=\"Proof of theorem\">\n");
       } else {
 
 
 
-        print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
+        mminou.print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
             MINT_BACKGROUND_COLOR);
-        print2("SUMMARY=\"Proof of theorem\">\n");
-        print2("<CAPTION><B>Proof of Theorem <FONT\n");
+        mminou.print2("SUMMARY=\"Proof of theorem\">\n");
+        mminou.print2("<CAPTION><B>Proof of Theorem <FONT\n");
         printLongLine(cat("   COLOR=", GREEN_TITLE_COLOR, ">",
             asciiToTt(g_Statement[statemNum].labelName),
             "</FONT></B></CAPTION>", null), "", "\"");
       }
     } else {
-      print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
+      mminou.print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
           MINT_BACKGROUND_COLOR);
       if (!strcmp("ax-", left(g_Statement[g_showStatement].labelName, 3))) {
 
-        print2("SUMMARY=\"Detailed syntax breakdown of axiom\">\n");
-        print2("<CAPTION><B>Detailed syntax breakdown of Axiom <FONT\n");
+        mminou.print2("SUMMARY=\"Detailed syntax breakdown of axiom\">\n");
+        mminou.print2("<CAPTION><B>Detailed syntax breakdown of Axiom <FONT\n");
       } else {
 
-        print2("SUMMARY=\"Detailed syntax breakdown of definition\">\n");
-        print2("<CAPTION><B>Detailed syntax breakdown of Definition <FONT\n");
+        mminou.print2("SUMMARY=\"Detailed syntax breakdown of definition\">\n");
+        mminou.print2("<CAPTION><B>Detailed syntax breakdown of Definition <FONT\n");
       }
       printLongLine(cat("   COLOR=", GREEN_TITLE_COLOR, ">",
           asciiToTt(g_Statement[statemNum].labelName),
           "</FONT></B></CAPTION>", null), "", "\"");
     }
-    print2(
+    mminou.print2(
         "<TR><TH>Step</TH><TH>Hyp</TH><TH>Ref\n");
-    print2("</TH><TH>Expression</TH></TR>\n");
+    mminou.print2("</TH><TH>Expression</TH></TR>\n");
     g_outputToString = 0;
   }
 
@@ -1367,9 +1367,9 @@ void typeProof(long statemNum,
       if (htmlFlg && texFlag) {
 
         g_outputToString = 1;
-        print2(
+        mminou.print2(
       "<TD COLSPAN=4><B><FONT COLOR=RED>WARNING: Proof has a severe error.\n");
-        print2("</FONT></B></TD></TR>\n");
+        mminou.print2("</FONT></B></TD></TR>\n");
         g_outputToString = 0;
 
 
@@ -1802,7 +1802,7 @@ void typeProof(long statemNum,
 
       } else {
         if (texFlag) {
-          print2("?Unsupported:  HTML or LaTeX proof for NEW_PROOF.\n");
+          mminou.print2("?Unsupported:  HTML or LaTeX proof for NEW_PROOF.\n");
           bug(244);
         }
 
@@ -1869,7 +1869,7 @@ void typeProof(long statemNum,
 
   if (htmlFlg && texFlag) {
     g_outputToString = 1;
-    print2("</TABLE></CENTER>\n");
+    mminou.print2("</TABLE></CENTER>\n");
 
 
 
@@ -2399,7 +2399,7 @@ void showDetailStep(long statemNum, long detailStep) {
   if (sourceStmt >= 0) {
     if (g_Statement[sourceStmt].type == a_
         || g_Statement[sourceStmt].type == p_) {
-      print2("The source assertion before substitution was:\n");
+      mminou.print2("The source assertion before substitution was:\n");
       printLongLine(cat("    ", g_Statement[sourceStmt].labelName, " $",
           chr(g_Statement[sourceStmt].type), " ", nmbrCvtMToVString(
           g_Statement[sourceStmt].mathString), null),
@@ -2415,9 +2415,9 @@ void showDetailStep(long statemNum, long detailStep) {
             null),""," ");
       }
       if (!j) {
-        print2("    (None)\n");
+        mminou.print2("    (None)\n");
       } else {
-        print2("    Variable  Substituted with\n");
+        mminou.print2("    Variable  Substituted with\n");
         for (i = 0; i < j; i++) {
           printLongLine(cat("     ",
               g_MathToken[getStep.sourceSubstsNmbr[i]].tokenName," ",
@@ -2431,7 +2431,7 @@ void showDetailStep(long statemNum, long detailStep) {
   }
 
   if (detailStep < plen) {
-    print2("The target hypothesis before substitution was:\n");
+    mminou.print2("The target hypothesis before substitution was:\n");
     printLongLine(cat("    ", g_Statement[targetStmt].labelName, " $",
         chr(g_Statement[targetStmt].type), " ", nmbrCvtMToVString(
         g_Statement[targetStmt].mathString), null),
@@ -2447,9 +2447,9 @@ void showDetailStep(long statemNum, long detailStep) {
           null),""," ");
     }
     if (!j) {
-      print2("    (None)\n");
+      mminou.print2("    (None)\n");
     } else {
-      print2("    Variable  Substituted with\n");
+      mminou.print2("    Variable  Substituted with\n");
       for (i = 0; i < j; i++) {
         printLongLine(cat("     ",
             g_MathToken[getStep.targetSubstsNmbr[i]].tokenName, " ",
@@ -2507,13 +2507,13 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
   if (texFlag && g_htmlFlag) bug(239);
 
   if (!texFlag) {
-    print2("Summary of statements used in the proof of \"%s\":\n",
+    mminou.print2("Summary of statements used in the proof of \"%s\":\n",
         g_Statement[statemNum].labelName);
   } else {
     g_outputToString = 1;
     if (!g_htmlFlag) {
-      print2("\n");
-      print2("\\vspace{1ex} %%3\n");
+      mminou.print2("\n");
+      mminou.print2("\\vspace{1ex} %%3\n");
       printLongLine(cat("Summary of statements used in the proof of ",
           "{\\tt ",
           asciiToTt(g_Statement[statemNum].labelName),
@@ -2530,7 +2530,7 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
   }
 
   if (g_Statement[statemNum].type != p_) {
-    print2("  This is not a provable ($p) statement.\n");
+    mminou.print2("  This is not a provable ($p) statement.\n");
     return;
   }
 
@@ -2583,22 +2583,22 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
           str((double)(g_Statement[stmt].lineNum)),
           " of the file ", null));
       if (!texFlag) {
-        print2("\n");
+        mminou.print2("\n");
         printLongLine(cat("Statement ", g_Statement[stmt].labelName, str1,
           "\"", g_Statement[stmt].fileName,
           "\".",null), "", " ");
       } else {
         g_outputToString = 1;
         if (!g_htmlFlag) {
-          print2("\n");
-          print2("\n");
-          print2("\\vspace{1ex} %%4\n");
+          mminou.print2("\n");
+          mminou.print2("\n");
+          mminou.print2("\\vspace{1ex} %%4\n");
           printLongLine(cat("Statement {\\tt ",
               asciiToTt(g_Statement[stmt].labelName), "} ",
               str1, "{\\tt ",
               asciiToTt(g_Statement[stmt].fileName),
               "}.", null), "", " ");
-          print2("\n");
+          mminou.print2("\n");
         } else {
           printLongLine(cat("Statement <B>",
               asciiToTt(g_Statement[stmt].labelName), "</B> ",
@@ -2697,15 +2697,15 @@ flag traceProof(long statemNum,
 
   if (!testOnlyFlag) {
     if (axiomFlag) {
-      print2(
+      mminou.print2(
   "Statement \"%s\" assumes the following axioms ($a statements):\n",
           g_Statement[statemNum].labelName);
     } else  if (traceToList[0] == 0) {
-      print2(
+      mminou.print2(
   "The proof of statement \"%s\" uses the following earlier statements:\n",
           g_Statement[statemNum].labelName);
     } else {
-      print2(
+      mminou.print2(
   "The proof of statement \"%s\" traces back to \"%s\" via:\n",
           g_Statement[statemNum].labelName, traceToList);
     }
@@ -2768,7 +2768,7 @@ flag traceProof(long statemNum,
 
 
   if (nmbrLen(unprovedList)) {
-    print2("Warning: The following traced statement(s) were not proved:\n");
+    mminou.print2("Warning: The following traced statement(s) were not proved:\n");
     let(&outputString, "");
     for (pos = 0; pos < nmbrLen(unprovedList); pos++) {
       let(&outputString, cat(outputString, " ", g_Statement[unprovedList[
@@ -2909,7 +2909,7 @@ void traceProofTree(long statemNum,
   flag essentialFlag, long endIndent)
 {
   if (g_Statement[statemNum].type != p_) {
-    print2("Statement %s is not a $p statement.\n",
+    mminou.print2("Statement %s is not a $p statement.\n",
         g_Statement[statemNum].labelName);
     return;
   }
@@ -2920,7 +2920,7 @@ void traceProofTree(long statemNum,
       " below the statement being proved.  Hypotheses are not included.",
       null),
       "", " ");
-  print2("\n");
+  mminou.print2("\n");
 
   nmbrLet(&stmtFoundList, NULL_NMBRSTRING);
   indentShift = 0;
@@ -2958,12 +2958,12 @@ void traceProofTreeRec(long statemNum,
   if ((recursDepth * INDENT_INCR - indentShift) >
       (g_screenWidth - MAX_LINE_LEN) + 50) {
     indentShift = indentShift + 40 + (g_screenWidth - MAX_LINE_LEN);
-    print2("****** Shifting indentation.  Total shift is now %ld.\n",
+    mminou.print2("****** Shifting indentation.  Total shift is now %ld.\n",
       (long)indentShift);
   }
   if ((recursDepth * INDENT_INCR - indentShift) < 1 && indentShift != 0) {
     indentShift = indentShift - 40 - (g_screenWidth - MAX_LINE_LEN);
-    print2("****** Shifting indentation.  Total shift is now %ld.\n",
+    mminou.print2("****** Shifting indentation.  Total shift is now %ld.\n",
       (long)indentShift);
   }
 
@@ -2978,7 +2978,7 @@ void traceProofTreeRec(long statemNum,
 
   if (g_Statement[statemNum].type == p_ || g_Statement[statemNum].type == a_) {
 
-    print2("%s\n", outputStr);
+    mminou.print2("%s\n", outputStr);
   }
 
   if (g_Statement[statemNum].type != p_) {
@@ -3116,7 +3116,7 @@ double countSteps(long statemNum, flag essentialFlag)
     stmtUsage = malloc(sizeof(long) * ((size_t)g_statements + 1));
     if (!stmtCount || !stmtNodeCount || !stmtDist || !stmtMaxPath ||
         !stmtAveDist || !stmtProofLen || !stmtUsage) {
-      print2("?Memory overflow.  Step count will be wrong.\n");
+      mminou.print2("?Memory overflow.  Step count will be wrong.\n");
       if (stmtCount) free(stmtCount);
       if (stmtBigCount) free(stmtBigCount);
       if (stmtNodeCount) free(stmtNodeCount);
@@ -3536,7 +3536,7 @@ void readInput()
 
   g_sourcePtr = readSourceAndIncludes(g_input_fn, &g_sourceLen);
   if (g_sourcePtr == null) {
-    print2(
+    mminou.print2(
 "?Source was not read due to error(s).  Please correct and try again.\n");
     C.go2("RETURN_POINT");
   }
@@ -3577,7 +3577,7 @@ void writeSource(
 
   if (splitFlag == 0
       && extractLabelList[0] == 0) {
-    print2("Writing \"%s\"...\n", fullOutput_fn);
+    mminou.print2("Writing \"%s\"...\n", fullOutput_fn);
   }
 
 
@@ -3616,9 +3616,9 @@ void writeSource(
     for (i = 1; i <= g_includeCalls; i++) {
       if (g_IncludeCall[i].pushOrPop == 0
           && !strcmp(g_output_fn, g_IncludeCall[i].included_fn)) {
-        print2(
+        mminou.print2(
 "?The output was not written because the main output file name is\n");
-        print2(
+        mminou.print2(
 "  the same as an included file.  Use a different name.\n");
         C.go2("RETURN_POINT");
       }
@@ -3628,7 +3628,7 @@ void writeSource(
   } else {
     fp = fSafeOpen(fullOutput_fn, "w", noVersioningFlag);
     if (fp == null) {
-      print2("?Error trying to write \"%s\".\n", fp);
+      mminou.print2("?Error trying to write \"%s\".\n", fp);
     } else {
       fprintf(fp, "%s", buffer);
       fclose(fp);
@@ -3638,7 +3638,7 @@ void writeSource(
     }
   }
 
-  print2("%ld source statement(s) were written.\n", g_statements);
+  mminou.print2("%ld source statement(s) were written.\n", g_statements);
 
 
 
@@ -3695,12 +3695,12 @@ void writeExtractedSource(
   let(&extractNeeded, string(g_statements + 2, 'N'));
 
 
-  print2("Tracing back through proofs for $a and $p statements needed...\n");
+  mminou.print2("Tracing back through proofs for $a and $p statements needed...\n");
   if (!strcmp(extractLabelList, "*")) {
 
-    print2(
+    mminou.print2(
        "   This may take up to 10 minutes.  (For audio alert when done,\n");
-    print2("   type ahead \"b\" then \"<enter>\".)\n");
+    mminou.print2("   type ahead \"b\" then \"<enter>\".)\n");
 
   }
 
@@ -3732,7 +3732,7 @@ void writeExtractedSource(
   }
 
 
-  print2("Determining which ${ and $} scoping statements are needed...\n");
+  mminou.print2("Determining which ${ and $} scoping statements are needed...\n");
   for (stmt = 1; stmt <= g_statements; stmt++) {
     if (extractNeeded[stmt] == 'Y'
 
@@ -3755,7 +3755,7 @@ void writeExtractedSource(
   }
 
 
-  print2("Adding in $e and $f hypotheses and $d provisos...\n");
+  mminou.print2("Adding in $e and $f hypotheses and $d provisos...\n");
   for (stmt = 1; stmt <= g_statements; stmt++) {
     if (extractNeeded[stmt] == 'Y'
 
@@ -3795,7 +3795,7 @@ void writeExtractedSource(
   }
 
 
-  print2("Determining which $c and $v statements are needed...\n");
+  mminou.print2("Determining which $c and $v statements are needed...\n");
   for (stmt = 1; stmt <= g_statements; stmt++) {
     if (extractNeeded[stmt] == 'Y'
 
@@ -3823,7 +3823,7 @@ void writeExtractedSource(
   }
 
 
-  print2("Locating the $t statement if any...\n");
+  mminou.print2("Locating the $t statement if any...\n");
   dollarTStmt = 0;
   let(&dollarTCmt, "");
   for (stmt = 1; stmt <= g_statements + 1; stmt++) {
@@ -3856,7 +3856,7 @@ void writeExtractedSource(
 
 
 
-  print2("Analyzing scopes of section headings...\n");
+  mminou.print2("Analyzing scopes of section headings...\n");
   let(&hugeHdrNeeded, string(g_statements + 2, 'N'));
   let(&bigHdrNeeded, string(g_statements + 2, 'N'));
   let(&smallHdrNeeded, string(g_statements + 2, 'N'));
@@ -3953,7 +3953,7 @@ void writeExtractedSource(
     }
   }
 
-  print2("Building $c and $v statements for unused math tokens...\n");
+  mminou.print2("Building $c and $v statements for unused math tokens...\n");
   let(&mathTokenDeclared, string(g_mathTokens, 'N'));
   for (stmt = 1; stmt <= g_statements; stmt++) {
     if (extractNeeded[stmt] == 'Y'
@@ -3998,11 +3998,11 @@ void writeExtractedSource(
 
 
 
-  print2("Creating the final output file \"%s\"...\n", fullOutput_fn);
+  mminou.print2("Creating the final output file \"%s\"...\n", fullOutput_fn);
 
   fp = fSafeOpen(fullOutput_fn, "w", noVersioningFlag);
   if (fp == null) {
-    print2("?Error trying to write \"%s\".\n", fp);
+    mminou.print2("?Error trying to write \"%s\".\n", fp);
     C.go2("EXTRACT_RETURN");
   }
 
@@ -4116,14 +4116,14 @@ void writeExtractedSource(
   if (g_printString[0] != 0) bug(274);
   g_outputToString = 1;
   if (undeclaredC[0] != 0) {
-    print2("\n");
-    print2(
+    mminou.print2("\n");
+    mminou.print2(
 "  $( Unused constants to satisfy the htmldef's in the $ t comment. $)\n");
     printLongLine(cat("  $c", undeclaredC, " $.", null), "    ", " ");
   }
   if (undeclaredV[0] != 0) {
-    print2("\n");
-    print2(
+    mminou.print2("\n");
+    mminou.print2(
 "  $( Unused variables to satisfy the htmldef's in the $ t comment. $)\n");
     printLongLine(cat("  $v", undeclaredV, " $.", null), "    ", " ");
   }
@@ -4150,7 +4150,7 @@ void writeExtractedSource(
       if (g_Statement[stmt].type == p_) p2++;
     }
   }
-  print2(
+  mminou.print2(
 "Extracted %ld statements incl. %ld $a (%ld \"ax-\", %ld \"df-\"), %ld $p.\n",
       j, p1, p3, p4, p2);
 
@@ -4267,7 +4267,7 @@ void fixUndefinedLabels(vstring extractNeeded,
 
 void writeDict()
 {
-  print2("This function has not been implemented yet.\n");
+  mminou.print2("This function has not been implemented yet.\n");
   return;
 }
 
@@ -4446,9 +4446,9 @@ void verifyProofs(vstring labelMatch, flag verifyFlag) {
     for (i = 1; i <= (long)strlen(header); i++) {
       let(&tmpStr, mid(header, i, 1));
       if (tmpStr[0] == '%') let(&tmpStr, "%%");
-      print2("%s", tmpStr);
+      mminou.print2("%s", tmpStr);
     }
-    print2("\n");
+    mminou.print2("\n");
 #else
 #ifdef XXX
 
@@ -4456,11 +4456,11 @@ void verifyProofs(vstring labelMatch, flag verifyFlag) {
     for (i = 1; i <= (long)strlen(header); i++) {
       let(&tmpStr, mid(header, i, 1));
       if (tmpStr[0] == '%') let(&tmpStr, "%%");
-      print2("%s", tmpStr);
+      mminou.print2("%s", tmpStr);
     }
-    print2("\n");
+    mminou.print2("\n");
 #else
-    print2("%s\n", header);
+    mminou.print2("%s\n", header);
     let(&header, "");
 #endif
 #endif
@@ -4470,7 +4470,7 @@ void verifyProofs(vstring labelMatch, flag verifyFlag) {
   for (i = 1; i <= g_statements; i++) {
     if (!strcmp("*", labelMatch) && verifyFlag) {
       while (lineLen < (50 * i) / g_statements) {
-        print2(".");
+        mminou.print2(".");
         lineLen++;
       }
     }
@@ -4483,9 +4483,9 @@ void verifyProofs(vstring labelMatch, flag verifyFlag) {
       lineLen = lineLen + (long)strlen(g_Statement[i].labelName) + 1;
       if (lineLen > 72) {
         lineLen = (long)strlen(g_Statement[i].labelName) + 1;
-        print2("\n");
+        mminou.print2("\n");
       }
-      print2("%s ",g_Statement[i].labelName);
+      mminou.print2("%s ",g_Statement[i].labelName);
     }
 
     k = parseProof(i);
@@ -4502,7 +4502,7 @@ void verifyProofs(vstring labelMatch, flag verifyFlag) {
     }
   }
   if (verifyFlag) {
-    print2("\n");
+    mminou.print2("\n");
   }
 
   if (emptyProofList[0]) {
@@ -4513,14 +4513,14 @@ void verifyProofs(vstring labelMatch, flag verifyFlag) {
   if (!emptyProofList[0] && !errorFound && !strcmp("*", labelMatch)) {
     if (verifyFlag) {
 #ifdef CLOCKS_PER_SEC
-      print2("All proofs in the database were verified in %1.2f s.\n",
+      mminou.print2("All proofs in the database were verified in %1.2f s.\n",
            (double)((1.0 * (double)(clock() - clockStart)) / CLOCKS_PER_SEC));
 #else
-      print2("All proofs in the database were verified.\n");
+      mminou.print2("All proofs in the database were verified.\n");
 #endif
 
     } else {
-      print2("All proofs in the database passed the syntax-only check.\n");
+      mminou.print2("All proofs in the database passed the syntax-only check.\n");
     }
   }
   let(&emptyProofList, "");
@@ -4569,7 +4569,7 @@ void verifyMarkup(vstring labelMatch,
 
   saveHtmlFlag = g_htmlFlag;  saveAltHtmlFlag = g_altHtmlFlag;
 
-  print2("Checking statement label conventions...\n");
+  mminou.print2("Checking statement label conventions...\n");
 
 
 
@@ -4718,7 +4718,7 @@ void verifyMarkup(vstring labelMatch,
 
 
     if (verboseMode == 1) {
-      print2("Comparing \"%s\" to \"%s\"...\n", str2, str1);
+      mminou.print2("Comparing \"%s\" to \"%s\"...\n", str2, str1);
     }
 
 
@@ -4848,7 +4848,7 @@ void verifyMarkup(vstring labelMatch,
               str((double)g_screenWidth),
               " or less):",
               null), "    ", " ");
-          print2("    %s...\n", left(str2, g_screenWidth - 7));
+          mminou.print2("    %s...\n", left(str2, g_screenWidth - 7));
           errFound = 1;
           let(&str2, "");
         }
@@ -4874,7 +4874,7 @@ void verifyMarkup(vstring labelMatch,
 
   eraseTexDefs();
 
-  print2("Checking latexdef, htmldef, althtmldef...\n");
+  mminou.print2("Checking latexdef, htmldef, althtmldef...\n");
   g_htmlFlag = 0;
   g_altHtmlFlag = 0;
   f = readTexDefs(1,
@@ -4901,7 +4901,7 @@ void verifyMarkup(vstring labelMatch,
 
 
 
-  print2("Checking statement comments...\n");
+  mminou.print2("Checking statement comments...\n");
   let(&mostRecentDate, "");
   for (stmtNum = 1; stmtNum <= g_statements; stmtNum++) {
     if (g_Statement[stmtNum].type != a_ && g_Statement[stmtNum].type != p_) {
@@ -5043,7 +5043,7 @@ void verifyMarkup(vstring labelMatch,
 
 
 
-  print2("Checking section header comments...\n");
+  mminou.print2("Checking section header comments...\n");
   for (stmtNum = 1; stmtNum <= g_statements; stmtNum++) {
     if (g_Statement[stmtNum].type != a_ && g_Statement[stmtNum].type != p_) {
       continue;
@@ -5104,7 +5104,7 @@ void verifyMarkup(vstring labelMatch,
 
 
 
-  print2("Checking bibliographic references...\n");
+  mminou.print2("Checking bibliographic references...\n");
   f = writeBibliography("mmbiblio.html",
           labelMatch,
           1,
@@ -5114,7 +5114,7 @@ void verifyMarkup(vstring labelMatch,
 
 
   if (mathboxSkip == 0) {
-    print2("Checking mathbox independence...\n");
+    mminou.print2("Checking mathbox independence...\n");
 
 
     assignMathboxInfo();
@@ -5191,7 +5191,7 @@ void verifyMarkup(vstring labelMatch,
   }
 
   if (errFound == 0) {
-    print2("No errors were found.\n");
+    mminou.print2("No errors were found.\n");
   }
 
   g_htmlFlag = saveHtmlFlag;  g_altHtmlFlag = saveAltHtmlFlag;
@@ -5241,7 +5241,7 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
     C.go2("PROCESS_MARKUP_RETURN");
   }
 
-  print2("Reading \"%s\"...\n", inputFileName);
+  mminou.print2("Reading \"%s\"...\n", inputFileName);
 
   let(&inputFileContent, "");
   inputFileContent = readFileToString(inputFileName, 1, &size);
@@ -5251,7 +5251,7 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
     C.go2("PROCESS_MARKUP_RETURN");
   }
 
-  print2("Creating \"%s\"...\n", outputFileName);
+  mminou.print2("Creating \"%s\"...\n", outputFileName);
 
 
   if (processCss != 0 && instr(1, inputFileContent, g_htmlCSS) == 0) {
@@ -5306,7 +5306,7 @@ void showDiscouraged() {
 
 
       parseProof(stmt);
-      notQuitPrint = print2(
+      notQuitPrint = mminou.print2(
 "SHOW DISCOURAGED:  Proof modification of \"%s\" is discouraged (%ld steps).\n",
           g_Statement[stmt].labelName,
           nmbrLen(g_WrkProof.proofString));
@@ -5331,7 +5331,7 @@ void showDiscouraged() {
           if (highStmt < s) highStmt = s;
         }
       }
-      notQuitPrint = print2(
+      notQuitPrint = mminou.print2(
 "SHOW DISCOURAGED:  New usage of \"%s\" is discouraged (%ld uses).\n",
           g_Statement[stmt].labelName,
           usageCount);
@@ -5341,7 +5341,7 @@ void showDiscouraged() {
         for (s = lowStmt; s <= highStmt; s++) {
 
           if (str1[s] != 'Y') continue;
-          notQuitPrint = print2(
+          notQuitPrint = mminou.print2(
               "SHOW DISCOURAGED:  \"%s\" is used by \"%s\".\n",
               g_Statement[stmt].labelName,
               g_Statement[s].labelName);
@@ -5370,7 +5370,7 @@ long getStepNum(vstring relStep,
 
     actualStepVal = relStepVal;
     if (actualStepVal > pfLen || actualStepVal < 1) {
-      print2("?The step must be in the range from 1 to %ld.\n", pfLen);
+      mminou.print2("?The step must be in the range from 1 to %ld.\n", pfLen);
       actualStepVal = -1;
     }
     C.go2("RETURN_POINT");
@@ -5383,14 +5383,14 @@ long getStepNum(vstring relStep,
   } else if (relStepCaps[0] == '+') {
     negFlag = 0;
     if (strcmp(right(relStepCaps, 2), str((double)relStepVal))) {
-      print2("?The characters after '+' are not a number.\n");
+      mminou.print2("?The characters after '+' are not a number.\n");
       actualStepVal = -1;
       C.go2("RETURN_POINT");
     }
   } else if (relStepCaps[0] == '-') {
     negFlag = 1;
     if (strcmp(right(relStepCaps, 2), str((double)(- relStepVal)))) {
-      print2("?The characters after '-' are not a number.\n");
+      mminou.print2("?The characters after '-' are not a number.\n");
       actualStepVal = -1;
       C.go2("RETURN_POINT");
     }
@@ -5398,7 +5398,7 @@ long getStepNum(vstring relStep,
   } else if (!strcmp(relStepCaps, left("ALL", (long)(strlen(relStepCaps))))) {
     if (!allFlag) {
 
-      print2("?You must specify FIRST, LAST, nn, +nn, or -nn.\n");
+      mminou.print2("?You must specify FIRST, LAST, nn, +nn, or -nn.\n");
       actualStepVal = -1;
       C.go2("RETURN_POINT");
     }
@@ -5406,9 +5406,9 @@ long getStepNum(vstring relStep,
     C.go2("RETURN_POINT");
   } else {
     if (allFlag) {
-      print2("?You must specify FIRST, LAST, nn, +nn, -nn, or ALL.\n");
+      mminou.print2("?You must specify FIRST, LAST, nn, +nn, -nn, or ALL.\n");
     } else {
-      print2("?You must specify FIRST, LAST, nn, +nn, or -nn.\n");
+      mminou.print2("?You must specify FIRST, LAST, nn, +nn, or -nn.\n");
     }
     actualStepVal = -1;
     C.go2("RETURN_POINT");
@@ -5451,9 +5451,9 @@ long getStepNum(vstring relStep,
   }
   if (actualStepVal == 0) {
     if (relStepVal == 0) {
-      print2("?There are no unknown essential steps.\n");
+      mminou.print2("?There are no unknown essential steps.\n");
     } else {
-      print2("?There are not at least %ld unknown essential steps.\n",
+      mminou.print2("?There are not at least %ld unknown essential steps.\n",
         relStepVal + 1);
     }
     actualStepVal = -1;
@@ -5583,22 +5583,22 @@ long getStatementNum(vstring stmtName,
     if (!uniqueFlag) {
       if (startStmt == 1) {
 
-        print2("?No statement label matches \"%s\".\n", stmtName);
+        mminou.print2("?No statement label matches \"%s\".\n", stmtName);
       }
     } else if (aAllowed && pAllowed && eAllowed && fAllowed
                && !efOnlyForMaxStmt) {
-      print2("?No statement label matches \"%s\".\n", stmtName);
+      mminou.print2("?No statement label matches \"%s\".\n", stmtName);
     } else if (!aAllowed && pAllowed && !eAllowed && !fAllowed) {
 
-      print2("?No $p statement label matches \"%s\".\n", stmtName);
+      mminou.print2("?No $p statement label matches \"%s\".\n", stmtName);
     } else if (!eAllowed && !fAllowed) {
 
       if (!laterMatchFound) {
-        print2("?No $a or $p statement label matches \"%s\".\n",
+        mminou.print2("?No $a or $p statement label matches \"%s\".\n",
           stmtName);
       } else {
 
-        print2(
+        mminou.print2(
    "?You must specify a statement that occurs earlier the one being proved.\n");
       }
     } else {
@@ -5610,7 +5610,7 @@ long getStatementNum(vstring stmtName,
             "being proved.", null), "", " ");
       } else {
 
-        print2(
+        mminou.print2(
    "?You must specify a statement that occurs earlier the one being proved.\n");
       }
     }
@@ -5641,7 +5641,7 @@ long getStatementNum(vstring stmtName,
 void H(vstring helpLine)
 {
   if (g_printHelp) {
-    print2("%s\n", helpLine);
+    mminou.print2("%s\n", helpLine);
   }
 }
 
@@ -5860,11 +5860,11 @@ void outputMidi(long plen, nmbrString *indentationLevels,
 
   let(&midiFileName, cat(g_Statement[g_showStatement].labelName,
       ".txt", null));
-  print2("Creating MIDI source file \"%s\"...", midiFileName);
+  mminou.print2("Creating MIDI source file \"%s\"...", midiFileName);
 
   midiFilePtr = fSafeOpen(midiFileName, "w", 0);
   if (midiFilePtr == null) {
-    print2("?Couldn't open %s\n", midiFileName);
+    mminou.print2("?Couldn't open %s\n", midiFileName);
     C.go2("midi_return");
   }
 
@@ -5946,7 +5946,7 @@ void outputMidi(long plen, nmbrString *indentationLevels,
   fprintf(midiFilePtr, "TrkEnd\n");
   fclose(midiFilePtr);
 
-  print2(" length = %ld sec\n", (long)(midiTime / (2 * midiTempo)));
+  mminou.print2(" length = %ld sec\n", (long)(midiTime / (2 * midiTempo)));
 
   C.label("midi_return");
   let(&midiFileName, "");

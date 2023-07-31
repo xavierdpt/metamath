@@ -499,10 +499,10 @@ vstring stripAndTag(vstring line, vstring tag, flag tagBlankLines)
           null));
     let(&line1, cat(line1, " ", tag, null));
     if ((signed)(strlen(line1)) - n > lineLength) {
-      print2(
+        mminou.print2(
 "Warning: The following line has > %ld characters after tag is added:\n",
           lineLength);
-      print2("%s\n", line1);
+        mminou.print2("%s\n", line1);
     }
   }
 

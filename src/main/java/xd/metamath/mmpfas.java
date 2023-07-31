@@ -90,7 +90,7 @@ void interactiveMatch(long step, long maxEssential)
   }
 
   if (matchCount == 0 && timeoutCount == 0) {
-    print2("No statements match step %ld.  The proof has an error.\n",
+    mminou.print2("No statements match step %ld.  The proof has an error.\n",
         (long)(step + 1));
     let(&matchFlags, "");
     let(&timeoutFlags, "");
@@ -152,7 +152,7 @@ void interactiveMatch(long step, long maxEssential)
 
     matchListPos = 0;
     stmt = matchList[matchListPos];
-    print2("Step %ld was assigned statement %s since it is the only match.\n",
+    mminou.print2("Step %ld was assigned statement %s since it is the only match.\n",
         (long)(step + 1),
         g_Statement[stmt].labelName);
   } else {
@@ -175,7 +175,7 @@ void interactiveMatch(long step, long maxEssential)
       }
       if (!instr(1, cat(" ", tmpStr1, " ", tmpStr4, " ", null),
            cat(" ", tmpStr2, " ", null))) {
-        print2("\"%s\" is not one of the choices.  Try again.\n", tmpStr2);
+        mminou.print2("\"%s\" is not one of the choices.  Try again.\n", tmpStr2);
       } else {
         break;
       }
@@ -195,7 +195,7 @@ void interactiveMatch(long step, long maxEssential)
       if (timeoutListPos == timeoutCount) bug(1801);
       stmt = timeoutList[timeoutListPos];
     }
-    print2("Step %ld was assigned statement %s.\n",
+    mminou.print2("Step %ld was assigned statement %s.\n",
         (long)(step + 1),
         g_Statement[stmt].labelName);
 
@@ -302,7 +302,7 @@ nmbrString *proveByReplacement(long prfStmt,
 
       if (overrideFlag == 1 && getMarkupFlag(trialStmt, USAGE_DISCOURAGED)) {
 
-        print2(
+        mminou.print2(
           ">>> ?Warning: Overriding discouraged usage of statement \"%s\".\n",
             g_Statement[trialStmt].labelName);
 
@@ -487,7 +487,7 @@ nmbrString *replaceStatement(long replStatemNum, long prfStep,
     tmpFlag = unifyH(scheme, prfMath, &stateVector, reEntryFlag);
     if (!tmpFlag) break;
     if (tmpFlag == 2) {
-      print2(
+      mminou.print2(
 "Unification timed out.  Larger SET UNIFICATION_TIMEOUT may improve results.\n");
       g_unifTrialCount = 1;
       break;
@@ -627,7 +627,7 @@ nmbrString *replaceStatement(long replStatemNum, long prfStep,
         if (!tmpFlag || tmpFlag == 2) {
 
           if (tmpFlag == 2) {
-            print2(
+            mminou.print2(
 "Unification timed out.  SET UNIFICATION_TIMEOUT larger for better results.\n");
             g_unifTrialCount = 1;
 
@@ -880,7 +880,7 @@ nmbrString *replaceStatement(long replStatemNum, long prfStep,
   let(&tryFloatingProofLater, "");
 
 
-if(db8)print2("%s\n", cat("Returned: ",
+if(db8)mminou.print2("%s\n", cat("Returned: ",
    nmbrCvtRToVString(proof,
 
                 0,
@@ -1433,7 +1433,7 @@ nmbrString *proveFloating(nmbrString *mString, long statemNum, long maxEDepth,
   long prfMbox;
 
   long unNum;
-if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
+if (db8)mminou.print2("%s\n", cat(space(depth+2), "Entered: ",
    nmbrCvtMToVString(mString), null));
 
   prfMbox = getMathboxNum(statemNum);
@@ -1447,7 +1447,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
   depth++;
   if (trials > g_userMaxProveFloat) {
     nmbrLet(&proof, NULL_NMBRSTRING);
-    print2(
+    mminou.print2(
 "Exceeded trial limit at step %ld.  You may increase with SET SEARCH_LIMIT.\n",
         (long)(step + 1));
     C.go2("returnPoint");
@@ -1641,14 +1641,14 @@ unNum = 0;
       tmpFlag = unifyH(scheme, mString, &stateVector, reEntryFlag);
       if (!tmpFlag) break;
       if (tmpFlag == 2) {
-        print2(
+        mminou.print2(
 "Unification timed out.  SET UNIFICATION_TIMEOUT larger for better results.\n");
         g_unifTrialCount = 1;
         break;
       }
 
 unNum++;
-if (db8)print2("%s\n", cat(space(depth+2), "Testing unification ",
+if (db8)mminou.print2("%s\n", cat(space(depth+2), "Testing unification ",
    str((double)unNum), " statement ", g_Statement[stmt].labelName,
    ": ", nmbrCvtMToVString(scheme), null));
       reEntryFlag = 1;
@@ -1656,7 +1656,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Testing unification ",
       nmbrLet(&proof, NULL_NMBRSTRING);
       breakFlag = 0;
       for (hyp = 0; hyp < schReqHyps; hyp++) {
-if (db8)print2("%s\n", cat(space(depth+2), "Proving hyp. ",
+if (db8)mminou.print2("%s\n", cat(space(depth+2), "Proving hyp. ",
    str((double)(hypOrdMap[hyp])), "(#", str((double)hyp), "):  ",
    nmbrCvtMToVString(hypList[hypOrdMap[hyp]]), null));
         makeSubstPtr = makeSubstUnif(&tmpFlag, hypList[hypOrdMap[hyp]],
@@ -1723,7 +1723,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Proving hyp. ",
           case 2: break;
           case 1:
 
-            print2(
+            mminou.print2(
           ">>> ?Warning: Overriding discouraged usage of statement \"%s\".\n",
                 g_Statement[stmt].labelName);
 
@@ -1779,12 +1779,12 @@ if (db8)print2("%s\n", cat(space(depth+2), "Proving hyp. ",
   nmbrLet(&hypOrdMap, NULL_NMBRSTRING);
   pntrLet(&hypProofList, NULL_PNTRSTRING);
   depth--;
-if(db8)print2("%s\n", cat(space(depth+2), "Returned: ",
+if(db8)mminou.print2("%s\n", cat(space(depth+2), "Returned: ",
    nmbrCvtRToVString(proof,
 
                 0,
                 0 ), null));
-if(db8){if(!depth)print2("Trials: %ld\n", trials);}
+if(db8){if(!depth)mminou.print2("Trials: %ld\n", trials);}
   return (proof);
 }
 
@@ -1958,7 +1958,7 @@ void minimizeProof(long repStatemNum, long prvStatemNum,
     static final long MAX_GROWTH_FACTOR =D.MAX_GROWTH_FACTOR;
     if (allowGrowthFlag && plen > MAX_GROWTH_FACTOR * startingPlen) {
 
-      print2("Suppressed excessive ALLOW_GROWTH growth.\n");
+      mminou.print2("Suppressed excessive ALLOW_GROWTH growth.\n");
       break;
     }
   }
@@ -1981,7 +1981,7 @@ void initStep(long step)
       nmbrLet((nmbrString **)(&((g_ProofInProgress.source)[step])),
           NULL_NMBRSTRING);
     } else {
-print2("step %ld stmt %ld\n",step,stmt);
+      mminou.print2("step %ld stmt %ld\n",step,stmt);
       bug(1809);
     }
     return;
@@ -2266,14 +2266,14 @@ void interactiveUnifyStep(long step, char messageFlag)
 
   if (nmbrLen((g_ProofInProgress.user)[step])) {
     if (!nmbrEq((g_ProofInProgress.target)[step], (g_ProofInProgress.user)[step])) {
-      if (messageFlag == 0) print2("Step %ld:\n", step + 1);
+      if (messageFlag == 0) mminou.print2("Step %ld:\n", step + 1);
       unifFlag = interactiveUnify((g_ProofInProgress.target)[step],
         (g_ProofInProgress.user)[step], &stateVector);
       C.go2("subAndReturn");
     }
     if (nmbrLen((g_ProofInProgress.source)[step])) {
       if (!nmbrEq((g_ProofInProgress.source)[step], (g_ProofInProgress.user)[step])) {
-        if (messageFlag == 0) print2("Step %ld:\n", step + 1);
+        if (messageFlag == 0) mminou.print2("Step %ld:\n", step + 1);
         unifFlag = interactiveUnify((g_ProofInProgress.source)[step],
           (g_ProofInProgress.user)[step], &stateVector);
         C.go2("subAndReturn");
@@ -2282,7 +2282,7 @@ void interactiveUnifyStep(long step, char messageFlag)
   } else {
     if (nmbrLen((g_ProofInProgress.source)[step])) {
       if (!nmbrEq((g_ProofInProgress.target)[step], (g_ProofInProgress.source)[step])) {
-        if (messageFlag == 0) print2("Step %ld:\n", step + 1);
+        if (messageFlag == 0) mminou.print2("Step %ld:\n", step + 1);
         unifFlag = interactiveUnify((g_ProofInProgress.target)[step],
           (g_ProofInProgress.source)[step], &stateVector);
         C.go2("subAndReturn");
@@ -2292,7 +2292,7 @@ void interactiveUnifyStep(long step, char messageFlag)
 
 
   if (messageFlag == 1) {
-    print2("?Step %ld is already unified.\n", step + 1);
+    mminou.print2("?Step %ld is already unified.\n", step + 1);
   }
   unifFlag = 0;
 
@@ -2355,9 +2355,9 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
           cat("Unify:  ", nmbrCvtMToVString(schemeA), null), "    ", " ");
       printLongLine(
           cat(" with:  ", nmbrCvtMToVString(schemeB), null), "    ", " ");
-      print2(
+      mminou.print2(
 "The unification timed out.  Increase timeout (SET UNIFICATION_TIMEOUT) or\n");
-      print2(
+      mminou.print2(
 "assign some variables (LET VARIABLE) or the step (LET STEP) manually.\n");
 
       returnValue = 2;
@@ -2442,14 +2442,14 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
       if (unifWeight[unifNum - 1] != unifTrialWeight) continue;
 
       if (unifCount == 1) {
-        print2("Step was successfully unified.\n");
+        mminou.print2("Step was successfully unified.\n");
 
         returnValue = 1;
         C.go2("returnPoint");
       }
 
       unifTrials++;
-      print2("Unification #%ld of %ld (weight = %ld):\n",
+      mminou.print2("Unification #%ld of %ld (weight = %ld):\n",
           unifTrials, unifCount, unifTrialWeight);
 
       stackTop = ((nmbrString *)((*stateVector)[11]))[1];
@@ -2549,7 +2549,7 @@ void autoUnify(flag congrats)
           case 0:
 
             schemeAPtr = (g_ProofInProgress.target)[step];
-            if (!nmbrLen(schemeAPtr)) print2(
+            if (!nmbrLen(schemeAPtr)) mminou.print2(
  "?Bad unification selected:  A proof step should never be completely empty\n");
 
             schemeBPtr = (g_ProofInProgress.user)[step];
@@ -2571,10 +2571,10 @@ void autoUnify(flag congrats)
             unifFlag = uniqueUnif(schemeAPtr, schemeBPtr, &stateVector);
             if (unifFlag != 1) somethingNotUnified = 1;
             if (unifFlag == 2) {
-              print2("A unification timeout occurred at step %ld.\n", step + 1);
+              mminou.print2("A unification timeout occurred at step %ld.\n", step + 1);
             }
             if (!unifFlag) {
-              print2(
+              mminou.print2(
               "Step %ld cannot be unified.  THERE IS AN ERROR IN THE PROOF.\n",
                   (long)(step + 1));
               continue;
@@ -2598,11 +2598,11 @@ void autoUnify(flag congrats)
   if (congrats) {
     if (!somethingNotUnified) {
       if (!nmbrElementIn(1, g_ProofInProgress.proof, -(long)'?')) {
-        print2(
+        mminou.print2(
   "CONGRATULATIONS!  The proof is complete.  Use SAVE NEW_PROOF to save it.\n");
-        print2(
+        mminou.print2(
   "Note:  The Proof Assistant does not detect $d violations.  After saving\n");
-        print2(
+        mminou.print2(
   "the proof, you should verify it with VERIFY PROOF.\n");
       }
     }
@@ -2703,9 +2703,9 @@ void replaceDummyVar(long dummyVar, nmbrString *mString)
 
   if (numSubs) {
     g_proofChangedFlag = 1;
-    print2("%ld substitutions were made in %ld steps.\n", numSubs, numSteps);
+    mminou.print2("%ld substitutions were made in %ld steps.\n", numSubs, numSteps);
   } else {
-    print2("?The dummy variable $%ld is nowhere in the proof.\n", dummyVar);
+    mminou.print2("?The dummy variable $%ld is nowhere in the proof.\n", dummyVar);
   }
 
   return;
@@ -3036,7 +3036,7 @@ long processUndoStack(struct pip_struct *proofStruct,
 
       if (action == PUS_NEW_SIZE) {
         if (stackPtr > 0) {
-          print2("The previous UNDOs are no longer available.\n");
+          mminou.print2("The previous UNDOs are no longer available.\n");
           stackAborted = 1;
         }
         if (stackOverflowed) stackAborted = 1;
@@ -3112,7 +3112,7 @@ long processUndoStack(struct pip_struct *proofStruct,
       if (stackPtr < 0) bug(1864);
       if (stackPtr == 0) {
         if (stackOverflowed == 0) {
-          print2("There is nothing to undo.\n");
+          mminou.print2("There is nothing to undo.\n");
         } else {
           printLongLine(cat("Exceeded maximum of ", str((double)stackSize - 1),
               " UNDOs.  To increase the number, see HELP SET UNDO.",
@@ -3131,7 +3131,7 @@ long processUndoStack(struct pip_struct *proofStruct,
 
     case PUS_REDO:
       if (stackPtr == stackEnd) {
-        print2("There is nothing more to redo.\n");
+        mminou.print2("There is nothing more to redo.\n");
         break;
       }
 

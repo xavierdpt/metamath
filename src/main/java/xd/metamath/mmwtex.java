@@ -157,7 +157,7 @@ flag readTexDefs(
 
 
   if (errorsOnly == 0) {
-    print2("Reading definitions from $t statement of %s...\n", g_input_fn);
+    mminou.print2("Reading definitions from $t statement of %s...\n", g_input_fn);
   }
 
 
@@ -175,7 +175,7 @@ flag readTexDefs(
 
 
       if (fileBuf[0]) {
-        print2(
+        mminou.print2(
   "?Error: There are two comments containing a $t keyword in \"%s\".\n",
             g_input_fn);
         let(&fileBuf, "");
@@ -231,10 +231,10 @@ flag readTexDefs(
     startPtr++;
   }
   if (startPtr[0] == 0) {
-    print2("?Error: There is no $t command in the file \"%s\".\n", g_input_fn);
-    print2(
+    mminou.print2("?Error: There is no $t command in the file \"%s\".\n", g_input_fn);
+    mminou.print2(
 "The file should have exactly one comment of the form $(...$t...$) with\n");
-    print2("the LaTeX and HTML definitions between $t and $).\n");
+    mminou.print2("the LaTeX and HTML definitions between $t and $).\n");
     let(&fileBuf, "");
     return 2;
   }
@@ -252,7 +252,7 @@ flag readTexDefs(
     tmpPtr++;
   }
   if (tmpPtr[0] == 0) {
-    print2(
+    mminou.print2(
   "?Error: There is no $) comment closure after the $t keyword in \"%s\".\n",
         g_input_fn);
     let(&fileBuf, "");
@@ -264,7 +264,7 @@ flag readTexDefs(
   while (true) {
     if (tmpPtr2[0] == '$') {
       if (tmpPtr2[1] == 't') {
-        print2(
+        mminou.print2(
   "?Error: There are two comments containing a $t keyword in \"%s\".\n",
             g_input_fn);
         let(&fileBuf, "");
@@ -592,7 +592,7 @@ flag readTexDefs(
 
     if (parsePass == 1 ) {
       if (errorsOnly == 0) {
-        print2("%ld typesetting statements were read from \"%s\".\n",
+        mminou.print2("%ld typesetting statements were read from \"%s\".\n",
             numSymbs, g_input_fn);
       }
       g_TexDefs = malloc((size_t)numSymbs * sizeof(struct texDef_struct));
@@ -1201,7 +1201,7 @@ void printTexHeader(flag texHeaderFlag)
 
 
   if (2 == readTexDefs(0, 0 )) {
-    print2(
+    mminou.print2(
        "?There was an error in the $t comment's LaTeX/HTML definitions.\n");
     return;
   }
@@ -1210,141 +1210,141 @@ void printTexHeader(flag texHeaderFlag)
   g_outputToString = 1;
 
   if (!g_htmlFlag) {
-    print2("%s This LaTeX file was created by Metamath on %s %s.\n",
+    mminou.print2("%s This LaTeX file was created by Metamath on %s %s.\n",
        "%", date(), time_());
 
 
     if (texHeaderFlag && !g_oldTexFlag) {
-      print2("\\documentclass{article}\n");
-      print2("\\usepackage{graphicx} %% For rotated iota\n");
-      print2("\\usepackage{amssymb}\n");
-      print2("\\usepackage{amsmath} %% For \\begin{align}...\n");
-      print2("\\usepackage{amsthm}\n");
-      print2("\\theoremstyle{plain}\n");
-      print2("\\newtheorem{theorem}{Theorem}[section]\n");
-      print2("\\newtheorem{definition}[theorem]{Definition}\n");
-      print2("\\newtheorem{lemma}[theorem]{Lemma}\n");
-      print2("\\newtheorem{axiom}{Axiom}\n");
-      print2("\\allowdisplaybreaks[1] %% Allow page breaks in {align}\n");
-      print2("\\usepackage[plainpages=false,pdfpagelabels]{hyperref}\n");
-      print2("\\hypersetup{colorlinks} %% Get rid of boxes around links\n");
+      mminou.print2("\\documentclass{article}\n");
+      mminou.print2("\\usepackage{graphicx} %% For rotated iota\n");
+      mminou.print2("\\usepackage{amssymb}\n");
+      mminou.print2("\\usepackage{amsmath} %% For \\begin{align}...\n");
+      mminou.print2("\\usepackage{amsthm}\n");
+      mminou.print2("\\theoremstyle{plain}\n");
+      mminou.print2("\\newtheorem{theorem}{Theorem}[section]\n");
+      mminou.print2("\\newtheorem{definition}[theorem]{Definition}\n");
+      mminou.print2("\\newtheorem{lemma}[theorem]{Lemma}\n");
+      mminou.print2("\\newtheorem{axiom}{Axiom}\n");
+      mminou.print2("\\allowdisplaybreaks[1] %% Allow page breaks in {align}\n");
+      mminou.print2("\\usepackage[plainpages=false,pdfpagelabels]{hyperref}\n");
+      mminou.print2("\\hypersetup{colorlinks} %% Get rid of boxes around links\n");
 
-      print2("\\begin{document}\n");
-      print2("\n");
+      mminou.print2("\\begin{document}\n");
+      mminou.print2("\n");
     }
 
     if (texHeaderFlag && g_oldTexFlag) {
 
-      print2(
+      mminou.print2(
     "\\documentclass[leqno]{article}\n");
 
-      print2("\\usepackage{graphicx}\n");
-      print2(
+      mminou.print2("\\usepackage{graphicx}\n");
+      mminou.print2(
     "\\usepackage{amssymb}\n");
-      print2(
+      mminou.print2(
 "\\raggedbottom\n");
-      print2(
+      mminou.print2(
 "\\raggedright\n");
-      print2(
+      mminou.print2(
 "%%\\title{Your title here}\n");
-      print2(
+      mminou.print2(
 "%%\\author{Your name here}\n");
-      print2(
+      mminou.print2(
 "\\begin{document}\n");
-      print2(
+      mminou.print2(
 "%%\\maketitle\n");
-      print2(
+      mminou.print2(
 "\\newbox\\mlinebox\n");
-      print2(
+      mminou.print2(
 "\\newbox\\mtrialbox\n");
-      print2(
+      mminou.print2(
 "\\newbox\\startprefix  %% Prefix for first line of a formula\n");
-      print2(
+      mminou.print2(
 "\\newbox\\contprefix  %% Prefix for continuation line of a formula\n");
-      print2(
+      mminou.print2(
 "\\def\\startm{  %% Initialize formula line\n");
-      print2(
+      mminou.print2(
 "  \\setbox\\mlinebox=\\hbox{\\unhcopy\\startprefix}\n");
-      print2(
+      mminou.print2(
 "}\n");
-      print2(
+      mminou.print2(
 "\\def\\m#1{  %% Add a symbol to the formula\n");
-      print2(
+      mminou.print2(
 "  \\setbox\\mtrialbox=\\hbox{\\unhcopy\\mlinebox $\\,#1$}\n");
-      print2(
+      mminou.print2(
 "  \\ifdim\\wd\\mtrialbox>\\hsize\n");
-      print2(
+      mminou.print2(
 "    \\box\\mlinebox\n");
-      print2(
+      mminou.print2(
 "    \\setbox\\mlinebox=\\hbox{\\unhcopy\\contprefix $\\,#1$}\n");
-      print2(
+      mminou.print2(
 "  \\else\n");
-      print2(
+      mminou.print2(
 "    \\setbox\\mlinebox=\\hbox{\\unhbox\\mtrialbox}\n");
-      print2(
+      mminou.print2(
 "  \\fi\n");
-      print2(
+      mminou.print2(
 "}\n");
-      print2(
+      mminou.print2(
 "\\def\\endm{  %% Output the last line of a formula\n");
-      print2(
+      mminou.print2(
 "  \\box\\mlinebox\n");
-      print2(
+      mminou.print2(
 "}\n");
     }
   } else {
 
-    print2(
+    mminou.print2(
         "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n");
-    print2(     "    \"http://www.w3.org/TR/html4/loose.dtd\">\n");
-    print2("<HTML LANG=\"EN-US\">\n");
-    print2("<HEAD>\n");
-    print2("%s%s\n", "<META HTTP-EQUIV=\"Content-Type\" ",
+    mminou.print2(     "    \"http://www.w3.org/TR/html4/loose.dtd\">\n");
+    mminou.print2("<HTML LANG=\"EN-US\">\n");
+    mminou.print2("<HEAD>\n");
+    mminou.print2("%s%s\n", "<META HTTP-EQUIV=\"Content-Type\" ",
         "CONTENT=\"text/html; charset=iso-8859-1\">");
 
 
-    print2(
+    mminou.print2(
 "<META NAME=\"viewport\" CONTENT=\"width=device-width, initial-scale=1.0\">\n"
         );
 
-    print2("<STYLE TYPE=\"text/css\">\n");
-    print2("<!--\n");
+    mminou.print2("<STYLE TYPE=\"text/css\">\n");
+    mminou.print2("<!--\n");
 
 
 
-    print2("img { margin-bottom: -4px }\n");
+    mminou.print2("img { margin-bottom: -4px }\n");
 #ifndef RAINBOW_OPTION
 
-    print2(".p { font-family: \"Arial Narrow\";\n");
-    print2("     font-size: x-small;\n");
+    mminou.print2(".p { font-family: \"Arial Narrow\";\n");
+    mminou.print2("     font-size: x-small;\n");
 
     printLongLine(cat("     color: ", seg(PINK_NUMBER_COLOR, 2,
         (long)strlen(PINK_NUMBER_COLOR) - 1), ";", null), "", "&");
-    print2("   }\n");
+    mminou.print2("   }\n");
 #else
-    print2(".r { font-family: \"Arial Narrow\";\n");
-    print2("     font-size: x-small;\n");
+    mminou.print2(".r { font-family: \"Arial Narrow\";\n");
+    mminou.print2("     font-size: x-small;\n");
 
-    print2("   }\n");
+    mminou.print2("   }\n");
 #endif
 
 #ifdef INDENT_HTML_PROOFS
 
 
 
-    print2(".i { font-family: \"Arial Narrow\";\n");
-    print2("     font-size: x-small;\n");
-    print2("     color: gray;\n");
-    print2("   }\n");
+    mminou.print2(".i { font-family: \"Arial Narrow\";\n");
+    mminou.print2("     font-size: x-small;\n");
+    mminou.print2("     color: gray;\n");
+    mminou.print2("   }\n");
 #endif
-    print2("-->\n");
-    print2("</STYLE>\n");
+    mminou.print2("-->\n");
+    mminou.print2("</STYLE>\n");
     printLongLine(g_htmlCSS, "", " ");
 
 
 
     if (g_showStatement < g_extHtmlStmt) {
-      print2("%s\n", cat("<TITLE>",
+      mminou.print2("%s\n", cat("<TITLE>",
 
           left(g_texFileName, (long)strlen(g_texFileName) - 5),
 
@@ -1352,7 +1352,7 @@ void printTexHeader(flag texHeaderFlag)
           "</TITLE>", null));
 
     } else if (g_showStatement < g_mathboxStmt) {
-      print2("%s\n", cat("<TITLE>",
+      mminou.print2("%s\n", cat("<TITLE>",
 
           left(g_texFileName, (long)strlen(g_texFileName) - 5),
 
@@ -1404,20 +1404,20 @@ void printTexHeader(flag texHeaderFlag)
 
     }
 
-    print2("%s%s\n", "<LINK REL=\"shortcut icon\" HREF=\"favicon.ico\" ",
+    mminou.print2("%s%s\n", "<LINK REL=\"shortcut icon\" HREF=\"favicon.ico\" ",
         "TYPE=\"image/x-icon\">");
 
-    print2("</HEAD>\n");
+    mminou.print2("</HEAD>\n");
 
 
-    print2("<BODY BGCOLOR=\"#FFFFFF\">\n");
+    mminou.print2("<BODY BGCOLOR=\"#FFFFFF\">\n");
 
 
-    print2("<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=\"100%s\">\n",
+    mminou.print2("<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=\"100%s\">\n",
          "%");
-    print2("  <TR>\n");
-    print2("    <TD ALIGN=LEFT VALIGN=TOP WIDTH=\"25%s\"><A HREF=\n", "%");
-    print2("    \"%s\"><IMG SRC=\"%s\"\n",
+    mminou.print2("  <TR>\n");
+    mminou.print2("    <TD ALIGN=LEFT VALIGN=TOP WIDTH=\"25%s\"><A HREF=\n", "%");
+    mminou.print2("    \"%s\"><IMG SRC=\"%s\"\n",
         (g_showStatement < g_extHtmlStmt ? g_htmlHomeHREF :
              (g_showStatement < g_mathboxStmt ? extHtmlHomeHREF :
              sandboxHomeHREF)),
@@ -1425,27 +1425,27 @@ void printTexHeader(flag texHeaderFlag)
         (g_showStatement < g_extHtmlStmt ? g_htmlHomeIMG :
              (g_showStatement < g_mathboxStmt ? extHtmlHomeIMG :
              sandboxHomeIMG)));
-    print2("      BORDER=0\n");
-    print2("      ALT=\"%s\"\n",
+    mminou.print2("      BORDER=0\n");
+    mminou.print2("      ALT=\"%s\"\n",
         (g_showStatement < g_extHtmlStmt ? htmlTitleAbbr :
              (g_showStatement < g_mathboxStmt ? g_extHtmlTitleAbbr :
              sandboxTitleAbbr)));
-    print2("      TITLE=\"%s\"\n",
+    mminou.print2("      TITLE=\"%s\"\n",
         (g_showStatement < g_extHtmlStmt ? htmlTitleAbbr :
              (g_showStatement < g_mathboxStmt ? g_extHtmlTitleAbbr :
              sandboxTitleAbbr)));
-    print2(
+    mminou.print2(
       "      HEIGHT=32 WIDTH=32 ALIGN=TOP STYLE=\"margin-bottom:0px\"></A>\n");
-    print2("    </TD>\n");
-    print2(
+    mminou.print2("    </TD>\n");
+    mminou.print2(
 "    <TD ALIGN=CENTER COLSPAN=2 VALIGN=TOP><FONT SIZE=\"+3\" COLOR=%s><B>\n",
 
       GREEN_TITLE_COLOR);
-    print2("%s\n",
+    mminou.print2("%s\n",
         (g_showStatement < g_extHtmlStmt ? htmlTitle :
              (g_showStatement < g_mathboxStmt ? g_extHtmlTitle :
              localSandboxTitle)));
-    print2("      </B></FONT></TD>\n");
+    mminou.print2("      </B></FONT></TD>\n");
 
 
 
@@ -1454,8 +1454,8 @@ void printTexHeader(flag texHeaderFlag)
 
     if (texHeaderFlag) {
 
-      print2("    <TD ALIGN=RIGHT VALIGN=TOP WIDTH=\"25%s\">\n", "%");
-      print2("      <FONT SIZE=-1 FACE=sans-serif>\n");
+      mminou.print2("    <TD ALIGN=RIGHT VALIGN=TOP WIDTH=\"25%s\">\n", "%");
+      mminou.print2("      <FONT SIZE=-1 FACE=sans-serif>\n");
 
       j = 0;
       k = 0;
@@ -1482,12 +1482,12 @@ void printTexHeader(flag texHeaderFlag)
         }
       }
       if (j == 0) bug(2314);
-      print2("      <A HREF=\"%s.html\">\n",
+      mminou.print2("      <A HREF=\"%s.html\">\n",
           g_Statement[j].labelName);
       if (!k) {
-        print2("      &lt; Previous</A>&nbsp;&nbsp;\n");
+        mminou.print2("      &lt; Previous</A>&nbsp;&nbsp;\n");
       } else {
-        print2("      &lt; Wrap</A>&nbsp;&nbsp;\n");
+        mminou.print2("      &lt; Wrap</A>&nbsp;&nbsp;\n");
       }
 
       j = 0;
@@ -1517,14 +1517,14 @@ void printTexHeader(flag texHeaderFlag)
       if (j == 0) bug(2315);
 
       if (!k) {
-        print2("      <A HREF=\"%s.html\">Next &gt;</A>\n",
+        mminou.print2("      <A HREF=\"%s.html\">Next &gt;</A>\n",
             g_Statement[j].labelName);
       } else {
-        print2("      <A HREF=\"%s.html\">Wrap &gt;</A>\n",
+        mminou.print2("      <A HREF=\"%s.html\">Wrap &gt;</A>\n",
             g_Statement[j].labelName);
       }
 
-      print2("      </FONT><FONT FACE=sans-serif SIZE=-2>\n");
+      mminou.print2("      </FONT><FONT FACE=sans-serif SIZE=-2>\n");
 
 
       i = ((g_Statement[g_showStatement].pinkNumber - 1) / 100) + 1;
@@ -1536,34 +1536,34 @@ void printTexHeader(flag texHeaderFlag)
             "\">Nearby theorems</A>", null), " ", " ");
 
 
-      print2("      </FONT>\n");
-      print2("    </TD>\n");
-      print2("  </TR>\n");
-      print2("  <TR>\n");
-      print2("    <TD COLSPAN=2 ALIGN=LEFT VALIGN=TOP><FONT SIZE=-2\n");
-      print2("      FACE=sans-serif>\n");
-      print2("      <A HREF=\"../mm.html\">Mirrors</A>&nbsp; &gt;\n");
-      print2("      &nbsp;<A HREF=\"../index.html\">Home</A>&nbsp; &gt;\n");
-      print2("      &nbsp;<A HREF=\"%s\">%s</A>&nbsp; &gt;\n",
+      mminou.print2("      </FONT>\n");
+      mminou.print2("    </TD>\n");
+      mminou.print2("  </TR>\n");
+      mminou.print2("  <TR>\n");
+      mminou.print2("    <TD COLSPAN=2 ALIGN=LEFT VALIGN=TOP><FONT SIZE=-2\n");
+      mminou.print2("      FACE=sans-serif>\n");
+      mminou.print2("      <A HREF=\"../mm.html\">Mirrors</A>&nbsp; &gt;\n");
+      mminou.print2("      &nbsp;<A HREF=\"../index.html\">Home</A>&nbsp; &gt;\n");
+      mminou.print2("      &nbsp;<A HREF=\"%s\">%s</A>&nbsp; &gt;\n",
           (g_showStatement < g_extHtmlStmt ? g_htmlHomeHREF :
                (g_showStatement < g_mathboxStmt ? extHtmlHomeHREF :
                g_htmlHomeHREF)),
           (g_showStatement < g_extHtmlStmt ? htmlTitleAbbr :
                (g_showStatement < g_mathboxStmt ? g_extHtmlTitleAbbr :
                htmlTitleAbbr)));
-      print2("      &nbsp;<A HREF=\"mmtheorems.html\">Th. List</A>&nbsp; &gt;\n");
+      mminou.print2("      &nbsp;<A HREF=\"mmtheorems.html\">Th. List</A>&nbsp; &gt;\n");
       if (g_showStatement >= g_mathboxStmt) {
-        print2("      &nbsp;<A HREF=\"mmtheorems.html#sandbox:bighdr\">\n");
-        print2("      Mathboxes</A>&nbsp; &gt;\n");
+        mminou.print2("      &nbsp;<A HREF=\"mmtheorems.html#sandbox:bighdr\">\n");
+        mminou.print2("      Mathboxes</A>&nbsp; &gt;\n");
       }
-      print2("      &nbsp;%s\n",
+      mminou.print2("      &nbsp;%s\n",
 
           left(g_texFileName, (long)strlen(g_texFileName) - 5));
-      print2("      </FONT>\n");
-      print2("    </TD>\n");
-      print2("    <TD COLSPAN=2 ALIGN=RIGHT VALIGN=TOP>\n");
+      mminou.print2("      </FONT>\n");
+      mminou.print2("    </TD>\n");
+      mminou.print2("    <TD COLSPAN=2 ALIGN=RIGHT VALIGN=TOP>\n");
 
-      print2("      <FONT SIZE=-2 FACE=sans-serif>\n");
+      mminou.print2("      <FONT SIZE=-2 FACE=sans-serif>\n");
 
 
 
@@ -1584,11 +1584,11 @@ void printTexHeader(flag texHeaderFlag)
       if (htmlDir[0]) {
 
         if (g_altHtmlFlag) {
-          print2("      <A HREF=\"%s%s\">GIF version</A>\n",
+          mminou.print2("      <A HREF=\"%s%s\">GIF version</A>\n",
                 htmlDir, g_texFileName);
 
         } else {
-          print2("      <A HREF=\"%s%s\">Unicode version</A>\n",
+          mminou.print2("      <A HREF=\"%s%s\">Unicode version</A>\n",
                 altHtmlDir, g_texFileName);
 
         }
@@ -1596,36 +1596,36 @@ void printTexHeader(flag texHeaderFlag)
 
     } else {
 
-      print2("      <TD ALIGN=RIGHT VALIGN=TOP\n");
-      print2("       ><FONT FACE=sans-serif SIZE=-2>\n", "%");
+      mminou.print2("      <TD ALIGN=RIGHT VALIGN=TOP\n");
+      mminou.print2("       ><FONT FACE=sans-serif SIZE=-2>\n", "%");
 
 
       if (htmlDir[0]) {
-        print2("\n");
+        mminou.print2("\n");
         if (g_altHtmlFlag) {
-          print2("This is the Unicode version.<BR>\n");
-          print2("<A HREF=\"%s%s\">Change to GIF version</A>\n",
+          mminou.print2("This is the Unicode version.<BR>\n");
+          mminou.print2("<A HREF=\"%s%s\">Change to GIF version</A>\n",
               htmlDir, g_texFileName);
         } else {
-          print2("This is the GIF version.<BR>\n");
-          print2("<A HREF=\"%s%s\">Change to Unicode version</A>\n",
+          mminou.print2("This is the GIF version.<BR>\n");
+          mminou.print2("<A HREF=\"%s%s\">Change to Unicode version</A>\n",
               altHtmlDir, g_texFileName);
         }
       }
       else {
-        print2("&nbsp;\n");
+        mminou.print2("&nbsp;\n");
       }
 
     }
 
-    print2("      </FONT>\n");
-    print2("    </TD>\n");
-    print2("  </TR>\n");
-    print2("</TABLE>\n");
+    mminou.print2("      </FONT>\n");
+    mminou.print2("    </TD>\n");
+    mminou.print2("  </TR>\n");
+    mminou.print2("</TABLE>\n");
 
 
 
-    print2("<HR NOSHADE SIZE=1>\n");
+    mminou.print2("<HR NOSHADE SIZE=1>\n");
 
   }
   fprintf(g_texFilePtr, "%s", g_printString);
@@ -2096,7 +2096,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
             let(&bibFileContents, "");
             if (errorsOnly == 0) {
-              print2("Reading HTML bibliographic tags from file \"%s\"...\n",
+              mminou.print2("Reading HTML bibliographic tags from file \"%s\"...\n",
                   bibFileName);
             }
             bibFileContents = readFileToString(bibFileName, 0,
@@ -2649,14 +2649,14 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
   if (g_htmlFlag) {
     if (convertToHtml != 0) {
-      print2("\n");
+      mminou.print2("\n");
     } else {
 
 
       if (g_printString[0] != 0) {
         i = (long)strlen(g_printString);
         if (g_printString[i - 1] != '\n')  {
-          print2("\n");
+          mminou.print2("\n");
         } else {
 
           if (i > 1) {
@@ -2672,7 +2672,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
 
     } else {
-      print2("\n");
+      mminou.print2("\n");
     }
   }
 
@@ -2830,7 +2830,7 @@ void printTexLongMath(nmbrString *mathString,
       tex = asciiToTt(contPrefix);
       printLongLine(cat(
           "\\setbox\\contprefix=\\hbox{\\tt ", tex, "}", null), "", "\\");
-      print2("\\startm\n");
+      mminou.print2("\\startm\n");
     }
   } else {
     if (strlen(sPrefix)) {
@@ -3005,7 +3005,7 @@ void printTexLongMath(nmbrString *mathString,
 
     } else {
       printLongLine(texLine, "", "\\");
-      print2("\\endm\n");
+      mminou.print2("\\endm\n");
     }
   } else {
     printLongLine(cat(texLine, "</TD></TR>", null), "", "\"");
@@ -3033,25 +3033,25 @@ void printTexTrailer(flag texTrailerFlag) {
     if (!g_htmlFlag) let(&g_printString, "");
 
     if (!g_htmlFlag) {
-      print2("\\end{document}\n");
+      mminou.print2("\\end{document}\n");
     } else {
-      print2("</TABLE></CENTER>\n");
-      print2("<TABLE BORDER=0 WIDTH=\"100%s\">\n", "%");
-      print2("<TR><TD WIDTH=\"25%s\">&nbsp;</TD>\n", "%");
-      print2("<TD ALIGN=CENTER VALIGN=BOTTOM>\n");
-      print2("<FONT SIZE=-2 FACE=sans-serif>\n");
-      print2("Copyright terms:\n");
-      print2("<A HREF=\"../copyright.html#pd\">Public domain</A>\n");
-      print2("</FONT></TD><TD ALIGN=RIGHT VALIGN=BOTTOM WIDTH=\"25%s\">\n",
+      mminou.print2("</TABLE></CENTER>\n");
+      mminou.print2("<TABLE BORDER=0 WIDTH=\"100%s\">\n", "%");
+      mminou.print2("<TR><TD WIDTH=\"25%s\">&nbsp;</TD>\n", "%");
+      mminou.print2("<TD ALIGN=CENTER VALIGN=BOTTOM>\n");
+      mminou.print2("<FONT SIZE=-2 FACE=sans-serif>\n");
+      mminou.print2("Copyright terms:\n");
+      mminou.print2("<A HREF=\"../copyright.html#pd\">Public domain</A>\n");
+      mminou.print2("</FONT></TD><TD ALIGN=RIGHT VALIGN=BOTTOM WIDTH=\"25%s\">\n",
           "%");
-      print2("<FONT SIZE=-2 FACE=sans-serif>\n");
-      print2("<A HREF=\"http://validator.w3.org/check?uri=referer\">\n");
-      print2("W3C validator</A>\n");
-      print2("</FONT></TD></TR></TABLE>\n");
+      mminou.print2("<FONT SIZE=-2 FACE=sans-serif>\n");
+      mminou.print2("<A HREF=\"http://validator.w3.org/check?uri=referer\">\n");
+      mminou.print2("W3C validator</A>\n");
+      mminou.print2("</FONT></TD></TR></TABLE>\n");
 
 
 
-      print2("</BODY></HTML>\n");
+      mminou.print2("</BODY></HTML>\n");
     }
     g_outputToString = 0;
     fprintf(g_texFilePtr, "%s", g_printString);
@@ -3132,7 +3132,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
         cat("mmtheorems", (page > 0) ? str((double)page) : "", ".html", null));
-    print2("Creating %s\n", outputFileName);
+    mminou.print2("Creating %s\n", outputFileName);
     outputFilePtr = fSafeOpen(outputFileName, "w", noVersioning);
     if (!outputFilePtr) C.go2("TL_ABORT");
 
@@ -3140,39 +3140,39 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
     g_outputToString = 1;
-    print2(
+    mminou.print2(
         "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n");
-    print2(     "    \"http://www.w3.org/TR/html4/loose.dtd\">\n");
-    print2("<HTML LANG=\"EN-US\">\n");
-    print2("<HEAD>\n");
-    print2("%s%s\n", "<META HTTP-EQUIV=\"Content-Type\" ",
+    mminou.print2(     "    \"http://www.w3.org/TR/html4/loose.dtd\">\n");
+    mminou.print2("<HTML LANG=\"EN-US\">\n");
+    mminou.print2("<HEAD>\n");
+    mminou.print2("%s%s\n", "<META HTTP-EQUIV=\"Content-Type\" ",
         "CONTENT=\"text/html; charset=iso-8859-1\">");
 
 
-    print2(
+    mminou.print2(
 "<META NAME=\"viewport\" CONTENT=\"width=device-width, initial-scale=1.0\">\n"
         );
 
-    print2("<STYLE TYPE=\"text/css\">\n");
-    print2("<!--\n");
+    mminou.print2("<STYLE TYPE=\"text/css\">\n");
+    mminou.print2("<!--\n");
 
-    print2("img { margin-bottom: -4px }\n");
+    mminou.print2("img { margin-bottom: -4px }\n");
 #ifndef RAINBOW_OPTION
 
-    print2(".p { font-family: \"Arial Narrow\";\n");
-    print2("     font-size: x-small;\n");
+    mminou.print2(".p { font-family: \"Arial Narrow\";\n");
+    mminou.print2("     font-size: x-small;\n");
 
     printLongLine(cat("     color: ", seg(PINK_NUMBER_COLOR, 2,
         (long)strlen(PINK_NUMBER_COLOR) - 1), ";", null), "", "&");
-    print2("   }\n");
+    mminou.print2("   }\n");
 #else
 
-    print2(".r { font-family: \"Arial Narrow\";\n");
-    print2("     font-size: x-small;\n");
-    print2("   }\n");
+    mminou.print2(".r { font-family: \"Arial Narrow\";\n");
+    mminou.print2("     font-size: x-small;\n");
+    mminou.print2("   }\n");
 #endif
-    print2("-->\n");
-    print2("</STYLE>\n");
+    mminou.print2("-->\n");
+    mminou.print2("</STYLE>\n");
     printLongLine(g_htmlCSS, "", " ");
 
 
@@ -3191,26 +3191,26 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
         "</TITLE>",
         null), "", "\"");
 
-    print2("%s%s\n", "<LINK REL=\"shortcut icon\" HREF=\"favicon.ico\" ",
+    mminou.print2("%s%s\n", "<LINK REL=\"shortcut icon\" HREF=\"favicon.ico\" ",
         "TYPE=\"image/x-icon\">");
 
 
-    print2(
+    mminou.print2(
         "<STYLE TYPE=\"text/css\">\n");
-    print2(
+    mminou.print2(
         "<!--\n");
 
-    print2(
+    mminou.print2(
         "img { margin-bottom: -4px }\n");
-    print2(
+    mminou.print2(
         "-->\n");
-    print2(
+    mminou.print2(
         "</STYLE>\n");
 
-    print2("</HEAD>\n");
-    print2("<BODY BGCOLOR=\"#FFFFFF\">\n");
-    print2("<TABLE BORDER=0 WIDTH=\"100%s\"><TR>\n", "%");
-    print2("<TD ALIGN=LEFT VALIGN=TOP WIDTH=\"25%s\"\n", "%");
+    mminou.print2("</HEAD>\n");
+    mminou.print2("<BODY BGCOLOR=\"#FFFFFF\">\n");
+    mminou.print2("<TABLE BORDER=0 WIDTH=\"100%s\"><TR>\n", "%");
+    mminou.print2("<TD ALIGN=LEFT VALIGN=TOP WIDTH=\"25%s\"\n", "%");
     printLongLine(cat("ROWSPAN=2>", g_htmlHome, "</TD>", null), "", "\"");
     printLongLine(cat(
         "<TD NOWRAP ALIGN=CENTER ROWSPAN=2><FONT SIZE=\"+3\" COLOR=",
@@ -3230,8 +3230,8 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-    print2("</TD><TD NOWRAP ALIGN=RIGHT VALIGN=TOP WIDTH=\"25%c\"><FONT\n", '%');
-    print2(" SIZE=-1 FACE=sans-serif>\n");
+    mminou.print2("</TD><TD NOWRAP ALIGN=RIGHT VALIGN=TOP WIDTH=\"25%c\"><FONT\n", '%');
+    mminou.print2(" SIZE=-1 FACE=sans-serif>\n");
 
 
 
@@ -3273,17 +3273,17 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     if (htmlDir[0]) {
       if (g_altHtmlFlag) {
 
-        print2("</FONT></TD></TR><TR><TD ALIGN=RIGHT><FONT FACE=sans-serif\n");
-        print2("SIZE=-2>Bad symbols? Try the\n");
-        print2("<BR><A HREF=\"%s%s\">GIF\n",
+        mminou.print2("</FONT></TD></TR><TR><TD ALIGN=RIGHT><FONT FACE=sans-serif\n");
+        mminou.print2("SIZE=-2>Bad symbols? Try the\n");
+        mminou.print2("<BR><A HREF=\"%s%s\">GIF\n",
             htmlDir, outputFileName);
-        print2("version</A>.</FONT></TD>\n");
+        mminou.print2("version</A>.</FONT></TD>\n");
       } else {
-        print2("</FONT></TD></TR><TR><TD ALIGN=RIGHT><FONT FACE=sans-serif\n");
-        print2("SIZE=-2>Browser slow? Try the\n");
-        print2("<BR><A HREF=\"%s%s\">Unicode\n",
+        mminou.print2("</FONT></TD></TR><TR><TD ALIGN=RIGHT><FONT FACE=sans-serif\n");
+        mminou.print2("SIZE=-2>Browser slow? Try the\n");
+        mminou.print2("<BR><A HREF=\"%s%s\">Unicode\n",
             altHtmlDir, outputFileName);
-        print2("version</A>.</FONT></TD>\n");
+        mminou.print2("version</A>.</FONT></TD>\n");
       }
     }
 
@@ -3291,20 +3291,20 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-    print2("<TR>\n");
-    print2(
+    mminou.print2("<TR>\n");
+    mminou.print2(
       "<TD COLSPAN=3 ALIGN=LEFT VALIGN=TOP><FONT SIZE=-2 FACE=sans-serif>\n");
-    print2("<BR>\n");
+    mminou.print2("<BR>\n");
 
 
 
-    print2("<A HREF=\"../mm.html\">Mirrors</A>\n");
-    print2("&nbsp;&gt;&nbsp;<A HREF=\"../index.html\">\n");
-    print2("Metamath Home Page</A>\n");
+    mminou.print2("<A HREF=\"../mm.html\">Mirrors</A>\n");
+    mminou.print2("&nbsp;&gt;&nbsp;<A HREF=\"../index.html\">\n");
+    mminou.print2("Metamath Home Page</A>\n");
 
 
 
-    print2("&nbsp;&gt;&nbsp;<A HREF=\"%s\">\n", g_htmlBibliography);
+    mminou.print2("&nbsp;&gt;&nbsp;<A HREF=\"%s\">\n", g_htmlBibliography);
 
 
 
@@ -3315,49 +3315,49 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
         let(&str1, cat(str1, chr(htmlTitle[i]), null));
       }
     }
-    print2("%s Home Page</A>\n", str1);
+    mminou.print2("%s Home Page</A>\n", str1);
 
 
 
     if (page != 0) {
-      print2("&nbsp;&gt;&nbsp;<A HREF=\"mmtheorems.html\">\n");
+      mminou.print2("&nbsp;&gt;&nbsp;<A HREF=\"mmtheorems.html\">\n");
 
 
-      print2("Theorem List Contents</A>\n");
+      mminou.print2("Theorem List Contents</A>\n");
     } else {
-      print2("&nbsp;&gt;&nbsp;\n");
+      mminou.print2("&nbsp;&gt;&nbsp;\n");
 
 
-      print2("Theorem List Contents\n");
+      mminou.print2("Theorem List Contents\n");
     }
 
 
     if (g_mathboxStmt < g_statements + 1) {
-      print2("&nbsp;&gt;&nbsp;<A HREF=\"mmrecent.html\">\n");
-      print2("Recent Proofs</A>\n");
+      mminou.print2("&nbsp;&gt;&nbsp;<A HREF=\"mmrecent.html\">\n");
+      mminou.print2("Recent Proofs</A>\n");
     }
 
 
-    print2("&nbsp; &nbsp; &nbsp; <B><FONT COLOR=%s>\n", GREEN_TITLE_COLOR);
-    print2("This page:</FONT></B> \n");
+    mminou.print2("&nbsp; &nbsp; &nbsp; <B><FONT COLOR=%s>\n", GREEN_TITLE_COLOR);
+    mminou.print2("This page:</FONT></B> \n");
 
 
 
     if (page == 0) {
-      print2(
+      mminou.print2(
           "&nbsp;<A HREF=\"#mmdtoc\">Detailed Table of Contents</A>&nbsp;\n");
     }
 
-    print2("<A HREF=\"#mmpglst\">Page List</A>\n");
+    mminou.print2("<A HREF=\"#mmpglst\">Page List</A>\n");
 
 
 
-    print2("</FONT>\n");
-    print2("</TD>\n");
-    print2("</TR></TABLE>\n");
+    mminou.print2("</FONT>\n");
+    mminou.print2("</TD>\n");
+    mminou.print2("</TR></TABLE>\n");
 
 
-    print2("<HR NOSHADE SIZE=1>\n");
+    mminou.print2("<HR NOSHADE SIZE=1>\n");
 
 
     fprintf(outputFilePtr, "%s", g_printString);
@@ -3382,14 +3382,14 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-          print2(
+          mminou.print2(
               "<P><CENTER><B>Table of Contents Summary</B></CENTER>\n");
         } else {
-          print2(
+          mminou.print2(
   "<P><CENTER><A NAME=\"mmdtoc\"></A><B>Detailed Table of Contents</B><BR>\n");
 
 
-          print2(
+          mminou.print2(
            "<B>(* means the section header has a description)</B></CENTER>\n");
 
         }
@@ -3711,20 +3711,20 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
     g_outputToString = 1;
-    print2("<A NAME=\"mmstmtlst\"></A>\n");
+    mminou.print2("<A NAME=\"mmstmtlst\"></A>\n");
 
 
     if (g_extHtmlStmt < g_mathboxStmt) {
 
-      print2("<P>\n");
-      print2("<CENTER><TABLE CELLSPACING=0 CELLPADDING=5\n");
-      print2("SUMMARY=\"Color key\"><TR>\n");
-      print2("\n");
-      print2("<TD>Color key:&nbsp;&nbsp;&nbsp;</TD>\n");
-      print2("<TD BGCOLOR=%s NOWRAP><A\n", MINT_BACKGROUND_COLOR);
-      print2("HREF=\"mmset.html\"><IMG SRC=\"mm.gif\" BORDER=0\n");
-      print2("ALT=\"Metamath Proof Explorer\" HEIGHT=32 WIDTH=32\n");
-      print2("ALIGN=MIDDLE> &nbsp;Metamath Proof Explorer</A>\n");
+      mminou.print2("<P>\n");
+      mminou.print2("<CENTER><TABLE CELLSPACING=0 CELLPADDING=5\n");
+      mminou.print2("SUMMARY=\"Color key\"><TR>\n");
+      mminou.print2("\n");
+      mminou.print2("<TD>Color key:&nbsp;&nbsp;&nbsp;</TD>\n");
+      mminou.print2("<TD BGCOLOR=%s NOWRAP><A\n", MINT_BACKGROUND_COLOR);
+      mminou.print2("HREF=\"mmset.html\"><IMG SRC=\"mm.gif\" BORDER=0\n");
+      mminou.print2("ALT=\"Metamath Proof Explorer\" HEIGHT=32 WIDTH=32\n");
+      mminou.print2("ALIGN=MIDDLE> &nbsp;Metamath Proof Explorer</A>\n");
 
       let(&str3, "");
       if (g_Statement[g_extHtmlStmt].pinkNumber <= 0) bug(2332);
@@ -3734,17 +3734,17 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
         " ",
         "\"");
 
-      print2("</TD>\n");
-      print2("\n");
-      print2("<TD WIDTH=10>&nbsp;</TD>\n");
-      print2("\n");
+      mminou.print2("</TD>\n");
+      mminou.print2("\n");
+      mminou.print2("<TD WIDTH=10>&nbsp;</TD>\n");
+      mminou.print2("\n");
 
 
-      print2("<TD BGCOLOR=%s NOWRAP><A\n", PURPLISH_BIBLIO_COLOR);
-      print2(" HREF=\"mmhil.html\"><IMG SRC=\"atomic.gif\"\n");
-      print2(
+      mminou.print2("<TD BGCOLOR=%s NOWRAP><A\n", PURPLISH_BIBLIO_COLOR);
+      mminou.print2(" HREF=\"mmhil.html\"><IMG SRC=\"atomic.gif\"\n");
+      mminou.print2(
  "BORDER=0 ALT=\"Hilbert Space Explorer\" HEIGHT=32 WIDTH=32 ALIGN=MIDDLE>\n");
-      print2("&nbsp;Hilbert Space Explorer</A>\n");
+      mminou.print2("&nbsp;Hilbert Space Explorer</A>\n");
 
       let(&str3, "");
 
@@ -3755,25 +3755,25 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
         " ",
         "\"");
 
-      print2("</TD>\n");
-      print2("\n");
-      print2("<TD WIDTH=10>&nbsp;</TD>\n");
-      print2("\n");
+      mminou.print2("</TD>\n");
+      mminou.print2("\n");
+      mminou.print2("<TD WIDTH=10>&nbsp;</TD>\n");
+      mminou.print2("\n");
 
 
 
-      print2("<TD BGCOLOR=%s NOWRAP><A\n", SANDBOX_COLOR);
-      print2(
+      mminou.print2("<TD BGCOLOR=%s NOWRAP><A\n", SANDBOX_COLOR);
+      mminou.print2(
 
 
        " HREF=\"mathbox.html\"><IMG SRC=\"_sandbox.gif\"\n");
-      print2(
+      mminou.print2(
 
 
          "BORDER=0 ALT=\"Users' Mathboxes\" HEIGHT=32 WIDTH=32 ALIGN=MIDDLE>\n");
 
 
-      print2("&nbsp;Users' Mathboxes</A>\n");
+      mminou.print2("&nbsp;Users' Mathboxes</A>\n");
 
       let(&str3, "");
       str3 = pinkRangeHTML(g_mathboxStmt, nmbrStmtNmbr[assertions]);
@@ -3781,13 +3781,13 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
         " ",
         "\"");
 
-      print2("</TD>\n");
-      print2("\n");
-      print2("<TD WIDTH=10>&nbsp;</TD>\n");
-      print2("\n");
+      mminou.print2("</TD>\n");
+      mminou.print2("\n");
+      mminou.print2("<TD WIDTH=10>&nbsp;</TD>\n");
+      mminou.print2("\n");
 
 
-      print2("</TR></TABLE></CENTER>\n");
+      mminou.print2("</TR></TABLE></CENTER>\n");
     }
 
 
@@ -3798,13 +3798,13 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
     g_outputToString = 1;
-    print2("\n");
-    print2("<P><CENTER>\n");
-    print2("<TABLE BORDER CELLSPACING=0 CELLPADDING=3 BGCOLOR=%s\n",
+    mminou.print2("\n");
+    mminou.print2("<P><CENTER>\n");
+    mminou.print2("<TABLE BORDER CELLSPACING=0 CELLPADDING=3 BGCOLOR=%s\n",
         MINT_BACKGROUND_COLOR);
 
 
-    print2("SUMMARY=\"Theorem List for %s\">\n", htmlTitle);
+    mminou.print2("SUMMARY=\"Theorem List for %s\">\n", htmlTitle);
     let(&str3, "");
     if (page < 1) bug(2335);
     str3 = pinkHTML(nmbrStmtNmbr[(page - 1) * theoremsPerPage + 1]);
@@ -3822,12 +3822,12 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
         "</CAPTION>",null),
         " ",
         "\"");
-    print2("\n");
-    print2("<TR><TH>Type</TH><TH>Label</TH><TH>Description</TH></TR>\n");
-    print2("<TR><TH COLSPAN=3>Statement</TH></TR>\n");
-    print2("\n");
-    print2("<TR BGCOLOR=white><TD COLSPAN=3><FONT SIZE=-3>&nbsp;</FONT></TD></TR>\n");
-    print2("\n");
+    mminou.print2("\n");
+    mminou.print2("<TR><TH>Type</TH><TH>Label</TH><TH>Description</TH></TR>\n");
+    mminou.print2("<TR><TH COLSPAN=3>Statement</TH></TR>\n");
+    mminou.print2("\n");
+    mminou.print2("<TR BGCOLOR=white><TD COLSPAN=3><FONT SIZE=-3>&nbsp;</FONT></TD></TR>\n");
+    mminou.print2("\n");
     fprintf(outputFilePtr, "%s", g_printString);
     g_outputToString = 0;
     let(&g_printString, "");
@@ -3888,7 +3888,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
       let(&g_printString, "");
       g_outputToString = 1;
-      print2("\n");
+      mminou.print2("\n");
 
 
       if (((vstring)(pntrHugeHdr[s]))[0]) {
@@ -3915,7 +3915,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-          print2("%s\n", "<P STYLE=\"margin-bottom:0em\">");
+          mminou.print2("%s\n", "<P STYLE=\"margin-bottom:0em\">");
 
 
           g_outputToString = 0;
@@ -3940,7 +3940,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-        print2("%s\n", "</TD></TR>");
+        mminou.print2("%s\n", "</TD></TR>");
 
         printLongLine(cat(
 
@@ -3974,7 +3974,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-          print2("%s\n", "<P STYLE=\"margin-bottom:0em\">");
+          mminou.print2("%s\n", "<P STYLE=\"margin-bottom:0em\">");
 
 
           g_outputToString = 0;
@@ -3999,7 +3999,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-        print2("%s\n", "</TD></TR>");
+        mminou.print2("%s\n", "</TD></TR>");
 
         printLongLine(cat(
 
@@ -4033,7 +4033,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-          print2("%s\n", "<P STYLE=\"margin-bottom:0em\">");
+          mminou.print2("%s\n", "<P STYLE=\"margin-bottom:0em\">");
 
 
           g_outputToString = 0;
@@ -4058,7 +4058,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-        print2("%s\n", "</TD></TR>");
+        mminou.print2("%s\n", "</TD></TR>");
 
         printLongLine(cat(
 
@@ -4094,7 +4094,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
           \
 
-          print2("%s\n", "<P STYLE=\"margin-bottom:0em\">");
+          mminou.print2("%s\n", "<P STYLE=\"margin-bottom:0em\">");
 
 
           g_outputToString = 0;
@@ -4119,7 +4119,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-        print2("%s\n", "</TD></TR>");
+        mminou.print2("%s\n", "</TD></TR>");
 
         printLongLine(cat(
 
@@ -4178,7 +4178,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
       if (!strcmp(left(str3, 10), "Lemma for ")
           && !showLemmas) {
 
-        print2(" <I>[Auxiliary lemma - not displayed.]</I></TD></TR>\n");
+        mminou.print2(" <I>[Auxiliary lemma - not displayed.]</I></TD></TR>\n");
       } else {
 
         printLongLine(cat("</TD></TR><TR",
@@ -4219,8 +4219,8 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
     g_outputToString = 1;
-    print2("</TABLE></CENTER>\n");
-    print2("\n");
+    mminou.print2("</TABLE></CENTER>\n");
+    mminou.print2("\n");
 
 
     C.label("SKIP_LIST");
@@ -4228,23 +4228,23 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
 
-    print2("<TABLE BORDER=0 WIDTH=\"100%c\">\n", '%');
-    print2("  <TR>\n");
-    print2("    <TD ALIGN=LEFT VALIGN=TOP WIDTH=\"25%c\">\n", '%');
-    print2("      &nbsp;\n");
-    print2("    </TD>\n");
-    print2("    <TD NOWRAP ALIGN=CENTER>&nbsp;</TD>\n");
-    print2("    <TD NOWRAP ALIGN=RIGHT VALIGN=TOP WIDTH=\"25%c\"><FONT\n", '%');
-    print2("      SIZE=-1 FACE=sans-serif>\n");
+    mminou.print2("<TABLE BORDER=0 WIDTH=\"100%c\">\n", '%');
+    mminou.print2("  <TR>\n");
+    mminou.print2("    <TD ALIGN=LEFT VALIGN=TOP WIDTH=\"25%c\">\n", '%');
+    mminou.print2("      &nbsp;\n");
+    mminou.print2("    </TD>\n");
+    mminou.print2("    <TD NOWRAP ALIGN=CENTER>&nbsp;</TD>\n");
+    mminou.print2("    <TD NOWRAP ALIGN=RIGHT VALIGN=TOP WIDTH=\"25%c\"><FONT\n", '%');
+    mminou.print2("      SIZE=-1 FACE=sans-serif>\n");
     printLongLine(cat("      ", prevNextLinks, null),
         " ",
         "\"");
-    print2("      </FONT></TD>\n");
-    print2("  </TR>\n");
-    print2("</TABLE>\n");
+    mminou.print2("      </FONT></TD>\n");
+    mminou.print2("  </TR>\n");
+    mminou.print2("</TABLE>\n");
 
 
-    print2("<HR NOSHADE SIZE=1>\n");
+    mminou.print2("<HR NOSHADE SIZE=1>\n");
 
 
     g_outputToString = 0;
@@ -4300,35 +4300,35 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
     g_outputToString = 1;
-    print2("<HR NOSHADE SIZE=1>\n");
+    mminou.print2("<HR NOSHADE SIZE=1>\n");
 
 
 
-    print2("<TABLE BORDER=0 WIDTH=\"100%c\">\n", '%');
-    print2("  <TR>\n");
+    mminou.print2("<TABLE BORDER=0 WIDTH=\"100%c\">\n", '%');
+    mminou.print2("  <TR>\n");
 
 
-    print2("    <TD ALIGN=LEFT VALIGN=TOP WIDTH=\"25%c\">\n", '%');
-    print2("      &nbsp;\n");
-    print2("    </TD>\n");
-    print2("    <TD NOWRAP ALIGN=CENTER><FONT SIZE=-2\n");
-    print2("      FACE=ARIAL>\n");
-    print2("Copyright terms:\n");
-    print2("<A HREF=\"../copyright.html#pd\">Public domain</A>\n");
-    print2("      </FONT></TD>\n");
-    print2("    <TD NOWRAP ALIGN=RIGHT VALIGN=TOP WIDTH=\"25%c\"><FONT\n", '%');
-    print2("      SIZE=-1 FACE=sans-serif>\n");
+    mminou.print2("    <TD ALIGN=LEFT VALIGN=TOP WIDTH=\"25%c\">\n", '%');
+    mminou.print2("      &nbsp;\n");
+    mminou.print2("    </TD>\n");
+    mminou.print2("    <TD NOWRAP ALIGN=CENTER><FONT SIZE=-2\n");
+    mminou.print2("      FACE=ARIAL>\n");
+    mminou.print2("Copyright terms:\n");
+    mminou.print2("<A HREF=\"../copyright.html#pd\">Public domain</A>\n");
+    mminou.print2("      </FONT></TD>\n");
+    mminou.print2("    <TD NOWRAP ALIGN=RIGHT VALIGN=TOP WIDTH=\"25%c\"><FONT\n", '%');
+    mminou.print2("      SIZE=-1 FACE=sans-serif>\n");
 
     printLongLine(cat("      ", prevNextLinks, null),
         " ",
         "\"");
-    print2("      </FONT></TD>\n");
-    print2("  </TR>\n");
-    print2("</TABLE>\n");
+    mminou.print2("      </FONT></TD>\n");
+    mminou.print2("  </TR>\n");
+    mminou.print2("</TABLE>\n");
 
 
 
-    print2("</BODY></HTML>\n");
+    mminou.print2("</BODY></HTML>\n");
     g_outputToString = 0;
     fprintf(outputFilePtr, "%s", g_printString);
     let(&g_printString, "");
@@ -4447,7 +4447,7 @@ flag getSectionHeadings(long stmt,
 
 
     if (strcmp(mid(labelStr, pos2 + 1, 4), HUGE_DECORATION)) {
-      print2(
+      mminou.print2(
        "?Warning: missing closing \"%s\" decoration above statement \"%s\".\n",
           HUGE_DECORATION, g_Statement[stmt].labelName);
       errorFound = 1;
@@ -4499,7 +4499,7 @@ flag getSectionHeadings(long stmt,
 
 
     if (strcmp(mid(labelStr, pos2 + 1, 4), BIG_DECORATION)) {
-      print2(
+      mminou.print2(
        "?Warning: missing closing \"%s\" decoration above statement \"%s\".\n",
           BIG_DECORATION, g_Statement[stmt].labelName);
       errorFound = 1;
@@ -4551,7 +4551,7 @@ flag getSectionHeadings(long stmt,
 
 
     if (strcmp(mid(labelStr, pos2 + 1, 4), SMALL_DECORATION)) {
-      print2(
+      mminou.print2(
        "?Warning: missing closing \"%s\" decoration above statement \"%s\".\n",
           SMALL_DECORATION, g_Statement[stmt].labelName);
       errorFound = 1;
@@ -4605,7 +4605,7 @@ flag getSectionHeadings(long stmt,
 
 
     if (strcmp(mid(labelStr, pos2 + 1, 4), TINY_DECORATION)) {
-      print2(
+      mminou.print2(
        "?Warning: missing closing \"%s\" decoration above statement \"%s\".\n",
           TINY_DECORATION, g_Statement[stmt].labelName);
       errorFound = 1;
@@ -4643,7 +4643,7 @@ flag getSectionHeadings(long stmt,
 
 
   if (errorFound == 1) {
-    print2("  (Note that section titles may not be longer than one line.)\n");
+    mminou.print2("  (Note that section titles may not be longer than one line.)\n");
   }
 
   g_outputToString = saveOutputToString;
@@ -4857,7 +4857,7 @@ vstring spectrumToRGB(long color, long maxColor) {
 #endif
 
   if (i != PARTITIONS) {
-    print2("? %ld partitions but PARTITIONS = %ld\n", i, (long)PARTITIONS);
+    mminou.print2("? %ld partitions but PARTITIONS = %ld\n", i, (long)PARTITIONS);
     bug(2326);
   }
 
@@ -4892,7 +4892,7 @@ vstring spectrumToRGB(long color, long maxColor) {
 
   if (red < 0 || green < 0 || blue < 0
       || red > 255 || green > 255 || blue > 255) {
-    print2("%ld %ld %ld\n", red, green, blue);
+    mminou.print2("%ld %ld %ld\n", red, green, blue);
     bug(2323);
   }
   let(&str1, "      ");
@@ -5224,7 +5224,7 @@ flag writeBibliography(vstring bibFile,
   if (noFileCheck == 0) {
     while (true) {
       if (!linput(list1_fp, null, &str1)) {
-        print2(
+        mminou.print2(
   "?Error: Could not find \"<!-- #START# -->\" line in input file \"%s\".\n",
             bibFile);
         errFlag = 2;
@@ -5391,10 +5391,10 @@ flag writeBibliography(vstring bibFile,
         }
         if (!m) {
           if (p2 == 1) {
-            print2(
+            mminou.print2(
              "?Warning: Bibliography keyword missing in comment for \"%s\".\n",
                 g_Statement[i].labelName);
-            print2(
+            mminou.print2(
                 "    (See HELP WRITE BIBLIOGRAPHY for list of keywords.)\n");
             warnFlag = 1;
           }
@@ -5405,7 +5405,7 @@ flag writeBibliography(vstring bibFile,
         q = instr(p, str1, "]");
         if (q == 0) {
           if (p2 == 1) {
-            print2(
+            mminou.print2(
         "?Warning: Bibliography reference not found in HTML file in \"%s\".\n",
               g_Statement[i].labelName);
             warnFlag = 1;
@@ -5415,7 +5415,7 @@ flag writeBibliography(vstring bibFile,
         s = instr(q, str1, "###");
         if (!s) {
           if (p2 == 1) {
-            print2(
+            mminou.print2(
           "?Warning: No page number after [<author>] bib ref in \"%s\".\n",
               g_Statement[i].labelName);
             warnFlag = 1;
@@ -5495,7 +5495,7 @@ flag writeBibliography(vstring bibFile,
     }
 
     if (errorsOnly == 0 && p2 == 2) {
-      print2("%ld references were processed.\n", lines);
+      mminou.print2("%ld references were processed.\n", lines);
     }
     if (p2 == 2) break;
     p2++;
@@ -5551,7 +5551,7 @@ flag writeBibliography(vstring bibFile,
   if (noFileCheck == 0) {
     while (true) {
       if (!linput(list1_fp, null, &str1)) {
-        print2(
+        mminou.print2(
   "?Error: Could not find \"<!-- #END# -->\" line in input file \"%s\".\n",
             bibFile);
         errFlag = 2;
@@ -5583,7 +5583,7 @@ flag writeBibliography(vstring bibFile,
       fprintf(list2_fp, "%s\n", str1);
     }
 
-    print2("%ld table rows were written.\n", n);
+    mminou.print2("%ld table rows were written.\n", n);
 
     for (i = 0; i < lines; i++) let((vstring *)(&pntrTmp[i]), "");
     pntrLet(&pntrTmp,NULL_PNTRSTRING);
@@ -5602,7 +5602,7 @@ flag writeBibliography(vstring bibFile,
         remove(bibFile);
         rename(cat(bibFile, "~1", null), g_fullArg[2]);
 
-        print2("?The file \"%s\" was not modified.\n", g_fullArg[2]);
+        mminou.print2("?The file \"%s\" was not modified.\n", g_fullArg[2]);
       }
     }
   }

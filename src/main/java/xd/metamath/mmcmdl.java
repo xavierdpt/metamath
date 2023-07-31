@@ -161,7 +161,7 @@ flag processCommandLine()
         C.go2("pclbad");
       if (cmdMatches("WRITE SOURCE")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2, cat(
@@ -169,7 +169,7 @@ flag processCommandLine()
             g_input_fn, ">? ", null)))
           C.go2("pclbad");
         if (!strcmp(g_input_fn, g_fullArg[2])) {
-          print2(
+          mminou.print2(
           "The input file will be renamed %s~1.\n", g_input_fn);
         }
 
@@ -204,7 +204,7 @@ flag processCommandLine()
       }
       if (cmdMatches("WRITE THEOREM_LIST")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
 
@@ -232,27 +232,27 @@ flag processCommandLine()
       }
       if (cmdMatches("WRITE BIBLIOGRAPHY")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2, cat(
             "* What is the bibliography HTML input/output file <",
             "mmbiblio.html", ">? ", null)))
           C.go2("pclbad");
-        print2(
+        mminou.print2(
           "The old file will be renamed %s~1.\n", g_fullArg[2]);
         C.go2("pclgood");
       }
       if (cmdMatches("WRITE RECENT_ADDITIONS")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2, cat(
             "* What is the Recent Additions HTML input/output file <",
             "mmrecent.html", ">? ", null)))
           C.go2("pclbad");
-        print2(
+        mminou.print2(
           "The old file will be renamed %s~1.\n", g_fullArg[2]);
 
 
@@ -297,7 +297,7 @@ flag processCommandLine()
       }
       if (cmdMatches("OPEN TEX")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (g_texFileOpenFlag) {
@@ -417,7 +417,7 @@ flag processCommandLine()
 
       if (cmdMatches("SHOW TRACE_BACK")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2,
@@ -464,7 +464,7 @@ flag processCommandLine()
 
       if (cmdMatches("SHOW USAGE")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2,
@@ -494,7 +494,7 @@ flag processCommandLine()
 
       if (cmdMatches("SHOW LABELS")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2,
@@ -518,7 +518,7 @@ flag processCommandLine()
       }
       if (cmdMatches("SHOW STATEMENT")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2,
@@ -545,7 +545,7 @@ flag processCommandLine()
       }
       if (cmdMatches("SHOW SOURCE")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2,
@@ -558,7 +558,7 @@ flag processCommandLine()
 
       if (cmdMatches("SHOW PROOF")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2,
@@ -621,7 +621,7 @@ flag processCommandLine()
 
       if (cmdMatches("SHOW NEW_PROOF")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
 
@@ -677,7 +677,7 @@ flag processCommandLine()
 
     if (cmdMatches("SEARCH")) {
       if (g_sourceHasBeenRead == 0) {
-        print2("?No source file has been read in.  Use READ first.\n");
+        mminou.print2("?No source file has been read in.  Use READ first.\n");
         C.go2("pclbad");
       }
       if (!getFullArg(1,
@@ -725,7 +725,7 @@ flag processCommandLine()
 
       if (cmdMatches("SAVE PROOF")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2,
@@ -755,7 +755,7 @@ flag processCommandLine()
 
       if (cmdMatches("SAVE NEW_PROOF")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
 
@@ -788,7 +788,7 @@ flag processCommandLine()
 
     if (cmdMatches("PROVE")) {
       if (g_sourceHasBeenRead == 0) {
-        print2("?No source file has been read in.  Use READ first.\n");
+        mminou.print2("?No source file has been read in.  Use READ first.\n");
         C.go2("pclbad");
       }
       if (!g_proveStatement) g_proveStatement = g_showStatement;
@@ -1247,7 +1247,7 @@ flag processCommandLine()
         C.go2("pclbad");
       if (cmdMatches("VERIFY PROOF")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2,
@@ -1277,7 +1277,7 @@ flag processCommandLine()
 
       if (cmdMatches("VERIFY MARKUP")) {
         if (g_sourceHasBeenRead == 0) {
-          print2("?No source file has been read in.  Use READ first.\n");
+          mminou.print2("?No source file has been read in.  Use READ first.\n");
           C.go2("pclbad");
         }
         if (!getFullArg(2,
@@ -1314,7 +1314,7 @@ flag processCommandLine()
 
     if (cmdMatches("MARKUP")) {
       if (g_sourceHasBeenRead == 0) {
-        print2("?No source file has been read in.  Use READ first.\n");
+        mminou.print2("?No source file has been read in.  Use READ first.\n");
         C.go2("pclbad");
       }
       if (!getFullArg(1,
@@ -1345,7 +1345,7 @@ flag processCommandLine()
 
     if (cmdMatches("MIDI")) {
       if (g_sourceHasBeenRead == 0) {
-        print2("?No source file has been read in.  Use READ first.\n");
+        mminou.print2("?No source file has been read in.  Use READ first.\n");
         C.go2("pclbad");
       }
       if (!getFullArg(1,
@@ -1562,11 +1562,11 @@ flag processCommandLine()
 
 
     if (cmdMatches("UPDATE")) {
-      print2(
+      mminou.print2(
 "Warning: Do not comment out code - delete it before running UPDATE!  If\n");
-      print2(
+      mminou.print2(
 "rerunning UPDATE, do not tamper with \"start/end of deleted section\" comments!\n");
-      print2(
+      mminou.print2(
 "Edit out tag on header comment line!  Review the output file!\n");
       if (!getFullArg(1, "& Original (reference) program input file? "))
         C.go2("pclbad");
@@ -1577,7 +1577,7 @@ flag processCommandLine()
           g_fullArg[2], ">? ", null)))
         C.go2("pclbad");
       if (!strcmp(g_fullArg[2], g_fullArg[3])) {
-        print2(
+        mminou.print2(
 "The input file will be renamed %s~1.\n", g_fullArg[2]);
       }
       if (!getFullArg(4,
@@ -1649,8 +1649,8 @@ flag processCommandLine()
   }
 
 
-  print2("?This command has not been implemented yet.\n");
-  print2("(This is really a bug--please report it.)\n");
+  mminou.print2("?This command has not been implemented yet.\n");
+  mminou.print2("(This is really a bug--please report it.)\n");
   C.go2("pclbad");
 
 
@@ -1885,11 +1885,11 @@ flag getFullArg(long arg, vstring cmdList1)
 
       if (!strcmp(cmdList, "$|<$>")) {
         let(&tmpArg, possCmd[0]);
-        print2("The command so far is:  ");
+        mminou.print2("The command so far is:  ");
         for (i = 0; i < arg; i++) {
-          print2("%s ", g_fullArg[i]);
+          mminou.print2("%s ", g_fullArg[i]);
         }
-        print2("%s\n", tmpArg);
+        mminou.print2("%s\n", tmpArg);
       }
     }
     let(&errorLine,tmpStr);
@@ -2246,7 +2246,7 @@ void printCommandError(vstring line1, long arg, vstring errorMsg)
   let(&line,line1);
   if (!line[0]) {
 
-    print2("%s\n", errorMsg);
+    mminou.print2("%s\n", errorMsg);
     let(&line, "");
     return;
   }
@@ -2266,7 +2266,7 @@ void printCommandError(vstring line1, long arg, vstring errorMsg)
   }
   for (j = 0; j < tokenLength; j++)
     let(&errorPointer, cat(errorPointer, "^", null));
-  print2("%s\n", errorPointer);
+  mminou.print2("%s\n", errorPointer);
   printLongLine(errorMsg, "", " ");
   let(&errorPointer, "");
   let(&line, "");

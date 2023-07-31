@@ -111,7 +111,7 @@ if(db9)getPoolStats(&i1,&j1_,&k1); if(db9)printf("a: pool %ld stat %ld\n",poolTo
     }
     if (!ptr) {
 
-      print2("Memory is low.  Deallocating storage pool...\n");
+      mminou.print2("Memory is low.  Deallocating storage pool...\n");
       memFreePoolPurge(0);
       ptr = malloc( 3 * sizeof(long) + (size_t)size);
       if (!ptr) outOfMemory(
@@ -163,7 +163,7 @@ if(db9)getPoolStats(&i1,&j1_,&k1); if(db9)printf("b: pool %ld stat %ld\n",poolTo
       ptr = malloc( 3 * sizeof(long) + (size_t)size);
       if (!ptr) {
 
-        print2("Memory is low.  Deallocating storage pool...\n");
+        mminou.print2("Memory is low.  Deallocating storage pool...\n");
         memFreePoolPurge(0);
         ptr = malloc( 3 * sizeof(long) + (size_t)size);
         if (!ptr) outOfMemory(
@@ -351,7 +351,7 @@ void getPoolStats(long *freeAlloc, long *usedAlloc, long *usedActual)
     *usedAlloc = *usedAlloc + ((long *)(memUsedPool[i]))[-2] -
         ((long *)(memUsedPool[i]))[-1];
   }
- if (!db9)print2("poolTotalFree %ld  alloc %ld\n", poolTotalFree, *freeAlloc +
+ if (!db9)mminou.print2("poolTotalFree %ld  alloc %ld\n", poolTotalFree, *freeAlloc +
    *usedAlloc);
 }
 
@@ -364,19 +364,19 @@ static void initBigArrays()
   g_Statement = malloc((size_t)g_MAX_STATEMENTS * sizeof(struct statement_struct));
 
   if (!g_Statement) {
-    print2("*** FATAL ***  Could not allocate g_Statement space\n");
+    mminou.print2("*** FATAL ***  Could not allocate g_Statement space\n");
     bug(1363);
     }
   g_MathToken = malloc((size_t)g_MAX_MATHTOKENS * sizeof(struct mathToken_struct));
 
   if (!g_MathToken) {
-    print2("*** FATAL ***  Could not allocate g_MathToken space\n");
+    mminou.print2("*** FATAL ***  Could not allocate g_MathToken space\n");
     bug(1364);
     }
   g_IncludeCall = malloc((size_t)g_MAX_INCLUDECALLS * sizeof(struct includeCall_struct));
 
   if (!g_IncludeCall) {
-    print2("*** FATAL ***  Could not allocate g_IncludeCall space\n");
+    mminou.print2("*** FATAL ***  Could not allocate g_IncludeCall space\n");
     bug(1365);
     }
 }
@@ -405,17 +405,17 @@ long getFreeSpace(long max)
 void outOfMemory(vstring msg)
 {
   vstring tmpStr = "";
-  print2("*** FATAL ERROR:  Out of memory.\n");
-  print2("Internal identifier (for technical support):  %s\n",msg);
-  print2(
+  mminou.print2("*** FATAL ERROR:  Out of memory.\n");
+  mminou.print2("Internal identifier (for technical support):  %s\n",msg);
+  mminou.print2(
 "To solve this problem, remove some unnecessary statements or file\n");
-  print2(
+  mminou.print2(
 "inclusions to reduce the size of your input source.\n");
-  print2(
+  mminou.print2(
 "Monitor memory periodically with SHOW MEMORY.\n");
 
-  print2("\n");
-  print2("Press <return> to exit Metamath.\n");
+  mminou.print2("\n");
+  mminou.print2("Press <return> to exit Metamath.\n");
   tmpStr = cmdInput1("");
 
   let(&tmpStr, left(tmpStr, 0));
@@ -444,30 +444,30 @@ void bug(int bugNum)
 
   if (mode == 2) {
 
-    print2("?BUG CHECK:  *** DETECTED BUG %ld, IGNORING IT...\n", (long)bugNum);
+    mminou.print2("?BUG CHECK:  *** DETECTED BUG %ld, IGNORING IT...\n", (long)bugNum);
     return;
   }
 
-  print2("?BUG CHECK:  *** DETECTED BUG %ld\n", (long)bugNum);
+  mminou.print2("?BUG CHECK:  *** DETECTED BUG %ld\n", (long)bugNum);
   if (mode == 0) {
-    print2("\n");
-    print2(
+    mminou.print2("\n");
+    mminou.print2(
   "To get technical support, please send Norm Megill (%salum.mit.edu) the\n",
         "nm@");
-    print2(
+    mminou.print2(
   "detailed command sequence or a command file that reproduces this bug,\n");
-    print2(
+    mminou.print2(
   "along with the source file that was used.  See HELP LOG for help on\n");
-    print2(
+    mminou.print2(
   "recording a session.  See HELP SUBMIT for help on command files.  Search\n");
-    print2(
+    mminou.print2(
   "for \"bug(%ld)\" in the m*.c source code to find its origin.\n", bugNum);
 
-    print2(
+    mminou.print2(
   "If earlier errors were reported, try fixing them first, because they\n");
-    print2(
+    mminou.print2(
   "may occasionally lead to false bug detection\n");
-    print2("\n");
+    mminou.print2("\n");
   }
 
   let(&tmpStr, "?");
@@ -476,7 +476,7 @@ void bug(int bugNum)
       && strcmp(tmpStr, "I") && strcmp(tmpStr, "i")
       ) {
     if (wrongAnswerCount > 6) {
-      print2(
+      mminou.print2(
 "Too many wrong answers; program will be aborted to exit scripting loops.\n");
       break;
     }
@@ -484,7 +484,7 @@ void bug(int bugNum)
       let(&tmpStr, "");
       tmpStr = cmdInput1("Please answer I, S, or A:  ");
     } else {
-      print2(
+      mminou.print2(
  "Press S <return> to step to next bug, I <return> to ignore further bugs,\n");
       let(&tmpStr, "");
       tmpStr = cmdInput1("or A <return> to abort program:  ");
@@ -500,12 +500,12 @@ void bug(int bugNum)
   if (!strcmp(tmpStr, "I") || !strcmp(tmpStr, "i")) mode = 2;
   if (oldMode == 0 && mode > 0) {
 
-    print2("\n");
-    print2(
+    mminou.print2("\n");
+    mminou.print2(
     "Warning!!!  A bug was detected, but you are continuing anyway.\n");
-    print2(
+    mminou.print2(
     "The program may be corrupted, so you are proceeding at your own risk.\n");
-    print2("\n");
+    mminou.print2("\n");
     let(&tmpStr, "");
   }
   if (mode > 0) {
@@ -516,15 +516,15 @@ void bug(int bugNum)
   let(&tmpStr, "");
 
 
-  print2("\n");
+  mminou.print2("\n");
 
   if (g_logFileOpenFlag) {
-    print2("The log file \"%s\" was closed %s %s.\n", g_logFileName,
+    mminou.print2("The log file \"%s\" was closed %s %s.\n", g_logFileName,
         date(), time_());
     fclose(g_logFilePtr);
     g_logFileOpenFlag = 0;
   }
-  print2("The program was aborted.\n");
+  mminou.print2("The program was aborted.\n");
   exit(1);
 }
 

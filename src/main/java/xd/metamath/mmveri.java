@@ -317,14 +317,14 @@ if(db7&&v>=0)printLongLine(cat("p ", str((double)p), " q ", str((double)q), " VA
     nmbrMid(bigSubstInstAss,substInstFrstVarOcc[v]+1,
     varAssLen[v])), null), "", " ");
 if(db7)nmbrLet(&bigSubstInstAss,bigSubstInstAss);
-if(db7){print2("Enter scan: v=%ld,p=%ld,q=%ld\n",v,p,q); let(&tmpStr,"");}
+if(db7){mminou.print2("Enter scan: v=%ld,p=%ld,q=%ld\n",v,p,q); let(&tmpStr,"");}
     tokenNum = bigSubstSchemeAss[p];
     if (g_MathToken[tokenNum].tokenType == (char)con_) {
 
       if (tokenNum == bigSubstInstAss[q]) {
         p++;
         q++;
-if(db7)print2(" Exit, c ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
+if(db7)mminou.print2(" Exit, c ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
         continue;
       } else {
 
@@ -340,7 +340,7 @@ if(db7)print2(" Exit, c ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
           q = substInstFrstVarOcc[v] + varAssLen[v];
           contFlag = 0;
           if (bigSubstInstAss[q-1] == g_mathTokens) {
-if(db7){print2("GOT TO DUMMY TOKEN1\n");}
+if(db7){mminou.print2("GOT TO DUMMY TOKEN1\n");}
             v--;
             contFlag = 1;
             continue;
@@ -353,10 +353,10 @@ if(db7){print2("GOT TO DUMMY TOKEN1\n");}
           }
         }
         if (breakFlag) {
-if(db7)print2(" Exit, c bktrk bad: v=%ld,p=%ld,q=%ld\n",v,p,q);
+if(db7)mminou.print2(" Exit, c bktrk bad: v=%ld,p=%ld,q=%ld\n",v,p,q);
           break;
         }
-if(db7)print2(" Exit, c bktrk ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
+if(db7)mminou.print2(" Exit, c bktrk ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
       }
     } else {
 
@@ -367,7 +367,7 @@ if(db7)print2(" Exit, c bktrk ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
         varAssLen[v] = 0;
         substInstFrstVarOcc[v] = q;
         p++;
-if(db7)print2(" Exit, v new: v=%ld,p=%ld,q=%ld\n",v,p,q);
+if(db7)mminou.print2(" Exit, v new: v=%ld,p=%ld,q=%ld\n",v,p,q);
         continue;
       } else {
         breakFlag = 0;
@@ -398,7 +398,7 @@ if(db7)print2(" Exit, v new: v=%ld,p=%ld,q=%ld\n",v,p,q);
             q = substInstFrstVarOcc[v] + varAssLen[v];
             contFlag = 0;
             if (bigSubstInstAss[q-1] == g_mathTokens) {
-if(db7)print2("GOT TO DUMMY TOKEN\n");
+if(db7)mminou.print2("GOT TO DUMMY TOKEN\n");
               v--;
               contFlag = 1;
               continue;
@@ -411,15 +411,15 @@ if(db7)print2("GOT TO DUMMY TOKEN\n");
             }
           }
           if (breakFlag) {
-if(db7){print2(" Exit, vold bck bad: v=%ld,p=%ld,q=%ld\n",v,p,q);}
+if(db7){mminou.print2(" Exit, vold bck bad: v=%ld,p=%ld,q=%ld\n",v,p,q);}
             break;
           }
-if(db7)print2(" Exit, vold bck ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
+if(db7)mminou.print2(" Exit, vold bck ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
           continue;
         } else {
           p++;
           q = q + varAssLen[v1];
-if(db7)print2(" Exit, vold ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
+if(db7)mminou.print2(" Exit, vold ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
           continue;
         }
       }
@@ -428,7 +428,7 @@ if(db7)print2(" Exit, vold ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
 
 if(db7)printLongLine(cat("BIGVR ", nmbrCvtMToVString(bigSubstSchemeVars),
     null), "", " ");
-if(db7)print2(
+if(db7)mminou.print2(
 "p=%ld,bigSubstSchemeLen=%ld;q=%ld,bigSubstInstLen=%ld;v=%ld,bigSubstSchemeVarLen=%ld\n",
   p,bigSubstSchemeLen,q,bigSubstInstLen,v,bigSubstSchemeVarLen);
 

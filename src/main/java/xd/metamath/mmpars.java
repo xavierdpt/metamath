@@ -169,7 +169,7 @@ char *readRawSource(
   }
 
 
-  print2("%ld bytes were read into the source buffer.\n", charCount);
+  mminou.print2("%ld bytes were read into the source buffer.\n", charCount);
 
   if (*size != charCount) bug(1761);
   return (fileBuf);
@@ -191,7 +191,7 @@ void parseKeywords()
   type = 0;
 
   potentialStatements = potentialStatements + 3;
-if(db5)print2("There are up to %ld potential statements.\n",
+if(db5)mminou.print2("There are up to %ld potential statements.\n",
    potentialStatements);
 
 
@@ -242,7 +242,7 @@ if(db5)print2("There are up to %ld potential statements.\n",
 
   g_Statement[0].labelName = "(N/A)";
 
-if(db5)print2("Finished initializing statement array.\n");
+if(db5)mminou.print2("Finished initializing statement array.\n");
 
 
   fbPtr = g_sourcePtr;
@@ -382,7 +382,7 @@ if(db5)print2("Finished initializing statement array.\n");
 
   if (fbPtr != g_sourcePtr + g_sourceLen) bug(1706);
 
-  print2("The source has %ld statements; %ld are $a and %ld are $p.\n",
+  mminou.print2("The source has %ld statements; %ld are $a and %ld are $p.\n",
        g_statements, dollarACount, dollarPCount);
 
 
@@ -412,9 +412,9 @@ if(db5)print2("Finished initializing statement array.\n");
 
 
 if(db5){for (i=1; i<=g_statements; i++){
-  if (i == 5) { print2("(etc.)\n");} else { if (i<5) {
+  if (i == 5) { mminou.print2("(etc.)\n");} else { if (i<5) {
   assignStmtFileAndLineNum(i);
-  print2("Statement %ld: line %ld file %s.\n",i,g_Statement[i].lineNum,
+    mminou.print2("Statement %ld: line %ld file %s.\n",i,g_Statement[i].lineNum,
       g_Statement[i].fileName);
 }}}}
 
@@ -508,12 +508,12 @@ void parseLabels()
   }
   g_labelKeyBase = &g_labelKey[i];
   g_numLabelKeys = g_statements - i + 1;
-if(db5)print2("There are %ld non-empty labels.\n", g_numLabelKeys);
-if(db5){print2("The first (up to 5) sorted labels are:\n");
+if(db5)mminou.print2("There are %ld non-empty labels.\n", g_numLabelKeys);
+if(db5){mminou.print2("The first (up to 5) sorted labels are:\n");
   for (i=0; i<5; i++) {
     if (i >= g_numLabelKeys) break;
-    print2("%s ",g_Statement[g_labelKeyBase[i]].labelName);
-  } print2("\n");}
+    mminou.print2("%s ",g_Statement[g_labelKeyBase[i]].labelName);
+  } mminou.print2("\n");}
 
 
 
@@ -567,7 +567,7 @@ void parseMathDecl()
     }
   }
   potentialSymbols = (potentialSymbols / 2) + 2;
-if(db5)print2("%ld potential symbols were computed.\n",potentialSymbols);
+if(db5)mminou.print2("%ld potential symbols were computed.\n",potentialSymbols);
   g_MathToken = realloc(g_MathToken, (size_t)potentialSymbols *
       sizeof(struct mathToken_struct));
   if (!g_MathToken) outOfMemory("#7 (g_MathToken)");
@@ -624,7 +624,7 @@ if(db5)print2("%ld potential symbols were computed.\n",potentialSymbols);
     }
   }
 
-if(db5)print2("%ld math symbols were declared.\n",g_mathTokens);
+if(db5)mminou.print2("%ld math symbols were declared.\n",g_mathTokens);
 
   g_MAX_MATHTOKENS = g_mathTokens + 100;
   g_MathToken = realloc(g_MathToken, (size_t)g_MAX_MATHTOKENS *
@@ -650,11 +650,11 @@ if(db5)print2("%ld math symbols were declared.\n",g_mathTokens);
     g_mathKey[i] = i;
   }
   qsort(g_mathKey, (size_t)g_mathTokens, sizeof(long), mathSortCmp);
-if(db5){print2("The first (up to 5) sorted math tokens are:\n");
+if(db5){mminou.print2("The first (up to 5) sorted math tokens are:\n");
   for (i=0; i<5; i++) {
     if (i >= g_mathTokens) break;
-    print2("%s ",g_MathToken[g_mathKey[i]].tokenName);
-  } print2("\n");}
+    mminou.print2("%s ",g_MathToken[g_mathKey[i]].tokenName);
+  } mminou.print2("\n");}
 
 
 
@@ -1144,11 +1144,11 @@ void parseStatements()
             if (tokenNum >= g_MAX_MATHTOKENS) {
 
 
-              print2(
+              mminou.print2(
 "?Error: The temporary space for holding bad tokens has run out, because\n");
-              print2(
+              mminou.print2(
 "there are too many errors.  Therefore we will force an \"out of memory\"\n");
-              print2("program abort:\n");
+              mminou.print2("program abort:\n");
               outOfMemory("#33 (too many errors)");
             }
             g_MathToken[tokenNum].tokenName = "";
@@ -1235,8 +1235,8 @@ void parseStatements()
         nmbrTmpPtr[mathStringLen] = -1;
         g_Statement[stmt].mathString = nmbrTmpPtr;
         g_Statement[stmt].mathStringLen = mathStringLen;
-if(db5){if(stmt<5)print2("Statement %ld mathString: %s.\n",stmt,
-  nmbrCvtMToVString(nmbrTmpPtr)); if(stmt==5)print2("(etc.)\n");}
+if(db5){if(stmt<5)mminou.print2("Statement %ld mathString: %s.\n",stmt,
+  nmbrCvtMToVString(nmbrTmpPtr)); if(stmt==5)mminou.print2("(etc.)\n");}
 
         break;
       default:
@@ -1776,7 +1776,7 @@ if(db5){if(stmt<5)print2("Statement %ld mathString: %s.\n",stmt,
 
 
   j = 0;
-if(db5)print2("Number of label keys before filter: %ld",g_numLabelKeys);
+if(db5)mminou.print2("Number of label keys before filter: %ld",g_numLabelKeys);
   for (i = 0; i < g_numLabelKeys; i++) {
     type = g_Statement[g_labelKeyBase[i]].type;
     if (type == e_ || type == f_) {
@@ -1786,7 +1786,7 @@ if(db5)print2("Number of label keys before filter: %ld",g_numLabelKeys);
     }
   }
   g_numLabelKeys = g_numLabelKeys - j;
-if(db5)print2(".  After: %ld\n",g_numLabelKeys);
+if(db5)mminou.print2(".  After: %ld\n",g_numLabelKeys);
 
 
 
@@ -2962,9 +2962,9 @@ char parseCompressedProof(long statemNum)
   if (strstr(fbPtr, "UV") != null) {
     if (strstr(fbPtr, "UU") == null) {
       bggyAlgo = 1;
-      print2("?Warning: the proof of \"%s\" uses obsolete compression.\n",
+      mminou.print2("?Warning: the proof of \"%s\" uses obsolete compression.\n",
           g_Statement[statemNum].labelName);
-      print2(" Please SAVE PROOF * / COMPRESSED to reformat your proofs.\n");
+      mminou.print2(" Please SAVE PROOF * / COMPRESSED to reformat your proofs.\n");
     }
   }
   fbPtr[bggyProofLen] = bggyZapSave;
@@ -3266,7 +3266,7 @@ nmbrString *getProof(long statemNum, flag printFlag) {
   nmbrString *proof = NULL_NMBRSTRING;
   parseProof(statemNum);
   if (g_WrkProof.errorSeverity > 1) {
-    if (printFlag) print2(
+    if (printFlag) mminou.print2(
          "The starting proof has a severe error.  It will not be used.\n");
     nmbrLet(&proof, nmbrAddElement(NULL_NMBRSTRING, -(long)'?'));
   } else {
@@ -3313,7 +3313,7 @@ void rawSourceError(char *startFile, char *ptr, long tokLen,
   memcpy(errLine, startLine, (size_t)(endLine - startLine) + 1);
   errorMessage(errLine, lineNum, ptr - startLine + 1, tokLen, errorMsg,
       fileName, 0, (char)error_);
-  print2("\n");
+  mminou.print2("\n");
   let(&errLine, "");
   let(&errorMsg, "");
   let(&fileName, "");
@@ -3879,8 +3879,8 @@ vstring outputStatement(long stmt,
 
         commentEnd = rinstr(labelSection, "$)") + 1;
         if (commentEnd < commentStart) {
-          print2("?Make sure syntax passes before running / REWRAP.\n");
-          print2("(Forcing a bug check since output may be corrupted.)\n");
+          mminou.print2("?Make sure syntax passes before running / REWRAP.\n");
+          mminou.print2("(Forcing a bug check since output may be corrupted.)\n");
           bug(1725);
         }
         if (commentStart != 0) {
@@ -4626,7 +4626,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
           return;
         }
 
-        print2("?Missing \"$]\" after \"$[ %s\"\n", *fileName);
+        mminou.print2("?Missing \"$]\" after \"$[ %s\"\n", *fileName);
         fbPtr = fbPtr + j;
         continue;
       }
@@ -4936,7 +4936,7 @@ vstring writeSourceToBuffer()
               writeFlag = 1;
             } else {
 
-              print2("Recovering \"%s\" from \"%s\"...\n",
+              mminou.print2("Recovering \"%s\" from \"%s\"...\n",
                   fileNameWithPath, tmpFileName);
               rename(tmpFileName, fileNameWithPath);
             }
@@ -4948,7 +4948,7 @@ vstring writeSourceToBuffer()
             writeFlag = 1;
           } else {
 
-            print2("Content of \"%s\" did not change.\n",
+            mminou.print2("Content of \"%s\" did not change.\n",
                 fileNameWithPath);
             rename(tmpFileName, fileNameWithPath);
           }
@@ -4958,12 +4958,12 @@ vstring writeSourceToBuffer()
         fp = fSafeOpen(fileNameWithPath, "w", 0);
         if (fp == null) {
 
-          print2("?Error: couldn't create the file \"%s\"\n", fileNameWithPath);
-          print2("  Make sure any directories needed have been created.\n");
-          print2("  Try WRITE SOURCE without / SPLIT to recover your work.\n");
+          mminou.print2("?Error: couldn't create the file \"%s\"\n", fileNameWithPath);
+          mminou.print2("  Make sure any directories needed have been created.\n");
+          mminou.print2("  Try WRITE SOURCE without / SPLIT to recover your work.\n");
           break;
         } else {
-          print2("Writing \"%s\"...\n", fileNameWithPath);
+          mminou.print2("Writing \"%s\"...\n", fileNameWithPath);
           fprintf(fp, "%s", *fileBuf);
           fclose(fp);
           break;
@@ -4993,7 +4993,7 @@ vstring writeSourceToBuffer()
       continue;
     } else if (cmdType == 'E') {
 
-      print2("?Unterminated \"$( Begin $[...\" inclusion markup in \"%s\".",
+      mminou.print2("?Unterminated \"$( Begin $[...\" inclusion markup in \"%s\".",
           fileNameWithPath);
       startOffset = cmdPos2 - 1;
       continue;
@@ -5039,9 +5039,9 @@ vstring writeSourceToBuffer()
       if (fp != null) {
         fclose(fp);
         if (noVersioningFlag == 1) {
-          print2("Deleting \"%s\"...\n", fileNameWithPath);
+          mminou.print2("Deleting \"%s\"...\n", fileNameWithPath);
         } else {
-          print2("Renaming \"%s\" to \"%s~1\"...\n", fileNameWithPath,
+          mminou.print2("Renaming \"%s\" to \"%s~1\"...\n", fileNameWithPath,
               fileNameWithPath);
         }
         fp = fSafeOpen(fileNameWithPath, "d", noVersioningFlag);
@@ -5176,7 +5176,7 @@ char *readInclude(vstring fileBuf, long fileBufOffset,
     if (cmdType == 'N') break;
     if (cmdType == 'E') {
 
-      print2("?Error: \"$( Begin $[...\" without matching \"$( End $[...\"\n");
+      mminou.print2("?Error: \"$( Begin $[...\" without matching \"$( End $[...\"\n");
       startOffset = cmdPos2;
       *errorFlag = 1;
       continue;
@@ -5192,7 +5192,7 @@ char *readInclude(vstring fileBuf, long fileBufOffset,
     g_includeCalls++;
     if (g_includeCalls >= g_MAX_INCLUDECALLS - 3) {
       g_MAX_INCLUDECALLS = g_MAX_INCLUDECALLS + 20;
-if(db5)print2("'Include' call table was increased to %ld entries.\n",
+if(db5)mminou.print2("'Include' call table was increased to %ld entries.\n",
     g_MAX_INCLUDECALLS);
       g_IncludeCall = realloc(g_IncludeCall, (size_t)g_MAX_INCLUDECALLS *
           sizeof(struct includeCall_struct));
@@ -5265,7 +5265,7 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           tmpSource = readFileToString(fullIncludeFn, 0, &inclSize);
           if (tmpSource == null) {
 
-            print2(
+            mminou.print2(
 
                 "?Error: file \"%s%s\" (included in \"%s\") was not found\n",
                 fullIncludeFn, g_rootDirectory, sourceFileName);
@@ -5273,7 +5273,7 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
             inclSize = 0;
             *errorFlag = 1;
           } else {
-            print2("Reading included file \"%s\"... %ld bytes\n",
+            mminou.print2("Reading included file \"%s\"... %ld bytes\n",
                 fullIncludeFn, inclSize);
           }
 
@@ -5320,7 +5320,7 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           tmpSource = readFileToString(fullIncludeFn, 1, &inclSize);
           if (tmpSource == null) {
 
-            print2(
+            mminou.print2(
 
                 "?Error: file \"%s%s\" (included in \"%s\") was not found\n",
                 fullIncludeFn, g_rootDirectory, sourceFileName);
@@ -5382,10 +5382,10 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
                   ].current_includeSource;
           if (strcmp(inclSource, oldSource)) {
 
-            print2(
+            mminou.print2(
         "?Warning: \"$( Begin $[...\" source, with %ld characters, mismatches\n",
                 (long)strlen(inclSource));
-            print2(
+            mminou.print2(
                 "  earlier inclusion, with %ld characters.\n",
                 (long)strlen(oldSource));
           }
@@ -5529,13 +5529,13 @@ char *readSourceAndIncludes(vstring inputFn , long *size )
   let(&fullInputFn, cat(g_rootDirectory, inputFn, null));
   fileBuf = readFileToString(fullInputFn, 1, &(*size));
   if (fileBuf == null) {
-    print2(
+    mminou.print2(
         "?Error: file \"%s\" was not found\n", fullInputFn);
     fileBuf = "";
     *size = 0;
     errorFlag = 1;
   }
-  print2("Reading source file \"%s\"... %ld bytes\n", fullInputFn, *size);
+  mminou.print2("Reading source file \"%s\"... %ld bytes\n", fullInputFn, *size);
 
   g_includeCalls = 0;
   g_IncludeCall[g_includeCalls].pushOrPop = 0;

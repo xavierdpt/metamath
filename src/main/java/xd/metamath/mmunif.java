@@ -67,16 +67,16 @@ let(&tmpStr,tmpStr);
   stackUnkVarLen = (nmbrString *)(stateVector[3]);
   unifiedScheme = (nmbrString *)(stateVector[8]);
 
-if(db7)print2("Entered makeSubstUnif.\n");
+if(db7)mminou.print2("Entered makeSubstUnif.\n");
 if(db7)printLongLine(cat("unifiedScheme is ",
     nmbrCvtMToVString(unifiedScheme), null), "", " ");
 if(db7)printLongLine(cat("trialScheme is ",
     nmbrCvtMToVString(trialScheme), null), "", " ");
-if(db7)print2("stackTop is %ld.\n",stackTop);
+if(db7)mminou.print2("stackTop is %ld.\n",stackTop);
 for (d = 0; d <= stackTop; d++) {
-  if(db7)print2("Unknown var %ld is %s.\n",d,
+  if(db7)mminou.print2("Unknown var %ld is %s.\n",d,
       g_MathToken[stackUnkVar[d]].tokenName);
-  if(db7)print2("  Its start is %ld; its length is %ld.\n",
+  if(db7)mminou.print2("  Its start is %ld; its length is %ld.\n",
       stackUnkVarStart[d],stackUnkVarLen[d]);
 }
   schemeLen = nmbrLen(trialScheme);
@@ -84,11 +84,11 @@ for (d = 0; d <= stackTop; d++) {
 
   q = 0;
   *newVarFlag = 0;
-if(db7)print2("schemeLen is %ld.\n",schemeLen);
+if(db7)mminou.print2("schemeLen is %ld.\n",schemeLen);
   for (p = 0; p < schemeLen; p++) {
-if(db7)print2("p is %ld.\n",p);
+if(db7)mminou.print2("p is %ld.\n",p);
     tokenNum = trialScheme[p];
-if(db7)print2("token is %s, tokenType is %ld\n",g_MathToken[tokenNum].tokenName,
+if(db7)mminou.print2("token is %s, tokenType is %ld\n",g_MathToken[tokenNum].tokenName,
   (long)g_MathToken[tokenNum].tokenType);
     if (g_MathToken[tokenNum].tokenType == (char)con_) {
       q++;
@@ -96,7 +96,7 @@ if(db7)print2("token is %s, tokenType is %ld\n",g_MathToken[tokenNum].tokenName,
       if (tokenNum > g_mathTokens) {
 
         m = nmbrElementIn(1,stackUnkVar,tokenNum);
-if(db7)print2("token is %s, m is %ld\n",g_MathToken[tokenNum].tokenName,m);
+if(db7)mminou.print2("token is %s, m is %ld\n",g_MathToken[tokenNum].tokenName,m);
         if (m) {
 
           q = q + stackUnkVarLen[m - 1];
@@ -148,8 +148,8 @@ if(db7)print2("token is %s, m is %ld\n",g_MathToken[tokenNum].tokenName,m);
       }
     }
   }
-if(db7)print2("after newVarFlag %d\n",(int)*newVarFlag);
-if(db7)print2("final len is %ld\n",q);
+if(db7)mminou.print2("after newVarFlag %d\n",(int)*newVarFlag);
+if(db7)mminou.print2("final len is %ld\n",q);
 if(db7)printLongLine(cat("result ",nmbrCvtMToVString(result),null),""," ");
   nmbrLet(&stackUnkVar, NULL_NMBRSTRING);
   return (result);
@@ -209,7 +209,7 @@ char unify(
 long d;
 vstring tmpStr = "";
 let(&tmpStr,tmpStr);
-if(db5)print2("Entering unify() with reEntryFlag = %ld.\n",
+if(db5)mminou.print2("Entering unify() with reEntryFlag = %ld.\n",
   (long)reEntryFlag);
 if(db5)printLongLine(cat("schemeA is ",
     nmbrCvtMToVString(schemeA),".",null),"    ","  ");
@@ -427,15 +427,15 @@ if(db5)printLongLine(cat("schemeB is ",
 
 
   C.label("scan");
-if(db6)print2("Entered scan: p=%ld\n",p);
-if(db6)print2("Enter scn sbA %s\n",nmbrCvtMToVString(schA));
-if(db6)print2("Enter scn sbB %s\n",nmbrCvtMToVString(schB));
+if(db6)mminou.print2("Entered scan: p=%ld\n",p);
+if(db6)mminou.print2("Enter scn sbA %s\n",nmbrCvtMToVString(schA));
+if(db6)mminou.print2("Enter scn sbB %s\n",nmbrCvtMToVString(schB));
 if(db6)let(&tmpStr,tmpStr);
   while (schA[p] == schB[p] &&
       schA[p + 1] != -1) {
     p++;
   }
-if(db6)print2("First mismatch: p=%ld\n",p);
+if(db6)mminou.print2("First mismatch: p=%ld\n",p);
 
   if (schA[p] == g_mathTokens
       || schB[p] == g_mathTokens) {
@@ -444,7 +444,7 @@ if(db6)print2("First mismatch: p=%ld\n",p);
 
       if (schA[p] <= g_mathTokens &&
           schB[p] <= g_mathTokens) {
-if(db6)print2("Backtracked because end-of-string\n");
+if(db6)mminou.print2("Backtracked because end-of-string\n");
         C.go2("backtrack");
       }
     } else {
@@ -471,7 +471,7 @@ if(db6)print2("Backtracked because end-of-string\n");
 
   C.label("schBUnk");
   if (schB[p] > g_mathTokens) {
-if(db6)print2("schB has unknown variable\n");
+if(db6)mminou.print2("schB has unknown variable\n");
 
     schemeAFlag = 0;
     substToken = schB[p];
@@ -500,12 +500,12 @@ if(db6)print2("schB has unknown variable\n");
     }
 
     if (substToken != stackUnkVar[stackTop]) {
-      print2("PROGRAM BUG #1903\n");
-      print2("substToken is %s\n", g_MathToken[substToken].tokenName);
-      print2("stackTop %ld\n", stackTop);
-      print2("p %ld stackUnkVar[stackTop] %s\n", p,
+      mminou.print2("PROGRAM BUG #1903\n");
+      mminou.print2("substToken is %s\n", g_MathToken[substToken].tokenName);
+      mminou.print2("stackTop %ld\n", stackTop);
+      mminou.print2("p %ld stackUnkVar[stackTop] %s\n", p,
         g_MathToken[stackUnkVar[stackTop]].tokenName);
-      print2("schA %s\nschB %s\n", nmbrCvtMToVString(schA),
+      mminou.print2("schA %s\nschB %s\n", nmbrCvtMToVString(schA),
         nmbrCvtMToVString(schB));
       bug(1903);
     }
@@ -516,7 +516,7 @@ if(db6)print2("schB has unknown variable\n");
 
   C.label("schAUnk");
   if (schA[p] > g_mathTokens) {
-if(db6)print2("schA has unknown variable\n");
+if(db6)mminou.print2("schA has unknown variable\n");
 
     schemeAFlag = 1;
     substToken = schA[p];
@@ -544,12 +544,12 @@ if(db6)print2("schA has unknown variable\n");
     }
 
     if (substToken != stackUnkVar[stackTop]) {
-print2("PROGRAM BUG #1904\n");
-print2("\nsubstToken is %s\n",g_MathToken[substToken].tokenName);
-print2("stack top %ld\n",stackTop);
-print2("p %ld stUnV[stakTop] %s\n",p,
+      mminou.print2("PROGRAM BUG #1904\n");
+      mminou.print2("\nsubstToken is %s\n",g_MathToken[substToken].tokenName);
+      mminou.print2("stack top %ld\n",stackTop);
+      mminou.print2("p %ld stUnV[stakTop] %s\n",p,
 g_MathToken[stackUnkVar[stackTop]].tokenName);
-print2("schA %s\nschB %s\n",nmbrCvtMToVString(schA),nmbrCvtMToVString(schB));
+      mminou.print2("schA %s\nschB %s\n",nmbrCvtMToVString(schA),nmbrCvtMToVString(schB));
       bug(1904);
     }
     nmbrLet(&substitution, nmbrMid(schB, p + 1,
@@ -557,27 +557,27 @@ print2("schA %s\nschB %s\n",nmbrCvtMToVString(schA),nmbrCvtMToVString(schB));
     C.go2("substitute");
   }
 
-if(db6)print2("Neither scheme has unknown variable\n");
+if(db6)mminou.print2("Neither scheme has unknown variable\n");
   C.go2("backtrack");
 
 
   C.label("substitute");
-if(db6)print2("Entering substitute...\n");
+if(db6)mminou.print2("Entering substitute...\n");
 for (d = 0; d <= stackTop; d++) {
-  if(db6)print2("Unknown var %ld is %s.\n",d,
+  if(db6)mminou.print2("Unknown var %ld is %s.\n",d,
       g_MathToken[stackUnkVar[d]].tokenName);
-  if(db6)print2("  Its start is %ld; its length is %ld.\n",
+  if(db6)mminou.print2("  Its start is %ld; its length is %ld.\n",
       stackUnkVarStart[d],stackUnkVarLen[d]);
 }
 
 
   if (nmbrElementIn(1, substitution, substToken)) {
-if(db6)print2("Substituted token occurs in substitution string\n");
+if(db6)mminou.print2("Substituted token occurs in substitution string\n");
     C.go2("backtrack");
   }
 
   if (substitution[0] == g_mathTokens) {
-if(db6)print2("End of string token occurs in substitution string\n");
+if(db6)mminou.print2("End of string token occurs in substitution string\n");
 
     g_MathToken[stackUnkVar[stackTop]].tmp = -1;
     stackTop--;
@@ -709,7 +709,7 @@ if(db6)print2("End of string token occurs in substitution string\n");
       } else {
         bracketMatchOn = 1;
       }
-if(db6)print2("bracketMatchOn = %ld\n", (long)bracketMatchOn);
+if(db6)mminou.print2("bracketMatchOn = %ld\n", (long)bracketMatchOn);
       g_bracketMatchInit = 1;
     }
   }
@@ -733,13 +733,13 @@ if(db6)print2("bracketMatchOn = %ld\n", (long)bracketMatchOn);
       }
     }
     if (impossible) {
-if(db6)print2("Impossible subst: %s\n", nmbrCvtMToVString(substitution));
+if(db6)mminou.print2("Impossible subst: %s\n", nmbrCvtMToVString(substitution));
       C.go2("backtrack");
     }
   }
 
 
-if(db6)print2("Substitution is '%s'\n",nmbrCvtMToVString(substitution));
+if(db6)mminou.print2("Substitution is '%s'\n",nmbrCvtMToVString(substitution));
   k = 1;
   while (true) {
 
@@ -764,7 +764,7 @@ if(db6)print2("Substitution is '%s'\n",nmbrCvtMToVString(substitution));
           }
         }
         p = p + j - 1;
-if(db6)print2("Scheme A adjusted p=%ld\n",p);
+if(db6)mminou.print2("Scheme A adjusted p=%ld\n",p);
       }
     }
 
@@ -797,7 +797,7 @@ if(db6)print2("Scheme A adjusted p=%ld\n",p);
         }
         p = p + j - 1;
       }
-if(db6)print2("Scheme B adjusted p=%ld\n",p);
+if(db6)mminou.print2("Scheme B adjusted p=%ld\n",p);
     }
 
     nmbrLet(&schB, nmbrCat(
@@ -805,19 +805,19 @@ if(db6)print2("Scheme B adjusted p=%ld\n",p);
     k = k + j - 1;
   }
   p++;
-if(db6)print2("Scheme A or B final p=%ld\n",p);
-if(db6)print2("after sub sbA %s\n",nmbrCvtMToVString(schA));
-if(db6)print2("after sub sbB %s\n",nmbrCvtMToVString(schB));
+if(db6)mminou.print2("Scheme A or B final p=%ld\n",p);
+if(db6)mminou.print2("after sub sbA %s\n",nmbrCvtMToVString(schA));
+if(db6)mminou.print2("after sub sbB %s\n",nmbrCvtMToVString(schB));
 for (d = 0; d <= stackTop; d++) {
-  if(db6)print2("Unknown var %ld is %s.\n",d,
+  if(db6)mminou.print2("Unknown var %ld is %s.\n",d,
       g_MathToken[stackUnkVar[d]].tokenName);
-  if(db6)print2("  Its start is %ld; its length is %ld.\n",
+  if(db6)mminou.print2("  Its start is %ld; its length is %ld.\n",
       stackUnkVarStart[d],stackUnkVarLen[d]);
 }
   C.go2("scan");
 
   C.label("backtrack");
-if(db6)print2("Entered backtrack with p=%ld stackTop=%ld\n",p,stackTop);
+if(db6)mminou.print2("Entered backtrack with p=%ld stackTop=%ld\n",p,stackTop);
   if (stackTop < 0) {
     C.go2("abort");
   }
@@ -825,7 +825,7 @@ if(db6)print2("Entered backtrack with p=%ld stackTop=%ld\n",p,stackTop);
     g_unifTrialCount++;
     if (g_unifTrialCount > g_userMaxUnifTrials) {
       g_unifTimeouts++;
-if(db5)print2("Aborted due to timeout: %ld > %ld\n",
+if(db5)mminou.print2("Aborted due to timeout: %ld > %ld\n",
     g_unifTrialCount, g_userMaxUnifTrials);
       timeoutAbortFlag = 1;
       C.go2("abort");
@@ -844,20 +844,20 @@ if(db5)print2("Aborted due to timeout: %ld > %ld\n",
 
   nmbrLet(&stackUnkVarLen, (nmbrString *)(stackSaveUnkVarLen[stackTop]));
 
-if(db6)print2("Backtracked to token %s.\n",
+if(db6)mminou.print2("Backtracked to token %s.\n",
   g_MathToken[stackUnkVar[stackTop]].tokenName);
   if (stackUnkVar[stackTop] == schA[p]) {
 
     if (schB[p - 1 + stackUnkVarLen[stackTop]]
         == g_mathTokens) {
-if(db6)print2("It was in scheme A; overflowed scheme B: p=%ld, len=%ld.\n",
+if(db6)mminou.print2("It was in scheme A; overflowed scheme B: p=%ld, len=%ld.\n",
   p,stackUnkVarLen[stackTop]);
 
       g_MathToken[stackUnkVar[stackTop]].tmp = -1;
 
 
       if (schB[p] > g_mathTokens) {
-if(db6)print2("Switched var-var match to scheme B token %s\n",
+if(db6)mminou.print2("Switched var-var match to scheme B token %s\n",
      g_MathToken[stackUnkVar[stackTop]].tokenName);
 
         if (g_MathToken[schB[p]].tmp != -1) bug(1905);
@@ -881,7 +881,7 @@ if(db6)print2("Switched var-var match to scheme B token %s\n",
 
     if (schA[p - 1 + stackUnkVarLen[stackTop]]
         == g_mathTokens) {
-if(db6)print2("It was in scheme B; overflowed scheme A: p=%ld, len=%ld.\n",
+if(db6)mminou.print2("It was in scheme B; overflowed scheme A: p=%ld, len=%ld.\n",
   p,stackUnkVarLen[stackTop]);
 
       g_MathToken[stackUnkVar[stackTop]].tmp = -1;
@@ -889,7 +889,7 @@ if(db6)print2("It was in scheme B; overflowed scheme A: p=%ld, len=%ld.\n",
       C.go2("backtrack");
     }
   }
-if(db6)print2("Exited backtrack with p=%ld stackTop=%ld\n",p,stackTop);
+if(db6)mminou.print2("Exited backtrack with p=%ld stackTop=%ld\n",p,stackTop);
   if (reEntryFlag) C.go2("reEntry1");
   C.go2("scan");
 
@@ -897,7 +897,7 @@ if(db6)print2("Exited backtrack with p=%ld stackTop=%ld\n",p,stackTop);
 
 
   nmbrLet(&unifiedScheme, nmbrLeft(schA, nmbrLen(schA) - 1));
-if(db5)print2("Backtrack count was %ld\n",g_unifTrialCount);
+if(db5)mminou.print2("Backtrack count was %ld\n",g_unifTrialCount);
 if(db5)printLongLine(cat("Unified scheme is ",
     nmbrCvtMToVString(unifiedScheme),".",null),"    ","  ");
 
@@ -924,7 +924,7 @@ if(db5)printSubst(*stateVector);
   return (1);
 
   C.label("abort");
-if(db5)print2("Backtrack count was %ld\n",g_unifTrialCount);
+if(db5)mminou.print2("Backtrack count was %ld\n",g_unifTrialCount);
 
   nmbrLet(&unkVars,NULL_NMBRSTRING);
   nmbrLet(&stackUnkVar,NULL_NMBRSTRING);

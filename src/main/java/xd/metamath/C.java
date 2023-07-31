@@ -8,4 +8,6 @@ public class C {
     public static void label(String label) {
         // Placeholder to identify call sites for label statements, and make the syntax valid
     }
+
+
 }

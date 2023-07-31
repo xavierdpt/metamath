@@ -8,11 +8,11 @@ public class metamath {
   public static void main(String[] args) {
     mmdata.g_listMode.set(0);
     mmdata.g_toolsMode.set(mmdata.g_listMode);
-    if (!mmdata.g_listMode.asBoolean()) {
+    if (!(mmdata.g_listMode.asBoolean())) {
 
-    print2("Metamath - Version %s%s", MVERSION, space(27 - (long)strlen(MVERSION)));
+    mminou.print2("Metamath - Version %s%s", MVERSION, space(27 - (long)strlen(MVERSION)));
   }
-   print2("Type HELP for help, EXIT to exit.\n");
+    mminou.print2("Type HELP for help, EXIT to exit.\n");
 
 
     mmdata.initBigArrays();
@@ -241,10 +241,10 @@ static final long SYNTAX =D.SYNTAX;
     if (g_memoryStatus) {
 
 
-      print2("Memory:  string %ld xxxString %ld\n",db,db3);
+      mminou.print2("Memory:  string %ld xxxString %ld\n",db,db3);
 
       getPoolStats(&i, &j, &k);
-      print2("Pool:  free alloc %ld  used alloc %ld  used actual %ld\n",i,j,k);
+      mminou.print2("Pool:  free alloc %ld  used alloc %ld  used actual %ld\n",i,j,k);
     }
 
     if (!mmdata.g_toolsMode.asBoolean()) {
@@ -300,7 +300,7 @@ static final long SYNTAX =D.SYNTAX;
 
         }
       }
-      print2("%s\n", cat(g_commandPrompt, g_commandLine, null));
+      mminou.print2("%s\n", cat(g_commandPrompt, g_commandLine, null));
     } else {
 
       g_commandLine = cmdInput1(g_commandPrompt);
@@ -321,7 +321,7 @@ static final long SYNTAX =D.SYNTAX;
     if (g_commandLine[0] == '\'' || g_commandLine[0] == '\"') {
 
       if (!system(null)) {
-        print2("?This computer does not accept an operating system command.\n");
+        mminou.print2("?This computer does not accept an operating system command.\n");
         continue;
       } else {
 
@@ -377,7 +377,7 @@ static final long SYNTAX =D.SYNTAX;
     }
 
     if (cmdMatches("BEEP") || cmdMatches("B")) {
-      print2("%c",7);
+      mminou.print2("%c",7);
       continue;
     }
 
@@ -405,11 +405,11 @@ static final long SYNTAX =D.SYNTAX;
       if (cmdMatches("SET SCROLL CONTINUOUS")) {
         defaultScrollMode = 0;
         g_scrollMode = 0;
-        print2("Continuous scrolling is now in effect.\n");
+        mminou.print2("Continuous scrolling is now in effect.\n");
       } else {
         defaultScrollMode = 1;
         g_scrollMode = 1;
-        print2("Prompted scrolling is now in effect.\n");
+        mminou.print2("Prompted scrolling is now in effect.\n");
       }
       continue;
     }
@@ -426,10 +426,10 @@ static final long SYNTAX =D.SYNTAX;
       if (mmdata.g_toolsMode.asBoolean() && !(mmdata.g_listMode.asBoolean())) {
 
         if (!g_PFASmode) {
-          print2(
+          mminou.print2(
  "Exiting the Text Tools.  Type EXIT again to exit Metamath.\n");
         } else {
-          print2(
+          mminou.print2(
  "Exiting the Text Tools.  Type EXIT again to exit the Proof Assistant.\n");
         }
         mmdata.g_toolsMode.set(0);
@@ -441,19 +441,19 @@ static final long SYNTAX =D.SYNTAX;
         if (g_proofChanged &&
               (processUndoStack(null, PUS_GET_STATUS, "", 0)
                  || proofSavedFlag)) {
-          print2(
+          mminou.print2(
               "Warning:  You have not saved changes to the proof of \"%s\".\n",
               g_Statement[g_proveStatement].labelName);
 
           if (switchPos("/ FORCE") == 0) {
             str1 = cmdInput1("Do you want to EXIT anyway (Y, N) <N>? ");
             if (str1[0] != 'y' && str1[0] != 'Y') {
-              print2("Use SAVE NEW_PROOF to save the proof.\n");
+              mminou.print2("Use SAVE NEW_PROOF to save the proof.\n");
               continue;
             }
           } else {
 
-            print2("Do you want to EXIT anyway (Y, N) <N>? Y\n");
+            mminou.print2("Do you want to EXIT anyway (Y, N) <N>? Y\n");
           }
         }
 
@@ -461,7 +461,7 @@ static final long SYNTAX =D.SYNTAX;
         processUndoStack(null, PUS_INIT, "", 0);
         proofSavedFlag = 0;
 
-        print2(
+        mminou.print2(
  "Exiting the Proof Assistant.  Type EXIT again to exit Metamath.\n");
 
 
@@ -472,30 +472,30 @@ static final long SYNTAX =D.SYNTAX;
         continue;
       } else {
         if (g_sourceChanged) {
-          print2("Warning:  You have not saved changes to the source.\n");
+          mminou.print2("Warning:  You have not saved changes to the source.\n");
 
           if (switchPos("/ FORCE") == 0) {
             str1 = cmdInput1("Do you want to EXIT anyway (Y, N) <N>? ");
             if (str1[0] != 'y' && str1[0] != 'Y') {
-              print2("Use WRITE SOURCE to save the changes.\n");
+              mminou.print2("Use WRITE SOURCE to save the changes.\n");
               continue;
             }
           } else {
 
-            print2("Do you want to EXIT anyway (Y, N) <N>? Y\n");
+            mminou.print2("Do you want to EXIT anyway (Y, N) <N>? Y\n");
           }
           g_sourceChanged = 0;
         }
 
         if (g_texFileOpenFlag) {
-          print2("The %s file \"%s\" was closed.\n",
+          mminou.print2("The %s file \"%s\" was closed.\n",
               g_htmlFlag ? "HTML" : "LaTeX", g_texFileName);
           printTexTrailer(texHeaderFlag);
           fclose(g_texFilePtr);
           g_texFileOpenFlag = 0;
         }
         if (g_logFileOpenFlag) {
-          print2("The log file \"%s\" was closed %s %s.\n",g_logFileName,
+          mminou.print2("The log file \"%s\" was closed %s %s.\n",g_logFileName,
               date(),time_());
           fclose(g_logFilePtr);
           g_logFileOpenFlag = 0;
@@ -540,7 +540,7 @@ static final long SYNTAX =D.SYNTAX;
       }
       g_commandFileSilentFlag = g_commandFileSilent[g_commandFileNestingLevel];
       if (!g_commandFileSilentFlag)
-        print2("Taking command lines from file \"%s\"...\n",
+        mminou.print2("Taking command lines from file \"%s\"...\n",
             g_commandFileName[g_commandFileNestingLevel]);
 
       continue;
@@ -586,7 +586,7 @@ static final long SYNTAX =D.SYNTAX;
         let(&list2_fname, g_fullArg[1]);
         if (list2_fname[strlen(list2_fname) - 2] == '~') {
           let(&list2_fname, left(list2_fname, (long)(strlen(list2_fname)) - 2));
-          print2("The output file will be called %s.\n", list2_fname);
+          mminou.print2("The output file will be called %s.\n", list2_fname);
         }
         let(&list2_ftmpname, "");
         list2_ftmpname = fGetTmpName("zz~tools");
@@ -732,7 +732,7 @@ static final long SYNTAX =D.SYNTAX;
                     k = 0;
                   }
                 } else {
-                  print2("Warning: file %s has an odd number of lines\n",
+                  mminou.print2("Warning: file %s has an odd number of lines\n",
                       g_fullArg[1]);
                 }
               }
@@ -869,36 +869,36 @@ static final long SYNTAX =D.SYNTAX;
 
           if (!changedFlag) {
             if (!lines) {
-              print2("The file %s has no lines.\n", g_fullArg[1]);
+              mminou.print2("The file %s has no lines.\n", g_fullArg[1]);
             } else {
-              print2(
+              mminou.print2(
 "The file %s has %ld line%s; none were changed.  First line:\n",
                 list2_fname, lines, (lines == 1) ? "" : "s");
-              print2("%s\n", str3);
+              mminou.print2("%s\n", str3);
             }
           } else {
-            print2(
+            mminou.print2(
 "The file %s has %ld line%s; %ld w%s changed.  First changed line is %ld:\n",
                 list2_fname,
                 lines,  (lines == 1) ? "" : "s",
                 changedLines,  (changedLines == 1) ? "as" : "ere",
                 firstChangedLine);
-            print2("%s\n", str3);
+            mminou.print2("%s\n", str3);
           }
           if (twoMatches > 0) {
 
-            print2(
+            mminou.print2(
 "Warning:  %ld line%s more than one \"%s\".  The first one was used.\n",
                 twoMatches, (twoMatches == 1) ? " has" : "s have", g_fullArg[2]);
           }
         } else {
 
-          print2(
+          mminou.print2(
 "The input had %ld line%s, the output has %ld line%s.%s\n",
               lines, (lines == 1) ? "" : "s",
               changedLines, (changedLines == 1) ? "" : "s",
               (changedLines == 0) ? "" : " First output line:");
-          if (changedLines != 0) print2("%s\n", str3);
+          if (changedLines != 0) mminou.print2("%s\n", str3);
         }
         fclose(list1_fp);
         fclose(list2_fp);
@@ -926,7 +926,7 @@ static final long SYNTAX =D.SYNTAX;
         let(&list2_fname, g_fullArg[1]);
         if (list2_fname[strlen(list2_fname) - 2] == '~') {
           let(&list2_fname, left(list2_fname, (long)strlen(list2_fname) - 2));
-          print2("The output file will be called %s.\n", list2_fname);
+          mminou.print2("The output file will be called %s.\n", list2_fname);
         }
         let(&list2_ftmpname, "");
         list2_ftmpname = fGetTmpName("zz~tools");
@@ -937,7 +937,7 @@ static final long SYNTAX =D.SYNTAX;
         lines = 0;
         while (linput(list1_fp, null, &str1)) lines++;
         if (cmdMode != SORT_MODE  && cmdMode != REVERSE_MODE) {
-          print2("The input file has %ld lines.\n", lines);
+          mminou.print2("The input file has %ld lines.\n", lines);
         }
 
 
@@ -1029,9 +1029,9 @@ static final long SYNTAX =D.SYNTAX;
               let(&str3, left((vstring)(pntrTmp[i]), 79));
           }
         }
-        print2("The output file has %ld lines.  The first line is:\n",
+        mminou.print2("The output file has %ld lines.  The first line is:\n",
             changedLines);
-        print2("%s\n", str3);
+        mminou.print2("%s\n", str3);
 
 
         for (i = 0; i < lines; i++) let((vstring *)(&pntrTmp[i]), "");
@@ -1079,17 +1079,17 @@ static final long SYNTAX =D.SYNTAX;
           }
         }
         if (p == q) {
-          print2(
+          mminou.print2(
 "The input files each had %ld lines.  The first output line is:\n", p);
         } else {
-          print2(
+          mminou.print2(
 "Warning: file \"%s\" had %ld lines while file \"%s\" had %ld lines.\n",
               g_fullArg[1], p, g_fullArg[2], q);
           if (p < q) p = q;
-          print2("The output file \"%s\" has %ld lines.  The first line is:\n",
+          mminou.print2("The output file \"%s\" has %ld lines.  The first line is:\n",
               g_fullArg[3], p);
         }
-        print2("%s\n", str3);
+        mminou.print2("%s\n", str3);
 
         fclose(list1_fp);
         fclose(list2_fp);
@@ -1155,14 +1155,14 @@ static final long SYNTAX =D.SYNTAX;
           }
           sum = sum + val(str1);
         }
-        print2(
+        mminou.print2(
 "The file has %ld lines.  The string \"%s\" occurs %ld times on %ld lines.\n",
             lines, g_fullArg[2], p2, p1);
         if (firstChangedLine) {
-          print2("The first occurrence is on line %ld:\n", firstChangedLine);
-          print2("%s\n", str3);
+          mminou.print2("The first occurrence is on line %ld:\n", firstChangedLine);
+          mminou.print2("%s\n", str3);
         }
-        print2(
+        mminou.print2(
 "The first longest line (out of %ld) is line %ld and has %ld characters:\n",
             j, i, q);
         printLongLine(str4, "    ", "");
@@ -1190,7 +1190,7 @@ static final long SYNTAX =D.SYNTAX;
         }
         for (i = 0; i < n || n == -1; i++) {
           if (!linput(list1_fp, null, &str1)) break;
-          if (!print2("%s\n", str1)) break;
+          if (!mminou.print2("%s\n", str1)) break;
         }
         fclose(list1_fp);
         continue;
@@ -1202,7 +1202,7 @@ static final long SYNTAX =D.SYNTAX;
         if (!list1_fp) continue;
         if (!list2_fp) continue;
         if (!getRevision(g_fullArg[4])) {
-          print2(
+          mminou.print2(
 "?The revision tag must be of the form /*nn*/ or /*#nn*/.  Please try again.\n");
           continue;
         }
@@ -1242,23 +1242,23 @@ static final long SYNTAX =D.SYNTAX;
             fprintf(list2_fp, "%s\n", str1);
           }
           if (instr(1, g_fullArg[1], ",")) {
-            print2("The input file \"%s\" has %ld lines.\n", str3, n);
+            mminou.print2("The input file \"%s\" has %ld lines.\n", str3, n);
           }
           fclose(list1_fp);
         }
         if (j) continue;
         fclose(list2_fp);
-        print2("The output file \"%s\" has %ld lines.\n", g_fullArg[2], lines);
+        mminou.print2("The output file \"%s\" has %ld lines.\n", g_fullArg[2], lines);
         fSafeRename(list2_ftmpname, g_fullArg[2]);
         continue;
       }
 
-      print2("?This command has not been implemented yet.\n");
+      mminou.print2("?This command has not been implemented yet.\n");
       continue;
     }
 
     if (cmdMatches("TOOLS")) {
-      print2(
+      mminou.print2(
 "Entering the Text Tools utilities.  Type HELP for help, EXIT to exit.\n");
       mmdata.g_toolsMode.set(1);
       continue;
@@ -1309,11 +1309,11 @@ static final long SYNTAX =D.SYNTAX;
           }
           printLongLine(str1, "", " ");
         } else {
-          print2("\n");
+          mminou.print2("\n");
           if (g_errorCount == 1) {
-            print2("One error was found.\n");
+            mminou.print2("One error was found.\n");
           } else {
-            print2("%ld errors were found.\n", (long)g_errorCount);
+            mminou.print2("%ld errors were found.\n", (long)g_errorCount);
           }
         }
       }
@@ -1345,7 +1345,7 @@ static final long SYNTAX =D.SYNTAX;
         if (r > 0
             || switchPos("/ SPLIT") > 0
             || switchPos("/ KEEP_INCLUDES") > 0) {
-          print2(
+          mminou.print2(
 "?You may not use / SPLIT, / REWRAP, or / KEEP_INCLUDES with / EXTRACT.\n");
           continue;
         }
@@ -1386,7 +1386,7 @@ static final long SYNTAX =D.SYNTAX;
       g_htmlFlag = 1;
       if (switchPos("/ HTML") != 0) {
         if (switchPos("/ ALT_HTML") != 0) {
-          print2("?Please specify only one of / HTML and / ALT_HTML.\n");
+          mminou.print2("?Please specify only one of / HTML and / ALT_HTML.\n");
           continue;
         }
         g_altHtmlFlag = 0;
@@ -1436,7 +1436,7 @@ static final long SYNTAX =D.SYNTAX;
       g_htmlFlag = 1;
       if (switchPos("/ HTML") != 0) {
         if (switchPos("/ ALT_HTML") != 0) {
-          print2("?Please specify only one of / HTML and / ALT_HTML.\n");
+          mminou.print2("?Please specify only one of / HTML and / ALT_HTML.\n");
           continue;
         }
         g_altHtmlFlag = 0;
@@ -1470,7 +1470,7 @@ static final long SYNTAX =D.SYNTAX;
 
       while (true) {
         if (!linput(list1_fp, null, &str1)) {
-          print2(
+          mminou.print2(
 "?Error: Could not find \"<!-- #START# -->\" line in input file \"%s\".\n",
               g_fullArg[2]);
           tmpFlag = 1;
@@ -1529,7 +1529,7 @@ static final long SYNTAX =D.SYNTAX;
 
             let(&g_printString, "");
             g_outputToString = 1;
-            print2("\n");
+            mminou.print2("\n");
             printLongLine(cat(
 
 
@@ -1611,10 +1611,10 @@ static final long SYNTAX =D.SYNTAX;
                 break;
               }
             }
-            if (j) print2("<!-- For script: previous = %s -->\n",
+            if (j) mminou.print2("<!-- For script: previous = %s -->\n",
                 g_Statement[j].labelName);
 
-            print2("<!-- For script: current = %s -->\n",
+            mminou.print2("<!-- For script: current = %s -->\n",
                 g_Statement[stmt].labelName);
 
             j = 0;
@@ -1625,7 +1625,7 @@ static final long SYNTAX =D.SYNTAX;
                 break;
               }
             }
-            if (j) print2("<!-- For script: next = %s -->\n",
+            if (j) mminou.print2("<!-- For script: next = %s -->\n",
                 g_Statement[j].labelName);
 
 
@@ -1653,7 +1653,7 @@ static final long SYNTAX =D.SYNTAX;
 
       while (true) {
         if (!linput(list1_fp, null, &str1)) {
-          print2(
+          mminou.print2(
 "?Error: Could not find \"<!-- #END# -->\" line in input file \"%s\".\n",
               g_fullArg[2]);
           tmpFlag = 1;
@@ -1681,7 +1681,7 @@ static final long SYNTAX =D.SYNTAX;
         fprintf(list2_fp, "%s\n", str1);
       }
 
-      print2("The %ld most recent theorem(s) were written.\n", n);
+      mminou.print2("The %ld most recent theorem(s) were written.\n", n);
 
      C.label("wrrecent_error");
       fclose(list1_fp);
@@ -1691,7 +1691,7 @@ static final long SYNTAX =D.SYNTAX;
         remove(g_fullArg[2]);
         rename(cat(g_fullArg[2], "~1", null), g_fullArg[2]);
 
-        print2("?The file \"%s\" was not modified.\n", g_fullArg[2]);
+        mminou.print2("?The file \"%s\" was not modified.\n", g_fullArg[2]);
       }
       continue;
     }
@@ -1702,11 +1702,11 @@ static final long SYNTAX =D.SYNTAX;
       if (switchPos("/ LINEAR")) linearFlag = 1;
       if (switchPos("/ ALL")) {
         m = 1;
-        print2(
+        mminou.print2(
 "The labels that match are shown with statement number, label, and type.\n");
       } else {
         m = 0;
-        print2(
+        mminou.print2(
 "The assertions that match are shown with statement number, label, and type.\n");
       }
       j = 0;
@@ -1739,7 +1739,7 @@ static final long SYNTAX =D.SYNTAX;
             printLongLine(str1, "", " ");
           } else {
 
-            print2("%s\n", str2);
+            mminou.print2("%s\n", str2);
             let(&str2, str1);
             j = 1;
           }
@@ -1757,7 +1757,7 @@ static final long SYNTAX =D.SYNTAX;
       }
 
       if (str2[0]) {
-        print2("%s\n", str2);
+        mminou.print2("%s\n", str2);
         let(&str2, "");
       }
       let(&str1, "");
@@ -1828,7 +1828,7 @@ static final long SYNTAX =D.SYNTAX;
 
       if (switchPos("/ BRIEF_HTML") || switchPos("/ BRIEF_ALT_HTML")) {
         if (strcmp(g_fullArg[2], "*")) {
-          print2(
+          mminou.print2(
               "?For BRIEF_HTML or BRIEF_ALT_HTML, the label must be \"*\"\n");
           C.go2("htmlDone");
         }
@@ -1893,14 +1893,14 @@ static final long SYNTAX =D.SYNTAX;
             let(&g_texFileName, cat(g_Statement[g_showStatement].labelName, ".html",
                 null));
         }
-        print2("Creating HTML file \"%s\"...\n", g_texFileName);
+        mminou.print2("Creating HTML file \"%s\"...\n", g_texFileName);
         g_texFilePtr = fSafeOpen(g_texFileName, "w",
             noVersioning );
         if (!g_texFilePtr) C.go2("htmlDone");
         g_texFileOpenFlag = 1;
         printTexHeader((s > 0) ? 1 : 0 );
         if (!g_texDefsRead) {
-          print2("?HTML generation was aborted due to the error above.\n");
+          mminou.print2("?HTML generation was aborted due to the error above.\n");
           s = g_statements + 1;
           C.go2("ABORT_S");
         }
@@ -1916,27 +1916,27 @@ static final long SYNTAX =D.SYNTAX;
                 "</B></FONT></CENTER><P>", null), "", "\"");
           }
 
-          if (!g_briefHtmlFlag) print2("<CENTER>\n");
-          print2("<TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
+          if (!g_briefHtmlFlag) mminou.print2("<CENTER>\n");
+          mminou.print2("<TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
               MINT_BACKGROUND_COLOR);
 
           switch (s) {
             case -2:
-              print2("SUMMARY=\"Symbol to ASCII correspondences\">\n");
+              mminou.print2("SUMMARY=\"Symbol to ASCII correspondences\">\n");
               break;
             case -1:
-              print2("SUMMARY=\"List of theorems\">\n");
+              mminou.print2("SUMMARY=\"List of theorems\">\n");
               break;
             case 0:
-              print2("SUMMARY=\"List of syntax, axioms and definitions\">\n");
+              mminou.print2("SUMMARY=\"List of syntax, axioms and definitions\">\n");
               break;
           }
           switch (s) {
             case -2:
-              print2("<TR ALIGN=LEFT><TD><B>\n");
+              mminou.print2("<TR ALIGN=LEFT><TD><B>\n");
               break;
             case -1:
-              print2(
+              mminou.print2(
          "<CAPTION><B>List of Theorems</B></CAPTION><TR ALIGN=LEFT><TD><B>\n");
               break;
             case 0:
@@ -1952,10 +1952,10 @@ static final long SYNTAX =D.SYNTAX;
           }
           switch (s) {
             case -2:
-              print2("Symbol</B></TD><TD><B>ASCII\n");
+              mminou.print2("Symbol</B></TD><TD><B>ASCII\n");
               break;
             case -1:
-              print2(
+              mminou.print2(
                   "Ref</B></TD><TD><B>Description\n");
               break;
             case 0:
@@ -1965,7 +1965,7 @@ static final long SYNTAX =D.SYNTAX;
                 null), "", "\"");
               break;
           }
-          print2("</B></TD></TR>\n");
+          mminou.print2("</B></TD></TR>\n");
           m = 0;
           let(&str3, "");
           let(&bgcolor, MINT_BACKGROUND_COLOR);
@@ -2084,7 +2084,7 @@ static final long SYNTAX =D.SYNTAX;
                 }
 
 
-                print2("\n");
+                mminou.print2("\n");
                 printLongLine(str1, "", "\"");
 
                 if (s == 0 || g_briefHtmlFlag) {
@@ -2124,7 +2124,7 @@ static final long SYNTAX =D.SYNTAX;
 
           if (printTime == 1) {
             getRunTime(&timeIncr);
-            print2("SHOW STATEMENT run time = %6.2f sec for \"%s\"\n",
+            mminou.print2("SHOW STATEMENT run time = %6.2f sec for \"%s\"\n",
                 timeIncr,
                 g_texFileName);
           }
@@ -2172,7 +2172,7 @@ static final long SYNTAX =D.SYNTAX;
 
         continue;
       }
-      print2("Creating Mnemosyne file \"%s\"...\n", g_texFileName);
+      mminou.print2("Creating Mnemosyne file \"%s\"...\n", g_texFileName);
 
       for (s = 1; s <= g_statements; s++) {
         g_showStatement = s;
@@ -2272,7 +2272,7 @@ static final long SYNTAX =D.SYNTAX;
 
       if (texFlag) {
         if (!g_texFileOpenFlag) {
-          print2(
+          mminou.print2(
       "?You have not opened a %s file.  Use the OPEN TEX command first.\n",
               g_htmlFlag ? "HTML" : "LaTeX");
           continue;
@@ -2280,7 +2280,7 @@ static final long SYNTAX =D.SYNTAX;
       }
 
       if (texFlag && (commentOnlyFlag || briefFlag)) {
-        print2("?TEX qualifier should be used alone\n");
+        mminou.print2("?TEX qualifier should be used alone\n");
         continue;
       }
 
@@ -2303,10 +2303,10 @@ static final long SYNTAX =D.SYNTAX;
 
         if (q && !texFlag) {
 
-          if (!print2("%s\n", string(g_screenWidth, '-')))
+          if (!mminou.print2("%s\n", string(g_screenWidth, '-')))
             break;
         }
-        if (texFlag) print2("Outputting statement \"%s\"...\n",
+        if (texFlag) mminou.print2("Outputting statement \"%s\"...\n",
             g_Statement[s].labelName);
 
         q = 1;
@@ -2330,7 +2330,7 @@ static final long SYNTAX =D.SYNTAX;
       }
 
       if (texFlag && !g_htmlFlag) {
-        print2("The LaTeX source was written to \"%s\".\n", g_texFileName);
+        mminou.print2("The LaTeX source was written to \"%s\".\n", g_texFileName);
 
         g_oldTexFlag = 0;
       }
@@ -2338,83 +2338,83 @@ static final long SYNTAX =D.SYNTAX;
     }
 
     if (cmdMatches("SHOW SETTINGS")) {
-      print2("Metamath settings on %s at %s:\n",date(),time_());
+      mminou.print2("Metamath settings on %s at %s:\n",date(),time_());
       if (g_commandEcho) {
-        print2("(SET ECHO...) Command ECHO is ON.\n");
+        mminou.print2("(SET ECHO...) Command ECHO is ON.\n");
       } else {
-        print2("(SET ECHO...) Command ECHO is OFF.\n");
+        mminou.print2("(SET ECHO...) Command ECHO is OFF.\n");
       }
       if (defaultScrollMode == 1) {
-        print2("(SET SCROLL...) SCROLLing mode is PROMPTED.\n");
+        mminou.print2("(SET SCROLL...) SCROLLing mode is PROMPTED.\n");
       } else {
-        print2("(SET SCROLL...) SCROLLing mode is CONTINUOUS.\n");
+        mminou.print2("(SET SCROLL...) SCROLLing mode is CONTINUOUS.\n");
       }
-      print2("(SET WIDTH...) Screen display WIDTH is %ld.\n", g_screenWidth);
-      print2("(SET HEIGHT...) Screen display HEIGHT is %ld.\n",
+      mminou.print2("(SET WIDTH...) Screen display WIDTH is %ld.\n", g_screenWidth);
+      mminou.print2("(SET HEIGHT...) Screen display HEIGHT is %ld.\n",
           g_screenHeight + 1);
       if (g_sourceHasBeenRead == 1) {
-        print2("(READ...) %ld statements have been read from \"%s\".\n",
+        mminou.print2("(READ...) %ld statements have been read from \"%s\".\n",
             g_statements, g_input_fn);
       } else {
-        print2("(READ...) No source file has been read in yet.\n");
+        mminou.print2("(READ...) No source file has been read in yet.\n");
       }
-      print2("(SET ROOT_DIRECTORY...) Root directory is \"%s\".\n",
+      mminou.print2("(SET ROOT_DIRECTORY...) Root directory is \"%s\".\n",
           g_rootDirectory);
-      print2(
+      mminou.print2(
      "(SET DISCOURAGEMENT...) Blocking based on \"discouraged\" tags is %s.\n",
           (g_globalDiscouragement ? "ON" : "OFF"));
-      print2(
+      mminou.print2(
      "(SET CONTRIBUTOR...) The current contributor is \"%s\".\n",
           g_contributorName);
       if (g_PFASmode) {
-        print2("(PROVE...) The statement you are proving is \"%s\".\n",
+        mminou.print2("(PROVE...) The statement you are proving is \"%s\".\n",
             g_Statement[g_proveStatement].labelName);
       }
-      print2("(SET UNDO...) The maximum number of UNDOs is %ld.\n",
+      mminou.print2("(SET UNDO...) The maximum number of UNDOs is %ld.\n",
           processUndoStack(null, PUS_GET_SIZE, "", 0));
-      print2(
+      mminou.print2(
     "(SET UNIFICATION_TIMEOUT...) The unification timeout parameter is %ld.\n",
           g_userMaxUnifTrials);
-      print2(
+      mminou.print2(
     "(SET SEARCH_LIMIT...) The SEARCH_LIMIT for the IMPROVE command is %ld.\n",
           g_userMaxProveFloat);
       if (g_minSubstLen) {
-        print2(
+        mminou.print2(
      "(SET EMPTY_SUBSTITUTION...) EMPTY_SUBSTITUTION is not allowed (OFF).\n");
       } else {
-        print2(
+        mminou.print2(
           "(SET EMPTY_SUBSTITUTION...) EMPTY_SUBSTITUTION is allowed (ON).\n");
       }
       if (g_hentyFilter) {
-        print2(
+        mminou.print2(
               "(SET JEREMY_HENTY_FILTER...) The Henty filter is turned ON.\n");
       } else {
-        print2(
+        mminou.print2(
              "(SET JEREMY_HENTY_FILTER...) The Henty filter is turned OFF.\n");
       }
       if (g_showStatement) {
-        print2("(SHOW...) The default statement for SHOW commands is \"%s\".\n",
+        mminou.print2("(SHOW...) The default statement for SHOW commands is \"%s\".\n",
             g_Statement[g_showStatement].labelName);
       }
       if (g_logFileOpenFlag) {
-        print2("(OPEN LOG...) The log file \"%s\" is open.\n", g_logFileName);
+        mminou.print2("(OPEN LOG...) The log file \"%s\" is open.\n", g_logFileName);
       } else {
-        print2("(OPEN LOG...) No log file is currently open.\n");
+        mminou.print2("(OPEN LOG...) No log file is currently open.\n");
       }
       if (g_texFileOpenFlag) {
-        print2("The %s file \"%s\" is open.\n", g_htmlFlag ? "HTML" : "LaTeX",
+        mminou.print2("The %s file \"%s\" is open.\n", g_htmlFlag ? "HTML" : "LaTeX",
             g_texFileName);
       }
 
-      print2(
+      mminou.print2(
   "(SHOW STATEMENT.../[TEX,HTML,ALT_HTML]) Current output mode is %s.\n",
           g_htmlFlag
              ? (g_altHtmlFlag ? "ALT_HTML" : "HTML")
              : "TEX (LaTeX)");
 
-      print2("The program is compiled for a %ld-bit CPU.\n",
+      mminou.print2("The program is compiled for a %ld-bit CPU.\n",
           (long)(8 * sizeof(long)));
-      print2(
+      mminou.print2(
  "sizeof(short)=%ld, sizeof(int)=%ld, sizeof(long)=%ld, sizeof(size_t)=%ld.\n",
         (long)(sizeof(short)),
         (long)(sizeof(int)), (long)(sizeof(long)), (long)(sizeof(size_t)));
@@ -2428,9 +2428,9 @@ static final long SYNTAX =D.SYNTAX;
       i = getFreeSpace(j);
 
       if (i > j-3) {
-        print2("At least %ld bytes of memory are free.\n",j);
+        mminou.print2("At least %ld bytes of memory are free.\n",j);
       } else {
-        print2("%ld bytes of memory are free.\n",i);
+        mminou.print2("%ld bytes of memory are free.\n",i);
       }
       continue;
     }
@@ -2438,7 +2438,7 @@ static final long SYNTAX =D.SYNTAX;
 
     if (cmdMatches("SHOW ELAPSED_TIME")) {
       timeTotal = getRunTime(&timeIncr);
-      print2(
+      mminou.print2(
       "Time since last SHOW ELAPSED_TIME command = %6.2f s; total = %6.2f s\n",
           timeIncr, timeTotal);
       continue;
@@ -2481,25 +2481,25 @@ static final long SYNTAX =D.SYNTAX;
       }
       if (treeFlag) {
         if (axiomFlag) {
-          print2(
+          mminou.print2(
               "(Note:  The AXIOMS switch is ignored in TREE mode.)\n");
         }
         if (countStepsFlag) {
-          print2(
+          mminou.print2(
               "(Note:  The COUNT_STEPS switch is ignored in TREE mode.)\n");
         }
         if (matchFlag) {
-          print2(
+          mminou.print2(
   "(Note: The MATCH list is ignored in TREE mode.)\n");
         }
       } else {
         if (endIndent != 0) {
-          print2(
+          mminou.print2(
   "(Note:  The DEPTH is ignored if the TREE switch is not used.)\n");
         }
         if (countStepsFlag) {
           if (matchFlag) {
-            print2(
+            mminou.print2(
   "(Note: The MATCH list is ignored in COUNT_STEPS mode.)\n");
           }
         }
@@ -2635,16 +2635,16 @@ static final long SYNTAX =D.SYNTAX;
               if ((long)strlen(str3) + 1 +
                   (long)strlen(g_Statement[j].labelName) > g_screenWidth) {
 
-                print2("%s\n", str3);
+                mminou.print2("%s\n", str3);
                 let(&str3, " ");
               }
               let(&str3, cat(str3, " ", g_Statement[j].labelName, null));
             }
           }
-          if (strlen(str3) > 1) print2("%s\n", str3);
+          if (strlen(str3) > 1) mminou.print2("%s\n", str3);
           let(&str3, "");
         } else {
-          print2("  (None)\n");
+          mminou.print2("  (None)\n");
         }
 
 
@@ -2666,7 +2666,7 @@ static final long SYNTAX =D.SYNTAX;
         || cmdMatches("SAVE NEW_PROOF")
         || cmdMatches("MIDI")) {
       if (switchPos("/ HTML")) {
-        print2("?HTML qualifier is obsolete - use SHOW STATEMENT * / HTML\n");
+        mminou.print2("?HTML qualifier is obsolete - use SHOW STATEMENT * / HTML\n");
         continue;
       }
 
@@ -2675,15 +2675,15 @@ static final long SYNTAX =D.SYNTAX;
           && getMarkupFlag(g_proveStatement, PROOF_DISCOURAGED)) {
         if (switchPos("/ OVERRIDE") == 0 && g_globalDiscouragement == 1) {
 
-          print2(
+          mminou.print2(
 ">>> ?Error: Attempt to overwrite a proof whose modification is discouraged.\n");
-          print2(
+          mminou.print2(
    ">>> Use SAVE NEW_PROOF ... / OVERRIDE if you really want to do this.\n");
 
           continue;
         } else {
 
-          print2(
+          mminou.print2(
 ">>> ?Warning: You are overwriting a proof whose modification is discouraged.\n");
 
         }
@@ -2710,7 +2710,7 @@ static final long SYNTAX =D.SYNTAX;
       i = switchPos("/ OLD_COMPRESSION");
       if (i) {
         if (!switchPos("/ COMPRESSED")) {
-          print2("?/ OLD_COMPRESSION must be accompanied by / COMPRESSED.\n");
+          mminou.print2("?/ OLD_COMPRESSION must be accompanied by / COMPRESSED.\n");
           continue;
         }
       }
@@ -2719,7 +2719,7 @@ static final long SYNTAX =D.SYNTAX;
       i = switchPos("/ FAST");
       if (i) {
         if (!switchPos("/ COMPRESSED") && !switchPos("/ PACKED")) {
-          print2("?/ FAST must be accompanied by / COMPRESSED or / PACKED.\n");
+          mminou.print2("?/ FAST must be accompanied by / COMPRESSED or / PACKED.\n");
           continue;
         }
         fastFlag = 1;
@@ -2730,16 +2730,16 @@ static final long SYNTAX =D.SYNTAX;
 
       if (switchPos("/ EXPLICIT")) {
         if (switchPos("/ COMPRESSED")) {
-          print2("?/ COMPRESSED and / EXPLICIT may not be used together.\n");
+          mminou.print2("?/ COMPRESSED and / EXPLICIT may not be used together.\n");
           continue;
         } else if (switchPos("/ NORMAL")) {
-          print2("?/ NORMAL and / EXPLICIT may not be used together.\n");
+          mminou.print2("?/ NORMAL and / EXPLICIT may not be used together.\n");
           continue;
         }
       }
       if (switchPos("/ NORMAL")) {
         if (switchPos("/ COMPRESSED")) {
-          print2("?/ NORMAL and / COMPRESSED may not be used together.\n");
+          mminou.print2("?/ NORMAL and / COMPRESSED may not be used together.\n");
           continue;
         }
       }
@@ -2771,7 +2771,7 @@ static final long SYNTAX =D.SYNTAX;
       i = switchPos("/ ALL");
       if (i) essentialFlag = 0;
       if (i && switchPos("/ ESSENTIAL")) {
-        print2("?You may not specify both / ESSENTIAL and / ALL.\n");
+        mminou.print2("?You may not specify both / ESSENTIAL and / ALL.\n");
         continue;
       }
       i = switchPos("/ RENUMBER");
@@ -2791,7 +2791,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
       if (skipRepeatedSteps == 1 && noIndentFlag == 0) {
-        print2("?You must specify / LEMMON with / NO_REPEATED_STEPS\n");
+        mminou.print2("?You must specify / LEMMON with / NO_REPEATED_STEPS\n");
         continue;
       }
 
@@ -2823,7 +2823,7 @@ static final long SYNTAX =D.SYNTAX;
 
       if (texFlag) {
         if (!g_texFileOpenFlag) {
-          print2(
+          mminou.print2(
      "?You have not opened a %s file.  Use the OPEN %s command first.\n",
               g_htmlFlag ? "HTML" : "LaTeX",
               g_htmlFlag ? "HTML" : "TEX");
@@ -2843,7 +2843,7 @@ static final long SYNTAX =D.SYNTAX;
 
       if (switchPos("/ COMPRESSED") && fastFlag
           && !strcmp("*", labelMatch)) {
-        print2(
+        mminou.print2(
             "Reformatting and saving (but not recompressing) all proofs...\n");
       }
 
@@ -2886,7 +2886,7 @@ static final long SYNTAX =D.SYNTAX;
           } else {
             n = n - 1;
           }
-          print2("The proof source for \"%s\" has %ld characters.\n",
+          mminou.print2("The proof source for \"%s\" has %ld characters.\n",
               g_Statement[g_showStatement].labelName, n);
           continue;
         }
@@ -2918,7 +2918,7 @@ static final long SYNTAX =D.SYNTAX;
             if (g_WrkProof.errorSeverity > 1) {
 
 
-              print2(
+              mminou.print2(
           "?The proof has a severe error and cannot be displayed or saved.\n");
               continue;
             }
@@ -2961,9 +2961,9 @@ static final long SYNTAX =D.SYNTAX;
             g_outputToString = 1;
 
           } else {
-            if (!print2("Proof of \"%s\":\n", g_Statement[outStatement].labelName))
+            if (!mminou.print2("Proof of \"%s\":\n", g_Statement[outStatement].labelName))
               break;
-            print2(
+            mminou.print2(
 "---------Clip out the proof below this line to put it in the source file:\n");
 
 
@@ -3126,7 +3126,7 @@ static final long SYNTAX =D.SYNTAX;
 
             if (printTime == 1) {
               getRunTime(&timeIncr);
-              print2("SAVE PROOF run time = %6.2f sec for \"%s\"\n", timeIncr,
+              mminou.print2("SAVE PROOF run time = %6.2f sec for \"%s\"\n", timeIncr,
                   g_Statement[outStatement].labelName);
             }
 
@@ -3135,14 +3135,14 @@ static final long SYNTAX =D.SYNTAX;
 #ifdef DATE_BELOW_PROOF
 
 
-            if (str5[0] != 0) print2("%s\n", str5);
+            if (str5[0] != 0) mminou.print2("%s\n", str5);
 
 #endif
 
 
 
 
-            print2(cat(
+            mminou.print2(cat(
                 "---------The proof of \"", g_Statement[outStatement].labelName,
 
 
@@ -3165,17 +3165,17 @@ static final long SYNTAX =D.SYNTAX;
           if (!g_htmlFlag) {
             if (!g_oldTexFlag) {
 
-              print2("\\begin{proof}\n");
-              print2("\\begin{align}\n");
+              mminou.print2("\\begin{proof}\n");
+              mminou.print2("\\begin{align}\n");
             } else {
-              print2("\n");
-              print2("\\vspace{1ex} %%1\n");
+              mminou.print2("\n");
+              mminou.print2("\\vspace{1ex} %%1\n");
               printLongLine(cat("Proof of ",
                   "{\\tt ",
                   asciiToTt(g_Statement[outStatement].labelName),
                   "}:", null), "", " ");
-              print2("\n");
-              print2("\n");
+              mminou.print2("\n");
+              mminou.print2("\n");
             }
           } else {
             bug(1118);
@@ -3190,14 +3190,14 @@ static final long SYNTAX =D.SYNTAX;
           if (!pipFlag) {
 
             if (instr(1, labelMatch, "*") || instr(1, labelMatch, "?")) {
-              if (!print2("Proof of \"%s\":\n", g_Statement[outStatement].labelName))
+              if (!mminou.print2("Proof of \"%s\":\n", g_Statement[outStatement].labelName))
                 break;
             }
           }
         }
 
 
-        if (texFlag) print2("Outputting proof of \"%s\"...\n",
+        if (texFlag) mminou.print2("Outputting proof of \"%s\"...\n",
             g_Statement[outStatement].labelName);
 
         typeProof(outStatement,
@@ -3228,9 +3228,9 @@ static final long SYNTAX =D.SYNTAX;
 
             if (!g_oldTexFlag) {
               g_outputToString = 1;
-              print2("\\end{align}\n");
-              print2("\\end{proof}\n");
-              print2("\n");
+              mminou.print2("\\end{align}\n");
+              mminou.print2("\\end{proof}\n");
+              mminou.print2("\n");
               g_outputToString = 0;
               fprintf(g_texFilePtr, "%s", g_printString);
               let(&g_printString, "");
@@ -3238,8 +3238,8 @@ static final long SYNTAX =D.SYNTAX;
             }
           } else {
             g_outputToString = 1;
-            print2("</TABLE>\n");
-            print2("</CENTER>\n");
+            mminou.print2("</TABLE>\n");
+            mminou.print2("</CENTER>\n");
 
             g_outputToString = 0;
           }
@@ -3253,14 +3253,14 @@ static final long SYNTAX =D.SYNTAX;
 
                 0,
                 0 )," "," ");
-          print2("\n");
+           mminou.print2("\n");
 
           nmbrLet(&nmbrSaveProof, nmbrSquishProof(g_WrkProof.proofString));
           printLongLine(nmbrCvtRToVString(nmbrSaveProof,
 
                 0,
                 0 )," "," ");
-          print2("\n");
+           mminou.print2("\n");
 
           nmbrLet(&nmbrTmp, nmbrUnsquishProof(nmbrSaveProof));
           printLongLine(nmbrCvtRToVString(nmbrTmp,
@@ -3269,10 +3269,10 @@ static final long SYNTAX =D.SYNTAX;
                 0 )," "," ");
 
           nmbrLet(&nmbrTmp, nmbrGetTargetHyp(nmbrSaveProof,g_showStatement));
-          printLongLine(nmbrCvtAnyToVString(nmbrTmp)," "," "); print2("\n");
+          printLongLine(nmbrCvtAnyToVString(nmbrTmp)," "," "); mminou.print2("\n");
 
           nmbrLet(&nmbrTmp, nmbrGetEssential(nmbrSaveProof));
-          printLongLine(nmbrCvtAnyToVString(nmbrTmp)," "," "); print2("\n");
+          printLongLine(nmbrCvtAnyToVString(nmbrTmp)," "," "); mminou.print2("\n");
 
           cleanWrkProof();
         }
@@ -3287,10 +3287,10 @@ static final long SYNTAX =D.SYNTAX;
             "Use SHOW LABELS to see list of valid labels.", null), "", " ");
       } else {
         if (saveFlag) {
-          print2("Remember to use WRITE SOURCE to save changes permanently.\n");
+          mminou.print2("Remember to use WRITE SOURCE to save changes permanently.\n");
         }
         if (texFlag) {
-          print2("The LaTeX source was written to \"%s\".\n", g_texFileName);
+          mminou.print2("The LaTeX source was written to \"%s\".\n", g_texFileName);
 
          g_oldTexFlag = 0;
         }
@@ -3302,17 +3302,17 @@ static final long SYNTAX =D.SYNTAX;
 
 
     if (cmdMatches("DBG")) {
-      print2("DEBUGGING MODE IS FOR DEVELOPER'S USE ONLY!\n");
-      print2("Argument:  %s\n", g_fullArg[1]);
+      mminou.print2("DEBUGGING MODE IS FOR DEVELOPER'S USE ONLY!\n");
+      mminou.print2("Argument:  %s\n", g_fullArg[1]);
       nmbrLet(&nmbrTmp, parseMathTokens(g_fullArg[1], g_proveStatement));
       for (j = 0; j < 3; j++) {
-        print2("Trying depth %ld\n", j);
+        mminou.print2("Trying depth %ld\n", j);
         nmbrTmpPtr = proveFloating(nmbrTmp, g_proveStatement, j, 0, 0,
             1, 1);
         if (nmbrLen(nmbrTmpPtr)) break;
       }
 
-      print2("Result:  %s\n", nmbrCvtRToVString(nmbrTmpPtr,
+      mminou.print2("Result:  %s\n", nmbrCvtRToVString(nmbrTmpPtr,
 
                 0,
                 0 ));
@@ -3348,10 +3348,10 @@ static final long SYNTAX =D.SYNTAX;
       if (getMarkupFlag(g_proveStatement, PROOF_DISCOURAGED)) {
         if (overrideFlag == 0) {
 
-          print2(
+          mminou.print2(
  ">>> ?Error: Modification of this statement's proof is discouraged.\n"
               );
-          print2(
+          mminou.print2(
  ">>> You must use PROVE ... / OVERRIDE to work on it.\n");
 
           continue;
@@ -3360,7 +3360,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
 
-      print2(
+      mminou.print2(
 "Entering the Proof Assistant.  HELP PROOF_ASSISTANT for help, EXIT to exit.\n");
 
 
@@ -3369,7 +3369,7 @@ static final long SYNTAX =D.SYNTAX;
       parseProof(g_proveStatement);
       verifyProof(g_proveStatement);
       if (g_WrkProof.errorSeverity > 1) {
-        print2(
+        mminou.print2(
              "The starting proof has a severe error.  It will not be used.\n");
         nmbrLet(&nmbrSaveProof, nmbrAddElement(NULL_NMBRSTRING, -(long)'?'));
       } else {
@@ -3383,7 +3383,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
 
-      print2("You will be working on statement (from \"SHOW STATEMENT %s\"):\n",
+      mminou.print2("You will be working on statement (from \"SHOW STATEMENT %s\"):\n",
           g_Statement[g_proveStatement].labelName);
       typeStatement(g_proveStatement ,
           1 ,
@@ -3392,11 +3392,11 @@ static final long SYNTAX =D.SYNTAX;
           0 );
 
       if (!nmbrElementIn(1, g_ProofInProgress.proof, -(long)'?')) {
-        print2(
+        mminou.print2(
         "Note:  The proof you are starting with is already complete.\n");
       } else {
 
-        print2(
+        mminou.print2(
      "Unknown step summary (from \"SHOW NEW_PROOF / UNKNOWN\"):\n");
         typeProof(g_proveStatement,
             1 ,
@@ -3419,7 +3419,7 @@ static final long SYNTAX =D.SYNTAX;
 
       if (getMarkupFlag(g_proveStatement, PROOF_DISCOURAGED)) {
 
-        print2(
+        mminou.print2(
 ">>> ?Warning: Modification of this statement's proof is discouraged.\n"
             );
 
@@ -3484,7 +3484,7 @@ static final long SYNTAX =D.SYNTAX;
 
         s = (long)val(g_fullArg[2]);
         if (s > m || s < 1) {
-          print2("?The step must be in the range from 1 to %ld.\n", m);
+          mminou.print2("?The step must be in the range from 1 to %ld.\n", m);
           continue;
         }
 
@@ -3505,9 +3505,9 @@ static final long SYNTAX =D.SYNTAX;
       if (!switchPos("/ INTERACTIVE")) {
         autoUnify(1);
         if (!g_proofChangedFlag) {
-          print2("No new unifications were made.\n");
+          mminou.print2("No new unifications were made.\n");
         } else {
-          print2(
+          mminou.print2(
   "Steps were unified.  SHOW NEW_PROOF / NOT_UNIFIED to see any remaining.\n");
           g_proofChanged = 1;
           processUndoStack(&g_ProofInProgress, PUS_PUSH, g_fullArgString, 0);
@@ -3523,9 +3523,9 @@ static final long SYNTAX =D.SYNTAX;
           autoUnify(1);
           if (!g_proofChangedFlag) {
             if (!q) {
-              print2("No new unifications were made.\n");
+              mminou.print2("No new unifications were made.\n");
             } else {
-              print2(
+              mminou.print2(
   "Steps were unified.  SHOW NEW_PROOF / NOT_UNIFIED to see any remaining.\n");
               g_proofChanged = 1;
               processUndoStack(&g_ProofInProgress, PUS_PUSH, g_fullArgString, 0);
@@ -3566,11 +3566,11 @@ static final long SYNTAX =D.SYNTAX;
         s = (long)val(g_fullArg[2]);
         m = nmbrLen(g_ProofInProgress.proof);
         if (s > m || s < 1) {
-          print2("?The step must be in the range from 1 to %ld.\n", m);
+          mminou.print2("?The step must be in the range from 1 to %ld.\n", m);
           continue;
         }
         if ((g_ProofInProgress.proof)[s - 1] != -(long)'?') {
-          print2(
+          mminou.print2(
     "?Step %ld is already assigned.  Only unknown steps can be matched.\n", s);
           continue;
         }
@@ -3622,13 +3622,13 @@ static final long SYNTAX =D.SYNTAX;
             k = s;
             g_proofChangedFlag = 0;
           }
-          print2("\n");
+          mminou.print2("\n");
         }
         if (k) {
           g_proofChangedFlag = 1;
           g_proofChanged = 1;
           processUndoStack(&g_ProofInProgress, PUS_PUSH, g_fullArgString, 0);
-          print2("Steps %ld and above have been renumbered.\n", k);
+          mminou.print2("Steps %ld and above have been renumbered.\n", k);
         }
         autoUnify(1);
 
@@ -3648,13 +3648,13 @@ static final long SYNTAX =D.SYNTAX;
 
       if (cmdMatches("LET VARIABLE")) {
         if (((vstring)(g_fullArg[2]))[0] != '$') {
-          print2(
+          mminou.print2(
    "?The target variable must be of the form \"$<integer>\", e.g. \"$23\".\n");
           continue;
         }
         n = (long)val(right(g_fullArg[2], 2));
         if (n < 1 || n > g_pipDummyVars) {
-          print2("?The target variable must be between $1 and $%ld.\n",
+          mminou.print2("?The target variable must be between $1 and $%ld.\n",
               g_pipDummyVars);
           continue;
         }
@@ -3746,15 +3746,15 @@ static final long SYNTAX =D.SYNTAX;
       if (getMarkupFlag(k, USAGE_DISCOURAGED)) {
         if (overrideFlag == 0) {
 
-          print2(
+          mminou.print2(
 ">>> ?Error: Attempt to assign a statement whose usage is discouraged.\n");
-          print2(
+          mminou.print2(
        ">>> Use ASSIGN ... / OVERRIDE if you really want to do this.\n");
 
           continue;
         } else {
 
-          print2(
+          mminou.print2(
 ">>> ?Warning: You are assigning a statement whose usage is discouraged.\n");
 
         }
@@ -3766,7 +3766,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
       if ((g_ProofInProgress.proof)[s - 1] != -(long)'?') {
-        print2(
+        mminou.print2(
         "?Step %ld is already assigned.  You can only assign unknown steps.\n"
             , s);
         continue;
@@ -3774,7 +3774,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
       if (!checkStmtMatch(k, s - 1)) {
-        print2("?Statement \"%s\" cannot be unified with step %ld.\n",
+        mminou.print2("?Statement \"%s\" cannot be unified with step %ld.\n",
           g_Statement[k].labelName, s);
         continue;
       }
@@ -3865,15 +3865,15 @@ static final long SYNTAX =D.SYNTAX;
       if (getMarkupFlag(stmt, USAGE_DISCOURAGED)) {
         if (overrideFlag == 0) {
 
-          print2(
+          mminou.print2(
 ">>> ?Error: Attempt to assign a statement whose usage is discouraged.\n");
-          print2(
+          mminou.print2(
        ">>> Use REPLACE ... / OVERRIDE if you really want to do this.\n");
 
           continue;
         } else {
 
-          print2(
+          mminou.print2(
 ">>> ?Warning: You are assigning a statement whose usage is discouraged.\n");
 
         }
@@ -3893,7 +3893,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
       if (!checkStmtMatch(stmt, step - 1)) {
-        print2("?Statement \"%s\" cannot be unified with step %ld.\n",
+        mminou.print2("?Statement \"%s\" cannot be unified with step %ld.\n",
           g_Statement[stmt].labelName, step);
         continue;
       }
@@ -3916,7 +3916,7 @@ static final long SYNTAX =D.SYNTAX;
           1
           );
       if (!nmbrLen(nmbrTmpPtr)) {
-        print2(
+        mminou.print2(
            "?Hypotheses of statement \"%s\" do not match known proof steps.\n",
             g_Statement[stmt].labelName);
         continue;
@@ -3947,7 +3947,7 @@ static final long SYNTAX =D.SYNTAX;
       if (nmbrElementIn(1, g_ProofInProgress.proof, -(long)'?')) {
 
         if (m == n) {
-          print2("Step %ld was replaced with statement %s.\n",
+          mminou.print2("Step %ld was replaced with statement %s.\n",
             step, g_Statement[stmt].labelName);
         } else {
           if (step != m) {
@@ -4062,7 +4062,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
         if (!nmbrElementIn(1, nmbrTmp, -(long)'?')) {
-          print2(
+          mminou.print2(
               "?Step %ld already has a proof and cannot be improved.\n",
               s);
           continue;
@@ -4073,7 +4073,7 @@ static final long SYNTAX =D.SYNTAX;
         dummyVarIsoFlag = checkDummyVarIsolation(s - 1);
 
         if (dummyVarIsoFlag == 2) {
-          print2(
+          mminou.print2(
   "?Step %ld target has shared dummy variables and cannot be improved.\n", s);
           continue;
         }
@@ -4106,7 +4106,7 @@ static final long SYNTAX =D.SYNTAX;
               );
           }
           if (!nmbrLen(nmbrTmpPtr)) {
-            print2("A proof for step %ld was not found.\n", s);
+            mminou.print2("A proof for step %ld was not found.\n", s);
 
             continue;
           }
@@ -4120,7 +4120,7 @@ static final long SYNTAX =D.SYNTAX;
 
         n = nmbrLen(g_ProofInProgress.proof);
         if (m == n) {
-          print2("A 1-step proof was found for step %ld.\n", s);
+          mminou.print2("A 1-step proof was found for step %ld.\n", s);
         } else {
           if (s != m || q != 1) {
             printLongLine(cat("A ", str((double)(n - m + 1)),
@@ -4150,7 +4150,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
         if (!nmbrElementIn(1, g_ProofInProgress.proof, -(long)'?')) {
-          print2("The proof is already complete.\n");
+          mminou.print2("The proof is already complete.\n");
           continue;
         }
 
@@ -4161,23 +4161,23 @@ static final long SYNTAX =D.SYNTAX;
         for (improveAllIter = 1; improveAllIter <= 4; improveAllIter++) {
 
           if (improveAllIter == 1 && (searchAlg == 2 || searchAlg == 3))
-            print2("Pass 1:  Trying to match cut-free statements...\n");
+            mminou.print2("Pass 1:  Trying to match cut-free statements...\n");
           if (improveAllIter == 2) {
             if (searchAlg == 2) {
-              print2("Pass 2:  Trying to match all statements...\n");
+              mminou.print2("Pass 2:  Trying to match all statements...\n");
             } else {
-              print2(
+              mminou.print2(
 "Pass 2:  Trying to match all statements, with cut-free hypothesis matches...\n"
                   );
             }
           }
           if (improveAllIter == 3 && searchUnkSubproofs)
-            print2("Pass 3:  Trying to replace incomplete subproofs...\n");
+            mminou.print2("Pass 3:  Trying to replace incomplete subproofs...\n");
           if (improveAllIter == 4) {
             if (searchUnkSubproofs) {
-              print2("Pass 4:  Repeating pass 1...\n");
+              mminou.print2("Pass 4:  Repeating pass 1...\n");
             } else {
-              print2("Pass 3:  Repeating pass 1...\n");
+              mminou.print2("Pass 3:  Repeating pass 1...\n");
             }
           }
 
@@ -4261,7 +4261,7 @@ static final long SYNTAX =D.SYNTAX;
             if (q > 1) deleteSubProof(s - 1);
             addSubProof(nmbrTmpPtr, s - q);
             assignKnownSteps(s - q, nmbrLen(nmbrTmpPtr));
-            print2("A proof of length %ld was found for step %ld.\n",
+            mminou.print2("A proof of length %ld was found for step %ld.\n",
                 nmbrLen(nmbrTmpPtr), s);
             if (nmbrLen(nmbrTmpPtr) || q != 1) n = s - q + 1;
 
@@ -4278,7 +4278,7 @@ static final long SYNTAX =D.SYNTAX;
               && ( (improveAllIter == 2 && !searchUnkSubproofs)
                  || improveAllIter == 3
                  || searchAlg == 1)) {
-            print2("No new subproofs were found.\n");
+            mminou.print2("No new subproofs were found.\n");
             break;
           }
           if (g_proofChangedFlag) {
@@ -4295,7 +4295,7 @@ static final long SYNTAX =D.SYNTAX;
 
         if (g_proofChangedFlag) {
           if (n > 0) {
-            print2("Steps %ld and above have been renumbered.\n", n);
+            mminou.print2("Steps %ld and above have been renumbered.\n", n);
           }
           processUndoStack(&g_ProofInProgress, PUS_PUSH, g_fullArgString, 0);
         }
@@ -4420,7 +4420,7 @@ static final long SYNTAX =D.SYNTAX;
           0
           ));
       origCompressedLength = (long)strlen(str1);
-      print2(
+      mminou.print2(
 "Bytes refer to compressed proof size, steps to uncompressed length.\n");
 
 
@@ -4429,7 +4429,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
         if (forwRevPass == 1) {
-          if (hasWildCard) print2("Scanning forward through statements...\n");
+          if (hasWildCard) mminou.print2("Scanning forward through statements...\n");
           forwFlag = 1;
         } else {
 
@@ -4438,7 +4438,7 @@ static final long SYNTAX =D.SYNTAX;
           if (!g_proofChangedFlag) break;
 
           if (!hasWildCard) break;
-          print2("Scanning backward through statements...\n");
+          mminou.print2("Scanning backward through statements...\n");
           forwFlag = 0;
 
           copyProofStruct(&save1stPassProof, g_ProofInProgress);
@@ -4619,11 +4619,11 @@ static final long SYNTAX =D.SYNTAX;
               if (!mayGrowFlag && newCompressedLength > oldCompressedLength) {
 
                 if (verboseMode) {
-                  print2(
+                  mminou.print2(
  "Reverting \"%s\": Uncompressed steps:  old = %ld, new = %ld\n",
                       g_Statement[k].labelName,
                       m, n );
-                  print2(
+                  mminou.print2(
  "    but compressed size:  old = %ld bytes, new = %ld bytes\n",
                       oldCompressedLength, newCompressedLength);
                 }
@@ -4691,7 +4691,7 @@ static final long SYNTAX =D.SYNTAX;
             if (getMarkupFlag(k, USAGE_DISCOURAGED)) {
               if (!overrideFlag) bug(1126);
 
-              print2(
+              mminou.print2(
                   ">>> ?Warning: Overriding discouraged usage of \"%s\".\n",
                   g_Statement[k].labelName);
 
@@ -4699,19 +4699,19 @@ static final long SYNTAX =D.SYNTAX;
 
             if (!mayGrowFlag) {
               if (newCompressedLength < oldCompressedLength) {
-                print2(
+                mminou.print2(
      "Proof of \"%s\" decreased from %ld to %ld bytes using \"%s\".\n",
                     g_Statement[g_proveStatement].labelName,
                     oldCompressedLength, newCompressedLength,
                     g_Statement[k].labelName);
               } else {
                 if (newCompressedLength > oldCompressedLength) bug(1123);
-                print2(
+                mminou.print2(
      "Proof of \"%s\" stayed at %ld bytes using \"%s\".\n",
                     g_Statement[g_proveStatement].labelName,
                     oldCompressedLength,
                     g_Statement[k].labelName);
-                print2(
+                mminou.print2(
     "    (Uncompressed steps decreased from %ld to %ld).\n",
                     m, n );
               }
@@ -4720,19 +4720,19 @@ static final long SYNTAX =D.SYNTAX;
             }
 
             if (n < m && (mayGrowFlag || verboseMode)) {
-              print2(
+              mminou.print2(
       "%sProof of \"%s\" decreased from %ld to %ld steps using \"%s\".\n",
                 (mayGrowFlag ? "" : "    "),
                 g_Statement[g_proveStatement].labelName,
                 m, n, g_Statement[k].labelName);
             }
 
-            if (m < n) print2(
+            if (m < n) mminou.print2(
       "Proof of \"%s\" increased from %ld to %ld steps using \"%s\".\n",
                 g_Statement[g_proveStatement].labelName,
                 m, n, g_Statement[k].labelName);
 
-            if (m == n) print2(
+            if (m == n) mminou.print2(
                 "Proof of \"%s\" remained at %ld steps using \"%s\".\n",
                 g_Statement[g_proveStatement].labelName,
                 m, g_Statement[k].labelName);
@@ -4766,7 +4766,7 @@ static final long SYNTAX =D.SYNTAX;
         if (g_proofChangedFlag && forwRevPass == 2) {
 
           if (verboseMode) {
-            print2(
+            mminou.print2(
 "Forward vs. backward: %ld vs. %ld bytes; %ld vs. %ld steps\n",
                       forwardCompressedLength,
                       oldCompressedLength,
@@ -4777,33 +4777,33 @@ static final long SYNTAX =D.SYNTAX;
                || (oldCompressedLength == forwardCompressedLength &&
                    nmbrLen(g_ProofInProgress.proof) < forwardLength)) {
 
-            print2("The backward scan results were used.\n");
+            mminou.print2("The backward scan results were used.\n");
           } else {
             copyProofStruct(&g_ProofInProgress, save1stPassProof);
-            print2("The forward scan results were used.\n");
+            mminou.print2("The forward scan results were used.\n");
           }
         }
 
       }
 
       if (prntStatus == 1 && !mayGrowFlag)
-        print2("No shorter proof was found.\n");
+        mminou.print2("No shorter proof was found.\n");
       if (prntStatus == 1 && mayGrowFlag)
-        print2("The proof was not changed.\n");
+        mminou.print2("The proof was not changed.\n");
       if (!prntStatus )
-        print2("?No earlier %s$p or $a label matches \"%s\".\n",
+        mminou.print2("?No earlier %s$p or $a label matches \"%s\".\n",
             (overrideFlag ? "" : "(allowed) "),
             g_fullArg[1]);
 
       if (!mathboxFlag && g_proveStatement >= g_mathboxStmt) {
-        print2(
+        mminou.print2(
   "(Other mathboxes were not checked.  Use / INCLUDE_MATHBOXES to include them.)\n");
       }
 
 
       if (printTime == 1) {
         getRunTime(&timeIncr);
-        print2("MINIMIZE_WITH run time = %7.2f sec for \"%s\"\n", timeIncr,
+        mminou.print2("MINIMIZE_WITH run time = %7.2f sec for \"%s\"\n", timeIncr,
             g_Statement[g_proveStatement].labelName);
       }
 
@@ -4887,7 +4887,7 @@ static final long SYNTAX =D.SYNTAX;
 
         processUndoStack(&g_ProofInProgress, PUS_PUSH, g_fullArgString, 0);
       } else {
-        print2("No expansion occurred.  The proof was not changed.\n");
+        mminou.print2("No expansion occurred.  The proof was not changed.\n");
       }
       nmbrLet(&nmbrSaveProof, NULL_NMBRSTRING);
       nmbrLet(&nmbrTmp, NULL_NMBRSTRING);
@@ -4903,19 +4903,19 @@ static final long SYNTAX =D.SYNTAX;
         s = nmbrLen(g_ProofInProgress.proof);
       }
       if ((g_ProofInProgress.proof)[s - 1] == -(long)'?') {
-        print2("?Step %ld is unknown and cannot be deleted.\n", s);
+        mminou.print2("?Step %ld is unknown and cannot be deleted.\n", s);
         continue;
       }
       m = nmbrLen(g_ProofInProgress.proof);
       if (s > m || s < 1) {
-        print2("?The step must be in the range from 1 to %ld.\n", m);
+        mminou.print2("?The step must be in the range from 1 to %ld.\n", m);
         continue;
       }
 
       deleteSubProof(s - 1);
       n = nmbrLen(g_ProofInProgress.proof);
       if (m == n) {
-        print2("Step %ld was deleted.\n", s);
+        mminou.print2("Step %ld was deleted.\n", s);
       } else {
         if (n > 1) {
           printLongLine(cat("A ", str((double)(m - n + 1)),
@@ -4926,7 +4926,7 @@ static final long SYNTAX =D.SYNTAX;
               null),
               "", " ");
         } else {
-          print2("The entire proof was deleted.\n");
+          mminou.print2("The entire proof was deleted.\n");
         }
       }
 
@@ -4981,10 +4981,10 @@ static final long SYNTAX =D.SYNTAX;
       }
 
       if (g_proofChangedFlag) {
-        print2("All floating-hypothesis steps were deleted.\n");
+        mminou.print2("All floating-hypothesis steps were deleted.\n");
 
         if (n) {
-          print2("Steps %ld and above have been renumbered.\n", n);
+          mminou.print2("Steps %ld and above have been renumbered.\n", n);
         }
 
         typeProof(g_proveStatement,
@@ -5007,7 +5007,7 @@ static final long SYNTAX =D.SYNTAX;
         g_proofChanged = 1;
         processUndoStack(&g_ProofInProgress, PUS_PUSH, g_fullArgString, 0);
       } else {
-        print2("?There are no floating-hypothesis steps to delete.\n");
+        mminou.print2("?There are no floating-hypothesis steps to delete.\n");
       }
 
       continue;
@@ -5030,7 +5030,7 @@ static final long SYNTAX =D.SYNTAX;
 
         assignKnownSubProofs();
 
-        print2("All steps have been initialized.\n");
+        mminou.print2("All steps have been initialized.\n");
         g_proofChanged = 1;
         processUndoStack(&g_ProofInProgress, PUS_PUSH, g_fullArgString, 0);
         continue;
@@ -5044,7 +5044,7 @@ static final long SYNTAX =D.SYNTAX;
           nmbrLet((nmbrString **)(&((g_ProofInProgress.user)[j])),
               NULL_NMBRSTRING);
         }
-        print2(
+        mminou.print2(
       "All LET STEP user assignments have been initialized (i.e. deleted).\n");
         g_proofChanged = 1;
         processUndoStack(&g_ProofInProgress, PUS_PUSH, g_fullArgString, 0);
@@ -5055,7 +5055,7 @@ static final long SYNTAX =D.SYNTAX;
 
       s = (long)val(g_fullArg[2]);
       if (s > nmbrLen(g_ProofInProgress.proof) || s < 1) {
-        print2("?The step must be in the range from 1 to %ld.\n",
+        mminou.print2("?The step must be in the range from 1 to %ld.\n",
             nmbrLen(g_ProofInProgress.proof));
         continue;
       }
@@ -5066,7 +5066,7 @@ static final long SYNTAX =D.SYNTAX;
       nmbrLet((nmbrString **)(&((g_ProofInProgress.user)[s - 1])),
               NULL_NMBRSTRING);
 
-      print2(
+      mminou.print2(
           "Step %ld and its hypotheses have been initialized.\n",
           s);
 
@@ -5199,7 +5199,7 @@ static final long SYNTAX =D.SYNTAX;
               }
             }
           }
-          print2("%s\n", cat(str((double)i), " ", g_Statement[i].labelName, " $",
+          mminou.print2("%s\n", cat(str((double)i), " ", g_Statement[i].labelName, " $",
               chr(g_Statement[i].type), " \"", str3, "\"", null));
           let(&str2, "");
         } else {
@@ -5257,23 +5257,23 @@ static final long SYNTAX =D.SYNTAX;
       if (cmdMatches("SET ECHO ON")) {
         g_commandEcho = 1;
 
-        print2("!SET ECHO ON\n");
-        print2("Command line echoing is now turned on.\n");
+        mminou.print2("!SET ECHO ON\n");
+        mminou.print2("Command line echoing is now turned on.\n");
       } else {
         g_commandEcho = 0;
-        print2("Command line echoing is now turned off.\n");
+        mminou.print2("Command line echoing is now turned off.\n");
       }
       continue;
     }
 
     if (cmdMatches("SET MEMORY_STATUS")) {
       if (cmdMatches("SET MEMORY_STATUS ON")) {
-        print2("Memory status display has been turned on.\n");
-        print2("This command is intended for debugging purposes only.\n");
+        mminou.print2("Memory status display has been turned on.\n");
+        mminou.print2("This command is intended for debugging purposes only.\n");
         g_memoryStatus = 1;
       } else {
         g_memoryStatus = 0;
-        print2("Memory status display has been turned off.\n");
+        mminou.print2("Memory status display has been turned off.\n");
       }
       continue;
     }
@@ -5281,12 +5281,12 @@ static final long SYNTAX =D.SYNTAX;
 
     if (cmdMatches("SET JEREMY_HENTY_FILTER")) {
       if (cmdMatches("SET JEREMY_HENTY_FILTER ON")) {
-        print2("The unification equivalence filter has been turned on.\n");
-        print2("This command is intended for debugging purposes only.\n");
+        mminou.print2("The unification equivalence filter has been turned on.\n");
+        mminou.print2("This command is intended for debugging purposes only.\n");
         g_hentyFilter = 1;
       } else {
-        print2("This command is intended for debugging purposes only.\n");
-        print2("The unification equivalence filter has been turned off.\n");
+        mminou.print2("This command is intended for debugging purposes only.\n");
+        mminou.print2("The unification equivalence filter has been turned off.\n");
         g_hentyFilter = 0;
       }
       continue;
@@ -5296,7 +5296,7 @@ static final long SYNTAX =D.SYNTAX;
     if (cmdMatches("SET EMPTY_SUBSTITUTION")) {
       if (cmdMatches("SET EMPTY_SUBSTITUTION ON")) {
         g_minSubstLen = 0;
-        print2("Substitutions with empty symbol sequences is now allowed.\n");
+        mminou.print2("Substitutions with empty symbol sequences is now allowed.\n");
         continue;
       }
       if (cmdMatches("SET EMPTY_SUBSTITUTION OFF")) {
@@ -5313,7 +5313,7 @@ static final long SYNTAX =D.SYNTAX;
 
     if (cmdMatches("SET SEARCH_LIMIT")) {
       s = (long)val(g_fullArg[2]);
-      print2("IMPROVE search limit has been changed from %ld to %ld\n",
+      mminou.print2("IMPROVE search limit has been changed from %ld to %ld\n",
           g_userMaxProveFloat, s);
       g_userMaxProveFloat = s;
       continue;
@@ -5328,7 +5328,7 @@ static final long SYNTAX =D.SYNTAX;
       if (s < 3) s = 3;
       i = g_screenWidth;
       g_screenWidth = s;
-      print2("Screen width has been changed from %ld to %ld.\n",
+      mminou.print2("Screen width has been changed from %ld to %ld.\n",
           i, s);
       continue;
     }
@@ -5339,7 +5339,7 @@ static final long SYNTAX =D.SYNTAX;
       if (s < 2) s = 2;
       i = g_screenHeight;
       g_screenHeight = s - 1;
-      print2("Screen height has been changed from %ld to %ld.\n",
+      mminou.print2("Screen height has been changed from %ld to %ld.\n",
           i + 1, s);
       continue;
     }
@@ -5349,14 +5349,14 @@ static final long SYNTAX =D.SYNTAX;
     if (cmdMatches("SET DISCOURAGEMENT")) {
       if (!strcmp(g_fullArg[2], "ON")) {
         g_globalDiscouragement = 1;
-        print2("\"(...is discouraged.)\" markup tags are now honored.\n");
+        mminou.print2("\"(...is discouraged.)\" markup tags are now honored.\n");
       } else if (!strcmp(g_fullArg[2], "OFF")) {
-        print2(
+        mminou.print2(
     "\"(...is discouraged.)\" markup tags are no longer honored.\n");
 
-        print2(
+        mminou.print2(
 ">>> ?Warning: This setting is intended for advanced users only.  Please turn\n");
-        print2(
+        mminou.print2(
 ">>> it back ON if you are not intimately familiar with this database.\n");
 
         g_globalDiscouragement = 0;
@@ -5369,7 +5369,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
     if (cmdMatches("SET CONTRIBUTOR")) {
-      print2("\"Contributed by...\" name was changed from \"%s\" to \"%s\"\n",
+      mminou.print2("\"Contributed by...\" name was changed from \"%s\" to \"%s\"\n",
           g_contributorName, g_fullArg[2]);
       let(&g_contributorName, g_fullArg[2]);
       continue;
@@ -5395,7 +5395,7 @@ static final long SYNTAX =D.SYNTAX;
         }
       }
       if (strcmp(str1, g_rootDirectory)){
-        print2("Root directory was changed from \"%s\" to \"%s\"\n",
+        mminou.print2("Root directory was changed from \"%s\" to \"%s\"\n",
             str1, g_rootDirectory);
       }
       let(&str1, "");
@@ -5409,7 +5409,7 @@ static final long SYNTAX =D.SYNTAX;
       if (s < 0) s = 0;
 
       if (processUndoStack(null, PUS_GET_SIZE, "", 0) != s) {
-        print2(
+        mminou.print2(
             "The maximum number of UNDOs was changed from %ld to %ld\n",
             processUndoStack(null, PUS_GET_SIZE, "", 0), s);
         processUndoStack(null, PUS_NEW_SIZE, "", s);
@@ -5417,7 +5417,7 @@ static final long SYNTAX =D.SYNTAX;
           processUndoStack(&g_ProofInProgress, PUS_PUSH, "", 0);
         }
       } else {
-        print2("The maximum number of UNDOs was not changed.\n");
+        mminou.print2("The maximum number of UNDOs was not changed.\n");
       }
       continue;
     }
@@ -5425,7 +5425,7 @@ static final long SYNTAX =D.SYNTAX;
 
     if (cmdMatches("SET UNIFICATION_TIMEOUT")) {
       s = (long)val(g_fullArg[2]);
-      print2("Unification timeout has been changed from %ld to %ld\n",
+      mminou.print2("Unification timeout has been changed from %ld to %ld\n",
           g_userMaxUnifTrials,s);
       g_userMaxUnifTrials = s;
       continue;
@@ -5438,7 +5438,7 @@ static final long SYNTAX =D.SYNTAX;
         g_logFilePtr = fSafeOpen(g_logFileName, "w", 0);
         if (!g_logFilePtr) continue;
         g_logFileOpenFlag = 1;
-        print2("The log file \"%s\" was opened %s %s.\n",g_logFileName,
+      mminou.print2("The log file \"%s\" was opened %s %s.\n",g_logFileName,
             date(),time_());
         continue;
     }
@@ -5446,9 +5446,9 @@ static final long SYNTAX =D.SYNTAX;
     if (cmdMatches("CLOSE LOG")) {
 
         if (!g_logFileOpenFlag) {
-          print2("?Sorry, there is no log file currently open.\n");
+          mminou.print2("?Sorry, there is no log file currently open.\n");
         } else {
-          print2("The log file \"%s\" was closed %s %s.\n",g_logFileName,
+          mminou.print2("The log file \"%s\" was closed %s %s.\n",g_logFileName,
               date(),time_());
           fclose(g_logFilePtr);
           g_logFileOpenFlag = 0;
@@ -5465,8 +5465,8 @@ static final long SYNTAX =D.SYNTAX;
 
 
         if (g_htmlFlag) {
-          print2("?You cannot use both LaTeX and HTML in the same session.\n");
-          print2(
+          mminou.print2("?You cannot use both LaTeX and HTML in the same session.\n");
+          mminou.print2(
               "?You must EXIT and restart Metamath to switch to the other.\n");
           continue;
         }
@@ -5491,7 +5491,7 @@ static final long SYNTAX =D.SYNTAX;
       if (!g_texFilePtr) continue;
       g_texFileOpenFlag = 1;
 
-      print2("Created %s output file \"%s\".\n",
+      mminou.print2("Created %s output file \"%s\".\n",
           g_htmlFlag ? "HTML" : "LaTeX", g_texFileName);
       printTexHeader(texHeaderFlag);
       g_oldTexFlag = 0;
@@ -5502,9 +5502,9 @@ static final long SYNTAX =D.SYNTAX;
     if (cmdMatches("CLOSE TEX")) {
 
       if (!g_texFileOpenFlag) {
-        print2("?Sorry, there is no LaTeX file currently open.\n");
+        mminou.print2("?Sorry, there is no LaTeX file currently open.\n");
       } else {
-        print2("The LaTeX output file \"%s\" has been closed.\n",
+        mminou.print2("The LaTeX output file \"%s\" has been closed.\n",
             g_texFileName);
         printTexTrailer(texHeaderFlag);
         fclose(g_texFilePtr);
@@ -5521,7 +5521,7 @@ static final long SYNTAX =D.SYNTAX;
       while (true) {
         if (!linput(list1_fp, null, &str1)) break;
 
-        if (!print2("%s\n", str1)) break;
+        if (!mminou.print2("%s\n", str1)) break;
       }
       fclose(list1_fp);
       continue;
@@ -5543,7 +5543,7 @@ static final long SYNTAX =D.SYNTAX;
       i = switchPos("/ WINDOW");
       if (i) searchWindow = (long)val(g_fullArg[i + 1]);
 
-      if (i) print2("Sorry, WINDOW has not be implemented yet.\n");
+      if (i) mminou.print2("Sorry, WINDOW has not be implemented yet.\n");
 
       let(&str2, g_fullArg[3]);
       let(&str2, edit(str2, 32));
@@ -5563,11 +5563,11 @@ static final long SYNTAX =D.SYNTAX;
           if (instr(1, str3, str2)) {
             if (!tmpFlag) {
               tmpFlag = 1;
-              print2(
+              mminou.print2(
                     "The line number in the file is shown before each line.\n");
             }
             m++;
-            if (!print2("%ld:  %s\n", j, left(str1,
+            if (!mminou.print2("%ld:  %s\n", j, left(str1,
                 MAX_LEN - (long)strlen(str((double)j)) - 3))) break;
           }
         }
@@ -5578,13 +5578,13 @@ static final long SYNTAX =D.SYNTAX;
             let((vstring *)(&pntrTmp[searchWindow - 1]), str1);
       }
       if (!tmpFlag) {
-        print2("There were no matches.\n");
+        mminou.print2("There were no matches.\n");
       } else {
         if (m == 1) {
-          print2("There was %ld matching line in the file %s.\n", m,
+          mminou.print2("There was %ld matching line in the file %s.\n", m,
               g_fullArg[2]);
         } else {
-          print2("There were %ld matching lines in the file %s.\n", m,
+          mminou.print2("There were %ld matching lines in the file %s.\n", m,
               g_fullArg[2]);
         }
       }
@@ -5611,8 +5611,8 @@ static final long SYNTAX =D.SYNTAX;
 
 
     if (cmdMatches("SET DEBUG FLAG")) {
-      print2("Notice:  The DEBUG mode is intended for development use only.\n");
-      print2("The printout will not be meaningful to the user.\n");
+      mminou.print2("Notice:  The DEBUG mode is intended for development use only.\n");
+      mminou.print2("The printout will not be meaningful to the user.\n");
       i = (long)val(g_fullArg[3]);
       if (i == 4) db4 = 1;
       if (i == 5) db5 = 1;
@@ -5629,16 +5629,16 @@ static final long SYNTAX =D.SYNTAX;
       db7 = 0;
       db8 = 0;
       db9 = 0;
-      print2("The DEBUG mode has been turned off.\n");
+      mminou.print2("The DEBUG mode has been turned off.\n");
       continue;
     }
 
     if (cmdMatches("ERASE")) {
       if (g_sourceChanged) {
-        print2("Warning:  You have not saved changes to the source.\n");
+        mminou.print2("Warning:  You have not saved changes to the source.\n");
         str1 = cmdInput1("Do you want to ERASE anyway (Y, N) <N>? ");
         if (str1[0] != 'y' && str1[0] != 'Y') {
-          print2("Use WRITE SOURCE to save the changes.\n");
+          mminou.print2("Use WRITE SOURCE to save the changes.\n");
           continue;
         }
         g_sourceChanged = 0;
@@ -5647,7 +5647,7 @@ static final long SYNTAX =D.SYNTAX;
       g_sourceHasBeenRead = 0;
       g_showStatement = 0;
       g_proveStatement = 0;
-      print2("Metamath has been reset to the starting state.\n");
+      mminou.print2("Metamath has been reset to the starting state.\n");
       continue;
     }
 
@@ -5690,7 +5690,7 @@ static final long SYNTAX =D.SYNTAX;
       g_htmlFlag = 1;
       g_altHtmlFlag = (switchPos("/ ALT_HTML") != 0);
       if ((switchPos("/ HTML") != 0) == (switchPos("/ ALT_HTML") != 0)) {
-        print2("?Please specify exactly one of / HTML and / ALT_HTML.\n");
+        mminou.print2("?Please specify exactly one of / HTML and / ALT_HTML.\n");
         continue;
       }
       i = 0;
@@ -5706,7 +5706,7 @@ static final long SYNTAX =D.SYNTAX;
       continue;
     }
 
-    print2("?This command has not been implemented.\n");
+    mminou.print2("?This command has not been implemented.\n");
     continue;
 
   }

@@ -50,7 +50,7 @@ pntrString *backBuffer = NULL_PNTRSTRING;
 long backBufferPos = 0;
 flag backFromCmdInput = 0;
 
-flag print2(char* fmt,...)
+static flag print2(char* fmt,...)
 {
 
   va_list ap;
