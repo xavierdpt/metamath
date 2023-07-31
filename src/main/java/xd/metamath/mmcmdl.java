@@ -43,7 +43,7 @@ flag processCommandLine()
   g_queryMode = 0;
   pntrLet(&g_fullArg, NULL_PNTRSTRING);
 
-  if (!g_toolsMode) {
+  if (!(mmdata.g_toolsMode.asBoolean())) {
 
     if (!g_PFASmode) {
 
@@ -1613,7 +1613,7 @@ flag processCommandLine()
   }
 
   if (cmdMatches("SUBMIT")) {
-    if (g_toolsMode) {
+    if (mmdata.g_toolsMode.asBoolean()) {
       let(&tmpStr, " <tools.cmd>");
     } else {
       let(&tmpStr, " <mm.cmd>");
@@ -2019,7 +2019,7 @@ void parseCommandLine(vstring line)
 
   tokenStart = 0;
 
-  if (!g_toolsMode) {
+  if (!(mmdata.g_toolsMode.asBoolean())) {
     let(&specialOneCharTokens, "/=");
   } else {
     let(&specialOneCharTokens, "");

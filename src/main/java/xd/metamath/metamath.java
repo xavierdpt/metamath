@@ -247,7 +247,7 @@ static final long SYNTAX =D.SYNTAX;
       print2("Pool:  free alloc %ld  used alloc %ld  used actual %ld\n",i,j,k);
     }
 
-    if (!g_toolsMode) {
+    if (!mmdata.g_toolsMode.asBoolean()) {
       if (g_PFASmode) {
         let(&g_commandPrompt,"MM-PA> ");
       } else {
@@ -311,7 +311,7 @@ static final long SYNTAX =D.SYNTAX;
     }
     if (argsProcessed == argc - 1) {
       argsProcessed++;
-      if (g_toolsMode) {
+      if (mmdata.g_toolsMode.asBoolean()) {
         commandProcessedFlag = 1;
       }
     }
@@ -346,7 +346,7 @@ static final long SYNTAX =D.SYNTAX;
       continue;
     }
 
-    if (g_commandEcho || (g_toolsMode && g_listFile_fp != null)) {
+    if (g_commandEcho || (mmdata.g_toolsMode.asBoolean() && g_listFile_fp != null)) {
 
       k = pntrLen(g_fullArg);
       let(&str1,"");
@@ -365,7 +365,7 @@ static final long SYNTAX =D.SYNTAX;
         }
       }
       let(&str1, left(str1, (long)(strlen(str1)) - 1));
-      if (g_toolsMode && g_listFile_fp != null) {
+      if (mmdata.g_toolsMode.asBoolean() && g_listFile_fp != null) {
 
         fprintf(g_listFile_fp, "%s\n", str1);
       }
@@ -389,7 +389,7 @@ static final long SYNTAX =D.SYNTAX;
         let(&str1, cat(str1, g_fullArg[i], " ", null));
       }
       let(&str1, left(str1, (long)(strlen(str1)) - 1));
-      if (g_toolsMode) {
+      if (mmdata.g_toolsMode.asBoolean()) {
         help0(str1);
         help1(str1);
       } else {
@@ -419,11 +419,11 @@ static final long SYNTAX =D.SYNTAX;
 
 
       if (cmdMatches("_EXIT_PA")) {
-        if (!g_PFASmode || (g_toolsMode && !mmdata.g_listMode.asBoolean())) bug(1127);
+        if (!g_PFASmode || (mmdata.g_toolsMode.asBoolean() && !(mmdata.g_listMode.asBoolean()))) bug(1127);
 
       }
 
-      if (g_toolsMode && !mmdata.g_listMode.asBoolean()) {
+      if (mmdata.g_toolsMode.asBoolean() && !(mmdata.g_listMode.asBoolean())) {
 
         if (!g_PFASmode) {
           print2(
@@ -432,7 +432,7 @@ static final long SYNTAX =D.SYNTAX;
           print2(
  "Exiting the Text Tools.  Type EXIT again to exit the Proof Assistant.\n");
         }
-        g_toolsMode = 0;
+        mmdata.g_toolsMode.set(0);
         continue;
       }
 
@@ -546,7 +546,7 @@ static final long SYNTAX =D.SYNTAX;
       continue;
     }
 
-    if (g_toolsMode) {
+    if (mmdata.g_toolsMode.asBoolean()) {
 
       static final long ADD_MODE =D.ADD_MODE;
       static final long DELETE_MODE =D.DELETE_MODE;
@@ -1260,7 +1260,7 @@ static final long SYNTAX =D.SYNTAX;
     if (cmdMatches("TOOLS")) {
       print2(
 "Entering the Text Tools utilities.  Type HELP for help, EXIT to exit.\n");
-      g_toolsMode = 1;
+      mmdata.g_toolsMode.set(1);
       continue;
     }
 
