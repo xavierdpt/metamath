@@ -52,7 +52,7 @@ flag processCommandLine()
 
           "SET|FILE|BEEP|EXIT|QUIT|ERASE|VERIFY|MARKUP|MORE|TOOLS|",
           "MIDI|<HELP>",
-          NULL));
+          null));
     } else {
 
       let(&tmpStr, cat("DBG|",
@@ -63,7 +63,7 @@ flag processCommandLine()
           "LET|UNIFY|IMPROVE|MINIMIZE_WITH|EXPAND|MATCH|DELETE|UNDO|REDO|",
 
           "MARKUP|MORE|TOOLS|MIDI|<HELP>",
-          NULL));
+          null));
     }
     if (!getFullArg(0,tmpStr)) {
       C.go2("pclbad");
@@ -79,7 +79,7 @@ flag processCommandLine()
 
           "MINIMIZE_WITH|EXPAND|UNDO|REDO|SAVE|DEMO|INVOKE|CLI|EXPLORE|TEX|",
           "LATEX|HTML|COMMENTS|BIBLIOGRAPHY|MORE|",
-          "TOOLS|MIDI|$|<$>", NULL))) C.go2("pclbad");
+          "TOOLS|MIDI|$|<$>", null))) C.go2("pclbad");
       if (cmdMatches("HELP OPEN")) {
 
 
@@ -96,7 +96,7 @@ flag processCommandLine()
         if (!getFullArg(2, cat("MEMORY|SETTINGS|LABELS|SOURCE|STATEMENT|",
             "PROOF|NEW_PROOF|USAGE|TRACE_BACK|ELAPSED_TIME|",
             "DISCOURAGED|<MEMORY>",
-            NULL)))
+            null)))
           C.go2("pclbad");
         C.go2("pclgood");
       }
@@ -107,7 +107,7 @@ flag processCommandLine()
             "CONTRIBUTOR|",
             "ROOT_DIRECTORY|",
             "EMPTY_SUBSTITUTION|SEARCH_LIMIT|JEREMY_HENTY_FILTER|<ECHO>",
-            NULL)))
+            null)))
           C.go2("pclbad");
         C.go2("pclgood");
       }
@@ -166,7 +166,7 @@ flag processCommandLine()
         }
         if (!getFullArg(2, cat(
             "* What is the name of the source output file <",
-            g_input_fn, ">? ", NULL)))
+            g_input_fn, ">? ", null)))
           C.go2("pclbad");
         if (!strcmp(g_input_fn, g_fullArg[2])) {
           print2(
@@ -186,7 +186,7 @@ flag processCommandLine()
 
 
                 "|SPLIT|NO_VERSIONING|KEEP_INCLUDES|EXTRACT",
-                "|<REWRAP>", NULL)))
+                "|<REWRAP>", null)))
               C.go2("pclbad");
 
             if (lastArgMatches("EXTRACT")) {
@@ -216,7 +216,7 @@ flag processCommandLine()
             i++;
             if (!getFullArg(i, cat(
                 "THEOREMS_PER_PAGE|SHOW_LEMMAS|HTML|ALT_HTML|NO_VERSIONING",
-                "|<THEOREMS_PER_PAGE>", NULL)))
+                "|<THEOREMS_PER_PAGE>", null)))
               C.go2("pclbad");
             if (lastArgMatches("THEOREMS_PER_PAGE")) {
               i++;
@@ -237,7 +237,7 @@ flag processCommandLine()
         }
         if (!getFullArg(2, cat(
             "* What is the bibliography HTML input/output file <",
-            "mmbiblio.html", ">? ", NULL)))
+            "mmbiblio.html", ">? ", null)))
           C.go2("pclbad");
         print2(
           "The old file will be renamed %s~1.\n", g_fullArg[2]);
@@ -250,7 +250,7 @@ flag processCommandLine()
         }
         if (!getFullArg(2, cat(
             "* What is the Recent Additions HTML input/output file <",
-            "mmrecent.html", ">? ", NULL)))
+            "mmrecent.html", ">? ", null)))
           C.go2("pclbad");
         print2(
           "The old file will be renamed %s~1.\n", g_fullArg[2]);
@@ -264,7 +264,7 @@ flag processCommandLine()
             i++;
             if (!getFullArg(i, cat(
                 "LIMIT|HTML|ALT_HTML",
-                "|<LIMIT>", NULL)))
+                "|<LIMIT>", null)))
               C.go2("pclbad");
             if (lastArgMatches("LIMIT")) {
               i++;
@@ -289,7 +289,7 @@ flag processCommandLine()
           printLongLine(cat(
               "?Sorry, the log file \"", g_logFileName, "\" is currently open.  ",
   "Type CLOSE LOG to close the current log if you want to open another one."
-              , NULL), "", " ");
+              , null), "", " ");
           C.go2("pclbad");
         }
         if (!getFullArg(2, "* What is the name of logging output file? "))
@@ -305,7 +305,7 @@ flag processCommandLine()
               "?Sorry, the LaTeX file \"", g_texFileName, "\" is currently open.  ",
               "Type CLOSE TEX to close the current LaTeX file",
               " if you want to open another one."
-              , NULL), "", " ");
+              , null), "", " ");
           C.go2("pclbad");
         }
         if (!getFullArg(2, "* What is the name of LaTeX output file? "))
@@ -319,7 +319,7 @@ flag processCommandLine()
           if (lastArgMatches("/")) {
             i++;
             if (!getFullArg(i, cat(
-                "NO_HEADER|OLD_TEX|<NO_HEADER>", NULL)))
+                "NO_HEADER|OLD_TEX|<NO_HEADER>", null)))
               C.go2("pclbad");
           } else {
             break;
@@ -341,7 +341,7 @@ flag processCommandLine()
     }
 
     if (cmdMatches("FILE")) {
-      if (!getFullArg(1, cat("SEARCH", NULL))) C.go2("pclbad");
+      if (!getFullArg(1, cat("SEARCH", null))) C.go2("pclbad");
 
       if (cmdMatches("FILE SEARCH")) {
         if (!getFullArg(2, "& What is the name of the file to search? "))
@@ -359,11 +359,11 @@ flag processCommandLine()
             i++;
             if (i == 4) {
               if (!getFullArg(i, cat(
-                  "FROM_LINE|TO_LINE|<FROM_LINE>", NULL)))
+                  "FROM_LINE|TO_LINE|<FROM_LINE>", null)))
                 C.go2("pclbad");
             } else {
               if (!getFullArg(i, cat(
-                  "FROM_LINE|TO_LINE|<TO_LINE>", NULL)))
+                  "FROM_LINE|TO_LINE|<TO_LINE>", null)))
                 C.go2("pclbad");
             }
             if (lastArgMatches("FROM_LINE")) {
@@ -397,19 +397,19 @@ flag processCommandLine()
       if (!g_PFASmode) {
         if (!getFullArg(1, cat(
      "SETTINGS|LABELS|STATEMENT|SOURCE|PROOF|MEMORY|TRACE_BACK|",
-     "USAGE|ELAPSED_TIME|DISCOURAGED|<SETTINGS>", NULL)))
+     "USAGE|ELAPSED_TIME|DISCOURAGED|<SETTINGS>", null)))
           C.go2("pclbad");
       } else {
         if (!getFullArg(1, cat("NEW_PROOF|",
      "SETTINGS|LABELS|STATEMENT|SOURCE|PROOF|MEMORY|TRACE_BACK|",
      "USAGE|ELAPSED_TIME|DISCOURAGED|<SETTINGS>",
-            NULL)))
+            null)))
           C.go2("pclbad");
       }
       if (g_showStatement) {
         if (g_showStatement < 1 || g_showStatement > g_statements) bug(1110);
         let(&defaultArg, cat(" <",g_Statement[g_showStatement].labelName, ">",
-            NULL));
+            null));
       } else {
         let(&defaultArg, "");
       }
@@ -421,7 +421,7 @@ flag processCommandLine()
           C.go2("pclbad");
         }
         if (!getFullArg(2,
-            cat("* What is the statement label", defaultArg, "? ", NULL)))
+            cat("* What is the statement label", defaultArg, "? ", null)))
           C.go2("pclbad");
 
 
@@ -434,7 +434,7 @@ flag processCommandLine()
             if (!getFullArg(i, cat(
 
                 "ALL|ESSENTIAL|AXIOMS|TREE|DEPTH|COUNT_STEPS|MATCH|TO",
-                "|<ALL>", NULL)))
+                "|<ALL>", null)))
               C.go2("pclbad");
             if (lastArgMatches("DEPTH")) {
               i++;
@@ -468,7 +468,7 @@ flag processCommandLine()
           C.go2("pclbad");
         }
         if (!getFullArg(2,
-            cat("* What is the statement label", defaultArg, "? ", NULL)))
+            cat("* What is the statement label", defaultArg, "? ", null)))
           C.go2("pclbad");
 
 
@@ -480,7 +480,7 @@ flag processCommandLine()
             i++;
             if (!getFullArg(i, cat(
                 "DIRECT|RECURSIVE|ALL",
-                "|<DIRECT>", NULL)))
+                "|<DIRECT>", null)))
               C.go2("pclbad");
           } else {
             break;
@@ -507,7 +507,7 @@ flag processCommandLine()
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
             i++;
-            if (!getFullArg(i, cat("ALL|LINEAR|<ALL>", NULL)))
+            if (!getFullArg(i, cat("ALL|LINEAR|<ALL>", null)))
               C.go2("pclbad");
           } else {
             break;
@@ -522,7 +522,7 @@ flag processCommandLine()
           C.go2("pclbad");
         }
         if (!getFullArg(2,
-            cat("* What is the statement label", defaultArg, "? ", NULL)))
+            cat("* What is the statement label", defaultArg, "? ", null)))
           C.go2("pclbad");
 
         i = 2;
@@ -534,7 +534,7 @@ flag processCommandLine()
             if (!getFullArg(i, cat(
                 "FULL|COMMENT|TEX|OLD_TEX|HTML|ALT_HTML|TIME|BRIEF_HTML",
 
-                "|BRIEF_ALT_HTML|MNEMONICS|NO_VERSIONING|<FULL>", NULL)))
+                "|BRIEF_ALT_HTML|MNEMONICS|NO_VERSIONING|<FULL>", null)))
               C.go2("pclbad");
           } else {
             break;
@@ -549,7 +549,7 @@ flag processCommandLine()
           C.go2("pclbad");
         }
         if (!getFullArg(2,
-            cat("* What is the statement label", defaultArg, "? ", NULL))) {
+            cat("* What is the statement label", defaultArg, "? ", null))) {
           C.go2("pclbad");
         }
         C.go2("pclgood");
@@ -562,7 +562,7 @@ flag processCommandLine()
           C.go2("pclbad");
         }
         if (!getFullArg(2,
-            cat("* What is the statement label", defaultArg, "? ", NULL)))
+            cat("* What is the statement label", defaultArg, "? ", null)))
           C.go2("pclbad");
 
 
@@ -581,7 +581,7 @@ flag processCommandLine()
 
                 "|STATEMENT_SUMMARY|DETAILED_STEP|TEX|OLD_TEX|HTML",
                 "|LEMMON|START_COLUMN|NO_REPEATED_STEPS",
-                "|RENUMBER|SIZE|<ESSENTIAL>", NULL)))
+                "|RENUMBER|SIZE|<ESSENTIAL>", null)))
               C.go2("pclbad");
             if (lastArgMatches("FROM_STEP")) {
               i++;
@@ -607,7 +607,7 @@ flag processCommandLine()
               i++;
               if (!getFullArg(i, cat(
                   "# At what column should the formula start <",
-                  str((double)DEFAULT_COLUMN), ">? ", NULL)))
+                  str((double)DEFAULT_COLUMN), ">? ", null)))
                 C.go2("pclbad");
             }
           } else {
@@ -639,7 +639,7 @@ flag processCommandLine()
                 "|OLD_COMPRESSION",
                 "|NOT_UNIFIED|TEX|HTML",
                 "|LEMMON|START_COLUMN|NO_REPEATED_STEPS",
-                "|RENUMBER|<ESSENTIAL>", NULL)))
+                "|RENUMBER|<ESSENTIAL>", null)))
               C.go2("pclbad");
             if (lastArgMatches("FROM_STEP")) {
               i++;
@@ -660,7 +660,7 @@ flag processCommandLine()
               i++;
               if (!getFullArg(i, cat(
                   "# At what column should the formula start <",
-                  str((double)DEFAULT_COLUMN), ">? ", NULL)))
+                  str((double)DEFAULT_COLUMN), ">? ", null)))
                 C.go2("pclbad");
             }
           } else {
@@ -692,7 +692,7 @@ flag processCommandLine()
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
           i++;
-          if (!getFullArg(i, cat("ALL|COMMENTS|JOIN|<ALL>", NULL)))
+          if (!getFullArg(i, cat("ALL|COMMENTS|JOIN|<ALL>", null)))
             C.go2("pclbad");
         } else {
           break;
@@ -712,12 +712,12 @@ flag processCommandLine()
       } else {
         if (!getFullArg(1, cat("NEW_PROOF|",
             "PROOF|<NEW_PROOF>",
-            NULL)))
+            null)))
           C.go2("pclbad");
       }
       if (g_showStatement) {
         if (g_showStatement < 0) bug(1111);
-        let(&defaultArg, cat(" <",g_Statement[g_showStatement].labelName, ">", NULL));
+        let(&defaultArg, cat(" <",g_Statement[g_showStatement].labelName, ">", null));
       } else {
         let(&defaultArg, "");
       }
@@ -729,7 +729,7 @@ flag processCommandLine()
           C.go2("pclbad");
         }
         if (!getFullArg(2,
-            cat("* What is the statement label", defaultArg, "? ", NULL)))
+            cat("* What is the statement label", defaultArg, "? ", null)))
           C.go2("pclbad");
 
 
@@ -742,7 +742,7 @@ flag processCommandLine()
             if (!getFullArg(i, cat(
                 "NORMAL|PACKED|COMPRESSED|EXPLICIT",
                 "|FAST|OLD_COMPRESSION",
-                "|TIME|<NORMAL>", NULL)))
+                "|TIME|<NORMAL>", null)))
               C.go2("pclbad");
           } else {
             break;
@@ -771,7 +771,7 @@ flag processCommandLine()
 
 
                 "|OLD_COMPRESSION|OVERRIDE",
-                "|<NORMAL>", NULL)))
+                "|<NORMAL>", null)))
               C.go2("pclbad");
           } else {
             break;
@@ -793,13 +793,13 @@ flag processCommandLine()
       }
       if (!g_proveStatement) g_proveStatement = g_showStatement;
       if (g_proveStatement) {
-        let(&defaultArg, cat(" <",g_Statement[g_proveStatement].labelName, ">", NULL));
+        let(&defaultArg, cat(" <",g_Statement[g_proveStatement].labelName, ">", null));
       } else {
         let(&defaultArg, "");
       }
       if (!getFullArg(1,
           cat("* What is the label of the statement you want to try proving",
-          defaultArg, "? ", NULL)))
+          defaultArg, "? ", null)))
         C.go2("pclbad");
 
 
@@ -835,7 +835,7 @@ flag processCommandLine()
           if (lastArgMatches("/")) {
             i++;
             if (!getFullArg(i, cat(
-                "MAX_ESSENTIAL_HYP|<MAX_ESSENTIAL_HYP>", NULL)))
+                "MAX_ESSENTIAL_HYP|<MAX_ESSENTIAL_HYP>", null)))
               C.go2("pclbad");
             if (lastArgMatches("MAX_ESSENTIAL_HYP")) {
               i++;
@@ -859,7 +859,7 @@ flag processCommandLine()
           if (lastArgMatches("/")) {
             i++;
             if (!getFullArg(i, cat(
-                "ESSENTIAL|MAX_ESSENTIAL_HYP|<ESSENTIAL>", NULL)))
+                "ESSENTIAL|MAX_ESSENTIAL_HYP|<ESSENTIAL>", null)))
               C.go2("pclbad");
             if (lastArgMatches("MAX_ESSENTIAL_HYP")) {
               i++;
@@ -930,7 +930,7 @@ flag processCommandLine()
           if (!getFullArg(i, cat(
               "VERBOSE|MAY_GROW|EXCEPT|OVERRIDE|INCLUDE_MATHBOXES|",
               "ALLOW_NEW_AXIOMS|NO_NEW_AXIOMS_FROM|FORBID|TIME|<VERBOSE>",
-              NULL)))
+              null)))
 
 
 
@@ -993,7 +993,7 @@ flag processCommandLine()
           if (lastArgMatches("/")) {
             i++;
             if (!getFullArg(i, cat(
-                "INTERACTIVE|<INTERACTIVE>", NULL)))
+                "INTERACTIVE|<INTERACTIVE>", null)))
               C.go2("pclbad");
           } else {
             break;
@@ -1036,7 +1036,7 @@ flag processCommandLine()
         if (lastArgMatches("/")) {
           i++;
           if (!getFullArg(i, cat(
-              "OVERRIDE|<OVERRIDE>", NULL)))
+              "OVERRIDE|<OVERRIDE>", null)))
             C.go2("pclbad");
         } else {
           break;
@@ -1075,7 +1075,7 @@ flag processCommandLine()
         if (lastArgMatches("/")) {
           i++;
           if (!getFullArg(i, cat(
-              "NO_UNIFY|OVERRIDE|<NO_UNIFY>", NULL)))
+              "NO_UNIFY|OVERRIDE|<NO_UNIFY>", null)))
             C.go2("pclbad");
         } else {
           break;
@@ -1101,7 +1101,7 @@ flag processCommandLine()
           "DISCOURAGEMENT|",
           "CONTRIBUTOR|",
           "ROOT_DIRECTORY|",
-          "EMPTY_SUBSTITUTION|JEREMY_HENTY_FILTER|<WIDTH>", NULL));
+          "EMPTY_SUBSTITUTION|JEREMY_HENTY_FILTER|<WIDTH>", null));
       if (!getFullArg(1,tmpStr)) C.go2("pclbad");
       if (cmdMatches("SET DEBUG")) {
         if (!getFullArg(2, "FLAG|OFF|<OFF>")) C.go2("pclbad");
@@ -1160,7 +1160,7 @@ flag processCommandLine()
       if (cmdMatches("SET CONTRIBUTOR")) {
         if (!getFullArg(2, cat(
             "* What is the contributor name for SAVE (NEW_)PROOF <",
-            g_contributorName, ">? ", NULL)))
+            g_contributorName, ">? ", null)))
           C.go2("pclbad");
         C.go2("pclgood");
       }
@@ -1168,7 +1168,7 @@ flag processCommandLine()
       if (cmdMatches("SET ROOT_DIRECTORY")) {
         if (!getFullArg(2, cat(
             "* What is the root directory path (use space if none) <",
-            g_rootDirectory, ">? ", NULL)))
+            g_rootDirectory, ">? ", null)))
           C.go2("pclbad");
         C.go2("pclgood");
       }
@@ -1176,7 +1176,7 @@ flag processCommandLine()
       if (cmdMatches("SET SEARCH_LIMIT")) {
         if (!getFullArg(2, cat(
             "# What is search limit for IMPROVE command <",
-            str((double)g_userMaxProveFloat), ">? ", NULL)))
+            str((double)g_userMaxProveFloat), ">? ", null)))
           C.go2("pclbad");
         C.go2("pclgood");
       }
@@ -1184,7 +1184,7 @@ flag processCommandLine()
       if (cmdMatches("SET UNIFICATION_TIMEOUT")) {
         if (!getFullArg(2, cat(
            "# What is maximum number of unification trials <",
-            str((double)g_userMaxUnifTrials), ">? ", NULL)))
+            str((double)g_userMaxUnifTrials), ">? ", null)))
           C.go2("pclbad");
         C.go2("pclgood");
       }
@@ -1192,7 +1192,7 @@ flag processCommandLine()
       if (cmdMatches("SET WIDTH")) {
         if (!getFullArg(2, cat(
            "# What is maximum line length on your screen <",
-            str((double)g_screenHeight), ">? ", NULL)))
+            str((double)g_screenHeight), ">? ", null)))
           C.go2("pclbad");
         C.go2("pclgood");
       }
@@ -1200,7 +1200,7 @@ flag processCommandLine()
       if (cmdMatches("SET HEIGHT")) {
         if (!getFullArg(2, cat(
            "# What is number of lines your screen displays <",
-            str((double)g_screenHeight), ">? ", NULL)))
+            str((double)g_screenHeight), ">? ", null)))
           C.go2("pclbad");
         C.go2("pclgood");
       }
@@ -1208,8 +1208,8 @@ flag processCommandLine()
       if (cmdMatches("SET UNDO")) {
         if (!getFullArg(2, cat(
            "# What is the maximum number of UNDOs <",
-            str((double)(processUndoStack(NULL, PUS_GET_SIZE, "", 0))),
-            ">? ", NULL)))
+            str((double)(processUndoStack(null, PUS_GET_SIZE, "", 0))),
+            ">? ", null)))
           C.go2("pclbad");
         C.go2("pclgood");
       }
@@ -1263,7 +1263,7 @@ flag processCommandLine()
             i++;
             if (!getFullArg(i, cat(
                 "SYNTAX_ONLY",
-                "|<SYNTAX_ONLY>", NULL)))
+                "|<SYNTAX_ONLY>", null)))
               C.go2("pclbad");
           } else {
             break;
@@ -1293,7 +1293,7 @@ flag processCommandLine()
             i++;
             if (!getFullArg(i, cat(
                 "DATE_SKIP|FILE_SKIP|TOP_DATE_SKIP|VERBOSE",
-                "|UNDERSCORE_SKIP|MATHBOX_SKIP|<DATE_SKIP>", NULL)))
+                "|UNDERSCORE_SKIP|MATHBOX_SKIP|<DATE_SKIP>", null)))
               C.go2("pclbad");
           } else {
             break;
@@ -1333,7 +1333,7 @@ flag processCommandLine()
           i++;
           if (!getFullArg(i, cat(
               "HTML|ALT_HTML|SYMBOLS|LABELS|NUMBER_AFTER_LABEL|BIB_REFS",
-              "|UNDERSCORES|CSS|<ALT_HTML>", NULL)))
+              "|UNDERSCORES|CSS|<ALT_HTML>", null)))
             C.go2("pclbad");
         } else {
           break;
@@ -1358,7 +1358,7 @@ flag processCommandLine()
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
           i++;
-          if (!getFullArg(i, cat("PARAMETER|<PARAMETER>", NULL)))
+          if (!getFullArg(i, cat("PARAMETER|<PARAMETER>", null)))
             C.go2("pclbad");
           i++;
           if (!getFullArg(i,
@@ -1383,7 +1383,7 @@ flag processCommandLine()
         if (lastArgMatches("/")) {
           i++;
           if (!getFullArg(i, cat(
-              "FORCE|<FORCE>", NULL)))
+              "FORCE|<FORCE>", null)))
             C.go2("pclbad");
         } else {
           break;
@@ -1400,7 +1400,7 @@ flag processCommandLine()
           "HELP|SUBMIT|",
           "ADD|DELETE|SUBSTITUTE|S|SWAP|CLEAN|INSERT|BREAK|BUILD|MATCH|SORT|",
           "UNDUPLICATE|DUPLICATE|UNIQUE|REVERSE|RIGHT|PARALLEL|NUMBER|COUNT|",
-          "COPY|C|TYPE|T|TAG|UPDATE|BEEP|B|EXIT|QUIT|<HELP>", NULL));
+          "COPY|C|TYPE|T|TAG|UPDATE|BEEP|B|EXIT|QUIT|<HELP>", null));
     if (!getFullArg(0,tmpStr))
       C.go2("pclbad");
 
@@ -1410,7 +1410,7 @@ flag processCommandLine()
           "UNDUPLICATE|DUPLICATE|UNIQUE|REVERSE|RIGHT|PARALLEL|NUMBER|COUNT|",
           "TYPE|T|TAG|UPDATE|BEEP|B|EXIT|QUIT|",
           "COPY|C|SUBMIT|SYSTEM|CLI|",
-          "$|<$>", NULL))) C.go2("pclbad");
+          "$|<$>", null))) C.go2("pclbad");
       C.go2("pclgood");
     }
     if (cmdMatches("ADD") || cmdMatches("TAG")) {
@@ -1574,7 +1574,7 @@ flag processCommandLine()
         C.go2("pclbad");
       if (!getFullArg(3, cat(
 "* Edited program output file with revisions tagged <",
-          g_fullArg[2], ">? ", NULL)))
+          g_fullArg[2], ">? ", null)))
         C.go2("pclbad");
       if (!strcmp(g_fullArg[2], g_fullArg[3])) {
         print2(
@@ -1582,7 +1582,7 @@ flag processCommandLine()
       }
       if (!getFullArg(4,
           cat("",
-          str((double)(highestRevision(g_fullArg[1]) + 1)), " */>? ", NULL)))
+          str((double)(highestRevision(g_fullArg[1]) + 1)), " */>? ", null)))
         C.go2("pclbad");
       if (!getFullArg(5,
 "# Successive lines required for match (more = better sync) <3>? "))
@@ -1596,10 +1596,10 @@ flag processCommandLine()
       if (!getFullArg(2, "& Right file? "))
         C.go2("pclbad");
       if (!getFullArg(3, cat("* Output file <",
-          g_fullArg[1], ">? ", NULL)))
+          g_fullArg[1], ">? ", null)))
         C.go2("pclbad");
       if (!getFullArg(4,
-          cat("* String to insert between the 2 input lines <>? ", NULL)))
+          cat("* String to insert between the 2 input lines <>? ", null)))
         C.go2("pclbad");
       C.go2("pclgood");
     }
@@ -1619,7 +1619,7 @@ flag processCommandLine()
       let(&tmpStr, " <mm.cmd>");
     }
     if (!getFullArg(1, cat("& What is the name of command file to run",
-        tmpStr, "? ", NULL))) {
+        tmpStr, "? ", null))) {
       C.go2("pclbad");
     }
 
@@ -1633,7 +1633,7 @@ flag processCommandLine()
         i++;
         if (!getFullArg(i, cat(
             "SILENT",
-            "|<SILENT>", NULL)))
+            "|<SILENT>", null)))
           C.go2("pclbad");
       } else {
         break;
@@ -1667,8 +1667,8 @@ flag processCommandLine()
   if (pntrLen(g_fullArg) > g_rawArgs) bug(1102);
   if (pntrLen(g_fullArg) < g_rawArgs) {
     let(&tmpStr, cat("?Too many arguments.  Use quotes around arguments with special",
-        " characters and around Unix file names with \"/\"s.", NULL));
-    printCommandError(cat(g_commandPrompt, g_commandLine, NULL), pntrLen(g_fullArg),
+        " characters and around Unix file names with \"/\"s.", null));
+    printCommandError(cat(g_commandPrompt, g_commandLine, null), pntrLen(g_fullArg),
         tmpStr);
     C.go2("pclbad");
   }
@@ -1676,7 +1676,7 @@ flag processCommandLine()
 
   let(&g_fullArgString, "");
   for (i = 0; i < pntrLen(g_fullArg); i++) {
-    let(&g_fullArgString, cat(g_fullArgString, " ", g_fullArg[i], NULL));
+    let(&g_fullArgString, cat(g_fullArgString, " ", g_fullArg[i], null));
   }
   let(&g_fullArgString, right(g_fullArgString, 2));
 
@@ -1713,7 +1713,7 @@ flag getFullArg(long arg, vstring cmdList1)
 
   let(&cmdList,cmdList1);
 
-  let(&errorLine, cat(g_commandPrompt,g_commandLine, NULL));
+  let(&errorLine, cat(g_commandPrompt,g_commandLine, null));
 
 
   if (cmdList[0] == '#') {
@@ -1745,7 +1745,7 @@ flag getFullArg(long arg, vstring cmdList1)
       let(&tmpArg, seg(defaultCmd,2,len(defaultCmd) - 1));
     }
     let(&tmpStr, str(val(tmpArg)));
-    let(&tmpStr, cat(string(len(tmpArg)-len(tmpStr),'0'), tmpStr, NULL));
+    let(&tmpStr, cat(string(len(tmpArg)-len(tmpStr),'0'), tmpStr, null));
     if (strcmp(tmpStr, tmpArg)) {
       printCommandError(errorLine, arg,
           "?A number was expected here.");
@@ -1810,12 +1810,12 @@ flag getFullArg(long arg, vstring cmdList1)
     }
     if (cmdList[0] == '&') {
 
-      let(&tmpStr, cat(g_rootDirectory, keyword, NULL));
+      let(&tmpStr, cat(g_rootDirectory, keyword, null));
       tmpFp = fopen(tmpStr, "r");
       if (!tmpFp) {
         let(&tmpStr,  cat(
 
-  "?Sorry, couldn't open the file \"", tmpStr, "\".", NULL));
+  "?Sorry, couldn't open the file \"", tmpStr, "\".", null));
         printCommandError(errorLine, arg, tmpStr);
         C.go2("return0");
       }
@@ -1831,7 +1831,7 @@ flag getFullArg(long arg, vstring cmdList1)
   p = 0;
   while (true) {
     q = p;
-    p = instr(p + 1, cat(cmdList, "|", NULL), "|");
+    p = instr(p + 1, cat(cmdList, "|", null), "|");
     if (!p) break;
     pntrLet(&possCmd,pntrAddElement(possCmd));
     let((vstring *)(&possCmd[possCmds]),seg(cmdList,q+1,p-1));
@@ -1858,14 +1858,14 @@ flag getFullArg(long arg, vstring cmdList1)
   }
   if (possCmds == 2) {
     let(&infoStr, cat(possCmd[0], " or ",
-        possCmd[1], NULL));
+        possCmd[1], null));
   }
   if (possCmds > 2) {
     let(&infoStr, "");
     for (i = 0; i < possCmds - 1; i++) {
-      let(&infoStr, cat(infoStr,possCmd[i], ", ", NULL));
+      let(&infoStr, cat(infoStr,possCmd[i], ", ", null));
     }
-    let(&infoStr, cat(infoStr, "or ",possCmd[possCmds - 1], NULL));
+    let(&infoStr, cat(infoStr, "or ",possCmd[possCmds - 1], null));
   }
 
 
@@ -1874,9 +1874,9 @@ flag getFullArg(long arg, vstring cmdList1)
 
     let(&tmpStr, infoStr);
     if (defaultCmd[0] != 0) {
-      let(&tmpStr, cat(tmpStr, " ",defaultCmd, NULL));
+      let(&tmpStr, cat(tmpStr, " ",defaultCmd, null));
     }
-    let(&tmpStr, cat(tmpStr, "? ", NULL));
+    let(&tmpStr, cat(tmpStr, "? ", null));
     g_queryMode = 1;
     if (possCmds != 1) {
       tmpArg = cmdInput1(tmpStr);
@@ -1931,7 +1931,7 @@ flag getFullArg(long arg, vstring cmdList1)
       if (!k) {
         let(&tmpStr, possCmd[i]);
       } else {
-        let(&tmpStr, cat(tmpStr, ", ", possCmd[i], NULL));
+        let(&tmpStr, cat(tmpStr, ", ", possCmd[i], null));
       }
       j = i;
       k++;
@@ -1939,17 +1939,17 @@ flag getFullArg(long arg, vstring cmdList1)
   }
   if (k < 1 || k > 1) {
     if (k < 1) {
-      let(&tmpStr, cat("?Expected ", infoStr, ".", NULL));
+      let(&tmpStr, cat("?Expected ", infoStr, ".", null));
     } else {
       if (k == 2) {
         p = instr(1,tmpStr, ", ");
-        let(&tmpStr, cat(left(tmpStr,p-1), " or",right(tmpStr,p+1), NULL));
+        let(&tmpStr, cat(left(tmpStr,p-1), " or",right(tmpStr,p+1), null));
       } else {
         p = len(tmpStr) - 1;
         while (tmpStr[p] != ',') p--;
-        let(&tmpStr, cat(left(tmpStr,p+1), " or",right(tmpStr,p+2), NULL));
+        let(&tmpStr, cat(left(tmpStr,p+1), " or",right(tmpStr,p+2), null));
       }
-      let(&tmpStr, cat("?Ambiguous keyword - please specify ",tmpStr, ".", NULL));
+      let(&tmpStr, cat("?Ambiguous keyword - please specify ",tmpStr, ".", null));
     }
     printCommandError(errorLine, arg, tmpStr);
     C.go2("return0");
@@ -2184,9 +2184,9 @@ flag cmdMatches(vstring cmdString)
       let(&tmpStr, "");
       return (0);
     }
-    let(&tmpStr, cat(tmpStr, " ", g_fullArg[i], NULL));
+    let(&tmpStr, cat(tmpStr, " ", g_fullArg[i], null));
   }
-  if (!strcmp(cat(" ", cmdString, NULL), tmpStr)) {
+  if (!strcmp(cat(" ", cmdString, null), tmpStr)) {
     let(&tmpStr, "");
     return (1);
   } else {
@@ -2206,7 +2206,7 @@ long switchPos(vstring swString)
 
 
   if (swString[1] != ' ') {
-    let(&swString1, cat("/ ", right(swString,2), " ", NULL));
+    let(&swString1, cat("/ ", right(swString,2), " ", null));
   } else {
     let(&swString1,swString);
   }
@@ -2214,7 +2214,7 @@ long switchPos(vstring swString)
 
   k = pntrLen(g_fullArg);
   for (i = 0; i < k; i++) {
-    let(&tmpStr, cat(tmpStr,g_fullArg[i], " ", NULL));
+    let(&tmpStr, cat(tmpStr,g_fullArg[i], " ", null));
   }
 
   k = instr(1,tmpStr,swString1);
@@ -2255,17 +2255,17 @@ void printCommandError(vstring line1, long arg, vstring errorMsg)
   for (j = 0; j < column - 1; j++) {
     if (j >= len(line)) bug(1109);
     if (line[j] == '\t') {
-      let(&errorPointer, cat(errorPointer, "\t", NULL));
+      let(&errorPointer, cat(errorPointer, "\t", null));
     } else {
       if (line[j] == '\n') {
         let(&errorPointer, "");
       } else {
-        let(&errorPointer, cat(errorPointer, " ", NULL));
+        let(&errorPointer, cat(errorPointer, " ", null));
       }
     }
   }
   for (j = 0; j < tokenLength; j++)
-    let(&errorPointer, cat(errorPointer, "^", NULL));
+    let(&errorPointer, cat(errorPointer, "^", null));
   print2("%s\n", errorPointer);
   printLongLine(errorMsg, "", " ");
   let(&errorPointer, "");

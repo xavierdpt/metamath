@@ -21,7 +21,7 @@ int g_errorCount = 0;
 
 flag g_logFileOpenFlag = 0;
 File g_logFilePtr;
-static File g_listFile_fp = NULL;
+static File g_listFile_fp = null;
 
 flag g_outputToString = 0;
 vstring g_printString = "";
@@ -192,7 +192,7 @@ flag print2(char* fmt,...)
 
 
   va_start(ap, fmt);
-  bufsiz = vsnprintf(NULL, 0, fmt, ap);
+  bufsiz = vsnprintf(null, 0, fmt, ap);
   va_end(ap);
   if (bufsiz == -1) bug(1527);
   printBuffer = malloc((size_t)bufsiz + 1);
@@ -265,7 +265,7 @@ flag print2(char* fmt,...)
 #endif
     }
     let((vstring *)(&(backBuffer[backBufferPos - 1])), cat(
-        (vstring)(backBuffer[backBufferPos - 1]), printBuffer, NULL));
+        (vstring)(backBuffer[backBufferPos - 1]), printBuffer, null));
   }
 
   if (g_logFileOpenFlag && !g_outputToString ) {
@@ -276,13 +276,13 @@ flag print2(char* fmt,...)
 #endif
   }
 
-  if (g_listMode && g_listFile_fp != NULL && !g_outputToString) {
+  if (g_listMode && g_listFile_fp != null && !g_outputToString) {
 
     fprintf(g_listFile_fp, "! %s", printBuffer);
   }
 
   if (g_outputToString) {
-    let(&g_printString, cat(g_printString, printBuffer, NULL));
+    let(&g_printString, cat(g_printString, printBuffer, null));
   }
 
 
@@ -504,7 +504,7 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
 
 
           while (strchr(breakMatch1[0] != '\\' ? breakMatch1 : " ",
-              longLine[p - 1]) == NULL) {
+              longLine[p - 1]) == null) {
             p--;
             if (!p) break;
           }
@@ -539,14 +539,14 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
           if (startNextLineLen + p - 1 < g_screenWidth) {
 
             let(&prefix, cat(prefix, space(g_screenWidth - startNextLineLen
-                - p + 1), NULL));
+                - p + 1), null));
           }
         }
       }
       if (!tildeFlag) {
-          print2("%s\n",cat(prefix, left(longLine,p - 1), NULL));
+          print2("%s\n",cat(prefix, left(longLine,p - 1), null));
       } else {
-        print2("%s\n",cat(prefix, left(longLine,p - 1), "~", NULL));
+        print2("%s\n",cat(prefix, left(longLine,p - 1), "~", null));
       }
       if (longLine[p - 1] == ' ' &&
           breakMatch1[0] ) {
@@ -565,9 +565,9 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
       if (treeIndentationFlag) {
 
         print2("%s\n",cat(startNextLine1, space(g_screenWidth
-            - startNextLineLen - (long)(strlen(longLine))), longLine, NULL));
+            - startNextLineLen - (long)(strlen(longLine))), longLine, null));
       } else {
-        print2("%s\n",cat(startNextLine1, longLine, NULL));
+        print2("%s\n",cat(startNextLine1, longLine, null));
       }
     } else {
       print2("%s\n",longLine);
@@ -593,7 +593,7 @@ vstring cmdInput(File stream, vstring ask)
     static final long  CMD_BUFFER_SIZE =D.CMD_BUFFER_SIZE;
 
   while (true) {
-    if (ask != NULL && !g_commandFileSilentFlag) {
+    if (ask != null && !g_commandFileSilentFlag) {
       printf("%s",ask);
 #if __STDC__
       fflush(stdout);
@@ -605,7 +605,7 @@ vstring cmdInput(File stream, vstring ask)
     if (!fgets(g, CMD_BUFFER_SIZE, stream)) {
 
       let(&g, "");
-      return NULL;
+      return null;
     }
     if (g[CMD_BUFFER_SIZE - 1]) {
 
@@ -634,7 +634,7 @@ db = db - (CMD_BUFFER_SIZE - i);
 #endif
         }
 
-        let(&g, cat(g, chr('\n'), NULL));
+        let(&g, cat(g, chr('\n'), null));
 db = db + (CMD_BUFFER_SIZE - i);
         i++;
       }
@@ -678,14 +678,14 @@ db = db - 1;
       backFromCmdInput = 0;
     } else {
       if (g_commandFileNestingLevel > 0) break;
-      if (ask == NULL) {
+      if (ask == null) {
         printf("***BUG #1523\n");
 #if __STDC__
         fflush(stdout);
 #endif
       }
       if (g[0]) break;
-      if (ask != NULL &&
+      if (ask != null &&
 
           strcmp(ask, g_commandPrompt)) {
         break;
@@ -760,15 +760,15 @@ vstring cmdInput1(vstring ask)
 
       let((vstring *)(&(backBuffer[backBufferPos - 1])), cat(
           (vstring)(backBuffer[backBufferPos - 1]), ask1,
-          commandLn, "\n", NULL));
+          commandLn, "\n", null));
 
-      if (g_listMode && g_listFile_fp != NULL) {
+      if (g_listMode && g_listFile_fp != null) {
 
         fprintf(g_listFile_fp, "! %s\n", commandLn);
       }
 
     } else {
-      commandLn = cmdInput(g_commandFilePtr[g_commandFileNestingLevel], NULL);
+      commandLn = cmdInput(g_commandFilePtr[g_commandFileNestingLevel], null);
       if (!commandLn) {
         fclose(g_commandFilePtr[g_commandFileNestingLevel]);
         print2("%s[End of command file \"%s\".]\n", ask1,
@@ -826,7 +826,7 @@ void errorMessage(vstring line, long lineNum, long column, long tokenLength,
       bug(1509);
     }
   } else {
-    line1 = NULL;
+    line1 = null;
   }
 
   if (fileName) {
@@ -845,34 +845,34 @@ void errorMessage(vstring line, long lineNum, long column, long tokenLength,
       let(&prntStr, "?Fatal error"); break;
   }
   if (lineNum) {
-    let(&prntStr, cat(prntStr, " on line ", str((double)lineNum), NULL));
+    let(&prntStr, cat(prntStr, " on line ", str((double)lineNum), null));
     if (fileName) {
-      let(&prntStr, cat(prntStr, " of file \"", fileName, "\"", NULL));
+      let(&prntStr, cat(prntStr, " of file \"", fileName, "\"", null));
     }
   } else {
     if (fileName) {
-      let(&prntStr, cat(prntStr, " in file \"", fileName, "\"", NULL));
+      let(&prntStr, cat(prntStr, " in file \"", fileName, "\"", null));
     }
   }
   if (statementNum) {
-    let(&prntStr, cat(prntStr, " at statement ", str((double)statementNum), NULL));
+    let(&prntStr, cat(prntStr, " at statement ", str((double)statementNum), null));
     if (g_Statement[statementNum].labelName[0]) {
       let(&prntStr, cat(prntStr, ", label \"",
-          g_Statement[statementNum].labelName, "\"", NULL));
+          g_Statement[statementNum].labelName, "\"", null));
     }
     let(&prntStr, cat(prntStr, ", type \"$", chr(g_Statement[statementNum].type),
-        "\"", NULL));
+        "\"", null));
   }
-  printLongLine(cat(prntStr, ":", NULL), "", " ");
+  printLongLine(cat(prntStr, ":", null), "", " ");
   if (line1) printLongLine(line1, "", "");
   if (line1 && column && tokenLength) {
     let(&errorPointer,"");
     for (j=0; j<column-1; j++) {
-      if (line1[j] == '\t') let (&errorPointer,cat(errorPointer,"\t",NULL));
-      else let(&errorPointer,cat(errorPointer," ",NULL));
+      if (line1[j] == '\t') let (&errorPointer,cat(errorPointer,"\t",null));
+      else let(&errorPointer,cat(errorPointer," ",null));
     }
     for (j=0; j<tokenLength; j++)
-      let(&errorPointer,cat(errorPointer,"^",NULL));
+      let(&errorPointer,cat(errorPointer,"^",null));
     printLongLine(errorPointer, "", "");
   }
   printLongLine(error,""," ");
@@ -932,13 +932,13 @@ static final long VERSIONS =D.VERSIONS;
 
 
 
-      let(&prefix, cat(fileName, "~", NULL));
+      let(&prefix, cat(fileName, "~", null));
       let(&postfix, "");
 
 
 
 
-      let(&bakName, cat(prefix, str(1), postfix, NULL));
+      let(&bakName, cat(prefix, str(1), postfix, null));
       fp = fopen(bakName, "r");
       if (fp) {
         fclose(fp);
@@ -947,7 +947,7 @@ static final long VERSIONS =D.VERSIONS;
 
         lastVersion = 0;
         for (v = 1; v <= VERSIONS; v++) {
-          let(&bakName, cat(prefix, str((double)v), postfix, NULL));
+          let(&bakName, cat(prefix, str((double)v), postfix, null));
           fp = fopen(bakName, "r");
           if (!fp) break;
           fclose(fp);
@@ -956,7 +956,7 @@ static final long VERSIONS =D.VERSIONS;
 
 
         if (lastVersion == VERSIONS) {
-          let(&bakName, cat(prefix, str((double)VERSIONS), postfix, NULL));
+          let(&bakName, cat(prefix, str((double)VERSIONS), postfix, null));
           fp = fopen(bakName, "r");
           if (fp) {
             fclose(fp);
@@ -966,16 +966,16 @@ static final long VERSIONS =D.VERSIONS;
         }
 
         for (v = lastVersion; v >= 1; v--) {
-          let(&bakName, cat(prefix, str((double)v), postfix, NULL));
+          let(&bakName, cat(prefix, str((double)v), postfix, null));
           fp = fopen(bakName, "r");
           if (!fp) continue;
           fclose(fp);
-          let(&newBakName, cat(prefix, str((double)v + 1), postfix, NULL));
+          let(&newBakName, cat(prefix, str((double)v + 1), postfix, null));
           rename(bakName, newBakName);
         }
 
       }
-      let(&bakName, cat(prefix, str(1), postfix, NULL));
+      let(&bakName, cat(prefix, str(1), postfix, null));
       rename(fileName, bakName);
 
     }
@@ -991,7 +991,7 @@ static final long VERSIONS =D.VERSIONS;
         bug(1526);
       }
 
-      fp = NULL;
+      fp = null;
 
 
       if (noVersioningFlag) {
@@ -1011,7 +1011,7 @@ static final long VERSIONS =D.VERSIONS;
   }
 
   bug(1510);
-  return(NULL);
+  return(null);
 
 }
 
@@ -1066,7 +1066,7 @@ vstring fGetTmpName(vstring filePrefix)
   static long counter = 0;
   while (true) {
     counter++;
-    let(&fname, cat(filePrefix, str((double)counter), ".tmp", NULL));
+    let(&fname, cat(filePrefix, str((double)counter), ".tmp", null));
     fp = fopen(fname, "r");
     if (!fp) break;
 
@@ -1097,7 +1097,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
   inputFp = fopen(fileName, "rb");
   if (!inputFp) {
     if (verbose) print2("?Sorry, couldn't open the file \"%s\".\n", fileName);
-    return (NULL);
+    return (null);
   }
 #ifndef SEEK_END
 
@@ -1108,7 +1108,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
     if (verbose) print2(
         "?Sorry, \"%s\" doesn't seem to be a regular file.\n",
         fileName);
-    return (NULL);
+    return (null);
   }
   fileBufSize = ftell(inputFp);
 
@@ -1127,7 +1127,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
         "?Sorry, there was not enough memory to read the file \"%s\".\n",
         fileName);
     fclose(inputFp);
-    return (NULL);
+    return (null);
   }
 
 
@@ -1151,7 +1151,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
 "?Sorry, there are an odd number of characters (%ld) %s \"%s\".\n",
             (*charCount), "in Unicode file", fileName);
         free(fileBuf);
-        return (NULL);
+        return (null);
       }
       i = 0;
       j = 2;
@@ -1162,14 +1162,14 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
               fileName, "has a non-ASCII \ncharacter code",
               (long)(fileBuf[j]) + ((long)(fileBuf[j + 1]) * 256), j);
           free(fileBuf);
-          return (NULL);
+          return (null);
         }
         if (fileBuf[j] == 0) {
           if (verbose) print2(
               "?Sorry, the Unicode file \"%s\" %s at byte %ld.\n",
               fileName, "has a null character", j);
           free(fileBuf);
-          return (NULL);
+          return (null);
         }
         fileBuf[i] = fileBuf[j];
 
@@ -1185,7 +1185,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
   }
 
 
-  if (strchr(fileBuf, '\r') != NULL) {
+  if (strchr(fileBuf, '\r') != null) {
     if (verbose) print2(
        "?Warning: the file \"%s\" has carriage-returns.  Cleaning them up...\n",
         fileName);

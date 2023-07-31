@@ -25,7 +25,7 @@ public class metamath {
   command(args);
 
 
-  if (mmdata.g_listMode.asBoolean() && mminou.g_listFile_fp != NULL) {
+  if (mmdata.g_listMode.asBoolean() && mminou.g_listFile_fp != null) {
     fclose(mminou.g_listFile_fp);
   }
 
@@ -274,33 +274,33 @@ static final long SYNTAX =D.SYNTAX;
               || (argv[i])[0] == 0) {
 
             if (instr(1, argv[i], "\"")) {
-              let(&str1, cat("'", argv[i], "'", NULL));
+              let(&str1, cat("'", argv[i], "'", null));
             } else {
 
-              let(&str1, cat("\"", argv[i], "\"", NULL));
+              let(&str1, cat("\"", argv[i], "\"", null));
             }
           } else {
             let(&str1, argv[i]);
           }
-          let(&g_commandLine, cat(g_commandLine, (i == 1) ? "" : " ", str1, NULL));
+          let(&g_commandLine, cat(g_commandLine, (i == 1) ? "" : " ", str1, null));
         }
       } else {
         argsProcessed++;
         g_scrollMode = 0;
-        let(&g_commandLine, cat(g_commandLine, argv[argsProcessed], NULL));
+        let(&g_commandLine, cat(g_commandLine, argv[argsProcessed], null));
         if (argc == 2 && instr(1, argv[1], " ") == 0) {
           if (instr(1, g_commandLine, "\"") || instr(1, g_commandLine, "'")) {
 
-            let(&g_commandLine, cat("READ ", g_commandLine, NULL));
+            let(&g_commandLine, cat("READ ", g_commandLine, null));
           } else {
 
-            let(&g_commandLine, cat("READ \"", g_commandLine, "\"", NULL));
+            let(&g_commandLine, cat("READ \"", g_commandLine, "\"", null));
           }
 
 
         }
       }
-      print2("%s\n", cat(g_commandPrompt, g_commandLine, NULL));
+      print2("%s\n", cat(g_commandPrompt, g_commandLine, null));
     } else {
 
       g_commandLine = cmdInput1(g_commandPrompt);
@@ -320,7 +320,7 @@ static final long SYNTAX =D.SYNTAX;
 
     if (g_commandLine[0] == '\'' || g_commandLine[0] == '\"') {
 
-      if (!system(NULL)) {
+      if (!system(null)) {
         print2("?This computer does not accept an operating system command.\n");
         continue;
       } else {
@@ -346,7 +346,7 @@ static final long SYNTAX =D.SYNTAX;
       continue;
     }
 
-    if (g_commandEcho || (g_toolsMode && g_listFile_fp != NULL)) {
+    if (g_commandEcho || (g_toolsMode && g_listFile_fp != null)) {
 
       k = pntrLen(g_fullArg);
       let(&str1,"");
@@ -355,23 +355,23 @@ static final long SYNTAX =D.SYNTAX;
             || instr(1, g_fullArg[i], "\"") || instr(1, g_fullArg[i], "'")
             || ((char *)(g_fullArg[i]))[0] == 0) {
           if (instr(1, g_fullArg[i], "\"")) {
-            let(&str1, cat(str1, "'", g_fullArg[i], "' ", NULL));
+            let(&str1, cat(str1, "'", g_fullArg[i], "' ", null));
           } else {
 
-            let(&str1, cat(str1, "\"", g_fullArg[i], "\" ", NULL));
+            let(&str1, cat(str1, "\"", g_fullArg[i], "\" ", null));
           }
         } else {
-          let(&str1, cat(str1, g_fullArg[i], " ", NULL));
+          let(&str1, cat(str1, g_fullArg[i], " ", null));
         }
       }
       let(&str1, left(str1, (long)(strlen(str1)) - 1));
-      if (g_toolsMode && g_listFile_fp != NULL) {
+      if (g_toolsMode && g_listFile_fp != null) {
 
         fprintf(g_listFile_fp, "%s\n", str1);
       }
       if (g_commandEcho) {
 
-        let(&str1, cat("!", str1, NULL));
+        let(&str1, cat("!", str1, null));
         printLongLine(str1, "~", " ");
       }
     }
@@ -386,7 +386,7 @@ static final long SYNTAX =D.SYNTAX;
       k = pntrLen(g_fullArg);
       let(&str1,"");
       for (i = 0; i < k; i++) {
-        let(&str1, cat(str1, g_fullArg[i], " ", NULL));
+        let(&str1, cat(str1, g_fullArg[i], " ", null));
       }
       let(&str1, left(str1, (long)(strlen(str1)) - 1));
       if (g_toolsMode) {
@@ -439,7 +439,7 @@ static final long SYNTAX =D.SYNTAX;
       if (g_PFASmode) {
 
         if (g_proofChanged &&
-              (processUndoStack(NULL, PUS_GET_STATUS, "", 0)
+              (processUndoStack(null, PUS_GET_STATUS, "", 0)
                  || proofSavedFlag)) {
           print2(
               "Warning:  You have not saved changes to the proof of \"%s\".\n",
@@ -458,7 +458,7 @@ static final long SYNTAX =D.SYNTAX;
         }
 
         g_proofChanged = 0;
-        processUndoStack(NULL, PUS_INIT, "", 0);
+        processUndoStack(null, PUS_INIT, "", 0);
         proofSavedFlag = 0;
 
         print2(
@@ -578,7 +578,7 @@ static final long SYNTAX =D.SYNTAX;
         if (cmdMode == RIGHT_MODE) {
 
           p = 0;
-          while (linput(list1_fp, NULL, &str1)) {
+          while (linput(list1_fp, null, &str1)) {
             if (p < (signed)(strlen(str1))) p = (long)(strlen(str1));
           }
           rewind(list1_fp);
@@ -668,14 +668,14 @@ static final long SYNTAX =D.SYNTAX;
             let(&str1, bufferedLine);
             let(&bufferedLine, "");
           } else {
-            if (!linput(list1_fp, NULL, &str1)) break;
+            if (!linput(list1_fp, null, &str1)) break;
           }
           lines++;
           oldChangedLines = changedLines;
           let(&str2, str1);
           switch (cmdMode) {
             case ADD_MODE:
-              let(&str2, cat(g_fullArg[2], str1, g_fullArg[3], NULL));
+              let(&str2, cat(g_fullArg[2], str1, g_fullArg[3], null));
               if (strcmp(str1, str2)) changedLines++;
               break;
             case TAG_MODE:
@@ -684,7 +684,7 @@ static final long SYNTAX =D.SYNTAX;
               }
               if (tagStartCounter == tagStartCount &&
                   tagEndCounter < tagEndCount) {
-                let(&str2, cat(g_fullArg[2], str1, g_fullArg[3], NULL));
+                let(&str2, cat(g_fullArg[2], str1, g_fullArg[3], null));
                 if (strcmp(str1, str2)) changedLines++;
                 if (instr(1, str1, tagEndMatch)) tagEndCounter++;
               }
@@ -696,7 +696,7 @@ static final long SYNTAX =D.SYNTAX;
               if (strlen(g_fullArg[3]) == 0) p2 = (long)strlen(str1) + 1;
               if (p1 != 0 && p2 != 0) {
                 let(&str2, cat(left(str1, p1 - 1), right(str1, p2
-                    + (long)strlen(g_fullArg[3])), NULL));
+                    + (long)strlen(g_fullArg[3])), null));
                 changedLines++;
               }
               break;
@@ -722,11 +722,11 @@ static final long SYNTAX =D.SYNTAX;
 
               if (s && k) {
 
-                if (linput(list1_fp, NULL, &bufferedLine)) {
+                if (linput(list1_fp, null, &bufferedLine)) {
 
-                  if (instr(1, cat(str1, "\\n", bufferedLine, NULL),
+                  if (instr(1, cat(str1, "\\n", bufferedLine, null),
                       g_fullArg[2])) {
-                    let(&str2, cat(str1, "\\n", bufferedLine, NULL));
+                    let(&str2, cat(str1, "\\n", bufferedLine, null));
                     let(&bufferedLine, "");
                   } else {
                     k = 0;
@@ -743,7 +743,7 @@ static final long SYNTAX =D.SYNTAX;
                 p++;
                 if (p == q || q == -1) {
                   let(&str2, cat(left(str2, p1 - 1), newstr,
-                      right(str2, p1 + (long)strlen(g_fullArg[2])), NULL));
+                      right(str2, p1 + (long)strlen(g_fullArg[2])), null));
                   if (newstr[0] == '\n') {
 
                     lines++;
@@ -762,15 +762,15 @@ static final long SYNTAX =D.SYNTAX;
                 p2 = instr(p1 + 1, str1, g_fullArg[2]);
                 if (p2) twoMatches++;
                 let(&str2, cat(right(str1, p1) + (long)strlen(g_fullArg[2]),
-                    g_fullArg[2], left(str1, p1 - 1), NULL));
+                    g_fullArg[2], left(str1, p1 - 1), null));
                 if (strcmp(str1, str2)) changedLines++;
               }
               break;
             case INSERT_MODE:
               if ((signed)(strlen(str2)) < p - 1)
-                let(&str2, cat(str2, space(p - 1 - (long)strlen(str2)), NULL));
+                let(&str2, cat(str2, space(p - 1 - (long)strlen(str2)), null));
               let(&str2, cat(left(str2, p - 1), g_fullArg[2],
-                  right(str2, p), NULL));
+                  right(str2, p), null));
               if (strcmp(str1, str2)) changedLines++;
               break;
             case BREAK_MODE:
@@ -784,7 +784,7 @@ static final long SYNTAX =D.SYNTAX;
 
                   let(&str2, cat(left(str2, p - 1), " ",
                       mid(str2, p, 1),
-                      " ", right(str2, p + 1), NULL));
+                      " ", right(str2, p + 1), null));
 
                   p += 2;
                 }
@@ -804,10 +804,10 @@ static final long SYNTAX =D.SYNTAX;
                   let(&str4, str2);
                 } else {
                   if ((long)strlen(str4) + (long)strlen(str2) > 72) {
-                    let(&str4, cat(str4, "\n", str2, NULL));
+                    let(&str4, cat(str4, "\n", str2, null));
                     changedLines++;
                   } else {
-                    let(&str4, cat(str4, " ", str2, NULL));
+                    let(&str4, cat(str4, " ", str2, null));
                   }
                 }
                 p = instr(1, str4, "\n");
@@ -833,7 +833,7 @@ static final long SYNTAX =D.SYNTAX;
               if (p) changedLines++;
               break;
             case RIGHT_MODE:
-              let(&str2, cat(space(p - (long)strlen(str2)), str2, NULL));
+              let(&str2, cat(space(p - (long)strlen(str2)), str2, null));
               if (strcmp(str1, str2)) changedLines++;
               break;
           }
@@ -935,7 +935,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
         lines = 0;
-        while (linput(list1_fp, NULL, &str1)) lines++;
+        while (linput(list1_fp, null, &str1)) lines++;
         if (cmdMode != SORT_MODE  && cmdMode != REVERSE_MODE) {
           print2("The input file has %ld lines.\n", lines);
         }
@@ -946,7 +946,7 @@ static final long SYNTAX =D.SYNTAX;
 
         pntrLet(&pntrTmp, pntrSpace(lines));
 
-        for (i = 0; i < lines; i++) linput(list1_fp, NULL,
+        for (i = 0; i < lines; i++) linput(list1_fp, null,
             (vstring *)(&pntrTmp[i]));
 
 
@@ -1060,18 +1060,18 @@ static final long SYNTAX =D.SYNTAX;
         while (true) {
           let(&str1, "");
           if (p1) {
-            p1 = linput(list1_fp, NULL, &str1);
+            p1 = linput(list1_fp, null, &str1);
             if (p1) p++;
             else let(&str1, "");
           }
           let(&str2, "");
           if (p2) {
-            p2 = linput(list2_fp, NULL, &str2);
+            p2 = linput(list2_fp, null, &str2);
             if (p2) q++;
             else let(&str2, "");
           }
           if (!p1 && !p2) break;
-          let(&str4, cat(str1, g_fullArg[4], str2, NULL));
+          let(&str4, cat(str1, g_fullArg[4], str2, null));
           fprintf(list3_fp, "%s\n", str4);
           if (!j) {
             let(&str3, str4);
@@ -1125,7 +1125,7 @@ static final long SYNTAX =D.SYNTAX;
         j = 0;
         sum = 0.0;
         firstChangedLine = 0;
-        while (linput(list1_fp, NULL, &str1)) {
+        while (linput(list1_fp, null, &str1)) {
           lines++;
 
 
@@ -1170,7 +1170,7 @@ static final long SYNTAX =D.SYNTAX;
 
         printLongLine(cat(
             "Stripping all but digits, \".\", and \"-\", the sum of lines is ",
-            str((double)sum), NULL), "    ", " ");
+            str((double)sum), null), "    ", " ");
         fclose(list1_fp);
         continue;
       }
@@ -1189,7 +1189,7 @@ static final long SYNTAX =D.SYNTAX;
           }
         }
         for (i = 0; i < n || n == -1; i++) {
-          if (!linput(list1_fp, NULL, &str1)) break;
+          if (!linput(list1_fp, null, &str1)) break;
           if (!print2("%s\n", str1)) break;
         }
         fclose(list1_fp);
@@ -1223,7 +1223,7 @@ static final long SYNTAX =D.SYNTAX;
         list2_ftmpname = fGetTmpName("zz~tools");
         list2_fp = fSafeOpen(list2_ftmpname, "w", 0);
         if (!list2_fp) continue;
-        let(&str4, cat(g_fullArg[1], ",", NULL));
+        let(&str4, cat(g_fullArg[1], ",", null));
         lines = 0;
         j = 0;
         while (true) {
@@ -1237,7 +1237,7 @@ static final long SYNTAX =D.SYNTAX;
             break;
           }
           n = 0;
-          while (linput(list1_fp, NULL, &str1)) {
+          while (linput(list1_fp, null, &str1)) {
             lines++; n++;
             fprintf(list2_fp, "%s\n", str1);
           }
@@ -1275,14 +1275,14 @@ static final long SYNTAX =D.SYNTAX;
             "You may type ERASE to start over.  Note that additional source ",
         "files may be included in the source file with \"$[ <filename> $]\".",
 
-            NULL),"  "," ");
+            null),"  "," ");
         continue;
       }
 
       let(&g_input_fn, g_fullArg[1]);
 
 
-      let(&str1, cat(g_rootDirectory, g_input_fn, NULL));
+      let(&str1, cat(g_rootDirectory, g_input_fn, null));
       g_input_fp = fSafeOpen(str1, "r", 0);
       if (!g_input_fp) continue;
       fclose(g_input_fp);
@@ -1305,7 +1305,7 @@ static final long SYNTAX =D.SYNTAX;
               let(&str1, cat(str1,
          "  However, proofs were not checked.  Type VERIFY PROOF *",
          " if you want to check them.",
-              NULL));
+              null));
           }
           printLongLine(str1, "", " ");
         } else {
@@ -1452,24 +1452,24 @@ static final long SYNTAX =D.SYNTAX;
 
       tmpFlag = 0;
       list1_fp = fSafeOpen(g_fullArg[2], "r", 0);
-      if (list1_fp == NULL) {
+      if (list1_fp == null) {
 
         continue;
       }
       fclose(list1_fp);
 
       list2_fp = fSafeOpen(g_fullArg[2], "w", 0);
-      if (list2_fp == NULL) {
+      if (list2_fp == null) {
 
         continue;
       }
-      list1_fp = fSafeOpen(cat(g_fullArg[2], "~1", NULL), "r",
+      list1_fp = fSafeOpen(cat(g_fullArg[2], "~1", null), "r",
           0);
-      if (list1_fp == NULL) bug(1117);
+      if (list1_fp == null) bug(1117);
 
 
       while (true) {
-        if (!linput(list1_fp, NULL, &str1)) {
+        if (!linput(list1_fp, null, &str1)) {
           print2(
 "?Error: Could not find \"<!-- #START# -->\" line in input file \"%s\".\n",
               g_fullArg[2]);
@@ -1482,7 +1482,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
 
-            " at ", time_(), " ET.</I>", NULL));
+            " at ", time_(), " ET.</I>", null));
         }
         fprintf(list2_fp, "%s\n", str1);
         if (!strcmp(str1, "<!-- #START# -->")) break;
@@ -1538,8 +1538,8 @@ static final long SYNTAX =D.SYNTAX;
                    ? "<TR>"
                    : (stmt < g_mathboxStmt)
                        ? cat("<TR BGCOLOR=", PURPLISH_BIBLIO_COLOR, ">",
-                           NULL)
-                       : cat("<TR BGCOLOR=", SANDBOX_COLOR, ">", NULL),
+                           null)
+                       : cat("<TR BGCOLOR=", SANDBOX_COLOR, ">", null),
 
                 "<TD NOWRAP>",
 
@@ -1549,7 +1549,7 @@ static final long SYNTAX =D.SYNTAX;
                 "</TD><TD ALIGN=CENTER><A HREF=\"",
                 g_Statement[stmt].labelName, ".html\">",
                 g_Statement[stmt].labelName, "</A>",
-                str4, "</TD><TD ALIGN=LEFT>", NULL),
+                str4, "</TD><TD ALIGN=LEFT>", null),
 
               " ",
               "\"");
@@ -1564,7 +1564,7 @@ static final long SYNTAX =D.SYNTAX;
                 0,
                 PROCESS_EVERYTHING,
                 0   );
-            g_texFilePtr = NULL;
+            g_texFilePtr = null;
             g_outputToString = 1;
 
 
@@ -1578,12 +1578,12 @@ static final long SYNTAX =D.SYNTAX;
                      ? ">"
                      : (stmt < g_mathboxStmt)
                          ? cat(" BGCOLOR=", PURPLISH_BIBLIO_COLOR, ">",
-                             NULL)
-                         : cat(" BGCOLOR=", SANDBOX_COLOR, ">", NULL),
+                             null)
+                         : cat(" BGCOLOR=", SANDBOX_COLOR, ">", null),
 
 
                 "<TD COLSPAN=3 ALIGN=CENTER>",
-                str4, "</TD></TR>", NULL),
+                str4, "</TD></TR>", null),
 
                 " ",
                 "\"");
@@ -1597,7 +1597,7 @@ static final long SYNTAX =D.SYNTAX;
 
             g_outputToString = 1;
             printLongLine(cat("<TR BGCOLOR=white><TD COLSPAN=3>",
-                "<FONT SIZE=-3>&nbsp;</FONT></TD></TR>", NULL),
+                "<FONT SIZE=-3>&nbsp;</FONT></TD></TR>", null),
                 " ",
                 "\"");
 
@@ -1652,7 +1652,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
       while (true) {
-        if (!linput(list1_fp, NULL, &str1)) {
+        if (!linput(list1_fp, null, &str1)) {
           print2(
 "?Error: Could not find \"<!-- #END# -->\" line in input file \"%s\".\n",
               g_fullArg[2]);
@@ -1668,14 +1668,14 @@ static final long SYNTAX =D.SYNTAX;
 
 
       while (true) {
-        if (!linput(list1_fp, NULL, &str1)) {
+        if (!linput(list1_fp, null, &str1)) {
           break;
         }
 
 
 
         if (!strcmp("This page was last updated on ", left(str1, 30))) {
-          let(&str1, cat(left(str1, 30), date(), ".", NULL));
+          let(&str1, cat(left(str1, 30), date(), ".", null));
         }
 
         fprintf(list2_fp, "%s\n", str1);
@@ -1689,7 +1689,7 @@ static final long SYNTAX =D.SYNTAX;
       if (tmpFlag) {
 
         remove(g_fullArg[2]);
-        rename(cat(g_fullArg[2], "~1", NULL), g_fullArg[2]);
+        rename(cat(g_fullArg[2], "~1", null), g_fullArg[2]);
 
         print2("?The file \"%s\" was not modified.\n", g_fullArg[2]);
       }
@@ -1726,7 +1726,7 @@ static final long SYNTAX =D.SYNTAX;
 
         let(&str1, cat(str((double)i), " ",
             g_Statement[i].labelName, " $", chr(g_Statement[i].type),
-            NULL));
+            null));
         if (!str2[0]) {
           j = 0;
         }
@@ -1748,7 +1748,7 @@ static final long SYNTAX =D.SYNTAX;
           if (j == 0) {
             let(&str2, str1);
           } else {
-            let(&str2, cat(str2, space(k - (long)strlen(str2)), str1, NULL));
+            let(&str2, cat(str2, space(k - (long)strlen(str2)), str1, null));
           }
           j++;
         }
@@ -1813,7 +1813,7 @@ static final long SYNTAX =D.SYNTAX;
       if (switchPos("/ TIME")) i = i + 2;
       if (g_rawArgs != i) {
         printLongLine(cat("?The HTML qualifiers may not be combined with",
-            " others except / NO_VERSIONING and / TIME.\n", NULL), "  ", " ");
+            " others except / NO_VERSIONING and / TIME.\n", null), "  ", " ");
         continue;
       }
 
@@ -1891,7 +1891,7 @@ static final long SYNTAX =D.SYNTAX;
             break;
           default:
             let(&g_texFileName, cat(g_Statement[g_showStatement].labelName, ".html",
-                NULL));
+                null));
         }
         print2("Creating HTML file \"%s\"...\n", g_texFileName);
         g_texFilePtr = fSafeOpen(g_texFileName, "w",
@@ -1913,7 +1913,7 @@ static final long SYNTAX =D.SYNTAX;
                 "Symbol to ASCII Correspondence for Text-Only Browsers",
                 " (in order of appearance in $c and $v statements",
                      " in the database)",
-                "</B></FONT></CENTER><P>", NULL), "", "\"");
+                "</B></FONT></CENTER><P>", null), "", "\"");
           }
 
           if (!g_briefHtmlFlag) print2("<CENTER>\n");
@@ -1947,7 +1947,7 @@ static final long SYNTAX =D.SYNTAX;
                   "Axioms (<FONT COLOR=", GREEN_TITLE_COLOR, ">ax-</FONT>) and",
                   " Definitions (<FONT COLOR=", GREEN_TITLE_COLOR,
                   ">df-</FONT>)", "</B></CAPTION><TR ALIGN=LEFT><TD><B>",
-                  NULL), "", "\"");
+                  null), "", "\"");
               break;
           }
           switch (s) {
@@ -1962,7 +1962,7 @@ static final long SYNTAX =D.SYNTAX;
               printLongLine(cat(
                   "Ref</B></TD><TD><B>",
                 "Expression (see link for any distinct variable requirements)",
-                NULL), "", "\"");
+                null), "", "\"");
               break;
           }
           print2("</B></TD></TR>\n");
@@ -1989,7 +1989,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
                     "User Mathboxes",
-                  "</FONT></B> starts here</TD></TR>", NULL), "", "\"");
+                  "</FONT></B> starts here</TD></TR>", null), "", "\"");
             }
 
             if (g_Statement[i].type == (char)p_ ||
@@ -2005,8 +2005,8 @@ static final long SYNTAX =D.SYNTAX;
                 for (j = 0; j < g_Statement[i].mathStringLen; j++) {
                   let(&str1, g_MathToken[(g_Statement[i].mathString)[j]].tokenName);
 
-                  if (!instr(1, str3, cat(" ", str1, " ", NULL))) {
-                    let(&str3, cat(str3, " ", str1, " ", NULL));
+                  if (!instr(1, str3, cat(" ", str1, " ", null))) {
+                    let(&str3, cat(str3, " ", str1, " ", null));
                     let(&str2, "");
                     str2 = tokenToTex(g_MathToken[(g_Statement[i].mathString)[j]
                         ].tokenName, i);
@@ -2015,29 +2015,29 @@ static final long SYNTAX =D.SYNTAX;
                     for (k = 0; k < (signed)(strlen(str1)); k++) {
                       if (str1[k] == '&') {
                         let(&str1, cat(left(str1, k), "&amp;",
-                            right(str1, k + 2), NULL));
+                            right(str1, k + 2), null));
                         k = k + 4;
                       }
                       if (str1[k] == '<') {
                         let(&str1, cat(left(str1, k), "&lt;",
-                            right(str1, k + 2), NULL));
+                            right(str1, k + 2), null));
                         k = k + 3;
                       }
                       if (str1[k] == '>') {
                         let(&str1, cat(left(str1, k), "&gt;",
-                            right(str1, k + 2), NULL));
+                            right(str1, k + 2), null));
                         k = k + 3;
                       }
                     }
                     printLongLine(cat("<TR ALIGN=LEFT><TD>",
-                        (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", NULL) : ""),
+                        (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", null) : ""),
 
                         str2,
                         (g_altHtmlFlag ? "</SPAN>" : ""),
                         "&nbsp;",
                         "</TD><TD><TT>",
                         str1,
-                        "</TT></TD></TR>", NULL), "", "\"");
+                        "</TT></TD></TR>", null), "", "\"");
                   }
                 }
 
@@ -2054,7 +2054,7 @@ static final long SYNTAX =D.SYNTAX;
 
                   str1 = getTexOrHtmlHypAndAssertion(i);
 
-                  let(&str1, cat(str1, "</TD></TR>", NULL));
+                  let(&str1, cat(str1, "</TD></TR>", null));
                 }
 
                 if (g_briefHtmlFlag) {
@@ -2069,8 +2069,8 @@ static final long SYNTAX =D.SYNTAX;
                       "mmtheorems", (k == 1) ? "" : str((double)k), ".html#",
                       g_Statement[i].labelName,
                       "\">", g_Statement[i].labelName,
-                      "</A></FONT>", NULL));
-                  let(&str1, cat(str2, " ", str1, NULL));
+                      "</A></FONT>", null));
+                  let(&str1, cat(str2, " ", str1, null));
                 } else {
 
                   let(&str4, "");
@@ -2079,8 +2079,8 @@ static final long SYNTAX =D.SYNTAX;
                       " ALIGN=LEFT><TD><A HREF=\"",
                       g_Statement[i].labelName,
                       ".html\">", g_Statement[i].labelName,
-                      "</A>", str4, NULL));
-                  let(&str1, cat(str2, "</TD><TD>", str1, NULL));
+                      "</A>", str4, null));
+                  let(&str1, cat(str2, "</TD><TD>", str1, null));
                 }
 
 
@@ -2094,8 +2094,8 @@ static final long SYNTAX =D.SYNTAX;
                   let(&str1, "");
                   str1 = getDescription(i);
                   if (strlen(str1) > 29)
-                    let(&str1, cat(left(str1, 26), "...", NULL));
-                  let(&str1, cat(str1, "</TD></TR>", NULL));
+                    let(&str1, cat(left(str1, 26), "...", null));
+                  let(&str1, cat(str1, "</TD></TR>", null));
                   printLongLine(str1, "", "\"");
                 }
 
@@ -2144,7 +2144,7 @@ static final long SYNTAX =D.SYNTAX;
 
         printLongLine(cat("?There is no statement whose label matches \"",
             g_fullArg[2], "\".  ",
-            "Use SHOW LABELS for a list of valid labels.", NULL), "", " ");
+            "Use SHOW LABELS for a list of valid labels.", null), "", " ");
         continue;
       }
 
@@ -2187,10 +2187,10 @@ static final long SYNTAX =D.SYNTAX;
         let(&str1, cat("<CENTER><B><FONT SIZE=\"+1\">",
             " <FONT COLOR=", GREEN_TITLE_COLOR,
             " SIZE = \"+3\">", g_Statement[g_showStatement].labelName,
-            "</FONT></FONT></B>", "</CENTER>", NULL));
+            "</FONT></FONT></B>", "</CENTER>", null));
         fprintf(g_texFilePtr, "%s", str1);
 
-        let(&str1, cat("<TABLE>",NULL));
+        let(&str1, cat("<TABLE>",null));
         fprintf(g_texFilePtr, "%s", str1);
 
         j = nmbrLen(g_Statement[g_showStatement].reqHypList);
@@ -2203,7 +2203,7 @@ static final long SYNTAX =D.SYNTAX;
 
           let(&str1, cat("<TR ALIGN=LEFT><TD><FONT SIZE=\"+2\">",
               g_Statement[k].labelName, "</FONT></TD><TD><FONT SIZE=\"+2\">",
-              NULL));
+              null));
           fprintf(g_texFilePtr, "%s", str1);
 
 
@@ -2325,7 +2325,7 @@ static final long SYNTAX =D.SYNTAX;
 
         printLongLine(cat("?There is no statement whose label matches \"",
             g_fullArg[2], "\".  ",
-            "Use SHOW LABELS for a list of valid labels.", NULL), "", " ");
+            "Use SHOW LABELS for a list of valid labels.", null), "", " ");
         continue;
       }
 
@@ -2371,7 +2371,7 @@ static final long SYNTAX =D.SYNTAX;
             g_Statement[g_proveStatement].labelName);
       }
       print2("(SET UNDO...) The maximum number of UNDOs is %ld.\n",
-          processUndoStack(NULL, PUS_GET_SIZE, "", 0));
+          processUndoStack(null, PUS_GET_SIZE, "", 0));
       print2(
     "(SET UNIFICATION_TIMEOUT...) The unification timeout parameter is %ld.\n",
           g_userMaxUnifTrials);
@@ -2537,7 +2537,7 @@ static final long SYNTAX =D.SYNTAX;
       if (g_showStatement == 0) {
         printLongLine(cat("?There are no $p labels matching \"",
             g_fullArg[2], "\".  ",
-            "See HELP SHOW TRACE_BACK for matching rules.", NULL), "", " ");
+            "See HELP SHOW TRACE_BACK for matching rules.", null), "", " ");
       }
 
       let(&matchList, "");
@@ -2607,7 +2607,7 @@ static final long SYNTAX =D.SYNTAX;
         if (k == 0) {
           printLongLine(cat("Statement \"",
               g_Statement[g_showStatement].labelName,
-              "\" is not referenced in the proof of any statement.", NULL),
+              "\" is not referenced in the proof of any statement.", null),
               "", " ");
         } else {
           if (recursiveFlag) {
@@ -2619,12 +2619,12 @@ static final long SYNTAX =D.SYNTAX;
             printLongLine(cat("Statement \"",
                 g_Statement[g_showStatement].labelName,
                 str2, " the proof of ",
-                str((double)k), " statement:", NULL), "", " ");
+                str((double)k), " statement:", null), "", " ");
           } else {
             printLongLine(cat("Statement \"",
                 g_Statement[g_showStatement].labelName,
                 str2, " the proofs of ",
-                str((double)k), " statements:", NULL), "", " ");
+                str((double)k), " statements:", null), "", " ");
           }
         }
 
@@ -2638,7 +2638,7 @@ static final long SYNTAX =D.SYNTAX;
                 print2("%s\n", str3);
                 let(&str3, " ");
               }
-              let(&str3, cat(str3, " ", g_Statement[j].labelName, NULL));
+              let(&str3, cat(str3, " ", g_Statement[j].labelName, null));
             }
           }
           if (strlen(str3) > 1) print2("%s\n", str3);
@@ -2654,7 +2654,7 @@ static final long SYNTAX =D.SYNTAX;
       if (g_showStatement == 0) {
         printLongLine(cat("?There are no labels matching \"",
             g_fullArg[2], "\".  ",
-            "See HELP SHOW USAGE for matching rules.", NULL), "", " ");
+            "See HELP SHOW USAGE for matching rules.", null), "", " ");
       }
       continue;
     }
@@ -2970,10 +2970,10 @@ static final long SYNTAX =D.SYNTAX;
 
           }
           if (switchPos("/ COMPRESSED")) {
-            printLongLine(cat(space(indentation), str1, " $.", NULL),
+            printLongLine(cat(space(indentation), str1, " $.", null),
               space(indentation), "& ");
           } else {
-            printLongLine(cat(space(indentation), str1," $.", NULL),
+            printLongLine(cat(space(indentation), str1," $.", null),
               space(indentation), " ");
           }
 
@@ -3004,11 +3004,11 @@ static final long SYNTAX =D.SYNTAX;
               let(&str4, cat("\n", space(indentation + 1),
 
                   "(Contributed by ", g_contributorName,
-                      ", ", str3, ".) ", NULL));
+                      ", ", str3, ".) ", null));
               if (str5[0] != 0) {
                 let(&str4, cat(str4, "\n", space(indentation + 1),
                     "(Revised by ", DEFAULT_CONTRIBUTOR,
-                        ", ", str5, ".) ", NULL));
+                        ", ", str5, ".) ", null));
               }
 
               let(&str3, space(g_Statement[outStatement].labelSectionLen));
@@ -3019,7 +3019,7 @@ static final long SYNTAX =D.SYNTAX;
               if (i != 0
                   && saveFlag) {
 
-                let(&str3, cat(left(str3, i - 1), str4, right(str3, i), NULL));
+                let(&str3, cat(left(str3, i - 1), str4, right(str3, i), null));
                 if (g_Statement[outStatement].labelSectionChanged == 1) {
 
                   let(&str4, "");
@@ -3047,7 +3047,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
                 let(&str5, cat(space(indentation),
-                    "$( [", date(), "] $)", NULL));
+                    "$( [", date(), "] $)", null));
 
                 if (saveFlag) {
 
@@ -3058,9 +3058,9 @@ static final long SYNTAX =D.SYNTAX;
                     let(&str4, "");
                   }
                   let(&str3, edit(str3, 8));
-                  if (str3[0] != '\n') let(&str3, cat("\n", str3, NULL));
+                  if (str3[0] != '\n') let(&str3, cat("\n", str3, null));
 
-                  let(&str3, cat("\n", str5, str3, NULL));
+                  let(&str3, cat("\n", str5, str3, null));
 
                   g_Statement[outStatement + 1].labelSectionChanged = 1;
                   g_Statement[outStatement + 1].labelSectionLen
@@ -3083,14 +3083,14 @@ static final long SYNTAX =D.SYNTAX;
           if (saveFlag) {
             g_sourceChanged = 1;
             g_proofChanged = 0;
-            if (processUndoStack(NULL, PUS_GET_STATUS, "", 0)) {
+            if (processUndoStack(null, PUS_GET_STATUS, "", 0)) {
 
               proofSavedFlag = 1;
             }
 
 
 
-            let(&g_printString, cat("\n", g_printString, NULL));
+            let(&g_printString, cat("\n", g_printString, null));
             if (g_Statement[outStatement].proofSectionChanged == 1) {
 
               let(&str1, "");
@@ -3115,12 +3115,12 @@ static final long SYNTAX =D.SYNTAX;
                 printLongLine(
                     cat("The proof of \"", g_Statement[outStatement].labelName,
                     "\" has been reformatted and saved internally.",
-                    NULL), "", " ");
+                    null), "", " ");
               }
             } else {
               printLongLine(cat("The new proof of \"", g_Statement[outStatement].labelName,
                   "\" has been saved internally.",
-                  NULL), "", " ");
+                  null), "", " ");
             }
 
 
@@ -3146,7 +3146,7 @@ static final long SYNTAX =D.SYNTAX;
                 "---------The proof of \"", g_Statement[outStatement].labelName,
 
 
-                "\" (", str((double)l), " bytes) ends above this line.\n", NULL));
+                "\" (", str((double)l), " bytes) ends above this line.\n", null));
           }
           nmbrLet(&nmbrSaveProof, NULL_NMBRSTRING);
           if (pipFlag) break;
@@ -3173,7 +3173,7 @@ static final long SYNTAX =D.SYNTAX;
               printLongLine(cat("Proof of ",
                   "{\\tt ",
                   asciiToTt(g_Statement[outStatement].labelName),
-                  "}:", NULL), "", " ");
+                  "}:", null), "", " ");
               print2("\n");
               print2("\n");
             }
@@ -3284,7 +3284,7 @@ static final long SYNTAX =D.SYNTAX;
         printLongLine(cat("?There is no $p statement whose label matches \"",
             (cmdMatches("MIDI")) ? g_fullArg[1] : g_fullArg[2],
             "\".  ",
-            "Use SHOW LABELS to see list of valid labels.", NULL), "", " ");
+            "Use SHOW LABELS to see list of valid labels.", null), "", " ");
       } else {
         if (saveFlag) {
           print2("Remember to use WRITE SOURCE to save changes permanently.\n");
@@ -3425,7 +3425,7 @@ static final long SYNTAX =D.SYNTAX;
 
       }
 
-      processUndoStack(NULL, PUS_INIT, "", 0);
+      processUndoStack(null, PUS_INIT, "", 0);
       processUndoStack(&g_ProofInProgress, PUS_PUSH, "", 0);
       continue;
     }
@@ -3582,11 +3582,11 @@ static final long SYNTAX =D.SYNTAX;
             printLongLine(cat("Steps ", str((double)s), ":",
                 str((double)m), " are now ", str((double)(s - m + n)), ":",
                 str((double)n), ".",
-                NULL),
+                null),
                 "", " ");
           } else {
             printLongLine(cat("Step ", str((double)m), " is now step ", str((double)n), ".",
-                NULL),
+                null),
                 "", " ");
           }
         }
@@ -3681,7 +3681,7 @@ static final long SYNTAX =D.SYNTAX;
 
         if (!checkMStringMatch(nmbrTmp, s - 1)) {
           printLongLine(cat("?Step ", str((double)s), " cannot be unified with \"",
-              nmbrCvtMToVString(nmbrTmp),"\".", NULL), " ", " ");
+              nmbrCvtMToVString(nmbrTmp),"\".", null), " ", " ");
           continue;
         }
 
@@ -3799,7 +3799,7 @@ static final long SYNTAX =D.SYNTAX;
           printLongLine(cat("\"", g_Statement[k].labelName,
                 "\" is in the mathbox for ",
                 g_mathboxUser[getMathboxNum(k) - 1], ".",
-                NULL),
+                ull),
               "", " ");
         }
       }
@@ -3956,13 +3956,13 @@ static final long SYNTAX =D.SYNTAX;
                 ".  Steps ", str((double)step), ":",
                 str((double)m), " are now ", str((double)(step - m + n)), ":",
                 str((double)n), ".",
-                NULL),
+                null),
                 "", " ");
           } else {
             printLongLine(cat("Step ", str((double)step),
                 " was replaced with statement ", g_Statement[stmt].labelName,
                 ".  Step ", str((double)m), " is now step ", str((double)n), ".",
-                NULL),
+                null),
                 "", " ");
           }
         }
@@ -3981,7 +3981,7 @@ static final long SYNTAX =D.SYNTAX;
      "Assignments to shared working variables ($nn) are guesses.  If "
      "incorrect, UNDO then assign them manually with LET ",
       "and try REPLACE again.",
-              NULL),
+              null),
               "", " ");
       }
 
@@ -4128,13 +4128,13 @@ static final long SYNTAX =D.SYNTAX;
                 ".  Steps ", str((double)s), ":",
                 str((double)m), " are now ", str((double)(s - q + 1 - m + n)),
                 ":", str((double)n), ".",
-                NULL),
+                null),
                 "", " ");
           } else {
             printLongLine(cat("A ", str((double)(n - m + 1)),
                 "-step proof was found for step ", str((double)s),
                 ".  Step ", str((double)m), " is now step ", str((double)n), ".",
-                NULL),
+                null),
                 "", " ");
           }
         }
@@ -4389,7 +4389,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
 
-      if (strpbrk(g_fullArg[1], "*?~%,") != NULL) {
+      if (strpbrk(g_fullArg[1], "*?~%,") != null) {
         hasWildCard = 1;
       }
 
@@ -4550,7 +4550,7 @@ static final long SYNTAX =D.SYNTAX;
 
                 g_Statement[g_proveStatement].proofSectionChanged = 1;
 
-                let(&str1, cat(" ", str1, " $.", NULL));
+                let(&str1, cat(" ", str1, " $.", null));
 
                 g_Statement[g_proveStatement].proofSectionLen
                     = (long)strlen(str1) - 2;
@@ -4649,7 +4649,7 @@ static final long SYNTAX =D.SYNTAX;
 
               g_Statement[g_proveStatement].proofSectionChanged = 1;
 
-              let(&str1, cat(" ", str1, " $.", NULL));
+              let(&str1, cat(" ", str1, " $.", null));
 
               g_Statement[g_proveStatement].proofSectionLen = (long)strlen(str1) - 2;
               g_Statement[g_proveStatement].proofSectionPtr = str1;
@@ -4747,7 +4747,7 @@ static final long SYNTAX =D.SYNTAX;
                 printLongLine(cat("\"", g_Statement[k].labelName,
                       "\" is in the mathbox for ",
                       g_mathboxUser[getMathboxNum(k) - 1], ".",
-                      NULL),
+                      null),
                     "  ", " ");
               }
             }
@@ -4868,11 +4868,11 @@ static final long SYNTAX =D.SYNTAX;
           n = compressedProofSize(nmbrTmp, g_proveStatement);
           printLongLine(cat("Proof of \"",
             g_Statement[g_proveStatement].labelName, "\" ",
-            (s == n ? cat("stayed at ", str((double)s), NULL)
+            (s == n ? cat("stayed at ", str((double)s), null)
                 : cat((s < n ? "increased from " : " decreased from "),
-                    str((double)s), " to ", str((double)n), NULL)),
+                    str((double)s), " to ", str((double)n), null)),
             " bytes after expanding \"",
-            g_Statement[sourceStatement].labelName, "\".", NULL), " ", " ");
+            g_Statement[sourceStatement].labelName, "\".", null), " ", " ");
           s = n;
           nmbrLet(&nmbrSaveProof, nmbrTmp);
         }
@@ -4923,7 +4923,7 @@ static final long SYNTAX =D.SYNTAX;
               " was deleted.  Steps ", str((double)s), ":",
               str((double)m), " are now ", str((double)(s - m + n)), ":",
               str((double)n), ".",
-              NULL),
+              null),
               "", " ");
         } else {
           print2("The entire proof was deleted.\n");
@@ -5121,13 +5121,13 @@ static final long SYNTAX =D.SYNTAX;
         while (true) {
           p = instr(1, str1, "$?");
           if (!p) break;
-          let(&str1, cat(left(str1, p - 1), chr(3), right(str1, p + 2), NULL));
+          let(&str1, cat(left(str1, p - 1), chr(3), right(str1, p + 2), null));
         }
 
         while (true) {
           p = instr(1, str1, "?");
           if (!p) break;
-          let(&str1, cat(left(str1, p - 1), chr(3), right(str1, p + 1), NULL));
+          let(&str1, cat(left(str1, p - 1), chr(3), right(str1, p + 1), null));
         }
 
 
@@ -5137,28 +5137,28 @@ static final long SYNTAX =D.SYNTAX;
           p = instr(1, str1, " $* ");
           if (!p) break;
 
-          let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 4), NULL));
+          let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 4), null));
         }
         while (true) {
           p = instr(1, str1, "$*");
           if (!p) break;
 
-          let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 2), NULL));
+          let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 2), null));
         }
 
         while (true) {
           p = instr(1, str1, " $ ");
           if (!p) break;
-          let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 3), NULL));
+          let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 3), null));
         }
         while (true) {
           p = instr(1, str1, "$");
           if (!p) break;
-          let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 1), NULL));
+          let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 1), null));
         }
 
 
-        let(&str1, cat(chr(2), " ", str1, " ", chr(2), NULL));
+        let(&str1, cat(chr(2), " ", str1, " ", chr(2), null));
       }
 
       for (i = 1; i <= g_statements; i++) {
@@ -5189,18 +5189,18 @@ static final long SYNTAX =D.SYNTAX;
             let(&str3, str2);
           } else {
             if (q - j <= p / 2) {
-              let(&str3, cat("...", right(str2, q - p + 4), NULL));
+              let(&str3, cat("...", right(str2, q - p + 4), null));
             } else {
               if (j <= p / 2) {
-                let(&str3, cat(left(str2, p - 3), "...", NULL));
+                let(&str3, cat(left(str2, p - 3), "...", null));
               } else {
                 let(&str3, cat("...", mid(str2, j - p / 2, p - 6), "...",
-                    NULL));
+                    null));
               }
             }
           }
           print2("%s\n", cat(str((double)i), " ", g_Statement[i].labelName, " $",
-              chr(g_Statement[i].type), " \"", str3, "\"", NULL));
+              chr(g_Statement[i].type), " \"", str3, "\"", null));
           let(&str2, "");
         } else {
           let(&str2,nmbrCvtMToVString(g_Statement[i].mathString));
@@ -5216,8 +5216,8 @@ static final long SYNTAX =D.SYNTAX;
               if (g_Statement[p].type == (char)e_) {
                 let(&str2, cat("$e ",
                     nmbrCvtMToVString(g_Statement[p].mathString),
-                    tmpFlag ? "" : cat(" $", chr(g_Statement[i].type), NULL),
-                    " ", str2, NULL));
+                    tmpFlag ? "" : cat(" $", chr(g_Statement[i].type), null),
+                    " ", str2, null));
                 tmpFlag = 1;
               }
             }
@@ -5236,7 +5236,7 @@ static final long SYNTAX =D.SYNTAX;
           }
           let(&str2, left(str3, q + s));
 
-          let(&str2, cat(" ", str2, " ", NULL));
+          let(&str2, cat(" ", str2, " ", null));
 
           if (!matches(str2, str1, 2,
               3))
@@ -5244,9 +5244,9 @@ static final long SYNTAX =D.SYNTAX;
           let(&str2, edit(str2, 8 + 16 + 128));
           printLongLine(cat(str((double)i)," ",
               g_Statement[i].labelName,
-              tmpFlag ? "" : cat(" $", chr(g_Statement[i].type), NULL),
+              tmpFlag ? "" : cat(" $", chr(g_Statement[i].type), null),
               " ", str2,
-              NULL), "    ", " ");
+              null), "    ", " ");
         }
       }
       continue;
@@ -5304,7 +5304,7 @@ static final long SYNTAX =D.SYNTAX;
         printLongLine(cat("The ability to substitute empty expressions",
             " for variables  has been turned off.  Note that this may",
             " make the Proof Assistant too restrictive in some cases.",
-            NULL),
+            null),
             "", " ");
         continue;
       }
@@ -5386,11 +5386,11 @@ static final long SYNTAX =D.SYNTAX;
             || instr(1, g_input_fn, "\\") != 0
             || instr(1, g_output_fn, "\\") != 0 ) {
           if (g_rootDirectory[strlen(g_rootDirectory) - 1] != '\\') {
-            let(&g_rootDirectory, cat(g_rootDirectory, "\\", NULL));
+            let(&g_rootDirectory, cat(g_rootDirectory, "\\", null));
           }
         } else {
           if (g_rootDirectory[strlen(g_rootDirectory) - 1] != '/') {
-            let(&g_rootDirectory, cat(g_rootDirectory, "/", NULL));
+            let(&g_rootDirectory, cat(g_rootDirectory, "/", null));
           }
         }
       }
@@ -5408,11 +5408,11 @@ static final long SYNTAX =D.SYNTAX;
       s = (long)val(g_fullArg[2]);
       if (s < 0) s = 0;
 
-      if (processUndoStack(NULL, PUS_GET_SIZE, "", 0) != s) {
+      if (processUndoStack(null, PUS_GET_SIZE, "", 0) != s) {
         print2(
             "The maximum number of UNDOs was changed from %ld to %ld\n",
-            processUndoStack(NULL, PUS_GET_SIZE, "", 0), s);
-        processUndoStack(NULL, PUS_NEW_SIZE, "", s);
+            processUndoStack(null, PUS_GET_SIZE, "", 0), s);
+        processUndoStack(null, PUS_NEW_SIZE, "", s);
         if (g_PFASmode == 1) {
           processUndoStack(&g_ProofInProgress, PUS_PUSH, "", 0);
         }
@@ -5519,7 +5519,7 @@ static final long SYNTAX =D.SYNTAX;
       list1_fp = fSafeOpen(g_fullArg[1], "r", 0);
       if (!list1_fp) continue;
       while (true) {
-        if (!linput(list1_fp, NULL, &str1)) break;
+        if (!linput(list1_fp, null, &str1)) break;
 
         if (!print2("%s\n", str1)) break;
       }
@@ -5555,7 +5555,7 @@ static final long SYNTAX =D.SYNTAX;
 
       j = 0;
       m = 0;
-      while (linput(type_fp, NULL, &str1)) {
+      while (linput(type_fp, null, &str1)) {
         j++;
         if (j > toLine && toLine != 0) break;
         if (j >= fromLine || fromLine == 0) {

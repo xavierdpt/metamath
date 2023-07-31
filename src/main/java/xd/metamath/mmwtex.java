@@ -30,7 +30,7 @@ pntrString *g_mathboxUser = NULL_PNTRSTRING;
   static final String CLOSING_PUNCTUATION=D.CLOSING_PUNCTUATION;
 
 
-File g_texFilePtr = NULL;
+File g_texFilePtr = null;
 flag g_texFileOpenFlag = 0;
 
 
@@ -124,7 +124,7 @@ flag readTexDefs(
   static flag saveHtmlFlag = -1;
   static flag saveAltHtmlFlag = 1;
   flag warningFound = 0;
-  char *dollarTStmtPtr = NULL;
+  char *dollarTStmtPtr = null;
 
 
   void *g_mathKeyPtr;
@@ -153,7 +153,7 @@ flag readTexDefs(
   let(&g_htmlHome, cat("<A HREF=\"mmset.html\"><FONT SIZE=-2 FACE=sans-serif>",
     "<IMG SRC=\"mm.gif\" BORDER=0 ALT=",
     "\"Home\" HEIGHT=32 WIDTH=32 ALIGN=MIDDLE STYLE=\"margin-bottom:0px\">",
-    "Home</FONT></A>", NULL));
+    "Home</FONT></A>", null));
 
 
   if (errorsOnly == 0) {
@@ -318,7 +318,7 @@ flag readTexDefs(
             " \"htmlbibliography\", \"exthtmlbibliography\",",
             " \"htmlcss\", \"htmlfont\",",
             " or \"htmlexturl\" here.",
-            NULL));
+            null));
         let(&fileBuf, "");
         return 2;
       }
@@ -366,7 +366,7 @@ flag readTexDefs(
             if (token[i] == fbPtr[0] &&
                 token[i + 1] == fbPtr[0]) {
               let(&token, cat(left(token,
-                  i + 1), right(token, i + 3), NULL));
+                  i + 1), right(token, i + 3), null));
               j--;
             }
           }
@@ -458,7 +458,7 @@ flag readTexDefs(
             if (token[i] == fbPtr[0] &&
                 token[i + 1] == fbPtr[0]) {
               let(&partialToken, cat(left(partialToken,
-                  i + 1), right(token, i + 3), NULL));
+                  i + 1), right(token, i + 3), null));
               j--;
             }
           }
@@ -466,7 +466,7 @@ flag readTexDefs(
 
 
           tmpPtr2 = strchr(partialToken, '\n');
-          if (tmpPtr2 != NULL) {
+          if (tmpPtr2 != null) {
 
 
             lineNum = lineNumOffset;
@@ -483,7 +483,7 @@ flag readTexDefs(
 
 
 
-          let(&token, cat(token, partialToken, NULL));
+          let(&token, cat(token, partialToken, null));
 
         }
 
@@ -531,7 +531,7 @@ flag readTexDefs(
           let(&(g_TexDefs[numSymbs].texEquiv), token);
         }
         if (cmd == HTMLVARCOLOR) {
-          let(&g_htmlVarColor, cat(g_htmlVarColor, " ", token, NULL));
+          let(&g_htmlVarColor, cat(g_htmlVarColor, " ", token, null));
         }
         if (cmd == HTMLTITLE) {
           let(&htmlTitle, token);
@@ -568,7 +568,7 @@ flag readTexDefs(
             p = instr(1, g_htmlCSS, "\\n");
             if (p != 0) {
               let(&g_htmlCSS, cat(left(g_htmlCSS, p - 1), "\n",
-                  right(g_htmlCSS, p + 2), NULL));
+                  right(g_htmlCSS, p + 2), null));
             }
           } while (p != 0);
         }
@@ -613,7 +613,7 @@ flag readTexDefs(
           g_htmlFlag
             ? (g_altHtmlFlag ? "an althtmldef" : "an htmldef")
             : "a latexdef",
-          " statement.", NULL),
+          " statement.", null),
           "", " ");
       warningFound = 1;
     }
@@ -629,7 +629,7 @@ flag readTexDefs(
           g_htmlFlag
             ? (g_altHtmlFlag ? "an althtmldef" : "an htmldef")
             : "a latexdef",
-          " statement, was not declared in any $v or $c statement.", NULL),
+          " statement, was not declared in any $v or $c statement.", null),
           "", " ");
       warningFound = 1;
     }
@@ -645,7 +645,7 @@ flag readTexDefs(
           g_htmlFlag
             ? (g_altHtmlFlag ? "an althtmldef" : "an htmldef")
             : "a latexdef",
-          " statement.", NULL),
+          " statement.", null),
           "", " ");
       warningFound = 1;
     }
@@ -669,7 +669,7 @@ flag readTexDefs(
           if (!tmpFp) {
             printLongLine(cat("?Warning: The file \"", token,
                 "\", which is referenced in an htmldef",
-                " statement, was not found.", NULL),
+                " statement, was not found.", null),
                 "", " ");
             warningFound = 1;
           } else {
@@ -690,7 +690,7 @@ flag readTexDefs(
       printLongLine(cat("?Warning: There is no statement with label \"",
           extHtmlLabel,
           "\" (specified by exthtmllabel in the database source $t comment).  ",
-          "Use SHOW LABELS for a list of valid labels.", NULL), "", " ");
+          "Use SHOW LABELS for a list of valid labels.", null), "", " ");
       warningFound = 1;
     }
     g_extHtmlStmt = i;
@@ -708,7 +708,7 @@ flag readTexDefs(
     "<FONT SIZE=-2 FACE=sans-serif>",
     "<IMG SRC=\"_sandbox.gif\" BORDER=0 ALT=",
     "\"Table of Contents\" HEIGHT=32 WIDTH=32 ALIGN=MIDDLE>",
-    "Table of Contents</FONT></A>", NULL));
+    "Table of Contents</FONT></A>", null));
   let(&sandboxHomeHREF, "mmtheorems.html#sandbox:bighdr");
   let(&sandboxHomeIMG, "_sandbox.gif");
   let(&sandboxTitleAbbr, "Users' Mathboxes");
@@ -745,10 +745,10 @@ flag readTexDefs(
   let(&htmlTitleAbbr, "");
   for (i = 1; i <= j; i++) {
     if (htmlTitle[i - 1] >= 'A' && htmlTitle[i -1] <= 'Z') {
-      let(&htmlTitleAbbr, cat(htmlTitleAbbr, chr(htmlTitle[i - 1]), NULL));
+      let(&htmlTitleAbbr, cat(htmlTitleAbbr, chr(htmlTitle[i - 1]), null));
     }
   }
-  let(&htmlTitleAbbr, cat(htmlTitleAbbr, " Home", NULL));
+  let(&htmlTitleAbbr, cat(htmlTitleAbbr, " Home", null));
 
 
   if (g_extHtmlStmt < g_statements + 1
@@ -776,10 +776,10 @@ flag readTexDefs(
     for (i = 1; i <= j; i++) {
       if (g_extHtmlTitle[i - 1] >= 'A' && g_extHtmlTitle[i -1] <= 'Z') {
         let(&g_extHtmlTitleAbbr, cat(g_extHtmlTitleAbbr,
-            chr(g_extHtmlTitle[i - 1]), NULL));
+            chr(g_extHtmlTitle[i - 1]), null));
       }
     }
-    let(&g_extHtmlTitleAbbr, cat(g_extHtmlTitleAbbr, " Home", NULL));
+    let(&g_extHtmlTitleAbbr, cat(g_extHtmlTitleAbbr, " Home", null));
   }
 
 
@@ -909,11 +909,11 @@ vstring asciiToTt(vstring s)
         case '{':
         case '}':
         case '&':
-          let(&ttstr,cat(left(ttstr,i),"\\",right(ttstr,i+1),NULL));
+          let(&ttstr,cat(left(ttstr,i),"\\",right(ttstr,i+1),null));
           k = 2;
           break;
         case '^':
-          let(&ttstr,cat(left(ttstr,i),"\\^{ }",right(ttstr,i+2),NULL));
+          let(&ttstr,cat(left(ttstr,i),"\\^{ }",right(ttstr,i+2),null));
           k = 5;
           break;
         case '\\':
@@ -923,7 +923,7 @@ vstring asciiToTt(vstring s)
         case '"':
         case '~':
         case '_':
-          let(&ttstr,cat(left(ttstr,i),"\\char`\\",right(ttstr,i+1),NULL));
+          let(&ttstr,cat(left(ttstr,i),"\\char`\\",right(ttstr,i+1),null));
           k = 8;
           break;
       }
@@ -944,15 +944,15 @@ vstring asciiToTt(vstring s)
             i = i + 7;
             break;
           }
-          let(&ttstr,cat(left(ttstr,i),"&lt;",right(ttstr,i+2),NULL));
+          let(&ttstr,cat(left(ttstr,i),"&lt;",right(ttstr,i+2),null));
           k = 4;
           break;
         case '>':
-          let(&ttstr,cat(left(ttstr,i),"&gt;",right(ttstr,i+2),NULL));
+          let(&ttstr,cat(left(ttstr,i),"&gt;",right(ttstr,i+2),null));
           k = 4;
           break;
         case '"':
-          let(&ttstr,cat(left(ttstr,i),"&quot;",right(ttstr,i+2),NULL));
+          let(&ttstr,cat(left(ttstr,i),"&quot;",right(ttstr,i+2),null));
           k = 6;
           break;
       }
@@ -998,11 +998,11 @@ vstring tokenToTex(vstring mtoken, long statemNum )
       printLongLine(cat("?Warning: In the comment for statement \"",
           g_Statement[statemNum].labelName,
           "\", math symbol token \"", mtoken,
-          "\" does not have a LaTeX and/or an HTML definition.", NULL),
+          "\" does not have a LaTeX and/or an HTML definition.", null),
           "", " ");
     } else {
       printLongLine(cat("?Warning: Math symbol token \"", mtoken,
-          "\" does not have a LaTeX and/or an HTML definition.", NULL),
+          "\" does not have a LaTeX and/or an HTML definition.", null),
           "", " ");
     }
     g_outputToString = saveOutputToString;
@@ -1026,10 +1026,10 @@ vstring tokenToTex(vstring mtoken, long statemNum )
       if (ispunct((unsigned char)(tex[i]))) {
         tmpStr = asciiToTt(chr(tex[i]));
         if (!g_htmlFlag)
-          let(&tmpStr, cat("{\\tt ", tmpStr, "}", NULL));
+          let(&tmpStr, cat("{\\tt ", tmpStr, "}", null));
         k = (long)strlen(tmpStr);
         let(&tex,
-            cat(left(tex, i), tmpStr, right(tex, i + 2), NULL));
+            cat(left(tex, i), tmpStr, right(tex, i + 2), null));
         i = i + k - 1;
         j = j + k - 1;
         let(&tmpStr, "");
@@ -1038,7 +1038,7 @@ vstring tokenToTex(vstring mtoken, long statemNum )
 
 
     if (!g_htmlFlag)
-      let(&tex, cat("\\mbox{\\rm ", tex, "}", NULL));
+      let(&tex, cat("\\mbox{\\rm ", tex, "}", null));
 
   }
 
@@ -1090,12 +1090,12 @@ vstring asciiMathToTex(vstring mathComment, long statemNum)
 
       if ((alphold || unknownold) && (alphnew || unknownnew)) {
 
-        let(&texLine, cat(texLine, "\\,", tex, " ", NULL));
+        let(&texLine, cat(texLine, "\\,", tex, " ", null));
       } else {
-        let(&texLine, cat(texLine, tex, " ", NULL));
+        let(&texLine, cat(texLine, tex, " ", null));
       }
     } else {
-      let(&texLine, cat(texLine, tex, NULL));
+      let(&texLine, cat(texLine, tex, null));
     }
     let(&lastTex, "");
     lastTex = tex;
@@ -1158,7 +1158,7 @@ vstring getCommentModeSection(vstring *srcptr, char *mode)
           memcpy(modeSection, *srcptr, (size_t)(ptr - (*srcptr)));
           if (addMode) {
             let(&modeSection, cat(chr(DOLLAR_SUBST), "n",  modeSection,
-                NULL));
+                null));
           }
           *srcptr = ptr;
           return (modeSection);
@@ -1170,7 +1170,7 @@ vstring getCommentModeSection(vstring *srcptr, char *mode)
           memcpy(modeSection, *srcptr, (size_t)(ptr - (*srcptr)));
           if (addMode) {
             let(&modeSection, cat(chr(DOLLAR_SUBST), "n",  modeSection,
-                NULL));
+                null));
           }
           *srcptr = ptr;
           return (modeSection);
@@ -1178,7 +1178,7 @@ vstring getCommentModeSection(vstring *srcptr, char *mode)
     }
     ptr++;
   }
-  return(NULL);
+  return(null);
 }
 
 
@@ -1319,7 +1319,7 @@ void printTexHeader(flag texHeaderFlag)
     print2("     font-size: x-small;\n");
 
     printLongLine(cat("     color: ", seg(PINK_NUMBER_COLOR, 2,
-        (long)strlen(PINK_NUMBER_COLOR) - 1), ";", NULL), "", "&");
+        (long)strlen(PINK_NUMBER_COLOR) - 1), ";", null), "", "&");
     print2("   }\n");
 #else
     print2(".r { font-family: \"Arial Narrow\";\n");
@@ -1349,7 +1349,7 @@ void printTexHeader(flag texHeaderFlag)
           left(g_texFileName, (long)strlen(g_texFileName) - 5),
 
           " - ", htmlTitle,
-          "</TITLE>", NULL));
+          "</TITLE>", null));
 
     } else if (g_showStatement < g_mathboxStmt) {
       print2("%s\n", cat("<TITLE>",
@@ -1357,7 +1357,7 @@ void printTexHeader(flag texHeaderFlag)
           left(g_texFileName, (long)strlen(g_texFileName) - 5),
 
           " - ", g_extHtmlTitle,
-          "</TITLE>", NULL));
+          "</TITLE>", null));
 
 
     } else {
@@ -1400,7 +1400,7 @@ void printTexHeader(flag texHeaderFlag)
 
 
           " - ", localSandboxTitle,
-          "</TITLE>", NULL), "", "\"");
+          "</TITLE>", null), "", "\"");
 
     }
 
@@ -1530,10 +1530,10 @@ void printTexHeader(flag texHeaderFlag)
       i = ((g_Statement[g_showStatement].pinkNumber - 1) / 100) + 1;
 
       let(&tmpStr, cat("mmtheorems", str((double)i), ".html#",
-          g_Statement[g_showStatement].labelName, NULL));
+          g_Statement[g_showStatement].labelName, null));
 
       printLongLine(cat("      <BR><A HREF=\"", tmpStr,
-            "\">Nearby theorems</A>", NULL), " ", " ");
+            "\">Nearby theorems</A>", null), " ", " ");
 
 
       print2("      </FONT>\n");
@@ -1575,7 +1575,7 @@ void printTexHeader(flag texHeaderFlag)
         if (i == 0) break;
         let(&tmpStr, cat(left(tmpStr, i - 1),
             g_Statement[g_showStatement].labelName,
-            right(tmpStr, i + 1), NULL));
+            right(tmpStr, i + 1), null));
       }
       printLongLine(tmpStr, "", " ");
 
@@ -1757,13 +1757,13 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
         if (mode == -1) {
           let(&tmpStrMasked, cat(space(pos1 - 1),
-              mid(cmtMasked, pos1, 1), NULL));
+              mid(cmtMasked, pos1, 1), null));
         } else {
           let(&tmpStrMasked, left(cmtMasked, pos1));
         }
       }
-      let(&tmp, cat(tmp, tmpStr, NULL));
-      let(&tmpMasked, cat(tmpMasked, tmpStrMasked, NULL));
+      let(&tmp, cat(tmp, tmpStr, null));
+      let(&tmpMasked, cat(tmpMasked, tmpStrMasked, null));
       let(&cmt, right(cmt, pos1 + 1));
       let(&cmtMasked, right(cmtMasked, pos1 + 1));
       if (!cmt[0]) break;
@@ -1780,10 +1780,10 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
     if (htmlCenterFlag) {
       let(&cmt, cat("<CENTER><TABLE><TR><TD ALIGN=LEFT><B>Description: </B>",
-          cmt, "</TD></TR></TABLE></CENTER>", NULL));
+          cmt, "</TD></TR></TABLE></CENTER>", null));
       let(&cmtMasked,
           cat("<CENTER><TABLE><TR><TD ALIGN=LEFT><B>Description: </B>",
-          cmtMasked, "</TD></TR></TABLE></CENTER>", NULL));
+          cmtMasked, "</TD></TR></TABLE></CENTER>", null));
     }
   }
 
@@ -1847,9 +1847,9 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
       if (pos1 > instr(1, cmt, "<HTML>") && pos1 < instr(1, cmt, "</HTML>"))
         continue;
       let(&cmt, cat(left(cmt, pos1 - 1), "\\$",
-          right(cmt, pos1 + 1), NULL));
+          right(cmt, pos1 + 1), null));
       let(&cmtMasked, cat(left(cmtMasked, pos1 - 1), "\\$",
-          right(cmtMasked, pos1 + 1), NULL));
+          right(cmtMasked, pos1 + 1), null));
       pos1 = pos1 + 1;
     }
   }
@@ -1886,13 +1886,13 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         case '>': cmt[pos1 - 1] = '}'; break;
         case '_': cmt[pos1 - 1] = '-'; break;
       }
-      if (strchr("%#{}&^|<>_", cmt[pos1 - 1]) != NULL) {
+      if (strchr("%#{}&^|<>_", cmt[pos1 - 1]) != null) {
         let(&tmpStr, "");
         tmpStr = asciiToTt(chr(cmt[pos1 - 1]));
         let(&cmt, cat(left(cmt, pos1 - 1), tmpStr,
-            right(cmt, pos1 + 1), NULL));
+            right(cmt, pos1 + 1), null));
         let(&cmtMasked, cat(left(cmtMasked, pos1 - 1), tmpStr,
-            right(cmtMasked, pos1 + 1), NULL));
+            right(cmtMasked, pos1 + 1), null));
         pos1 += (long)strlen(tmpStr) - 1;
         pos2 += (long)strlen(tmpStr) - 1;
       }
@@ -1936,10 +1936,10 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
       if (pos1 > 1) {
 
         if (!isspace((unsigned char)(cmt[pos1 - 2]))
-            && strchr(OPENING_PUNCTUATION, cmt[pos1 - 2]) == NULL) {
+            && strchr(OPENING_PUNCTUATION, cmt[pos1 - 2]) == null) {
 
           if (!isspace((unsigned char)(cmt[pos1]))
-            && strchr(CLOSING_PUNCTUATION, cmt[pos1]) == NULL) {
+            && strchr(CLOSING_PUNCTUATION, cmt[pos1]) == null) {
 
 
 
@@ -1949,8 +1949,8 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
               if (!cmt[pos2]) break;
 
               if (isspace((unsigned char)(cmt[pos2]))
-                  || strchr(OPENING_PUNCTUATION, cmt[pos2]) != NULL
-                  || strchr(CLOSING_PUNCTUATION, cmt[pos2]) != NULL) break;
+                  || strchr(OPENING_PUNCTUATION, cmt[pos2]) != null
+                  || strchr(CLOSING_PUNCTUATION, cmt[pos2]) != null) break;
               pos2++;
             }
             pos2++;
@@ -1959,20 +1959,20 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
               let(&cmt, cat(left(cmt, pos1 - 1),
                   "<SUB><FONT SIZE=\"-1\">",
                   seg(cmt, pos1 + 1, pos2 - 1),
-                  "</FONT></SUB>", right(cmt, pos2), NULL));
+                  "</FONT></SUB>", right(cmt, pos2), null));
               let(&cmtMasked, cat(left(cmtMasked, pos1 - 1),
                   "<SUB><FONT SIZE=\"-1\">",
                   seg(cmtMasked, pos1 + 1, pos2 - 1),
-                  "</FONT></SUB>", right(cmtMasked, pos2), NULL));
+                  "</FONT></SUB>", right(cmtMasked, pos2), null));
               pos1 = pos2 + 33;
             } else {
 
               let(&cmt, cat(left(cmt, pos1 - 1), "$_{",
                   seg(cmt, pos1 + 1, pos2 - 1),
-                  "}$", right(cmt, pos2), NULL));
+                  "}$", right(cmt, pos2), null));
               let(&cmtMasked, cat(left(cmtMasked, pos1 - 1), "$_{",
                   seg(cmtMasked, pos1 + 1, pos2 - 1),
-                  "}$", right(cmtMasked, pos2), NULL));
+                  "}$", right(cmtMasked, pos2), null));
               pos1 = pos2 + 4;
             }
             continue;
@@ -1996,18 +1996,18 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
       if (g_htmlFlag) {
         let(&cmt, cat(left(cmt, pos1 - 1), "<I>",
             seg(cmt, pos1 + 1, pos2 - 1),
-            "</I>", right(cmt, pos2 + 1), NULL));
+            "</I>", right(cmt, pos2 + 1), null));
         let(&cmtMasked, cat(left(cmtMasked, pos1 - 1), "<I>",
             seg(cmtMasked, pos1 + 1, pos2 - 1),
-            "</I>", right(cmtMasked, pos2 + 1), NULL));
+            "</I>", right(cmtMasked, pos2 + 1), null));
         pos1 = pos2 + 5;
       } else {
         let(&cmt, cat(left(cmt, pos1 - 1), "{\\em ",
             seg(cmt, pos1 + 1, pos2 - 1),
-            "}", right(cmt, pos2 + 1), NULL));
+            "}", right(cmt, pos2 + 1), null));
         let(&cmtMasked, cat(left(cmtMasked, pos1 - 1), "{\\em ",
             seg(cmtMasked, pos1 + 1, pos2 - 1),
-            "}", right(cmtMasked, pos2 + 1), NULL));
+            "}", right(cmtMasked, pos2 + 1), null));
         pos1 = pos2 + 4;
       }
     }
@@ -2025,9 +2025,9 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
       if (pos1 == 0) break;
       if (i == 1) {
         let(&cmt, cat(left(cmt, pos1 - 1), "````",
-            right(cmt, pos1 + 1), NULL));
+            right(cmt, pos1 + 1), null));
         let(&cmtMasked, cat(left(cmtMasked, pos1 - 1), "````",
-            right(cmtMasked, pos1 + 1), NULL));
+            right(cmtMasked, pos1 + 1), null));
       }
       i = 1 - i;
     }
@@ -2067,9 +2067,9 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         if (cmtMasked[pos1] == '[') {
 
           let(&cmt, cat(left(cmt, pos1 - 1),
-              right(cmt, pos1 + 1), NULL));
+              right(cmt, pos1 + 1), null));
           let(&cmtMasked, cat(left(cmtMasked, pos1 - 1),
-              right(cmtMasked, pos1 + 1), NULL));
+              right(cmtMasked, pos1 + 1), null));
 
           continue;
         }
@@ -2108,7 +2108,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
                   " correctness.  The first one is \"", bibTag,
                   "\" in the comment for statement \"",
                   g_Statement[g_showStatement].labelName, "\".",
-                  NULL), "", " ");
+                  null), "", " ");
               returnVal = 1;
               bibFileContents = "";
               let(&bibTags, "?");
@@ -2132,17 +2132,17 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
                     || bibFileContents[htmlpos2 - 1] == '"') htmlpos2--;
                 if (htmlpos2 <= htmlpos1) continue;
                 let(&tmp, cat("[",
-                    seg(bibFileContents, htmlpos1, htmlpos2), "]", NULL));
+                    seg(bibFileContents, htmlpos1, htmlpos2), "]", null));
 
                 if (instr(1, bibTags, tmp)) {
                   printLongLine(cat("?Error: There two occurrences of",
                       " bibliographic reference \"",
                       seg(bibFileContents, htmlpos1, htmlpos2),
-                      "\" in the file \"", bibFileName, "\".", NULL), "", " ");
+                      "\" in the file \"", bibFileName, "\".", null), "", " ");
                   returnVal = 1;
                 }
 
-                let(&bibTags, cat(bibTags, tmp, NULL));
+                let(&bibTags, cat(bibTags, tmp, null));
               }
               if (!bibTags[0]) {
 
@@ -2173,7 +2173,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
                 "\" in statement \"", g_Statement[g_showStatement].labelName,
                 "\" was not found as an <A NAME=\"",
                 seg(bibTag, 2, pos2 - pos1),
-                "\"></A> anchor in the file \"", bibFileName, "\".", NULL),
+                "\"></A> anchor in the file \"", bibFileName, "\".", null),
                 "", " ");
             returnVal = 1;
           }
@@ -2183,11 +2183,11 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
         let(&tmp, cat("[<A HREF=\"",
             bibFileName, "#", seg(bibTag, 2, pos2 - pos1), "\">",
-            seg(bibTag, 2, pos2 - pos1), "</A>]", NULL));
+            seg(bibTag, 2, pos2 - pos1), "</A>]", null));
         let(&cmt, cat(left(cmt, pos1 - 1), tmp, right(cmt,
-            pos2 + 1), NULL));
+            pos2 + 1), null));
         let(&cmtMasked, cat(left(cmtMasked, pos1 - 1), tmp, right(cmtMasked,
-            pos2 + 1), NULL));
+            pos2 + 1), null));
         pos1 = pos1 + (long)strlen(tmp) - (long)strlen(bibTag);
       }
     }
@@ -2204,7 +2204,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
       if (cmt[i + 1] == '`') {
         if (processSymbols != 0) {
 
-          let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), NULL));
+          let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), null));
           clen--;
         }
       } else {
@@ -2217,7 +2217,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
         if (processSymbols != 0) {
           let(&cmt, cat(left(cmt, i), chr(DOLLAR_SUBST) , chr(mode),
-              right(cmt, i+2), NULL));
+              right(cmt, i+2), null));
           clen++;
           i++;
         }
@@ -2228,14 +2228,14 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
             ) {
           let(&tmp, mid(cmt, i - 2, 2));
           if (!strcmp("( ", tmp)) {
-            let(&cmt, cat(left(cmt, i - 2), right(cmt, i), NULL));
+            let(&cmt, cat(left(cmt, i - 2), right(cmt, i), null));
             clen = clen - 1;
           }
 
           let(&tmp, mid(cmt, i - 8, 8));
           if (!strcmp("&quot; ", right(tmp, 2))
-              && strchr("( ", tmp[0]) != NULL) {
-            let(&cmt, cat(left(cmt, i - 2), right(cmt, i), NULL));
+              && strchr("( ", tmp[0]) != null) {
+            let(&cmt, cat(left(cmt, i - 2), right(cmt, i), null));
             clen = clen - 1;
           }
           let(&tmp, "");
@@ -2244,17 +2244,17 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
             && processSymbols != 0
             ) {
           let(&tmp, mid(cmt, i + 2, 2));
-          if (tmp[0] == ' ' && strchr(CLOSING_PUNCTUATION, tmp[1]) != NULL) {
-            let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), NULL));
+          if (tmp[0] == ' ' && strchr(CLOSING_PUNCTUATION, tmp[1]) != null) {
+            let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), null));
             clen = clen - 1;
           }
 
           let(&tmp, mid(cmt, i + 2, 8));
           if (strlen(tmp) < 8)
-              let(&tmp, cat(tmp, space(8 - (long)strlen(tmp)), NULL));
+              let(&tmp, cat(tmp, space(8 - (long)strlen(tmp)), null));
           if (!strcmp(" &quot;", left(tmp, 7))
-              && strchr(CLOSING_PUNCTUATION, tmp[7]) != NULL) {
-            let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), NULL));
+              && strchr(CLOSING_PUNCTUATION, tmp[7]) != null) {
+            let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), null));
             clen = clen - 1;
           }
           let(&tmp, "");
@@ -2268,7 +2268,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
           ) {
         if (processLabels != 0) {
 
-          let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), NULL));
+          let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), null));
           clen--;
         }
       } else {
@@ -2276,7 +2276,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         if (mode != 'l') {
           mode = 'l';
           while (isspace((unsigned char)(cmt[i + 1])) && clen > i + 1) {
-            let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), NULL));
+            let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), null));
             clen--;
           }
         } else {
@@ -2288,13 +2288,13 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
               " in the comment of statement \"",
               g_Statement[g_showStatement].labelName,
               "\".  Use \"~~\" to escape \"~\" in an http reference.",
-              NULL), "", " ");
+              null), "", " ");
           returnVal = 1;
           g_outputToString = 1;
           mode = 'n';
         }
         let(&cmt, cat(left(cmt, i), chr(DOLLAR_SUBST) , chr(mode),
-            right(cmt, i+2), NULL));
+            right(cmt, i+2), null));
         clen++;
         i++;
 
@@ -2302,7 +2302,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         let(&tmp, mid(cmt, i - 2, 2));
 
         if (!strcmp("( ", tmp) || !strcmp("[ ", tmp)) {
-          let(&cmt, cat(left(cmt, i - 2), right(cmt, i), NULL));
+          let(&cmt, cat(left(cmt, i - 2), right(cmt, i), null));
           clen = clen - 1;
         }
         let(&tmp, "");
@@ -2321,14 +2321,14 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
       mode = 'n';
       let(&cmt, cat(left(cmt, i), chr(DOLLAR_SUBST) , chr(mode),
-          right(cmt, i+1), NULL));
+          right(cmt, i+1), null));
       clen = clen + 2;
       i = i + 2;
 
 
       let(&tmp, mid(cmt, i + 1, 2));
-      if (tmp[0] == ' ' && strchr(CLOSING_PUNCTUATION, tmp[1]) != NULL) {
-        let(&cmt, cat(left(cmt, i), right(cmt, i + 2), NULL));
+      if (tmp[0] == ' ' && strchr(CLOSING_PUNCTUATION, tmp[1]) != null) {
+        let(&cmt, cat(left(cmt, i), right(cmt, i + 2), null));
         clen = clen - 1;
       }
       let(&tmp, "");
@@ -2356,7 +2356,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
     if (i == 0) continue;
     if (tmpStr[i - 1] == '\n') continue;
 
-    let(&cmt, cat(left(cmt, pos1 - 1), "\n", right(cmt, pos1), NULL));
+    let(&cmt, cat(left(cmt, pos1 - 1), "\n", right(cmt, pos1), null));
   }
   pos1 = -1;
   while (true) {
@@ -2371,7 +2371,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
     if (i == 0) continue;
     if (tmpStr[i - 1] == '\n') continue;
 
-    let(&cmt, cat(left(cmt, pos1 - 1), "\n", right(cmt, pos1), NULL));
+    let(&cmt, cat(left(cmt, pos1 - 1), "\n", right(cmt, pos1), null));
   }
 
 
@@ -2414,7 +2414,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
     displayMode = 0;
     let(&tmpStr, edit(sourceLine, 8 + 128));
     if (!strcmp(right(tmpStr, (long)strlen(tmpStr) - 1), cat(chr(DOLLAR_SUBST), "n",
-        NULL))) let(&tmpStr, left(tmpStr, (long)strlen(tmpStr) - 2));
+        null))) let(&tmpStr, left(tmpStr, (long)strlen(tmpStr) - 2));
     srcptr = tmpStr;
     modeSection = getCommentModeSection(&srcptr, &mode);
     let(&modeSection, "");
@@ -2435,7 +2435,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
       let(&modeSection, right(modeSection, 3));
       switch (mode) {
         case 'n':
-          let(&outputLine, cat(outputLine, modeSection, NULL));
+          let(&outputLine, cat(outputLine, modeSection, null));
           break;
         case 'l':
 
@@ -2458,7 +2458,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
                 g_Statement[g_showStatement].labelName,
                 "\".  Check that \"`\" inside of a math symbol is",
                 " escaped with \"``\".",
-                NULL), "", " ");
+                null), "", " ");
             returnVal = 1;
             g_outputToString = 1;
 
@@ -2473,7 +2473,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
             if (g_htmlFlag) {
               let(&outputLine, cat(outputLine, "<A HREF=\"", tmpStr,
-                  "\">", tmpStr, "</A>", tmp, NULL));
+                  "\">", tmpStr, "</A>", tmp, null));
             } else {
 
 
@@ -2482,10 +2482,10 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
               if (i != 0) {
                 let(&tmpStr, cat(left(tmpStr, i - 1), right(tmpStr, i + 7),
-                    NULL));
+                    null));
               }
               let(&outputLine, cat(outputLine, "\\url{", tmpStr,
-                  "}", tmp, NULL));
+                  "}", tmp, null));
 
             }
           } else {
@@ -2495,14 +2495,14 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
               printLongLine(cat("?Warning: The label token \"", tmpStr,
                   "\" (referenced in comment of statement \"",
                   g_Statement[g_showStatement].labelName,
-                  "\") is not a $a or $p statement label.", NULL), "", " ");
+                  "\") is not a $a or $p statement label.", null), "", " ");
               g_outputToString = 1;
               returnVal = 1;
             }
 
             if (!g_htmlFlag) {
               let(&outputLine, cat(outputLine, "{\\tt ", tmpStr,
-                 "}", NULL));
+                 "}", null));
             } else {
               let(&tmp, "");
               if (addColoredLabelNumber != 0) {
@@ -2511,11 +2511,11 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
               if (i < 0) {
 
                 let(&outputLine, cat(outputLine, "<FONT COLOR=blue ",
-                    ">", tmpStr, "</FONT>", tmp, NULL));
+                    ">", tmpStr, "</FONT>", tmp, null));
               } else {
 
                 let(&outputLine, cat(outputLine, "<A HREF=\"", tmpStr,
-                    ".html\">", tmpStr, "</A>", tmp, NULL));
+                    ".html\">", tmpStr, "</A>", tmp, null));
               }
             }
           }
@@ -2533,22 +2533,22 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
           if (!g_htmlFlag) {
             if (displayMode) {
               let(&outputLine, cat(outputLine,  edit(tmpStr, 128),
-                 NULL));
+                 null));
             } else {
               let(&outputLine, cat(outputLine, "$", edit(tmpStr, 128),
-                "$", NULL));
+                "$", null));
             }
           } else {
             let(&tmpStr, edit(tmpStr, 8 + 128));
 
 
             let(&tmpStr, cat(
-                (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", NULL) : ""),
+                (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", null) : ""),
 
                 tmpStr,
                 (g_altHtmlFlag ? "</SPAN>" : ""),
-                NULL));
-            let(&outputLine, cat(outputLine, tmpStr, NULL));
+                null));
+            let(&outputLine, cat(outputLine, tmpStr, null));
           }
           let(&tmpStr, "");
           break;
@@ -2578,7 +2578,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         preformattedMode = 1;
 
         let(&outputLine, cat(left(outputLine, pos1 - 1),
-            right(outputLine, pos1 + 6), NULL));
+            right(outputLine, pos1 + 6), null));
       }
 
       pos1 = instr(1, outputLine, "</HTML>");
@@ -2588,7 +2588,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         preformattedMode = 0;
 
         let(&outputLine, cat(left(outputLine, pos1 - 1),
-            right(outputLine, pos1 + 7), NULL));
+            right(outputLine, pos1 + 7), null));
       }
     }
 
@@ -2599,7 +2599,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         pos1 = instr(1, outputLine, "<PRE>");
         if (pos1) {
           let(&outputLine, cat(left(outputLine, pos1 - 1), "\\begin{verbatim} ",
-              right(outputLine, pos1 + 5), NULL));
+              right(outputLine, pos1 + 5), null));
         } else {
           break;
         }
@@ -2608,7 +2608,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         pos1 = instr(1, outputLine, "</PRE>");
         if (pos1) {
           let(&outputLine, cat(left(outputLine, pos1 - 1), "\\end{verbatim} ",
-              right(outputLine, pos1 + 6), NULL));
+              right(outputLine, pos1 + 6), null));
         } else {
           break;
         }
@@ -2618,7 +2618,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         pos1 = instr(1, outputLine, "<HTML>");
         if (pos1) {
           let(&outputLine, cat(left(outputLine, pos1 - 1),
-              right(outputLine, pos1 + 6), NULL));
+              right(outputLine, pos1 + 6), null));
         } else {
           break;
         }
@@ -2627,7 +2627,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         pos1 = instr(1, outputLine, "</HTML>");
         if (pos1) {
           let(&outputLine, cat(left(outputLine, pos1 - 1),
-              right(outputLine, pos1 + 7), NULL));
+              right(outputLine, pos1 + 7), null));
         } else {
           break;
         }
@@ -2817,7 +2817,7 @@ void printTexLongMath(nmbrString *mathString,
         if (tex[i] == '\\') {
 
           let(&texLine, cat("\\m{\\mbox{\\tt", right(tex, i + 1), "}}",
-              texLine, NULL));
+              texLine, null));
 
           let(&tex, left(tex, i));
         }
@@ -2825,11 +2825,11 @@ void printTexLongMath(nmbrString *mathString,
       }
 
       printLongLine(cat(
-          "\\setbox\\startprefix=\\hbox{\\tt ", tex, "}", NULL), "", "\\");
+          "\\setbox\\startprefix=\\hbox{\\tt ", tex, "}", null), "", "\\");
       let(&tex, "");
       tex = asciiToTt(contPrefix);
       printLongLine(cat(
-          "\\setbox\\contprefix=\\hbox{\\tt ", tex, "}", NULL), "", "\\");
+          "\\setbox\\contprefix=\\hbox{\\tt ", tex, "}", null), "", "\\");
       print2("\\startm\n");
     }
   } else {
@@ -2841,7 +2841,7 @@ void printTexLongMath(nmbrString *mathString,
 
 
 
-      let(&htmStepTag, cat("<A NAME=\"", htmStep, "\">","</A>", NULL));
+      let(&htmStepTag, cat("<A NAME=\"", htmStep, "\">","</A>", null));
       i = 1;
       pos = 1;
       while (pos && strcmp(htmHyp, "&nbsp;")) {
@@ -2854,7 +2854,7 @@ void printTexLongMath(nmbrString *mathString,
             seg(htmHyp, i, pos - 1),
             "</A>",
             right(htmHyp, pos),
-            NULL));
+            null));
 
         pos += 16 + len(seg(htmHyp, i, pos - 1)) + 1;
         if (!instr(i, htmHyp, ",")) break;
@@ -2864,7 +2864,7 @@ void printTexLongMath(nmbrString *mathString,
 
       pos = instr(1, htmHyp, ",");
       while (pos) {
-        let(&htmHyp, cat(left(htmHyp, pos), " ", right(htmHyp, pos + 1), NULL));
+        let(&htmHyp, cat(left(htmHyp, pos), " ", right(htmHyp, pos + 1), null));
         pos = instr(pos + 1, htmHyp, ",");
       }
 
@@ -2876,7 +2876,7 @@ void printTexLongMath(nmbrString *mathString,
             "</TD><TD>",
             htmStepTag,
 
-            NULL), "", "\"");
+            null), "", "\"");
       } else {
         if (hypStmt <= 0) {
           printLongLine(cat("<TR ALIGN=LEFT><TD>", htmStep, "</TD><TD>",
@@ -2884,7 +2884,7 @@ void printTexLongMath(nmbrString *mathString,
               "</A></TD><TD>",
               htmStepTag,
 
-              NULL), "", "\"");
+              null), "", "\"");
         } else {
           let(&tmp, "");
           tmp = pinkHTML(hypStmt);
@@ -2903,7 +2903,7 @@ void printTexLongMath(nmbrString *mathString,
               if (descr[i] == ' ') break;
               i--;
             }
-            let(&descr, cat(left(descr, i), "...", NULL));
+            let(&descr, cat(left(descr, i), "...", null));
           }
           i = 0;
           while (descr[i] != 0) {
@@ -2924,19 +2924,19 @@ void printTexLongMath(nmbrString *mathString,
               "</TD><TD>",
               htmStepTag,
 
-              NULL), "", "\"");
+              null), "", "\"");
         }
       }
 #ifdef INDENT_HTML_PROOFS
 
       let(&tmp, "");
       for (i = 1; i <= indentationLevel; i++) {
-        let(&tmp, cat(tmp, ". ", NULL));
+        let(&tmp, cat(tmp, ". ", null));
       }
       let(&tmp, cat("<SPAN CLASS=i>",
           tmp,
           str((double)(indentationLevel + INDENTATION_OFFSET)), "</SPAN>",
-          NULL));
+          null));
       printLongLine(tmp, "", "\"");
       let(&tmp, "");
 #endif
@@ -2947,7 +2947,7 @@ void printTexLongMath(nmbrString *mathString,
 
   let(&tex, "");
   tex = getTexLongMath(mathString, hypStmt);
-  let(&texLine, cat(texLine, tex, NULL));
+  let(&texLine, cat(texLine, tex, null));
 
   if (!g_htmlFlag) {
 
@@ -2966,7 +2966,7 @@ void printTexLongMath(nmbrString *mathString,
             "&\\text{Hyp~",
             right(htmRef, instr(1, htmRef, ".") + 1),
             "}\\notag%",
-            htmRef, NULL),
+            htmRef, null),
             "    \\notag \\\\ && & \\qquad ",
             " ");
       } else {
@@ -2977,7 +2977,7 @@ void printTexLongMath(nmbrString *mathString,
             " && ",
 
 
-            (htmLocLab[0] != 0) ? cat(htmLocLab, "\\ ", NULL) : "",
+            (htmLocLab[0] != 0) ? cat(htmLocLab, "\\ ", null) : "",
 
             " & ",
             texLine,
@@ -2988,12 +2988,12 @@ void printTexLongMath(nmbrString *mathString,
 
 
             (htmRef[0] != '@') ?
-                cat("\\mbox{\\ref{eq:", htmRef, "}}", NULL)
+                cat("\\mbox{\\ref{eq:", htmRef, "}}", null)
                 : htmRef,
 
             htmHyp[0] ? "," : "",
             htmHyp,
-            ")\\notag", NULL),
+            ")\\notag", null),
 
             "    \\notag \\\\ && & \\qquad ",
             " ");
@@ -3008,7 +3008,7 @@ void printTexLongMath(nmbrString *mathString,
       print2("\\endm\n");
     }
   } else {
-    printLongLine(cat(texLine, "</TD></TR>", NULL), "", "\"");
+    printLongLine(cat(texLine, "</TD></TR>", null), "", "\"");
   }
 
   g_outputToString = 0;
@@ -3131,7 +3131,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     let(&outputFileName,
 
 
-        cat("mmtheorems", (page > 0) ? str((double)page) : "", ".html", NULL));
+        cat("mmtheorems", (page > 0) ? str((double)page) : "", ".html", null));
     print2("Creating %s\n", outputFileName);
     outputFilePtr = fSafeOpen(outputFileName, "w", noVersioning);
     if (!outputFilePtr) C.go2("TL_ABORT");
@@ -3163,7 +3163,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     print2("     font-size: x-small;\n");
 
     printLongLine(cat("     color: ", seg(PINK_NUMBER_COLOR, 2,
-        (long)strlen(PINK_NUMBER_COLOR) - 1), ";", NULL), "", "&");
+        (long)strlen(PINK_NUMBER_COLOR) - 1), ";", null), "", "&");
     print2("   }\n");
 #else
 
@@ -3184,12 +3184,12 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
         ((page == 0)
             ? "TOC of Theorem List"
-            : cat("P. ", str((double)page), " of Theorem List", NULL)),
+            : cat("P. ", str((double)page), " of Theorem List", null)),
 
         " - ",
         htmlTitle,
         "</TITLE>",
-        NULL), "", "\"");
+        null), "", "\"");
 
     print2("%s%s\n", "<LINK REL=\"shortcut icon\" HREF=\"favicon.ico\" ",
         "TYPE=\"image/x-icon\">");
@@ -3211,7 +3211,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     print2("<BODY BGCOLOR=\"#FFFFFF\">\n");
     print2("<TABLE BORDER=0 WIDTH=\"100%s\"><TR>\n", "%");
     print2("<TD ALIGN=LEFT VALIGN=TOP WIDTH=\"25%s\"\n", "%");
-    printLongLine(cat("ROWSPAN=2>", g_htmlHome, "</TD>", NULL), "", "\"");
+    printLongLine(cat("ROWSPAN=2>", g_htmlHome, "</TD>", null), "", "\"");
     printLongLine(cat(
         "<TD NOWRAP ALIGN=CENTER ROWSPAN=2><FONT SIZE=\"+3\" COLOR=",
         GREEN_TITLE_COLOR, "><B>", htmlTitle, "</B></FONT>",
@@ -3224,9 +3224,9 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
             ? "Table of Contents"
 
 
-            : cat("p. ", str((double)page), " of ", str((double)pages), NULL)),
+            : cat("p. ", str((double)page), " of ", str((double)pages), null)),
         ")</B></FONT>",
-        NULL), "", "\"");
+        null), "", "\"");
 
 
 
@@ -3243,24 +3243,24 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
         (page > 0)
             ? ((page - 1 > 0) ? str((double)page - 1) : "")
             : ((pages > 0) ? str((double)pages) : ""),
-        ".html\">", NULL));
+        ".html\">", null));
 
 
     if (page > 0) {
       let(&prevNextLinks, cat(prevNextLinks,
-          "&lt; Previous</A>&nbsp;&nbsp;", NULL));
+          "&lt; Previous</A>&nbsp;&nbsp;", null));
     } else {
-      let(&prevNextLinks, cat(prevNextLinks, "&lt; Wrap</A>&nbsp;&nbsp;", NULL));
+      let(&prevNextLinks, cat(prevNextLinks, "&lt; Wrap</A>&nbsp;&nbsp;", null));
     }
     let(&prevNextLinks, cat(prevNextLinks, "<A HREF=\"mmtheorems",
         (page < pages)
             ? str((double)page + 1)
             : "",
-        ".html\">", NULL));
+        ".html\">", null));
     if (page < pages) {
-      let(&prevNextLinks, cat(prevNextLinks, "Next &gt;</A>", NULL));
+      let(&prevNextLinks, cat(prevNextLinks, "Next &gt;</A>", null));
     } else {
-      let(&prevNextLinks, cat(prevNextLinks, "Wrap &gt;</A>", NULL));
+      let(&prevNextLinks, cat(prevNextLinks, "Wrap &gt;</A>", null));
     }
 
     printLongLine(prevNextLinks,
@@ -3312,7 +3312,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     s = (long)strlen(htmlTitle);
     for (i = 0; i < s; i++) {
       if (htmlTitle[i] >= 'A' && htmlTitle[i] <= 'Z') {
-        let(&str1, cat(str1, chr(htmlTitle[i]), NULL));
+        let(&str1, cat(str1, chr(htmlTitle[i]), null));
       }
     }
     print2("%s Home Page</A>\n", str1);
@@ -3434,7 +3434,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
               let(&str3, cat("mmtheorems", str((double)i), ".html#",
 
-                  "mm", str((double)(g_Statement[stmt].pinkNumber)), NULL));
+                  "mm", str((double)(g_Statement[stmt].pinkNumber)), null));
 
               let(&str4, "");
               str4 = pinkHTML(stmt);
@@ -3448,7 +3448,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
                 subsectionCntr = 0;
                 subsubsectionCntr = 0;
                 let(&hugeHdr, cat("PART ", str((double)partCntr), "&nbsp;&nbsp;",
-                    hugeHdr, NULL));
+                    hugeHdr, null));
 
 
                 if (hugeHdrComment[0] != 0 && passNumber == 2) {
@@ -3461,7 +3461,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
                         "&#8203;",
 
-                        NULL));
+                        null));
                     hdrCommentAnchorDone = 1;
                   } else {
                     let(&hdrCommentAnchor, "");
@@ -3480,7 +3480,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
                             "&#8203;",
 
-                            NULL) : "",
+                            null) : "",
 
                     (stmt == g_mathboxStmt && bigHdr[0] == 0
 
@@ -3494,13 +3494,13 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
                     (passNumber == 1) ?
-                        cat("#dtl:", str((double)partCntr), NULL)
-                        : cat(str3, "h", NULL),
+                        cat("#dtl:", str((double)partCntr), null)
+                        : cat(str3, "h", null),
 
                     "\"><B>",
                     hdrCommentMarker,
                     hugeHdr, "</B></A>",
-                    "<BR>", NULL),
+                    "<BR>", null),
                     " ",
                     "\"");
                 if (passNumber == 2) {
@@ -3519,7 +3519,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
                 subsubsectionCntr = 0;
                 let(&bigHdr, cat(str((double)partCntr), ".", str((double)sectionCntr),
                     "&nbsp;&nbsp;",
-                    bigHdr, NULL));
+                    bigHdr, null));
 
 
                 if (bigHdrComment[0] != 0 && passNumber == 2) {
@@ -3532,7 +3532,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
                         "&#8203;",
 
-                        NULL));
+                        null));
                     hdrCommentAnchorDone = 1;
                   } else {
                     let(&hdrCommentAnchor, "");
@@ -3552,7 +3552,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
                             "&#8203;",
 
-                            NULL)
+                            null)
                         : "",
 
                     (stmt == g_mathboxStmt
@@ -3568,13 +3568,13 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
                     (passNumber == 1) ?
                          cat("#dtl:", str((double)partCntr), ".",
                              str((double)sectionCntr),
-                             NULL)
-                        : cat(str3, "b", NULL),
+                             null)
+                        : cat(str3, "b", null),
 
                     "\"><B>",
                     hdrCommentMarker,
                     bigHdr, "</B></A>",
-                    "<BR>", NULL),
+                    "<BR>", null),
                     " ",
                     "\"");
                 if (passNumber == 2) {
@@ -3594,7 +3594,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
                 let(&smallHdr, cat(str((double)partCntr), ".",
                     str((double)sectionCntr),
                     ".", str((double)subsectionCntr), "&nbsp;&nbsp;",
-                    smallHdr, NULL));
+                    smallHdr, null));
 
 
                 if (smallHdrComment[0] != 0 && passNumber == 2) {
@@ -3606,7 +3606,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
                         "&#8203;",
 
-                        NULL));
+                        null));
                     hdrCommentAnchorDone = 1;
                   } else {
                     let(&hdrCommentAnchor, "");
@@ -3627,7 +3627,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
                     g_Statement[stmt].labelName, ".html\">",
                     g_Statement[stmt].labelName, "</A>",
                     str4,
-                    "<BR>", NULL),
+                    "<BR>", null),
                     " ",
                     "\"");
 
@@ -3647,7 +3647,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
                     str((double)sectionCntr),
                     ".", str((double)subsectionCntr),
                     ".", str((double)subsubsectionCntr), "&nbsp;&nbsp;",
-                    tinyHdr, NULL));
+                    tinyHdr, null));
 
 
                 if (tinyHdrComment[0] != 0 && passNumber == 2) {
@@ -3659,7 +3659,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
                         "&#8203;",
 
-                        NULL));
+                        null));
                     hdrCommentAnchorDone = 1;
                   } else {
                     let(&hdrCommentAnchor, "");
@@ -3680,7 +3680,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
                     g_Statement[stmt].labelName, ".html\">",
                     g_Statement[stmt].labelName, "</A>",
                     str4,
-                    "<BR>", NULL),
+                    "<BR>", null),
                     " ",
                     "\"");
 
@@ -3730,7 +3730,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
       if (g_Statement[g_extHtmlStmt].pinkNumber <= 0) bug(2332);
       str3 = pinkRangeHTML(nmbrStmtNmbr[1],
           nmbrStmtNmbr[g_Statement[g_extHtmlStmt].pinkNumber - 1]);
-      printLongLine(cat("<BR>(", str3, ")", NULL),
+      printLongLine(cat("<BR>(", str3, ")", null),
         " ",
         "\"");
 
@@ -3751,7 +3751,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
       if (g_Statement[g_mathboxStmt].pinkNumber <= 0) bug(2333);
       str3 = pinkRangeHTML(g_extHtmlStmt,
          nmbrStmtNmbr[g_Statement[g_mathboxStmt].pinkNumber - 1]);
-      printLongLine(cat("<BR>(", str3, ")", NULL),
+      printLongLine(cat("<BR>(", str3, ")", null),
         " ",
         "\"");
 
@@ -3777,7 +3777,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
       let(&str3, "");
       str3 = pinkRangeHTML(g_mathboxStmt, nmbrStmtNmbr[assertions]);
-      printLongLine(cat("<BR>(", str3, ")", NULL),
+      printLongLine(cat("<BR>(", str3, ")", null),
         " ",
         "\"");
 
@@ -3819,7 +3819,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     printLongLine(cat("<CAPTION><B>Theorem List for ", htmlTitle,
         " - </B>", str3, "<B>-</B>", str4,
         " &nbsp; *Has distinct variable group(s)"
-        "</CAPTION>",NULL),
+        "</CAPTION>",null),
         " ",
         "\"");
     print2("\n");
@@ -3904,7 +3904,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
                  "</B></FONT></CENTER>",
-                 NULL),
+                 null),
             " ",
             "\"");
 
@@ -3931,7 +3931,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
               0,
               PROCESS_EVERYTHING,
               0 );
-          g_texFilePtr = NULL;
+          g_texFilePtr = null;
           g_outputToString = 1;
 
 
@@ -3946,7 +3946,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
                  "<TR BGCOLOR=white><TD COLSPAN=3>",
                  "<FONT SIZE=-3>&nbsp;</FONT></TD></TR>",
-                 NULL),
+                 null),
             " ",
             "\"");
       }
@@ -3963,7 +3963,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
                  "</B></FONT></CENTER>",
-                 NULL),
+                 null),
             " ",
             "\"");
 
@@ -3990,7 +3990,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
               0,
               PROCESS_EVERYTHING,
               0  );
-          g_texFilePtr = NULL;
+          g_texFilePtr = null;
           g_outputToString = 1;
 
 
@@ -4005,7 +4005,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
                  "<TR BGCOLOR=white><TD COLSPAN=3>",
                  "<FONT SIZE=-3>&nbsp;</FONT></TD></TR>",
-                 NULL),
+                 null),
             " ",
             "\"");
       }
@@ -4022,7 +4022,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
                  "</B></CENTER>",
-                 NULL),
+                 null),
             " ",
             "\"");
 
@@ -4049,7 +4049,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
               0,
               PROCESS_EVERYTHING,
               0  );
-          g_texFilePtr = NULL;
+          g_texFilePtr = null;
           g_outputToString = 1;
 
 
@@ -4064,7 +4064,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
                  "<TR BGCOLOR=white><TD COLSPAN=3>",
                  "<FONT SIZE=-3>&nbsp;</FONT></TD></TR>",
-                 NULL),
+                 null),
             " ",
             "\"");
       }
@@ -4083,7 +4083,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
                  "</B></CENTER>",
-                 NULL),
+                 null),
             " ",
             "\"");
 
@@ -4110,7 +4110,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
               0,
               PROCESS_EVERYTHING,
               0  );
-          g_texFilePtr = NULL;
+          g_texFilePtr = null;
           g_outputToString = 1;
 
 
@@ -4125,7 +4125,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
                  "<TR BGCOLOR=white><TD COLSPAN=3>",
                  "<FONT SIZE=-3>&nbsp;</FONT></TD></TR>",
-                 NULL),
+                 null),
             " ",
             "\"");
       }
@@ -4135,9 +4135,9 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
             (s < g_extHtmlStmt)
                ? "<TR>"
                : (s < g_mathboxStmt)
-                   ? cat("<TR BGCOLOR=", PURPLISH_BIBLIO_COLOR, ">", NULL)
+                   ? cat("<TR BGCOLOR=", PURPLISH_BIBLIO_COLOR, ">", null)
 
-                   : cat("<TR BGCOLOR=", SANDBOX_COLOR, ">", NULL),
+                   : cat("<TR BGCOLOR=", SANDBOX_COLOR, ">", null),
             "<TD NOWRAP>",
             str1,
             "</TD><TD ALIGN=CENTER><A HREF=\"",
@@ -4153,7 +4153,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
             "<A NAME=\"", g_Statement[s].labelName, "\"></A>",
 
-            NULL),
+            null),
           " ",
           "\"");
 
@@ -4168,7 +4168,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
           0,
           PROCESS_EVERYTHING,
           0  );
-      g_texFilePtr = NULL;
+      g_texFilePtr = null;
       g_outputToString = 1;
 
 
@@ -4188,13 +4188,13 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
               (s < g_extHtmlStmt)
                  ? ">"
                  : (s < g_mathboxStmt)
-                     ? cat(" BGCOLOR=", PURPLISH_BIBLIO_COLOR, ">", NULL)
-                     : cat(" BGCOLOR=", SANDBOX_COLOR, ">", NULL),
+                     ? cat(" BGCOLOR=", PURPLISH_BIBLIO_COLOR, ">", null)
+                     : cat(" BGCOLOR=", SANDBOX_COLOR, ">", null),
 
 
 
             "<TD COLSPAN=3 ALIGN=CENTER>",
-            str4, "</TD></TR>", NULL),
+            str4, "</TD></TR>", null),
 
             " ",
             "\"");
@@ -4208,7 +4208,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
         g_outputToString = 1;
         printLongLine(cat("<TR BGCOLOR=white><TD COLSPAN=3>",
-            "<FONT SIZE=-3>&nbsp;</FONT></TD></TR>", NULL),
+            "<FONT SIZE=-3>&nbsp;</FONT></TD></TR>", null),
             " ",
             "\"");
         g_outputToString = 0;
@@ -4236,7 +4236,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     print2("    <TD NOWRAP ALIGN=CENTER>&nbsp;</TD>\n");
     print2("    <TD NOWRAP ALIGN=RIGHT VALIGN=TOP WIDTH=\"25%c\"><FONT\n", '%');
     print2("      SIZE=-1 FACE=sans-serif>\n");
-    printLongLine(cat("      ", prevNextLinks, NULL),
+    printLongLine(cat("      ", prevNextLinks, null),
         " ",
         "\"");
     print2("      </FONT></TD>\n");
@@ -4291,9 +4291,9 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
             ".html\">",
 
             (p == 0) ? "Contents" : str((double)p)
-            , "</A>", NULL));
+            , "</A>", null));
       }
-      let(&str1, cat(str1, PINK_NBSP, str3, NULL));
+      let(&str1, cat(str1, PINK_NBSP, str3, null));
       fprintf(outputFilePtr, "%s\n", str1);
     }
 
@@ -4319,7 +4319,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     print2("    <TD NOWRAP ALIGN=RIGHT VALIGN=TOP WIDTH=\"25%c\"><FONT\n", '%');
     print2("      SIZE=-1 FACE=sans-serif>\n");
 
-    printLongLine(cat("      ", prevNextLinks, NULL),
+    printLongLine(cat("      ", prevNextLinks, null),
         " ",
         "\"");
     print2("      </FONT></TD>\n");
@@ -4691,7 +4691,7 @@ vstring pinkHTML(long statemNum)
 
   let(&htmlCode, cat(PINK_NBSP,
       "<SPAN CLASS=p>",
-      (statemMap != -1) ? str((double)statemMap) : "(future)", "</SPAN>", NULL));
+      (statemMap != -1) ? str((double)statemMap) : "(future)", "</SPAN>", null));
 #endif
 
 #ifdef RAINBOW_OPTION
@@ -4700,7 +4700,7 @@ vstring pinkHTML(long statemNum)
   hexValue = spectrumToRGB(statemMap, g_Statement[g_statements].pinkNumber);
   let(&htmlCode, cat(PINK_NBSP,
       "<SPAN CLASS=r STYLE=\"color:#", hexValue, "\">",
-      (statemMap != -1) ? str((double)statemMap) : "(future)", "</SPAN>", NULL));
+      (statemMap != -1) ? str((double)statemMap) : "(future)", "</SPAN>", null));
 #endif
   let(&hexValue, "");
 
@@ -4723,7 +4723,7 @@ vstring pinkRangeHTML(long statemNum1, long statemNum2)
   let(&str4, "");
   str4 = pinkHTML(statemNum2);
   let(&str4, right(str4, (long)strlen(PINK_NBSP) + 1));
-  let(&htmlCode, cat(str3, "-", str4, NULL));
+  let(&htmlCode, cat(str3, "-", str4, null));
   let(&str3, "");
   let(&str4, "");
   return htmlCode;
@@ -4941,16 +4941,16 @@ vstring getTexLongMath(nmbrString *mathString, long statemNum)
 
 
         if (!g_oldTexFlag) {
-          let(&texLine, cat(texLine, "\\,", tex, " ", NULL));
+          let(&texLine, cat(texLine, "\\,", tex, " ", null));
         } else {
-          let(&texLine, cat(texLine, "\\m{\\,", tex, "}", NULL));
+          let(&texLine, cat(texLine, "\\m{\\,", tex, "}", null));
         }
       } else {
 
         if (!g_oldTexFlag) {
-          let(&texLine, cat(texLine, "", tex, " ", NULL));
+          let(&texLine, cat(texLine, "", tex, " ", null));
         } else {
-          let(&texLine, cat(texLine, "\\m{", tex, "}", NULL));
+          let(&texLine, cat(texLine, "\\m{", tex, "}", null));
         }
       }
     } else {
@@ -4986,7 +4986,7 @@ vstring getTexLongMath(nmbrString *mathString, long statemNum)
             && strcmp(g_MathToken[mathString[pos - 1]].tokenName, "|^|")
 
             && strcmp(g_MathToken[mathString[pos - 1]].tokenName, "{")) {
-          let(&texLine, cat(texLine, " ", NULL));
+          let(&texLine, cat(texLine, " ", null));
         }
       }
       if (pos >=2) {
@@ -5012,7 +5012,7 @@ vstring getTexLongMath(nmbrString *mathString, long statemNum)
                     || !strcmp(g_MathToken[mathString[pos - 2]].tokenName, "ran")
                     || !strcmp(g_MathToken[mathString[pos - 2]].tokenName, "dom")
                     || !strcmp(g_MathToken[mathString[pos - 2]].tokenName, "E*")) {
-                  let(&texLine, cat(texLine, " ", NULL));
+                  let(&texLine, cat(texLine, " ", null));
                 }
 
               }
@@ -5029,7 +5029,7 @@ vstring getTexLongMath(nmbrString *mathString, long statemNum)
               (unsigned char)(g_MathToken[mathString[pos - 1]].tokenName[0]))) {
 
             if (!(g_MathToken[mathString[pos - 1]].tokenName[1])) {
-              let(&texLine, cat(texLine, " ", NULL));
+              let(&texLine, cat(texLine, " ", null));
             }
           }
         }
@@ -5038,7 +5038,7 @@ vstring getTexLongMath(nmbrString *mathString, long statemNum)
 
         if (strcmp(g_MathToken[mathString[pos - 1]].tokenName, "(")
             && !strcmp(g_MathToken[mathString[pos]].tokenName, "-.")) {
-          let(&texLine, cat(texLine, " ", NULL));
+          let(&texLine, cat(texLine, " ", null));
         }
       }
 
@@ -5046,26 +5046,26 @@ vstring getTexLongMath(nmbrString *mathString, long statemNum)
         if (!strcmp(g_MathToken[mathString[pos - 4]].tokenName, "Isom")
             && !strcmp(g_MathToken[mathString[pos - 2]].tokenName, ",")
             && !strcmp(g_MathToken[mathString[pos]].tokenName, "(")) {
-          let(&texLine, cat(texLine, " ", NULL));
+          let(&texLine, cat(texLine, " ", null));
         }
       }
       if (pos >=1) {
 
         if (!strcmp(g_MathToken[mathString[pos - 1]].tokenName, "}")
             && !strcmp(g_MathToken[mathString[pos]].tokenName, "(")) {
-          let(&texLine, cat(texLine, " ", NULL));
+          let(&texLine, cat(texLine, " ", null));
         }
       }
       if (pos >=1) {
 
         if (!strcmp(g_MathToken[mathString[pos - 1]].tokenName, "}")
             && !strcmp(g_MathToken[mathString[pos]].tokenName, "{")) {
-          let(&texLine, cat(texLine, " ", NULL));
+          let(&texLine, cat(texLine, " ", null));
         }
       }
 
 
-      let(&texLine, cat(texLine, tex, NULL));
+      let(&texLine, cat(texLine, tex, null));
     }
     let(&lastTex, tex);
   }
@@ -5076,9 +5076,9 @@ vstring getTexLongMath(nmbrString *mathString, long statemNum)
 
 
   let(&texLine, cat(
-      (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", NULL) : ""),
+      (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", null) : ""),
       texLine,
-      (g_altHtmlFlag ? "</SPAN>" : ""), NULL));
+      (g_altHtmlFlag ? "</SPAN>" : ""), null));
 
   let(&tex, "");
   let(&lastTex, "");
@@ -5106,7 +5106,7 @@ vstring getTexOrHtmlHypAndAssertion(long statemNum)
 
           let(&texOrHtmlCode, cat(texOrHtmlCode,
                  "\\quad\\&\\quad "
-              ,NULL));
+              ,null));
         } else {
           if (g_altHtmlFlag) {
 
@@ -5116,13 +5116,13 @@ vstring getTexOrHtmlHypAndAssertion(long statemNum)
                 "<SPAN ", g_htmlFont, ">",
                 "&nbsp;&nbsp;&nbsp; &amp;&nbsp;&nbsp;&nbsp;",
                 "</SPAN>",
-                NULL));
+                null));
           } else {
 
             let(&texOrHtmlCode, cat(texOrHtmlCode,
           "&nbsp;&nbsp;&nbsp;<IMG SRC='amp.gif' WIDTH=12 HEIGHT=19 ALT='&amp;'"
                 ," ALIGN=TOP>&nbsp;&nbsp;&nbsp;"
-                ,NULL));
+                ,null));
           }
         }
       }
@@ -5130,7 +5130,7 @@ vstring getTexOrHtmlHypAndAssertion(long statemNum)
       nmbrTmpPtr = g_Statement[g_Statement[statemNum].reqHypList[n]].mathString;
       let(&str2, "");
       str2 = getTexLongMath(nmbrTmpPtr, statemNum);
-      let(&texOrHtmlCode, cat(texOrHtmlCode, str2, NULL));
+      let(&texOrHtmlCode, cat(texOrHtmlCode, str2, null));
     }
   }
   if (essHyps) {
@@ -5138,7 +5138,7 @@ vstring getTexOrHtmlHypAndAssertion(long statemNum)
 
       let(&texOrHtmlCode, cat(texOrHtmlCode,
                  "\\quad\\Rightarrow\\quad "
-          ,NULL));
+          ,null));
     } else {
       if (g_altHtmlFlag) {
 
@@ -5147,13 +5147,13 @@ vstring getTexOrHtmlHypAndAssertion(long statemNum)
 
 
       "&nbsp;&nbsp;&nbsp; <FONT FACE=sans-serif>&#8658;</FONT>&nbsp;&nbsp;&nbsp;"
-            ,NULL));
+            ,null));
       } else {
 
         let(&texOrHtmlCode, cat(texOrHtmlCode,
           "&nbsp;&nbsp;&nbsp;<IMG SRC='bigto.gif' WIDTH=15 HEIGHT=19 ALT='=&gt;'"
             ," ALIGN=TOP>&nbsp;&nbsp;&nbsp;"
-            ,NULL));
+            ,null));
       }
     }
   }
@@ -5161,7 +5161,7 @@ vstring getTexOrHtmlHypAndAssertion(long statemNum)
   nmbrTmpPtr = g_Statement[statemNum].mathString;
   let(&str2, "");
   str2 = getTexLongMath(nmbrTmpPtr, statemNum);
-  let(&texOrHtmlCode, cat(texOrHtmlCode, str2, NULL));
+  let(&texOrHtmlCode, cat(texOrHtmlCode, str2, null));
 
 
   let(&str2, "");
@@ -5179,8 +5179,8 @@ flag writeBibliography(vstring bibFile,
     flag noFileCheck)
 {
   flag errFlag;
-  File list1_fp = NULL;
-  File list2_fp = NULL;
+  File list1_fp = null;
+  File list2_fp = null;
   long lines, p2, i, j, jend, k, l, m, n, p, q, s, pass1refs;
   vstring str1 = "", str2 = "", str3 = "", str4 = "", newstr = "", oldstr = "";
   pntrString *pntrTmp = NULL_PNTRSTRING;
@@ -5196,7 +5196,7 @@ flag writeBibliography(vstring bibFile,
   errFlag = 0;
   if (noFileCheck == 0) {
     list1_fp = fSafeOpen(bibFile, "r", 0);
-    if (list1_fp == NULL) {
+    if (list1_fp == null) {
 
       return 1;
     }
@@ -5204,12 +5204,12 @@ flag writeBibliography(vstring bibFile,
       fclose(list1_fp);
 
       list2_fp = fSafeOpen(bibFile, "w", 0);
-      if (list2_fp == NULL) {
+      if (list2_fp == null) {
 
         return 1;
       }
-      list1_fp = fSafeOpen(cat(bibFile, "~1", NULL), "r", 0);
-      if (list1_fp == NULL) bug(2337);
+      list1_fp = fSafeOpen(cat(bibFile, "~1", null), "r", 0);
+      if (list1_fp == null) bug(2337);
     }
   }
   if (!g_texDefsRead) {
@@ -5223,7 +5223,7 @@ flag writeBibliography(vstring bibFile,
 
   if (noFileCheck == 0) {
     while (true) {
-      if (!linput(list1_fp, NULL, &str1)) {
+      if (!linput(list1_fp, null, &str1)) {
         print2(
   "?Error: Could not find \"<!-- #START# -->\" line in input file \"%s\".\n",
             bibFile);
@@ -5303,10 +5303,10 @@ flag writeBibliography(vstring bibFile,
           for (k = j + 4; k <= (signed)(strlen(str1)) + 1; k++) {
             if (!isdigit((unsigned char)(str1[k - 1]))) {
               let(&str1, cat(left(str1, j + 2),
-                  space(4 - (k - (j + 4))), right(str1, j + 3), NULL));
+                  space(4 - (k - (j + 4))), right(str1, j + 3), null));
 
               let(&str1, cat(left(str1, j + 7), "###", right(str1, j + 8),
-                  NULL));
+                  null));
               break;
             }
           }
@@ -5462,8 +5462,8 @@ flag writeBibliography(vstring bibFile,
             (i < g_extHtmlStmt)
                ? "<TR>"
                : (i < g_mathboxStmt)
-                   ? cat("<TR BGCOLOR=", PURPLISH_BIBLIO_COLOR, ">", NULL)
-                   : cat("<TR BGCOLOR=", SANDBOX_COLOR, ">", NULL),
+                   ? cat("<TR BGCOLOR=", PURPLISH_BIBLIO_COLOR, ">", null)
+                   : cat("<TR BGCOLOR=", SANDBOX_COLOR, ">", null),
 
             "<TD NOWRAP>[<A HREF=\"",
 
@@ -5481,7 +5481,7 @@ flag writeBibliography(vstring bibFile,
             "</TD><TD>", str2, "</TD><TD><A HREF=\"",
             g_Statement[i].labelName,
             ".html\">", g_Statement[i].labelName, "</A>",
-            newstr, NULL));
+            newstr, null));
 
         let((vstring *)(&pntrTmp[lines - 1]), oldstr);
       }
@@ -5517,7 +5517,7 @@ flag writeBibliography(vstring bibFile,
 
       let(&str3, seg((vstring)(pntrTmp[i]), j + 3, k -1));
       let((vstring *)(&pntrTmp[i]),
-          cat((vstring)(pntrTmp[i - 1]), " &nbsp;", str3, NULL));
+          cat((vstring)(pntrTmp[i - 1]), " &nbsp;", str3, null));
       let((vstring *)(&pntrTmp[i - 1]), "");
     }
     let(&str1, str2);
@@ -5536,7 +5536,7 @@ flag writeBibliography(vstring bibFile,
 
         let(&g_printString, "");
         g_outputToString = 1;
-        printLongLine(cat(str1, "</TD></TR>", NULL),
+        printLongLine(cat(str1, "</TD></TR>", null),
             " ",
             "\"");
         g_outputToString = 0;
@@ -5550,7 +5550,7 @@ flag writeBibliography(vstring bibFile,
 
   if (noFileCheck == 0) {
     while (true) {
-      if (!linput(list1_fp, NULL, &str1)) {
+      if (!linput(list1_fp, null, &str1)) {
         print2(
   "?Error: Could not find \"<!-- #END# -->\" line in input file \"%s\".\n",
             bibFile);
@@ -5570,14 +5570,14 @@ flag writeBibliography(vstring bibFile,
   if (noFileCheck == 0 && errorsOnly == 0) {
 
     while (true) {
-      if (!linput(list1_fp, NULL, &str1)) {
+      if (!linput(list1_fp, null, &str1)) {
         break;
       }
 
 
 
       if (!strcmp("This page was last updated on ", left(str1, 30))) {
-        let(&str1, cat(left(str1, 30), date(), ".", NULL));
+        let(&str1, cat(left(str1, 30), date(), ".", null));
       }
 
       fprintf(list2_fp, "%s\n", str1);
@@ -5600,7 +5600,7 @@ flag writeBibliography(vstring bibFile,
       if (errFlag) {
 
         remove(bibFile);
-        rename(cat(bibFile, "~1", NULL), g_fullArg[2]);
+        rename(cat(bibFile, "~1", null), g_fullArg[2]);
 
         print2("?The file \"%s\" was not modified.\n", g_fullArg[2]);
       }

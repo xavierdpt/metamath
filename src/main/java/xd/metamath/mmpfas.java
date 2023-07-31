@@ -50,10 +50,10 @@ void interactiveMatch(long step, long maxEssential)
   long stmt, matchListPos, timeoutListPos;
 
   printLongLine(cat("Step ", str((double)step + 1), ":  ", nmbrCvtMToVString(
-      (g_ProofInProgress.target)[step]), NULL), "  ", " ");
+      (g_ProofInProgress.target)[step]), null), "  ", " ");
   if (nmbrLen((g_ProofInProgress.user)[step])) {
     printLongLine(cat("Step ", str((double)step + 1), "(user):  ", nmbrCvtMToVString(
-        (g_ProofInProgress.user)[step]), NULL), "  ", " ");
+        (g_ProofInProgress.user)[step]), null), "  ", " ");
   }
 
 
@@ -100,7 +100,7 @@ void interactiveMatch(long step, long maxEssential)
   static final long MATCH_LIMIT=D.MATCH_LIMIT;
   if (matchCount > MATCH_LIMIT) {
     let(&tmpStr1, cat("There are ", str((double)matchCount), " matches for step ",
-      str((double)step + 1), ".  View them (Y, N) <N>? ", NULL));
+      str((double)step + 1), ".  View them (Y, N) <N>? ", null));
     tmpStr2 = cmdInput1(tmpStr1);
     let(&tmpStr1, "");
 
@@ -141,10 +141,10 @@ void interactiveMatch(long step, long maxEssential)
                 0 ));
 
   printLongLine(cat("Step ", str((double)step + 1), " matches statements:  ", tmpStr1,
-      NULL), "  ", " ");
+      null), "  ", " ");
   if (timeoutCount) {
     printLongLine(cat("In addition, there were unification timeouts with the",
-        " following steps, which may or may not match:  ", tmpStr4, NULL),
+        " following steps, which may or may not match:  ", tmpStr4, null),
         "  ", " ");
   }
 
@@ -159,7 +159,7 @@ void interactiveMatch(long step, long maxEssential)
 
     while (true) {
       let(&tmpStr3, cat("What statement to select for step ", str((double)step + 1),
-          " (<return> to bypass)? ", NULL));
+          " (<return> to bypass)? ", null));
       tmpStr2 = cmdInput1(tmpStr3);
       let(&tmpStr3, "");
 
@@ -173,8 +173,8 @@ void interactiveMatch(long step, long maxEssential)
         nmbrLet(&timeoutList, NULL_NMBRSTRING);
         return;
       }
-      if (!instr(1, cat(" ", tmpStr1, " ", tmpStr4, " ", NULL),
-           cat(" ", tmpStr2, " ", NULL))) {
+      if (!instr(1, cat(" ", tmpStr1, " ", tmpStr4, " ", null),
+           cat(" ", tmpStr2, " ", null))) {
         print2("\"%s\" is not one of the choices.  Try again.\n", tmpStr2);
       } else {
         break;
@@ -842,7 +842,7 @@ nmbrString *replaceStatement(long replStatemNum, long prfStep,
 
     for (hyp = 0; hyp < schReqHyps; hyp++) {
       if (nmbrLen(hypProofList[hyp]) == 0) bug(1852);
-      nmbrLet(&proof, nmbrCat(proof, hypProofList[hyp], NULL));
+      nmbrLet(&proof, nmbrCat(proof, hypProofList[hyp], null));
     }
     nmbrLet(&proof, nmbrAddElement(proof, replStatemNum));
 
@@ -884,7 +884,7 @@ if(db8)print2("%s\n", cat("Returned: ",
    nmbrCvtRToVString(proof,
 
                 0,
-                0 ), NULL));
+                0 ), null));
   return (proof);
 }
 
@@ -1039,19 +1039,19 @@ void addSubProof(nmbrString *subProof, long step) {
 
   sbPfLen = nmbrLen(subProof);
   nmbrLet(&g_ProofInProgress.proof, nmbrCat(nmbrLeft(g_ProofInProgress.proof, step),
-      subProof, nmbrRight(g_ProofInProgress.proof, step + 2), NULL));
+      subProof, nmbrRight(g_ProofInProgress.proof, step + 2), null));
   pntrLet(&g_ProofInProgress.target, pntrCat(pntrLeft(g_ProofInProgress.target,
       step), pntrNSpace(sbPfLen - 1), pntrRight(g_ProofInProgress.target,
-      step + 1), NULL));
+      step + 1), null));
 
   if (nmbrLen((g_ProofInProgress.source)[step])) bug(1804);
 
   pntrLet(&g_ProofInProgress.source, pntrCat(pntrLeft(g_ProofInProgress.source,
       step), pntrNSpace(sbPfLen - 1), pntrRight(g_ProofInProgress.source,
-      step + 1), NULL));
+      step + 1), null));
   pntrLet(&g_ProofInProgress.user, pntrCat(pntrLeft(g_ProofInProgress.user,
       step), pntrNSpace(sbPfLen - 1), pntrRight(g_ProofInProgress.user,
-      step + 1), NULL));
+      step + 1), null));
 }
 
 
@@ -1146,7 +1146,7 @@ nmbrString *expandProof(
           if (srcHypNum > -1) {
 
             nmbrLet(&expandedSubproof, nmbrCat(expandedSubproof,
-                hypSubproofs[srcHypNum], NULL));
+                hypSubproofs[srcHypNum], null));
           } else if (srcStepType == (char)e_) {
 
             bug(1874);
@@ -1167,7 +1167,7 @@ nmbrString *expandProof(
       nmbrLet(&expandedTargetProof, nmbrCat(
           nmbrLeft(expandedTargetProof, (targetStep + 1) - targetSubpLen),
           expandedSubproof,
-          nmbrRight(expandedTargetProof, (targetStep + 1) + 1), NULL));
+          nmbrRight(expandedTargetProof, (targetStep + 1) + 1), null));
       break;
     }
     if (!foundMatch) break;
@@ -1181,13 +1181,13 @@ nmbrString *expandProof(
       printLongLine(cat(
       "******* Note: The expansion of \"",
       g_Statement[sourceStmtNum].labelName,
-      "\" has dummy variable(s) that need to be assigned.", NULL), " ", " ");
+      "\" has dummy variable(s) that need to be assigned.", null), " ", " ");
     }
     if (hasUnknownStep == 1) {
       printLongLine(cat(
       "******* Note: The expansion of \"",
       g_Statement[sourceStmtNum].labelName,
-      "\" has unknown step(s) that need to be assigned.", NULL), " ", " ");
+      "\" has unknown step(s) that need to be assigned.", null), " ", " ");
     }
   }
 
@@ -1215,7 +1215,7 @@ void deleteSubProof(long step) {
   sbPfLen = subproofLen(g_ProofInProgress.proof, step);
   nmbrLet(&g_ProofInProgress.proof, nmbrCat(nmbrAddElement(
       nmbrLeft(g_ProofInProgress.proof, step - sbPfLen + 1), -(long)'?'),
-      nmbrRight(g_ProofInProgress.proof, step + 2), NULL));
+      nmbrRight(g_ProofInProgress.proof, step + 2), null));
   for (pos = step - sbPfLen + 1; pos <= step; pos++) {
     if (pos < step) {
 
@@ -1227,13 +1227,13 @@ void deleteSubProof(long step) {
   }
   pntrLet(&g_ProofInProgress.target, pntrCat(pntrLeft(g_ProofInProgress.target,
       step - sbPfLen + 1), pntrRight(g_ProofInProgress.target,
-      step + 1), NULL));
+      step + 1), null));
   pntrLet(&g_ProofInProgress.source, pntrCat(pntrLeft(g_ProofInProgress.source,
       step - sbPfLen + 1), pntrRight(g_ProofInProgress.source,
-      step + 1), NULL));
+      step + 1), null));
   pntrLet(&g_ProofInProgress.user, pntrCat(pntrLeft(g_ProofInProgress.user,
       step - sbPfLen + 1), pntrRight(g_ProofInProgress.user,
-      step + 1), NULL));
+      step + 1), null));
 }
 
 
@@ -1434,7 +1434,7 @@ nmbrString *proveFloating(nmbrString *mString, long statemNum, long maxEDepth,
 
   long unNum;
 if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
-   nmbrCvtMToVString(mString), NULL));
+   nmbrCvtMToVString(mString), null));
 
   prfMbox = getMathboxNum(statemNum);
 
@@ -1470,7 +1470,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
        ").  The last proof attempt was for math string \"",
        nmbrCvtMToVString(mString),
        "\".  Your axiom system may have an error ",
-       "or you may have to SET EMPTY_SUBSTITUTION ON.", NULL), " ", " ");
+       "or you may have to SET EMPTY_SUBSTITUTION ON.", null), " ", " ");
     maxDepthExceeded = 1;
     C.go2("returnPoint");
   }
@@ -1650,7 +1650,7 @@ unNum = 0;
 unNum++;
 if (db8)print2("%s\n", cat(space(depth+2), "Testing unification ",
    str((double)unNum), " statement ", g_Statement[stmt].labelName,
-   ": ", nmbrCvtMToVString(scheme), NULL));
+   ": ", nmbrCvtMToVString(scheme), null));
       reEntryFlag = 1;
 
       nmbrLet(&proof, NULL_NMBRSTRING);
@@ -1658,7 +1658,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Testing unification ",
       for (hyp = 0; hyp < schReqHyps; hyp++) {
 if (db8)print2("%s\n", cat(space(depth+2), "Proving hyp. ",
    str((double)(hypOrdMap[hyp])), "(#", str((double)hyp), "):  ",
-   nmbrCvtMToVString(hypList[hypOrdMap[hyp]]), NULL));
+   nmbrCvtMToVString(hypList[hypOrdMap[hyp]]), null));
         makeSubstPtr = makeSubstUnif(&tmpFlag, hypList[hypOrdMap[hyp]],
             stateVector);
         if (tmpFlag) bug(1808);
@@ -1714,7 +1714,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Proving hyp. ",
 
 
       for (hyp = 0; hyp < schReqHyps; hyp++) {
-        nmbrLet(&proof, nmbrCat(proof, hypProofList[hyp], NULL));
+        nmbrLet(&proof, nmbrCat(proof, hypProofList[hyp], null));
       }
 
       if (getMarkupFlag(stmt, USAGE_DISCOURAGED)) {
@@ -1743,7 +1743,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Proving hyp. ",
             printLongLine(cat("Used \"", g_Statement[stmt].labelName,
                   "\" from the mathbox for ",
                   g_mathboxUser[getMathboxNum(stmt) - 1], ".",
-                  NULL),
+                  null),
                 "  ", " ");
           }
         }
@@ -1783,7 +1783,7 @@ if(db8)print2("%s\n", cat(space(depth+2), "Returned: ",
    nmbrCvtRToVString(proof,
 
                 0,
-                0 ), NULL));
+                0 ), null));
 if(db8){if(!depth)print2("Trials: %ld\n", trials);}
   return (proof);
 }
@@ -2213,7 +2213,7 @@ void assignKnownSteps(long startStep, long sbProofLen)
             "\nZapping targets so we can proceed (but you should exit the ",
             "Proof Assistant and fix this problem)",
             "\n(This may take a while; please wait...)",
-            NULL), "", " ");
+            null), "", " ");
         purgeStateVector(&stateVector);
         C.go2("returnPoint");
       }
@@ -2352,9 +2352,9 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
     unifFlag = unifyH(schemeA, schemeB, &(*stateVector), reEntryFlag);
     if (unifFlag == 2) {
       printLongLine(
-          cat("Unify:  ", nmbrCvtMToVString(schemeA), NULL), "    ", " ");
+          cat("Unify:  ", nmbrCvtMToVString(schemeA), null), "    ", " ");
       printLongLine(
-          cat(" with:  ", nmbrCvtMToVString(schemeB), NULL), "    ", " ");
+          cat(" with:  ", nmbrCvtMToVString(schemeB), null), "    ", " ");
       print2(
 "The unification timed out.  Increase timeout (SET UNIFICATION_TIMEOUT) or\n");
       print2(
@@ -2417,11 +2417,11 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
   if (unifCount > 1) {
     printLongLine(cat("There are ", str((double)unifCount),
       " possible unifications.  Please select the correct one or QUIT if",
-      " you want to UNIFY later.", NULL),
+      " you want to UNIFY later.", null),
         "    ", " ");
-    printLongLine(cat("Unify:  ", nmbrCvtMToVString(schemeA), NULL),
+    printLongLine(cat("Unify:  ", nmbrCvtMToVString(schemeA), null),
         "    ", " ");
-    printLongLine(cat(" with:  ", nmbrCvtMToVString(schemeB), NULL),
+    printLongLine(cat(" with:  ", nmbrCvtMToVString(schemeB), null),
         "    ", " ");
   }
 
@@ -2462,7 +2462,7 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
           g_MathToken[stackUnkVar[var]].tokenName,"\" with \"",
             nmbrCvtMToVString(
                 nmbrMid(unifiedScheme,stackUnkVarStart[var] + 1,
-                stackUnkVarLen[var])), "\"", NULL),"    "," ");
+                stackUnkVarLen[var])), "\"", null),"    "," ");
 
         let(&tmpStr,"");
         nmbrLet(&nmbrTmp,NULL_NMBRSTRING);
@@ -2665,7 +2665,7 @@ void replaceDummyVar(long dummyVar, nmbrString *mString)
       if (nmbrTmpPtr[sym] == dummyVar + g_mathTokens) {
         nmbrLet((nmbrString **)(&((g_ProofInProgress.target)[step])),
             nmbrCat(nmbrLeft(nmbrTmpPtr, sym), mString,
-            nmbrRight(nmbrTmpPtr, sym + 2), NULL));
+            nmbrRight(nmbrTmpPtr, sym + 2), null));
         nmbrTmpPtr = (g_ProofInProgress.target)[step];
         stepChanged = 1;
         numSubs++;
@@ -2678,7 +2678,7 @@ void replaceDummyVar(long dummyVar, nmbrString *mString)
       if (nmbrTmpPtr[sym] == dummyVar + g_mathTokens) {
         nmbrLet((nmbrString **)(&((g_ProofInProgress.source)[step])),
             nmbrCat(nmbrLeft(nmbrTmpPtr, sym), mString,
-            nmbrRight(nmbrTmpPtr, sym + 2), NULL));
+            nmbrRight(nmbrTmpPtr, sym + 2), null));
         nmbrTmpPtr = (g_ProofInProgress.source)[step];
         stepChanged = 1;
         numSubs++;
@@ -2691,7 +2691,7 @@ void replaceDummyVar(long dummyVar, nmbrString *mString)
       if (nmbrTmpPtr[sym] == dummyVar + g_mathTokens) {
         nmbrLet((nmbrString **)(&((g_ProofInProgress.user)[step])),
             nmbrCat(nmbrLeft(nmbrTmpPtr, sym), mString,
-            nmbrRight(nmbrTmpPtr, sym + 2), NULL));
+            nmbrRight(nmbrTmpPtr, sym + 2), null));
         nmbrTmpPtr = (g_ProofInProgress.user)[step];
         stepChanged = 1;
         numSubs++;
@@ -2876,7 +2876,7 @@ void declareDummyVars(long numNewVars)
     g_MathToken[g_mathTokens + g_dummyVars].tokenName = "";
 
     let(&g_MathToken[g_mathTokens + g_dummyVars].tokenName,
-        cat("$", str((double)g_dummyVars), NULL));
+        cat("$", str((double)g_dummyVars), null));
     g_MathToken[g_mathTokens + g_dummyVars].length =
         (long)strlen(g_MathToken[g_mathTokens + g_dummyVars].tokenName);
     g_MathToken[g_mathTokens + g_dummyVars].scope = g_currentScope;
@@ -2991,7 +2991,7 @@ long processUndoStack(struct pip_struct *proofStruct,
     long newSize)
 {
 
-  static struct pip_struct *proofStack = NULL;
+  static struct pip_struct *proofStack = null;
   static pntrString *infoStack = NULL_PNTRSTRING;
   static long stackSize = DEFAULT_UNDO_STACK_SIZE;
   static long stackEnd = -1;
@@ -3116,14 +3116,14 @@ long processUndoStack(struct pip_struct *proofStruct,
         } else {
           printLongLine(cat("Exceeded maximum of ", str((double)stackSize - 1),
               " UNDOs.  To increase the number, see HELP SET UNDO.",
-              NULL), "", " ");
+              null), "", " ");
         }
         break;
       }
 
 
       printLongLine(cat("Undid:  ", infoStack[stackPtr],
-              NULL), "", " ");
+              null), "", " ");
       stackPtr--;
 
       copyProofStruct(&(*proofStruct), proofStack[stackPtr]);
@@ -3140,7 +3140,7 @@ long processUndoStack(struct pip_struct *proofStruct,
 
       copyProofStruct(&(*proofStruct), proofStack[stackPtr]);
       printLongLine(cat("Redid:  ", infoStack[stackPtr],
-              NULL), "", " ");
+              null), "", " ");
       break;
 
     default:

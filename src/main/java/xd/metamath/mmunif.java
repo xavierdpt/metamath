@@ -69,9 +69,9 @@ let(&tmpStr,tmpStr);
 
 if(db7)print2("Entered makeSubstUnif.\n");
 if(db7)printLongLine(cat("unifiedScheme is ",
-    nmbrCvtMToVString(unifiedScheme), NULL), "", " ");
+    nmbrCvtMToVString(unifiedScheme), null), "", " ");
 if(db7)printLongLine(cat("trialScheme is ",
-    nmbrCvtMToVString(trialScheme), NULL), "", " ");
+    nmbrCvtMToVString(trialScheme), null), "", " ");
 if(db7)print2("stackTop is %ld.\n",stackTop);
 for (d = 0; d <= stackTop; d++) {
   if(db7)print2("Unknown var %ld is %s.\n",d,
@@ -150,7 +150,7 @@ if(db7)print2("token is %s, m is %ld\n",g_MathToken[tokenNum].tokenName,m);
   }
 if(db7)print2("after newVarFlag %d\n",(int)*newVarFlag);
 if(db7)print2("final len is %ld\n",q);
-if(db7)printLongLine(cat("result ",nmbrCvtMToVString(result),NULL),""," ");
+if(db7)printLongLine(cat("result ",nmbrCvtMToVString(result),null),""," ");
   nmbrLet(&stackUnkVar, NULL_NMBRSTRING);
   return (result);
 }
@@ -212,9 +212,9 @@ let(&tmpStr,tmpStr);
 if(db5)print2("Entering unify() with reEntryFlag = %ld.\n",
   (long)reEntryFlag);
 if(db5)printLongLine(cat("schemeA is ",
-    nmbrCvtMToVString(schemeA),".",NULL),"    ","  ");
+    nmbrCvtMToVString(schemeA),".",null),"    ","  ");
 if(db5)printLongLine(cat("schemeB is ",
-    nmbrCvtMToVString(schemeB),".",NULL),"    ","  ");
+    nmbrCvtMToVString(schemeB),".",null),"    ","  ");
 
   p = 0;
   bracketMismatchFound = 0;
@@ -703,7 +703,7 @@ if(db6)print2("End of string token occurs in substitution string\n");
            " statement \"",
 
            g_Statement[m].labelName,
-           "\".", NULL),
+           "\".", null),
            "    ", " ");
         bracketMatchOn = 0;
       } else {
@@ -769,7 +769,7 @@ if(db6)print2("Scheme A adjusted p=%ld\n",p);
     }
 
     nmbrLet(&schA, nmbrCat(
-        nmbrLeft(schA, k - 1), substitution, nmbrRight(schA, k + 1), NULL));
+        nmbrLeft(schA, k - 1), substitution, nmbrRight(schA, k + 1), null));
     k = k + j - 1;
   }
   k = 1;
@@ -801,7 +801,7 @@ if(db6)print2("Scheme B adjusted p=%ld\n",p);
     }
 
     nmbrLet(&schB, nmbrCat(
-        nmbrLeft(schB, k - 1), substitution, nmbrRight(schB, k + 1), NULL));
+        nmbrLeft(schB, k - 1), substitution, nmbrRight(schB, k + 1), null));
     k = k + j - 1;
   }
   p++;
@@ -899,7 +899,7 @@ if(db6)print2("Exited backtrack with p=%ld stackTop=%ld\n",p,stackTop);
   nmbrLet(&unifiedScheme, nmbrLeft(schA, nmbrLen(schA) - 1));
 if(db5)print2("Backtrack count was %ld\n",g_unifTrialCount);
 if(db5)printLongLine(cat("Unified scheme is ",
-    nmbrCvtMToVString(unifiedScheme),".",NULL),"    ","  ");
+    nmbrCvtMToVString(unifiedScheme),".",null),"    ","  ");
 
   ((nmbrString *)((*stateVector)[11]))[0] = unkVarsLen;
   (*stateVector)[0] = unkVars;
@@ -1223,7 +1223,7 @@ void printSubst(pntrString *stateVector)
         g_MathToken[stackUnkVar[d]].tokenName,"' was replaced with '",
         nmbrCvtMToVString(
             nmbrMid(unifiedScheme,stackUnkVarStart[d] + 1,
-            stackUnkVarLen[d])),"'.",NULL),"    "," ");
+            stackUnkVarLen[d])),"'.",null),"    "," ");
 
     let(&tmpStr,"");
     nmbrLet(&nmbrTmp,NULL_NMBRSTRING);

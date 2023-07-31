@@ -251,7 +251,7 @@ l7220:  i=i+m-1;
              while (((vstring)(line1_[i]))[tmpi] == ' ') tmpi++;
              let(&blanksPrefix, space(tmpi));
              let(&tmpLine, "");
-             tmpLine = stripAndTag(cat(blanksPrefix, delStartTag_, NULL),
+             tmpLine = stripAndTag(cat(blanksPrefix, delStartTag_, null),
                  addTag_, 0);
              fprintf(f3_fp_, "%s\n", tmpLine);
            }
@@ -262,7 +262,7 @@ l7220:  i=i+m-1;
        }
        if (printedAtLeastOne) {
          let(&tmpLine, "");
-         tmpLine = stripAndTag(cat(blanksPrefix, delEndTag_, NULL), addTag_
+         tmpLine = stripAndTag(cat(blanksPrefix, delEndTag_, null), addTag_
              ,0);
          fprintf(f3_fp_, "%s\n", tmpLine);
        }
@@ -326,7 +326,7 @@ void gosub_7320()
       let(&l1_,ctlz_);
     } else {
         C.label("next_l1");
-      if (!linput(f1_fp_,NULL,&l1_)) {
+      if (!linput(f1_fp_,null,&l1_)) {
         eof1 = 1;
         let(&l1_,ctlz_);
         let(&tmpLin, "");
@@ -334,12 +334,12 @@ void gosub_7320()
       }
       let(&l1_, edit(l1_, 4 + 128 + 2048));
       if (!l1_[0]) {
-        let(&tmpLin, cat(tmpLin, "\n", NULL));
+        let(&tmpLin, cat(tmpLin, "\n", null));
         C.go2("next_l1");
       }
     }
   }
-  let(&l1_, cat(tmpLin, l1_, NULL));
+  let(&l1_, cat(tmpLin, l1_, null));
   let(&tmpLin, "");
   return;
 }
@@ -361,7 +361,7 @@ void gosub_7330() {
     } else {
      stripDeletedSectionMode = 0;
         C.label("next_l2");
-      if (!linput(f2_fp_,NULL,&l2_)) {
+      if (!linput(f2_fp_,null,&l2_)) {
         eof2 = 1;
         let(&l2_, ctlz_);
         let(&tmpLin, "");
@@ -393,12 +393,12 @@ void gosub_7330() {
       }
 
       if (!l2_[0]) {
-        let(&tmpLin, cat(tmpLin, "\n", NULL));
+        let(&tmpLin, cat(tmpLin, "\n", null));
          C.go2("next_l2");
       }
     }
   }
-  let(&l2_, cat(tmpLin, l2_, NULL));
+  let(&l2_, cat(tmpLin, l2_, null));
   let(&tmpLin, "");
   return;
 
@@ -436,7 +436,7 @@ char strcmpe(vstring s1, vstring s2)
       i3 = instr(i + 2, tmps1, "/*");
       if (i3 != 0 && i3 < i2) break;
       if (i2 - i > 7) break;
-      let(&tmps1, cat(left(tmps1, i - 1), right(tmps1, i2 + 2), NULL));
+      let(&tmps1, cat(left(tmps1, i - 1), right(tmps1, i2 + 2), null));
     }
     while (true) {
       i = instr(1, tmps2, "/*");
@@ -446,7 +446,7 @@ char strcmpe(vstring s1, vstring s2)
       i3 = instr(i + 2, tmps2, "/*");
       if (i3 != 0 && i3 < i2) break;
       if (i2 - i > 7) break;
-      let(&tmps2, cat(left(tmps2, i - 1), right(tmps2, i2 + 2), NULL));
+      let(&tmps2, cat(left(tmps2, i - 1), right(tmps2, i2 + 2), null));
     }
   }
 
@@ -496,8 +496,8 @@ vstring stripAndTag(vstring line, vstring tag, flag tagBlankLines)
     if ((long)strlen(line1) - n < lineLength - 1 - (long)strlen(tag))
       let(&line1, cat(line1,
           space(lineLength - 1 - (long)strlen(tag) - (long)strlen(line1) + n),
-          NULL));
-    let(&line1, cat(line1, " ", tag, NULL));
+          null));
+    let(&line1, cat(line1, " ", tag, null));
     if ((signed)(strlen(line1)) - n > lineLength) {
       print2(
 "Warning: The following line has > %ld characters after tag is added:\n",
@@ -512,7 +512,7 @@ vstring stripAndTag(vstring line, vstring tag, flag tagBlankLines)
     let(&line1, right(line1, n + 1));
     for (i = 1; i <= n; i++) {
       let(&line1, cat(space(lineLength - (long)strlen(tag)), tag, "\n",
-          line1, NULL));
+          line1, null));
     }
   }
 
@@ -531,7 +531,7 @@ long highestRevision(vstring fileName)
 
   fp = fopen(fileName, "r");
   if (!fp) return 0;
-  while (linput(fp, NULL, &str1)) {
+  while (linput(fp, null, &str1)) {
     revision = getRevision(str1);
     if (revision > largest) largest = revision;
   }

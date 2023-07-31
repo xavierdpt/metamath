@@ -60,7 +60,7 @@ void typeStatement(long showStmt,
     assignStmtFileAndLineNum(showStmt);
     let(&str1, cat("Statement ", str((double)showStmt),
         " is located on line ", str((double)(g_Statement[showStmt].lineNum)),
-        " of the file ", NULL));
+        " of the file ", null));
     if (!texFlag) {
       assignMathboxInfo();
       printLongLine(cat(str1,
@@ -70,13 +70,13 @@ void typeStatement(long showStmt,
         (g_Statement[showStmt].pinkNumber == 0) ?
            "" :
            cat("  Its statement number for HTML pages is ",
-               str((double)(g_Statement[showStmt].pinkNumber)), ".", NULL),
+               str((double)(g_Statement[showStmt].pinkNumber)), ".", null),
 
         ((getMathboxUser(showStmt))[0] == 0) ?
            "" :
            cat("  It is in the mathbox for ", getMathboxUser(showStmt), ".",
-               NULL),
-        NULL), "", " ");
+               null),
+        null), "", " ");
     } else {
       if (!htmlFlg) let(&g_printString, "");
       g_outputToString = 1;
@@ -122,7 +122,7 @@ void typeStatement(long showStmt,
         printLongLine(cat("<CENTER><B><FONT SIZE=\"+1\">", str1,
             " <FONT COLOR=", GREEN_TITLE_COLOR,
             ">", g_Statement[showStmt].labelName,
-            "</FONT></FONT></B>", str2, "</CENTER>", NULL), "", "\"");
+            "</FONT></FONT></B>", str2, "</CENTER>", null), "", "\"");
       }
       g_outputToString = 0;
     }
@@ -152,7 +152,7 @@ void typeStatement(long showStmt,
     }
     if (str1[0]) {
       if (!texFlag) {
-        printLongLine(cat("\"", str1, "\"", NULL), "", " ");
+        printLongLine(cat("\"", str1, "\"", null), "", " ");
       } else {
 
         if (!htmlFlg) {
@@ -173,11 +173,11 @@ void typeStatement(long showStmt,
             }
             let(&str1, cat("\\begin{", str3, "}\\label{",
                 left(str3, 3), ":",
-                g_Statement[showStmt].labelName, "} ", str1, NULL));
+                g_Statement[showStmt].labelName, "} ", str1, null));
 
           } else {
 
-            let(&str1, cat("\n\\vspace{1ex} %2\n\n", str1, NULL));
+            let(&str1, cat("\n\\vspace{1ex} %2\n\n", str1, null));
           }
         }
 
@@ -216,12 +216,12 @@ void typeStatement(long showStmt,
 
           if (!(htmlFlg && texFlag)) {
             if (k == 0) let(&str1, "$d");
-            else let(&str1, cat(str1, " $.  $d", NULL));
+            else let(&str1, cat(str1, " $.  $d", null));
           } else {
 
 
             let(&htmlDistinctVars, cat(htmlDistinctVars, " &nbsp; ",
-                NULL));
+                null));
             htmlDistinctVarsCommaFlag = 0;
             distVarGrps++;
 
@@ -250,12 +250,12 @@ void typeStatement(long showStmt,
             if (!q1 || !q2) {
               if (!(htmlFlg && texFlag)) {
                 if (k == 0) let(&str1, "$d");
-                else let(&str1, cat(str1, " $.  $d", NULL));
+                else let(&str1, cat(str1, " $.  $d", null));
               } else {
 
 
                 let(&htmlDistinctVars, cat(htmlDistinctVars, " &nbsp; ",
-                    NULL));
+                    null));
                 htmlDistinctVarsCommaFlag = 0;
                 distVarGrps++;
 
@@ -269,18 +269,18 @@ void typeStatement(long showStmt,
         if (!nmbrElementIn(1, nmbrDDList, nmbrTmpPtr1[k])) {
           if (!(htmlFlg && texFlag)) {
             let(&str1, cat(str1, " ", g_MathToken[nmbrTmpPtr1[k]].tokenName,
-                NULL));
+                null));
           } else {
 
 
             if (htmlDistinctVarsCommaFlag) {
-              let(&htmlDistinctVars, cat(htmlDistinctVars, ",", NULL));
+              let(&htmlDistinctVars, cat(htmlDistinctVars, ",", null));
             }
             htmlDistinctVarsCommaFlag = 1;
             let(&str2, "");
             str2 = tokenToTex(g_MathToken[nmbrTmpPtr1[k]].tokenName, showStmt);
 
-            let(&htmlDistinctVars, cat(htmlDistinctVars, str2, NULL));
+            let(&htmlDistinctVars, cat(htmlDistinctVars, str2, null));
 
           }
           nmbrLet(&nmbrDDList, nmbrAddElement(nmbrDDList, nmbrTmpPtr1[k]));
@@ -288,18 +288,18 @@ void typeStatement(long showStmt,
         if (!nmbrElementIn(1, nmbrDDList, nmbrTmpPtr2[k])) {
           if (!(htmlFlg && texFlag)) {
             let(&str1, cat(str1, " ", g_MathToken[nmbrTmpPtr2[k]].tokenName,
-                NULL));
+                null));
           } else {
 
 
             if (htmlDistinctVarsCommaFlag) {
-              let(&htmlDistinctVars, cat(htmlDistinctVars, ",", NULL));
+              let(&htmlDistinctVars, cat(htmlDistinctVars, ",", null));
             }
             htmlDistinctVarsCommaFlag = 1;
             let(&str2, "");
             str2 = tokenToTex(g_MathToken[nmbrTmpPtr2[k]].tokenName, showStmt);
 
-            let(&htmlDistinctVars, cat(htmlDistinctVars, str2, NULL));
+            let(&htmlDistinctVars, cat(htmlDistinctVars, str2, null));
 
           }
           nmbrLet(&nmbrDDList, nmbrAddElement(nmbrDDList, nmbrTmpPtr2[k]));
@@ -307,7 +307,7 @@ void typeStatement(long showStmt,
       }
 
       if (!(htmlFlg && texFlag)) {
-        let(&str1, cat(str1, " $.", NULL));
+        let(&str1, cat(str1, " $.", null));
         printLongLine(str1, "  ", " ");
       } else {
 
@@ -363,15 +363,15 @@ void typeStatement(long showStmt,
             ) continue;
 
         if (!texFlag) {
-          let(&str2, cat(str((double)k), " ", NULL));
+          let(&str2, cat(str((double)k), " ", null));
         } else {
           let(&str2, "  ");
         }
         let(&str2, cat(str2, g_Statement[k].labelName,
-            " $", chr(g_Statement[k].type), " ", NULL));
+            " $", chr(g_Statement[k].type), " ", null));
         if (!texFlag) {
           printLongLine(cat(str2,
-              nmbrCvtMToVString(g_Statement[k].mathString), " $.", NULL),
+              nmbrCvtMToVString(g_Statement[k].mathString), " $.", null),
               "      "," ");
         } else {
           if (!(htmlFlg && texFlag)) {
@@ -402,15 +402,15 @@ void typeStatement(long showStmt,
   type = g_Statement[showStmt].type;
   if (type == p_) let(&str1, " $= ...");
   if (!texFlag)
-    let(&str2, cat(str((double)showStmt), " ", NULL));
+    let(&str2, cat(str((double)showStmt), " ", null));
   else
     let(&str2, "  ");
   let(&str2, cat(str2, g_Statement[showStmt].labelName,
-      " $",chr(type), " ", NULL));
+      " $",chr(type), " ", null));
   if (!texFlag) {
     printLongLine(cat(str2,
         nmbrCvtMToVString(g_Statement[showStmt].mathString),
-        str1, " $.", NULL), "      ", " ");
+        str1, " $.", null), "      ", " ");
   } else {
     if (!(htmlFlg && texFlag)) {
       if (!g_oldTexFlag) {
@@ -432,7 +432,7 @@ void typeStatement(long showStmt,
               g_Statement[showStmt].labelName,
               "}",
 
-              NULL), "    ", " ");
+              null), "    ", " ");
 
         print2("\\end{align}\n");
 
@@ -449,7 +449,7 @@ void typeStatement(long showStmt,
         } else {
           let(&str3, "theorem");
         }
-        print2("%s\n", cat("\\end{", str3, "}", NULL));
+        print2("%s\n", cat("\\end{", str3, "}", null));
 
         fprintf(g_texFilePtr, "%s", g_printString);
         let(&g_printString, "");
@@ -472,7 +472,7 @@ void typeStatement(long showStmt,
       printLongLine(cat(
        "<TR ALIGN=LEFT><TD><FONT COLOR=",
           GREEN_TITLE_COLOR, "><B>", g_Statement[showStmt].labelName,
-          "</B></FONT></TD><TD>", NULL), "      ", " ");
+          "</B></FONT></TD><TD>", null), "      ", " ");
       printTexLongMath(g_Statement[showStmt].mathString, "", "", 0, 0);
       g_outputToString = 1;
       print2("</TABLE></CENTER>\n");
@@ -501,10 +501,10 @@ void typeStatement(long showStmt,
         if (g_Statement[k].type != (char)e_ && (!htmlFlg && texFlag))
           continue;
         let(&str2, cat("  ",g_Statement[k].labelName,
-            " $", chr(g_Statement[k].type), " ", NULL));
+            " $", chr(g_Statement[k].type), " ", null));
         if (!texFlag) {
           printLongLine(cat(str2,
-              nmbrCvtMToVString(g_Statement[k].mathString), " $.", NULL),
+              nmbrCvtMToVString(g_Statement[k].mathString), " $.", null),
               "      "," ");
         } else {
           if (!(htmlFlg && texFlag)) {
@@ -530,23 +530,23 @@ void typeStatement(long showStmt,
           if (!texFlag) {
             let(&str1, cat(str1, ", <",
                 g_MathToken[nmbrTmpPtr1[k]].tokenName, ",",
-                g_MathToken[nmbrTmpPtr2[k]].tokenName, ">", NULL));
+                g_MathToken[nmbrTmpPtr2[k]].tokenName, ">", null));
           } else {
             if (htmlFlg && texFlag) {
               let(&str2, "");
               str2 = tokenToTex(g_MathToken[nmbrTmpPtr1[k]].tokenName, showStmt);
 
-              let(&str1, cat(str1, " &nbsp; ", str2, NULL));
+              let(&str1, cat(str1, " &nbsp; ", str2, null));
               let(&str2, "");
               str2 = tokenToTex(g_MathToken[nmbrTmpPtr2[k]].tokenName, showStmt);
-              let(&str1, cat(str1, ",", str2, NULL));
+              let(&str1, cat(str1, ",", str2, null));
             }
           }
         }
         if (!texFlag)
           printLongLine(cat(
               "Its mandatory disjoint variable pairs are:  ",
-              right(str1,3),NULL),"  "," ");
+              right(str1,3),null),"  "," ");
       }
       if (type == p_ &&
           nmbrLen(g_Statement[showStmt].optHypList)
@@ -557,7 +557,7 @@ void typeStatement(long showStmt,
             g_Statement[showStmt].optHypList,
 
                 0,
-                0 ), NULL),
+                0 ), null),
             "      "," ");
       }
       nmbrTmpPtr1 = g_Statement[showStmt].optDisjVarsA;
@@ -574,13 +574,13 @@ void typeStatement(long showStmt,
           if (!texFlag) {
             let(&str1, cat(str1, ", <",
                 g_MathToken[nmbrTmpPtr1[k]].tokenName, ",",
-                g_MathToken[nmbrTmpPtr2[k]].tokenName, ">", NULL));
+                g_MathToken[nmbrTmpPtr2[k]].tokenName, ">", null));
           }
         }
         if (!texFlag) {
           printLongLine(cat(
               "Its optional disjoint variable pairs are:  ",
-              right(str1,3),NULL),"  "," ");
+              right(str1,3),null),"  "," ");
         }
       }
 
@@ -605,12 +605,12 @@ void typeStatement(long showStmt,
 
               distVarGrps > 1 ? "s" : "",
               ": ",
-              (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", NULL) : ""),
+              (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", null) : ""),
 
               htmlDistinctVars,
               (g_altHtmlFlag ? "</SPAN>" : ""),
               "</CENTER>",
-              NULL), "", "\"");
+              null), "", "\"");
           g_outputToString = 0;
         }
 
@@ -639,13 +639,13 @@ void typeStatement(long showStmt,
       if (!strlen(str1)) let(&str1, "(None)");
       printLongLine(cat(
           "The statement and its hypotheses require the variables:  ",
-          str1, NULL), "      ", " ");
+          str1, null), "      ", " ");
       if (type == p_ &&
           nmbrLen(g_Statement[showStmt].optVarList)) {
         printLongLine(cat(
             "These additional variables are allowed in its proof:  "
             ,nmbrCvtMToVString(
-            g_Statement[showStmt].optVarList),NULL),"      ",
+            g_Statement[showStmt].optVarList),null),"      ",
             " ");
 
       }
@@ -653,7 +653,7 @@ void typeStatement(long showStmt,
           g_Statement[showStmt].reqVarList));
       if (!strlen(str1)) let(&str1, "(None)");
       printLongLine(cat("The variables it contains are:  ",
-          str1, NULL),
+          str1, null),
           "      ", " ");
       break;
     default:
@@ -697,14 +697,14 @@ void typeStatement(long showStmt,
                     g_Statement[i].labelName, ".html\">",
                     g_Statement[i].labelName,
                     "</A>", str2, ".</CENTER><HR NOSHADE SIZE=1>",
-                    NULL), "", "\"");
+                    null), "", "\"");
               } else {
                 printLongLine(cat(
                     "<CENTER>See definition <A HREF=\"",
                     g_Statement[i].labelName, ".html\">",
                     g_Statement[i].labelName, "</A>", str2,
                     " for more information.</CENTER><HR NOSHADE SIZE=1>",
-                    NULL), "", "\"");
+                    null), "", "\"");
               }
 
 
@@ -713,7 +713,7 @@ void typeStatement(long showStmt,
                   "<CENTER><TABLE CELLSPACING=7><TR><TD ALIGN=LEFT><FONT SIZE=-1>",
                   "<B>Colors of variables:</B> ",
                   g_htmlVarColor, "</FONT></TD></TR>",
-                  NULL), "", "\"");
+                  null), "", "\"");
               g_outputToString = 0;
               break;
             }
@@ -804,7 +804,7 @@ void typeStatement(long showStmt,
           printLongLine(cat(
               "?Warning: Unable to generate syntax breakdown for \"",
               g_Statement[showStmt].labelName,
-              "\".", NULL), "    ", " ");
+              "\".", null), "    ", " ");
         }
 
 
@@ -856,7 +856,7 @@ void typeStatement(long showStmt,
       }
 
       let(&str2, cat("<TR><TD ALIGN=LEFT><FONT SIZE=-1><B>This ", str3,
-          " is referenced by:</B>", NULL));
+          " is referenced by:</B>", null));
 
       if (str1[0] == 'Y') {
 
@@ -879,10 +879,10 @@ void typeStatement(long showStmt,
           let(&str2, cat(str2, " &nbsp;<A HREF=\"",
               str3, ".html\">",
 
-              str3, "</A>\n", str4, NULL));
+              str3, "</A>\n", str4, null));
 
           if (strlen(str2) > 5000) {
-            let(&str5, cat(str5, str2, NULL));
+            let(&str5, cat(str5, str2, null));
             let(&str2, "");
           }
 
@@ -893,12 +893,12 @@ void typeStatement(long showStmt,
       } else {
 
         let(&str5, "");
-        let(&str2, cat(str2, " (None)", NULL));
+        let(&str2, cat(str2, " (None)", null));
 
       }
 
 
-      let(&str2, cat(str5, str2, "</FONT></TD></TR>", NULL));
+      let(&str2, cat(str5, str2, "</FONT></TD></TR>", null));
 
       if (g_printString[0]) {
         bug(256);
@@ -1026,7 +1026,7 @@ vstring htmlDummyVars(long showStmt)
 
               str1 = tokenToTex(g_MathToken[dummyVar].tokenName,
                   showStmt);
-              let(&htmlDummyVarList, cat(htmlDummyVarList, " ", str1, NULL));
+              let(&htmlDummyVarList, cat(htmlDummyVarList, " ", str1, null));
               break;
             }
           }
@@ -1050,7 +1050,7 @@ vstring htmlDummyVars(long showStmt)
 
         dummyVarCount > 1 ? "s" : "",
         "</A> ",
-        (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", NULL) : ""),
+        (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", null) : ""),
 
         htmlDummyVarList,
         (g_altHtmlFlag ? "</SPAN>" : ""),
@@ -1058,7 +1058,7 @@ vstring htmlDummyVars(long showStmt)
             : " is",
         " distinct from all other variables.",
         "</CENTER>",
-        NULL));
+        null));
   }
 
 
@@ -1196,19 +1196,19 @@ vstring htmlAllowedSubst(long showStmt)
 
     countInfo++;
     let(&htmlAllowedList, cat(htmlAllowedList, " &nbsp; ",
-        str1, "(", NULL));
+        str1, "(", null));
     first = 1;
     for (j = 0; j < setVars; j++) {
       if (setVarDVFlag[j] == 'N') {
         let(&str1, "");
         str1 = tokenToTex(g_MathToken[setVar[j]].tokenName, showStmt);
         let(&htmlAllowedList, cat(htmlAllowedList,
-            (first == 0) ? "," : "", str1, NULL));
+            (first == 0) ? "," : "", str1, null));
         if (first == 0) countInfo++;
         first = 0;
       }
     }
-    let(&htmlAllowedList, cat(htmlAllowedList, ")", NULL));
+    let(&htmlAllowedList, cat(htmlAllowedList, ")", null));
 
   }
 
@@ -1226,11 +1226,11 @@ vstring htmlAllowedSubst(long showStmt)
 
         "#allowedsubst\">Allowed substitution</A> hint",
         ((countInfo != 1) ? "s" : ""), ": ",
-        (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", NULL) : ""),
+        (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", null) : ""),
 
         htmlAllowedList,
         (g_altHtmlFlag ? "</SPAN>" : ""),
-        "</CENTER>", NULL));
+        "</CENTER>", null));
   }
 
 
@@ -1320,7 +1320,7 @@ void typeProof(long statemNum,
         print2("<CENTER><B>Proof of Theorem <FONT\n");
         printLongLine(cat("   COLOR=", GREEN_TITLE_COLOR, ">",
             asciiToTt(g_Statement[statemNum].labelName),
-            "</FONT></B></CENTER>", NULL), "", "\"");
+            "</FONT></B></CENTER>", null), "", "\"");
 
         printLongLine(tmpStr, "", "\"");
         let(&tmpStr, "");
@@ -1337,7 +1337,7 @@ void typeProof(long statemNum,
         print2("<CAPTION><B>Proof of Theorem <FONT\n");
         printLongLine(cat("   COLOR=", GREEN_TITLE_COLOR, ">",
             asciiToTt(g_Statement[statemNum].labelName),
-            "</FONT></B></CAPTION>", NULL), "", "\"");
+            "</FONT></B></CAPTION>", null), "", "\"");
       }
     } else {
       print2("<CENTER><TABLE BORDER CELLSPACING=0 BGCOLOR=%s\n",
@@ -1353,7 +1353,7 @@ void typeProof(long statemNum,
       }
       printLongLine(cat("   COLOR=", GREEN_TITLE_COLOR, ">",
           asciiToTt(g_Statement[statemNum].labelName),
-          "</FONT></B></CAPTION>", NULL), "", "\"");
+          "</FONT></B></CAPTION>", null), "", "\"");
     }
     print2(
         "<TR><TH>Step</TH><TH>Hyp</TH><TH>Ref\n");
@@ -1604,9 +1604,9 @@ void typeProof(long statemNum,
         if (skipRepeatedSteps) bug(220);
 
         if (noIndentFlag) {
-          let(&srcLabel, cat("@", str((double)(localLabelNames[stmt])), NULL));
+          let(&srcLabel, cat("@", str((double)(localLabelNames[stmt])), null));
         } else {
-          let(&srcLabel, cat("=", str((double)(localLabelNames[stmt])), NULL));
+          let(&srcLabel, cat("=", str((double)(localLabelNames[stmt])), null));
         }
         type = g_Statement[proof[stmt]].type;
       } else {
@@ -1614,7 +1614,7 @@ void typeProof(long statemNum,
         if (noIndentFlag) {
           let(&srcLabel, chr(-stmt));
         } else {
-          let(&srcLabel, cat("=", chr(-stmt), NULL));
+          let(&srcLabel, cat("=", chr(-stmt), null));
         }
         type = '?';
       }
@@ -1625,10 +1625,10 @@ void typeProof(long statemNum,
 
 
           if (!(skipRepeatedSteps)) {
-            let(&locLabDecl, cat("@", str((double)(localLabelNames[step])), ":", NULL));
+            let(&locLabDecl, cat("@", str((double)(localLabelNames[step])), ":", null));
           }
         } else {
-          let(&locLabDecl, cat(str((double)(localLabelNames[step])), ":", NULL));
+          let(&locLabDecl, cat(str((double)(localLabelNames[step])), ":", null));
         }
       }
 
@@ -1667,9 +1667,9 @@ void typeProof(long statemNum,
             } else {
 
               if (i != -(long)'?') {
-                let(&hypStr, cat(str((double)i), ",", hypStr, NULL));
+                let(&hypStr, cat(str((double)i), ",", hypStr, null));
               } else {
-                let(&hypStr, cat("?", ",", hypStr, NULL));
+                let(&hypStr, cat("?", ",", hypStr, null));
               }
             }
           }
@@ -1681,11 +1681,11 @@ void typeProof(long statemNum,
 
         if (hypStr[0]) {
 
-          let(&srcLabel, cat(hypStr, " ", srcLabel, NULL));
+          let(&srcLabel, cat(hypStr, " ", srcLabel, null));
         }
 
       } else {
-        let(&srcLabel, cat("=", g_Statement[stmt].labelName, NULL));
+        let(&srcLabel, cat("=", g_Statement[stmt].labelName, null));
       }
       type = g_Statement[stmt].type;
     }
@@ -1704,7 +1704,7 @@ void typeProof(long statemNum,
             space(splitColumn - (long)strlen(srcLabel) - (long)strlen(locLabDecl) - 1
                 - maxStepNumLen - 1),
             " ", locLabDecl,
-            NULL));
+            null));
         if (pipFlag) {
           let(&tgtPrefix, startPrefix);
           let(&srcPrefix, cat(
@@ -1713,7 +1713,7 @@ void typeProof(long statemNum,
               " ",
               space(splitColumn - 1
                   - maxStepNumLen),
-              NULL));
+              null));
           let(&userPrefix, cat(
               space(maxStepNumLen - (long)strlen(str((double)(stepRenumber[step])))),
               space((long)strlen(str((double)(stepRenumber[step])))),
@@ -1721,7 +1721,7 @@ void typeProof(long statemNum,
               "(User)",
               space(splitColumn - (long)strlen("(User)") - 1
                   - maxStepNumLen),
-              NULL));
+              null));
         }
         let(&contPrefix, space((long)strlen(startPrefix) + 4));
       } else {
@@ -1730,17 +1730,17 @@ void typeProof(long statemNum,
         let(&tmpStr, "");
         if (unknownFlag) {
           if (relativeStepNums[step] < 0) {
-            let(&tmpStr, cat(" ", str((double)(relativeStepNums[step])), NULL));
+            let(&tmpStr, cat(" ", str((double)(relativeStepNums[step])), null));
           }
           let(&tmpStr, cat(tmpStr, space(maxStepNumOffsetLen
-              - (long)(strlen(tmpStr))), NULL));
+              - (long)(strlen(tmpStr))), null));
         }
 
         let(&startStringWithNum, cat(
             space(maxStepNumLen - (long)strlen(str((double)(stepRenumber[step])))),
             str((double)(stepRenumber[step])),
             tmpStr,
-            " ", NULL));
+            " ", null));
         let(&startStringWithoutNum, space(maxStepNumLen + 1));
 
 
@@ -1753,7 +1753,7 @@ void typeProof(long statemNum,
             srcLabel,
             space(maxLabelLen - (long)strlen(tgtLabel)
                 - (long)strlen(srcLabel)),
-            NULL));
+            null));
         if (pipFlag) {
           let(&tgtPrefix, cat(
               startStringWithNum,
@@ -1762,7 +1762,7 @@ void typeProof(long statemNum,
               tgtLabel,
               space((long)strlen(srcLabel)),
               space(maxLabelLen - (long)strlen(tgtLabel) - (long)strlen(srcLabel)),
-              NULL));
+              null));
           let(&srcPrefix, cat(
               startStringWithoutNum,
               space(indentationLevel[step] * PF_INDENT_INC - (long)strlen(locLabDecl)),
@@ -1770,7 +1770,7 @@ void typeProof(long statemNum,
               space((long)strlen(tgtLabel)),
               srcLabel,
               space(maxLabelLen - (long)strlen(tgtLabel) - (long)strlen(srcLabel)),
-              NULL));
+              null));
           let(&userPrefix, cat(
               startStringWithoutNum,
               space(indentationLevel[step] * PF_INDENT_INC - (long)strlen(locLabDecl)),
@@ -1778,7 +1778,7 @@ void typeProof(long statemNum,
               space((long)strlen(tgtLabel)),
               "=(User)",
               space(maxLabelLen - (long)strlen(tgtLabel) - (long)strlen("=(User)")),
-              NULL));
+              null));
         }
         let(&contPrefix, "");
       }
@@ -1789,14 +1789,14 @@ void typeProof(long statemNum,
           if (!g_midiFlag) {
             printLongLine(cat(startPrefix," $", chr(type), " ",
                 nmbrCvtMToVString(g_WrkProof.mathStringPtrs[step]),
-                NULL),
+                null),
                 contPrefix,
                 chr(1));
 
           }
         } else {
           printTexLongMath(g_WrkProof.mathStringPtrs[step],
-              cat(startPrefix, " $", chr(type), " ", NULL),
+              cat(startPrefix, " $", chr(type), " ", null),
               contPrefix, stmt, indentationLevel[step]);
         }
 
@@ -1812,32 +1812,32 @@ void typeProof(long statemNum,
           if (!texFlag) {
             printLongLine(cat(tgtPrefix, " $", chr(type), " ",
                 nmbrCvtMToVString(g_ProofInProgress.target[step]),
-                NULL),
+                null),
                 contPrefix,
                 chr(1));
             printLongLine(cat(srcPrefix,"  = ",
                 nmbrCvtMToVString(g_ProofInProgress.source[step]),
-                NULL),
+                null),
                 contPrefix,
                 chr(1));
           } else {
             printTexLongMath(g_ProofInProgress.target[step],
-                cat(tgtPrefix, " $", chr(type), " ", NULL),
+                cat(tgtPrefix, " $", chr(type), " ", null),
                 contPrefix, 0, 0);
             printTexLongMath(g_ProofInProgress.source[step],
-                cat(srcPrefix, "  = ", NULL),
+                cat(srcPrefix, "  = ", null),
                 contPrefix, 0, 0);
           }
         } else {
           if (!texFlag) {
             printLongLine(cat(startPrefix, " $", chr(type), " ",
                 nmbrCvtMToVString(g_ProofInProgress.target[step]),
-                NULL),
+                null),
                 contPrefix,
                 chr(1));
           } else {
             printTexLongMath(g_ProofInProgress.target[step],
-                cat(startPrefix, " $", chr(type), " ", NULL),
+                cat(startPrefix, " $", chr(type), " ", null),
                 contPrefix, 0, 0);
           }
 
@@ -1847,12 +1847,12 @@ void typeProof(long statemNum,
           if (!texFlag) {
             printLongLine(cat(userPrefix, "  = ",
                 nmbrCvtMToVString(g_ProofInProgress.user[step]),
-                NULL),
+                null),
                 contPrefix,
                 chr(1));
           } else {
             printTexLongMath(g_ProofInProgress.user[step],
-                cat(userPrefix, "  = ", NULL),
+                cat(userPrefix, "  = ", null),
                 contPrefix, 0, 0);
           }
 
@@ -1877,7 +1877,7 @@ void typeProof(long statemNum,
         "<CENTER><TABLE CELLSPACING=5><TR><TD ALIGN=LEFT><FONT SIZE=-1>",
         "<B>Colors of variables:</B> ",
         g_htmlVarColor, "</FONT></TD></TR>",
-        NULL), "", "\"");
+        null), "", "\"");
 
     if (essentialFlag) {
 
@@ -2019,11 +2019,11 @@ void typeProof(long statemNum,
                     ].tokenName, stmt);
 
                 let(&tmpStr1, cat(
-                    (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", NULL) : ""),
+                    (g_altHtmlFlag ? cat("<SPAN ", g_htmlFont, ">", null) : ""),
 
                     tmpStr1,
                     (g_altHtmlFlag ? "</SPAN>" : ""),
-                    NULL));
+                    null));
                 break;
               }
             }
@@ -2038,21 +2038,21 @@ void typeProof(long statemNum,
             continue;
           if (!strcmp(g_Statement[stmt].labelName, "co"))
             let(&tmpStr1, "(<i>class class class</i>)");
-          let(&tmpStr, cat(tmpStr, " &nbsp;", tmpStr1, NULL));
+          let(&tmpStr, cat(tmpStr, " &nbsp;", tmpStr1, null));
 
 
           let(&tmpStr1, "");
           tmpStr1 = pinkHTML(stmt);
           let(&tmpStr, cat(tmpStr, "<A HREF=\"",
               g_Statement[stmt].labelName, ".html\">",
-              g_Statement[stmt].labelName, "</A>", tmpStr1, NULL));
+              g_Statement[stmt].labelName, "</A>", tmpStr1, null));
 
 
         }
       }
       if (tmpStr[0]) {
         let(&tmpStr, cat(tmpStr,
-            "</FONT></TD></TR>", NULL));
+            "</FONT></TD></TR>", null));
         printLongLine(tmpStr, "", "\"");
       }
 
@@ -2085,12 +2085,12 @@ void typeProof(long statemNum,
             tmpStr1 = pinkHTML(stmt);
             let(&tmpStr, cat(tmpStr, " &nbsp;<A HREF=\"",
                 g_Statement[stmt].labelName, ".html\">",
-                g_Statement[stmt].labelName, "</A>", tmpStr1, NULL));
+                g_Statement[stmt].labelName, "</A>", tmpStr1, null));
           }
         }
       }
       if (tmpStr[0]) {
-        let(&tmpStr, cat(tmpStr, "</FONT></TD></TR>", NULL));
+        let(&tmpStr, cat(tmpStr, "</FONT></TD></TR>", null));
         printLongLine(tmpStr, "", "\"");
       }
 
@@ -2108,12 +2108,12 @@ void typeProof(long statemNum,
             tmpStr1 = pinkHTML(stmt);
             let(&tmpStr, cat(tmpStr, " &nbsp;<A HREF=\"",
                 g_Statement[stmt].labelName, ".html\">",
-                g_Statement[stmt].labelName, "</A>", tmpStr1, NULL));
+                g_Statement[stmt].labelName, "</A>", tmpStr1, null));
           }
         }
       }
       if (tmpStr[0]) {
-        let(&tmpStr, cat(tmpStr, "</FONT></TD></TR>", NULL));
+        let(&tmpStr, cat(tmpStr, "</FONT></TD></TR>", null));
         printLongLine(tmpStr, "", "\"");
       }
 
@@ -2125,21 +2125,21 @@ void typeProof(long statemNum,
           printLongLine(cat(
 "<TR><TD ALIGN=left >&nbsp;<B><FONT COLOR=\"#FF6600\">",
 "WARNING: This theorem has an incomplete proof.</FONT></B><BR></TD></TR>",
-              NULL), "", "\"");
+              null), "", "\"");
 
         } else {
           printLongLine(cat(
 "<TR><TD ALIGN=left >&nbsp;</TD><TD><B><FONT COLOR=\"#FF6600\">",
 "WARNING: This proof depends on the following unproved theorem(s): ",
-              NULL), "", "\"");
+              null), "", "\"");
           let(&tmpStr, "");
           for (i = 0; i < nmbrLen(unprovedList); i++) {
             let(&tmpStr, cat(tmpStr, " <A HREF=\"",
                 g_Statement[unprovedList[i]].labelName, ".html\">",
                 g_Statement[unprovedList[i]].labelName, "</A>",
-                NULL));
+                null));
           }
-          printLongLine(cat(tmpStr, "</B></FONT></TD></TR>", NULL), "", "\"");
+          printLongLine(cat(tmpStr, "</B></FONT></TD></TR>", null), "", "\"");
         }
       }
 
@@ -2219,7 +2219,7 @@ void showDetailStep(long statemNum, long detailStep) {
   plen = nmbrLen(g_WrkProof.proofString);
   if (plen < detailStep || detailStep < 1) {
     printLongLine(cat("?The step number should be from 1 to ",
-        str((double)plen), NULL), "", " ");
+        str((double)plen), null), "", " ");
     return;
   }
 
@@ -2277,20 +2277,20 @@ void showDetailStep(long statemNum, long detailStep) {
     if (stmt <= -1000) {
       stmt = -1000 - stmt;
 
-      let(&tmpStr, cat(tmpStr,"=", str((double)(localLabelNames[stmt])), NULL));
+      let(&tmpStr, cat(tmpStr,"=", str((double)(localLabelNames[stmt])), null));
       type = g_Statement[proof[stmt]].type;
     } else {
       if (stmt != -(long)'?') bug(207);
-      let(&tmpStr, cat(tmpStr,"=",chr(-stmt), NULL));
+      let(&tmpStr, cat(tmpStr,"=",chr(-stmt), null));
       type = '?';
     }
   } else {
     if (nmbrElementIn(1, localLabels, detailStep - 1)) {
 
       let(&tmpStr1, cat(str((double)(localLabelNames[detailStep - 1])), ":",
-          NULL));
+          null));
     }
-    let(&tmpStr, cat(tmpStr, "=", g_Statement[stmt].labelName, NULL));
+    let(&tmpStr, cat(tmpStr, "=", g_Statement[stmt].labelName, null));
     type = g_Statement[stmt].type;
   }
 
@@ -2304,12 +2304,12 @@ void showDetailStep(long statemNum, long detailStep) {
       chr(type),
       " ",
       nmbrCvtMToVString(g_WrkProof.mathStringPtrs[detailStep - 1]),
-      NULL),
+      null),
       "  ",
       " ");
 
 
-  let(&tmpStr, cat("This step assigns ", NULL));
+  let(&tmpStr, cat("This step assigns ", null));
   let(&tmpStr1, "");
   stmt = proof[detailStep - 1];
   sourceStmt = stmt;
@@ -2319,31 +2319,31 @@ void showDetailStep(long statemNum, long detailStep) {
 
       let(&tmpStr, cat(tmpStr, "step ", str((double)stmt),
           " (via local label reference \"",
-          str((double)(localLabelNames[stmt])), "\") to ", NULL));
+          str((double)(localLabelNames[stmt])), "\") to ", null));
     } else {
       if (stmt != -(long)'?') bug(208);
-      let(&tmpStr, cat(tmpStr, "an unknown statement to ", NULL));
+      let(&tmpStr, cat(tmpStr, "an unknown statement to ", null));
     }
   } else {
     let(&tmpStr, cat(tmpStr, "source \"", g_Statement[stmt].labelName,
-        "\" ($", chr(g_Statement[stmt].type), ") to ", NULL));
+        "\" ($", chr(g_Statement[stmt].type), ") to ", null));
     if (nmbrElementIn(1, localLabels, detailStep - 1)) {
 
       let(&tmpStr1, cat("  This step also declares the local label ",
           str((double)(localLabelNames[detailStep - 1])),
           ", which is used later on.",
-          NULL));
+          null));
     }
   }
   targetStmt = targetHyps[detailStep - 1];
   if (detailStep == plen) {
-    let(&tmpStr, cat(tmpStr, "the final assertion being proved.", NULL));
+    let(&tmpStr, cat(tmpStr, "the final assertion being proved.", null));
   } else {
     let(&tmpStr, cat(tmpStr, "target \"", g_Statement[targetStmt].labelName,
-    "\" ($", chr(g_Statement[targetStmt].type), ").", NULL));
+    "\" ($", chr(g_Statement[targetStmt].type), ").", null));
   }
 
-  let(&tmpStr, cat(tmpStr, tmpStr1, NULL));
+  let(&tmpStr, cat(tmpStr, tmpStr1, null));
 
   if (sourceStmt >= 0) {
     if (g_Statement[sourceStmt].type == a_
@@ -2352,32 +2352,32 @@ void showDetailStep(long statemNum, long detailStep) {
       if (j != nmbrLen(getStep.sourceHyps)) bug(209);
       if (!j) {
         let(&tmpStr, cat(tmpStr,
-            "  The source assertion requires no hypotheses.", NULL));
+            "  The source assertion requires no hypotheses.", null));
       } else {
         if (j == 1) {
           let(&tmpStr, cat(tmpStr,
-              "  The source assertion requires the hypothesis ", NULL));
+              "  The source assertion requires the hypothesis ", null));
         } else {
           let(&tmpStr, cat(tmpStr,
-              "  The source assertion requires the hypotheses ", NULL));
+              "  The source assertion requires the hypotheses ", null));
         }
         for (i = 0; i < j; i++) {
           let(&tmpStr, cat(tmpStr, "\"",
               g_Statement[g_Statement[sourceStmt].reqHypList[i]].labelName,
               "\" ($",
               chr(g_Statement[g_Statement[sourceStmt].reqHypList[i]].type),
-              ", step ", str((double)(getStep.sourceHyps[i] + 1)), ")", NULL));
+              ", step ", str((double)(getStep.sourceHyps[i] + 1)), ")", null));
           if (i == 0 && j == 2) {
-            let(&tmpStr, cat(tmpStr, " and ", NULL));
+            let(&tmpStr, cat(tmpStr, " and ", null));
           }
           if (i < j - 2 && j > 2) {
-            let(&tmpStr, cat(tmpStr, ", ", NULL));
+            let(&tmpStr, cat(tmpStr, ", ", null));
           }
           if (i == j - 2 && j > 2) {
-            let(&tmpStr, cat(tmpStr, ", and ", NULL));
+            let(&tmpStr, cat(tmpStr, ", and ", null));
           }
         }
-        let(&tmpStr, cat(tmpStr, ".", NULL));
+        let(&tmpStr, cat(tmpStr, ".", null));
       }
     }
   }
@@ -2387,11 +2387,11 @@ void showDetailStep(long statemNum, long detailStep) {
          "  The parent assertion of the target hypothesis is \"",
         g_Statement[getStep.targetParentStmt].labelName, "\" ($",
         chr(g_Statement[getStep.targetParentStmt].type),", step ",
-        str((double)(getStep.targetParentStep)), ").", NULL));
+        str((double)(getStep.targetParentStep)), ").", null));
   } else {
     let(&tmpStr, cat(tmpStr,
         "  The target has no parent because it is the assertion being proved.",
-        NULL));
+        null));
   }
 
   printLongLine(tmpStr, "", " ");
@@ -2402,17 +2402,17 @@ void showDetailStep(long statemNum, long detailStep) {
       print2("The source assertion before substitution was:\n");
       printLongLine(cat("    ", g_Statement[sourceStmt].labelName, " $",
           chr(g_Statement[sourceStmt].type), " ", nmbrCvtMToVString(
-          g_Statement[sourceStmt].mathString), NULL),
+          g_Statement[sourceStmt].mathString), null),
           "        ", " ");
       j = nmbrLen(getStep.sourceSubstsNmbr);
       if (j == 1) {
         printLongLine(cat(
             "The following substitution was made to the source assertion:",
-            NULL),""," ");
+            null),""," ");
       } else {
         printLongLine(cat(
             "The following substitutions were made to the source assertion:",
-            NULL),""," ");
+            null),""," ");
       }
       if (!j) {
         print2("    (None)\n");
@@ -2423,7 +2423,7 @@ void showDetailStep(long statemNum, long detailStep) {
               g_MathToken[getStep.sourceSubstsNmbr[i]].tokenName," ",
               space(9 - (long)strlen(
                 g_MathToken[getStep.sourceSubstsNmbr[i]].tokenName)),
-              nmbrCvtMToVString(getStep.sourceSubstsPntr[i]), NULL),
+              nmbrCvtMToVString(getStep.sourceSubstsPntr[i]), null),
               "                ", " ");
         }
       }
@@ -2434,17 +2434,17 @@ void showDetailStep(long statemNum, long detailStep) {
     print2("The target hypothesis before substitution was:\n");
     printLongLine(cat("    ", g_Statement[targetStmt].labelName, " $",
         chr(g_Statement[targetStmt].type), " ", nmbrCvtMToVString(
-        g_Statement[targetStmt].mathString), NULL),
+        g_Statement[targetStmt].mathString), null),
         "        ", " ");
     j = nmbrLen(getStep.targetSubstsNmbr);
     if (j == 1) {
       printLongLine(cat(
           "The following substitution was made to the target hypothesis:",
-          NULL),""," ");
+          null),""," ");
     } else {
       printLongLine(cat(
           "The following substitutions were made to the target hypothesis:",
-          NULL),""," ");
+          null),""," ");
     }
     if (!j) {
       print2("    (None)\n");
@@ -2455,7 +2455,7 @@ void showDetailStep(long statemNum, long detailStep) {
             g_MathToken[getStep.targetSubstsNmbr[i]].tokenName, " ",
             space(9 - (long)strlen(
               g_MathToken[getStep.targetSubstsNmbr[i]].tokenName)),
-            nmbrCvtMToVString(getStep.targetSubstsPntr[i]), NULL),
+            nmbrCvtMToVString(getStep.targetSubstsPntr[i]), null),
             "                ", " ");
       }
     }
@@ -2517,12 +2517,12 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
       printLongLine(cat("Summary of statements used in the proof of ",
           "{\\tt ",
           asciiToTt(g_Statement[statemNum].labelName),
-          "}:", NULL), "", " ");
+          "}:", null), "", " ");
     } else {
       printLongLine(cat("Summary of statements used in the proof of ",
           "<B>",
           asciiToTt(g_Statement[statemNum].labelName),
-          "</B>:", NULL), "", "\"");
+          "</B>:", null), "", "\"");
     }
     g_outputToString = 0;
     fprintf(g_texFilePtr, "%s", g_printString);
@@ -2581,12 +2581,12 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
       assignStmtFileAndLineNum(stmt);
       let(&str1, cat(" is located on line ",
           str((double)(g_Statement[stmt].lineNum)),
-          " of the file ", NULL));
+          " of the file ", null));
       if (!texFlag) {
         print2("\n");
         printLongLine(cat("Statement ", g_Statement[stmt].labelName, str1,
           "\"", g_Statement[stmt].fileName,
-          "\".",NULL), "", " ");
+          "\".",null), "", " ");
       } else {
         g_outputToString = 1;
         if (!g_htmlFlag) {
@@ -2597,14 +2597,14 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
               asciiToTt(g_Statement[stmt].labelName), "} ",
               str1, "{\\tt ",
               asciiToTt(g_Statement[stmt].fileName),
-              "}.", NULL), "", " ");
+              "}.", null), "", " ");
           print2("\n");
         } else {
           printLongLine(cat("Statement <B>",
               asciiToTt(g_Statement[stmt].labelName), "</B> ",
               str1, " <B>",
               asciiToTt(g_Statement[stmt].fileName),
-              "</B> ", NULL), "", "\"");
+              "</B> ", null), "", "\"");
         }
         g_outputToString = 0;
         fprintf(g_texFilePtr, "%s", g_printString);
@@ -2616,7 +2616,7 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
       str1 = getDescription(stmt);
       if (str1[0]) {
         if (!texFlag) {
-          printLongLine(cat("\"", str1, "\"", NULL), "", " ");
+          printLongLine(cat("\"", str1, "\"", null), "", " ");
         } else {
 
 
@@ -2633,10 +2633,10 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
         k = g_Statement[stmt].reqHypList[i];
         if (!essentialFlag || g_Statement[k].type != f_) {
           let(&str2, cat("  ",g_Statement[k].labelName,
-              " $", chr(g_Statement[k].type), " ", NULL));
+              " $", chr(g_Statement[k].type), " ", null));
           if (!texFlag) {
             printLongLine(cat(str2,
-                nmbrCvtMToVString(g_Statement[k].mathString), " $.", NULL),
+                nmbrCvtMToVString(g_Statement[k].mathString), " $.", null),
                 "      "," ");
           } else {
             let(&str3, space((long)strlen(str2)));
@@ -2650,11 +2650,11 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
       type = g_Statement[stmt].type;
       if (type == p_) let(&str1, " $= ...");
       let(&str2, cat("  ", g_Statement[stmt].labelName,
-          " $",chr(type), " ", NULL));
+          " $",chr(type), " ", null));
       if (!texFlag) {
         printLongLine(cat(str2,
             nmbrCvtMToVString(g_Statement[stmt].mathString),
-            str1, " $.", NULL), "      ", " ");
+            str1, " $.", null), "      ", " ");
       } else {
         let(&str3, space((long)strlen(str2)));
         printTexLongMath(g_Statement[stmt].mathString,
@@ -2738,15 +2738,15 @@ flag traceProof(long statemNum,
       if (axiomFlag) {
         if (g_Statement[stmt].type == a_) {
           let(&outputString, cat(outputString, " ", g_Statement[stmt].labelName,
-              NULL));
+              null));
         }
       } else {
         let(&outputString, cat(outputString, " ", g_Statement[stmt].labelName,
-            NULL));
+            null));
         switch (g_Statement[stmt].type) {
-          case a_: let(&outputString, cat(outputString, "($a)", NULL)); break;
-          case e_: let(&outputString, cat(outputString, "($e)", NULL)); break;
-          case f_: let(&outputString, cat(outputString, "($f)", NULL)); break;
+          case a_: let(&outputString, cat(outputString, "($a)", null)); break;
+          case e_: let(&outputString, cat(outputString, "($e)", null)); break;
+          case f_: let(&outputString, cat(outputString, "($f)", null)); break;
         }
       }
     }
@@ -2758,7 +2758,7 @@ flag traceProof(long statemNum,
   }
 
   if (outputString[0]) {
-    let(&outputString, cat(" ", outputString, NULL));
+    let(&outputString, cat(" ", outputString, null));
   } else {
     let(&outputString, "  (None)");
   }
@@ -2772,9 +2772,9 @@ flag traceProof(long statemNum,
     let(&outputString, "");
     for (pos = 0; pos < nmbrLen(unprovedList); pos++) {
       let(&outputString, cat(outputString, " ", g_Statement[unprovedList[
-          pos]].labelName, NULL));
+          pos]].labelName, null));
     }
-    let(&outputString, cat("  ", outputString, NULL));
+    let(&outputString, cat("  ", outputString, null));
     printLongLine(outputString, "  ", " ");
   }
 
@@ -2918,7 +2918,7 @@ void traceProofTree(long statemNum,
       g_Statement[statemNum].labelName,
       "\" follows.  The statements used by each proof are indented one level in,",
       " below the statement being proved.  Hypotheses are not included.",
-      NULL),
+      null),
       "", " ");
   print2("\n");
 
@@ -2969,11 +2969,11 @@ void traceProofTreeRec(long statemNum,
 
   let(&outputStr, cat(space(recursDepth * INDENT_INCR - indentShift),
       g_Statement[statemNum].labelName, " $", chr(g_Statement[statemNum].type),
-      "  \"", edit(outputStr, 8 + 128), "\"", NULL));
+      "  \"", edit(outputStr, 8 + 128), "\"", null));
 
   if (len(outputStr) > MAX_LINE_LEN + (g_screenWidth - MAX_LINE_LEN)) {
     let(&outputStr, cat(left(outputStr,
-        MAX_LINE_LEN + (g_screenWidth - MAX_LINE_LEN) - 3), "...", NULL));
+        MAX_LINE_LEN + (g_screenWidth - MAX_LINE_LEN) - 3), "...", null));
   }
 
   if (g_Statement[statemNum].type == p_ || g_Statement[statemNum].type == a_) {
@@ -3041,21 +3041,21 @@ void traceProofTreeRec(long statemNum,
 
       if (g_Statement[stmt].type == p_ || g_Statement[stmt].type == a_) {
         let(&outputStr, cat(outputStr, " ",
-            g_Statement[stmt].labelName, NULL));
+            g_Statement[stmt].labelName, null));
       }
     }
   }
 
   if (len(outputStr)) {
     printLongLine(cat(space(INDENT_INCR * (recursDepth + 1) - 1 - indentShift),
-      outputStr, " (shown above)", NULL),
+      outputStr, " (shown above)", null),
       space(INDENT_INCR * (recursDepth + 2) - indentShift), " ");
   }
 
   if (unprovedFlag) {
     printLongLine(cat(space(INDENT_INCR * (recursDepth + 1) - indentShift),
       "*** Statement ", g_Statement[statemNum].labelName, " has not been proved."
-      , NULL),
+      , null),
       space(INDENT_INCR * (recursDepth + 2)), " ");
   }
 
@@ -3284,7 +3284,7 @@ double countSteps(long statemNum, flag essentialFlag)
     for (i = stmtDist[statemNum]; i >= 0; i--) {
       if (stmtDist[j] != i) bug(214);
       let(&tmpStr, cat(tmpStr, " <- ", g_Statement[j].labelName,
-          NULL));
+          null));
       j = stmtMaxPath[j];
     }
     printLongLine(cat(
@@ -3312,13 +3312,13 @@ double countSteps(long statemNum, flag essentialFlag)
                         ((5.0 + val(left(stepBigCount, 3))) / 100.0)),
                     3),
                  " x 10^",
-                 str((double)strlen(stepBigCount) - 1), NULL),
+                 str((double)strlen(stepBigCount) - 1), null),
 
 
        " steps if fully expanded back to axiom references.  ",
        "The maximum path length is ",
        str((double)(stmtDist[statemNum])),
-       ".  A longest path is:  ", right(tmpStr, 5), " .", NULL),
+       ".  A longest path is:  ", right(tmpStr, 5), " .", null),
        "", " ");
     let(&tmpStr, "");
 
@@ -3399,7 +3399,7 @@ vstring bigSub(vstring bignum1, vstring bignum2) {
   len3 = (long)strlen(bignum3);
   if (len3 < len1) {
 
-    let(&bignum3, cat(string(len1 - len3, '0'), bignum3, NULL));
+    let(&bignum3, cat(string(len1 - len3, '0'), bignum3, null));
     len3 = len1;
   }
   for (p = 0; p <= len3 - 1; p++) {
@@ -3529,13 +3529,13 @@ void readInput()
 {
   vstring fullInput_fn = "";
 
-  let(&fullInput_fn, cat(g_rootDirectory, g_input_fn, NULL));
+  let(&fullInput_fn, cat(g_rootDirectory, g_input_fn, null));
 
 
 
 
   g_sourcePtr = readSourceAndIncludes(g_input_fn, &g_sourceLen);
-  if (g_sourcePtr == NULL) {
+  if (g_sourcePtr == null) {
     print2(
 "?Source was not read due to error(s).  Please correct and try again.\n");
     C.go2("RETURN_POINT");
@@ -3573,7 +3573,7 @@ void writeSource(
 
   File fp;
 
-  let(&fullOutput_fn, cat(g_rootDirectory, g_output_fn, NULL));
+  let(&fullOutput_fn, cat(g_rootDirectory, g_output_fn, null));
 
   if (splitFlag == 0
       && extractLabelList[0] == 0) {
@@ -3627,7 +3627,7 @@ void writeSource(
     writeSplitSource(&buffer, g_output_fn, noVersioningFlag, keepSplitsFlag);
   } else {
     fp = fSafeOpen(fullOutput_fn, "w", noVersioningFlag);
-    if (fp == NULL) {
+    if (fp == null) {
       print2("?Error trying to write \"%s\".\n", fp);
     } else {
       fprintf(fp, "%s", buffer);
@@ -3846,7 +3846,7 @@ void writeExtractedSource(
         if (dollarTCmt[p1 - 1] != ' ') break;
         p1--;
       }
-      let(&dollarTCmt, cat("\n", seg(dollarTCmt, p1 + 1, p2 + 1), NULL));
+      let(&dollarTCmt, cat("\n", seg(dollarTCmt, p1 + 1, p2 + 1), null));
     }
     tmpPtr[j] = zapChar;
     if (dollarTStmt != 0) {
@@ -3972,7 +3972,7 @@ void writeExtractedSource(
     if (mathTokenDeclared[mtkn] == 'N') {
       if (g_MathToken[mtkn].tokenType == con_) {
         let(&undeclaredC, cat(undeclaredC, " ", g_MathToken[mtkn].tokenName,
-            NULL));
+            null));
       } else {
         if (g_MathToken[mtkn].tokenType != var_) bug(271);
         p1 = 0;
@@ -3988,7 +3988,7 @@ void writeExtractedSource(
         }
         if (p1 == 0) {
           let(&undeclaredV, cat(undeclaredV, " ", g_MathToken[mtkn].tokenName,
-            NULL));
+            null));
         }
 
         mathTokenDeclared[mtkn] = 'Y';
@@ -4001,7 +4001,7 @@ void writeExtractedSource(
   print2("Creating the final output file \"%s\"...\n", fullOutput_fn);
 
   fp = fSafeOpen(fullOutput_fn, "w", noVersioningFlag);
-  if (fp == NULL) {
+  if (fp == null) {
     print2("?Error trying to write \"%s\".\n", fp);
     C.go2("EXTRACT_RETURN");
   }
@@ -4048,22 +4048,22 @@ void writeExtractedSource(
       if (hugeHdrNeeded[stmt] == 'Y') {
         fixUndefinedLabels(extractNeeded, &hugeHdrComment);
 
-        fprintf(fp, "%s", cat(hugeHdr, hugeHdrComment, hdrSuffix, NULL));
+        fprintf(fp, "%s", cat(hugeHdr, hugeHdrComment, hdrSuffix, null));
       }
       if (bigHdrNeeded[stmt] == 'Y') {
         fixUndefinedLabels(extractNeeded, &bigHdrComment);
 
-        fprintf(fp, "%s", cat(bigHdr, bigHdrComment, hdrSuffix, NULL));
+        fprintf(fp, "%s", cat(bigHdr, bigHdrComment, hdrSuffix, null));
       }
       if (smallHdrNeeded[stmt] == 'Y') {
         fixUndefinedLabels(extractNeeded, &smallHdrComment);
 
-        fprintf(fp, "%s", cat(smallHdr, smallHdrComment, hdrSuffix, NULL));
+        fprintf(fp, "%s", cat(smallHdr, smallHdrComment, hdrSuffix, null));
       }
       if (tinyHdrNeeded[stmt] == 'Y') {
         fixUndefinedLabels(extractNeeded, &tinyHdrComment);
 
-        fprintf(fp, "%s", cat(tinyHdr, tinyHdrComment, hdrSuffix, NULL));
+        fprintf(fp, "%s", cat(tinyHdr, tinyHdrComment, hdrSuffix, null));
       }
     }
 
@@ -4119,13 +4119,13 @@ void writeExtractedSource(
     print2("\n");
     print2(
 "  $( Unused constants to satisfy the htmldef's in the $ t comment. $)\n");
-    printLongLine(cat("  $c", undeclaredC, " $.", NULL), "    ", " ");
+    printLongLine(cat("  $c", undeclaredC, " $.", null), "    ", " ");
   }
   if (undeclaredV[0] != 0) {
     print2("\n");
     print2(
 "  $( Unused variables to satisfy the htmldef's in the $ t comment. $)\n");
-    printLongLine(cat("  $v", undeclaredV, " $.", NULL), "    ", " ");
+    printLongLine(cat("  $v", undeclaredV, " $.", null), "    ", " ");
   }
   g_outputToString = 0;
   if (g_printString[0] != 0) {
@@ -4205,7 +4205,7 @@ void fixUndefinedLabels(vstring extractNeeded,
   }
 
   p1 = 0;
-  let(&(*buf), cat(*buf, " \n", NULL));
+  let(&(*buf), cat(*buf, " \n", null));
   while (true) {
     p1 = instr(p1 + 1, *buf, "~");
     if (p1 == 0) break;
@@ -4235,17 +4235,17 @@ void fixUndefinedLabels(vstring extractNeeded,
 
     let(&newLabelWithTilde, cat(label,
         "\n ~ http://us.metamath.org/mpeuni/",
-        label, ".html", NULL));
-    let(&(*buf), cat(left(*buf, p1 - 1), newLabelWithTilde, NULL));
+        label, ".html", null));
+    let(&(*buf), cat(left(*buf, p1 - 1), newLabelWithTilde, null));
 
     p1 = p1 + (long)strlen(newLabelWithTilde)
           - ((long)strlen(label) + 2);
 
 
     if (restOfComment[0] == '\n') {
-      let(&(*buf), cat(*buf, restOfComment, NULL));
+      let(&(*buf), cat(*buf, restOfComment, null));
     } else {
-      let(&(*buf), cat(*buf, "\n", restOfComment, NULL));
+      let(&(*buf), cat(*buf, "\n", restOfComment, null));
     }
   }
   let(&(*buf), left(*buf, (long)strlen(*buf) - 2));
@@ -4498,7 +4498,7 @@ void verifyProofs(vstring labelMatch, flag verifyFlag) {
     }
     if (k == 1) {
       let(&emptyProofList, cat(emptyProofList, ", ", g_Statement[i].labelName,
-          NULL));
+          null));
     }
   }
   if (verifyFlag) {
@@ -4508,7 +4508,7 @@ void verifyProofs(vstring labelMatch, flag verifyFlag) {
   if (emptyProofList[0]) {
     printLongLine(cat(
         "Warning: The following $p statement(s) were not proved:  ",
-        right(emptyProofList,3), NULL)," ","  ");
+        right(emptyProofList,3), null)," ","  ");
   }
   if (!emptyProofList[0] && !errorFound && !strcmp("*", labelMatch)) {
     if (verifyFlag) {
@@ -4576,7 +4576,7 @@ void verifyMarkup(vstring labelMatch,
 
   let(&str1, cat(
      ",CON,PRN,AUX,NUL,COM1,COM2,COM3,COM4,COM5,COM6,COM7,",
-     "COM8,COM9,LPT1,LPT2,LPT3,LPT4,LPT5,LPT6,LPT7,LPT8,LPT9,", NULL));
+     "COM8,COM9,LPT1,LPT2,LPT3,LPT4,LPT5,LPT6,LPT7,LPT8,LPT9,", null));
   for (stmtNum = 1; stmtNum <= g_statements; stmtNum++) {
     if (!matchesList(g_Statement[stmtNum].labelName, labelMatch, '*', '?')) {
       continue;
@@ -4595,7 +4595,7 @@ void verifyMarkup(vstring labelMatch,
           "\".  Underscores in labels are not recommended per our conventions.  ",
           "Use the / UNDERSCORE_SKIP ",
           "qualifier to skip this check.",
-          NULL),
+          null),
           "    ", " ");
 
       errFound = 1;
@@ -4606,7 +4606,7 @@ void verifyMarkup(vstring labelMatch,
       continue;
     }
     let(&str2, cat(",", edit(g_Statement[stmtNum].labelName, 32),
-        ",", NULL));
+        ",", null));
     if (instr(1, str1, str2) ||
 
         !strcmp(",MM", left(str2, 3))) {
@@ -4621,7 +4621,7 @@ void verifyMarkup(vstring labelMatch,
           " CON, PRN, AUX, CLOCK$, NUL, COM1, COM2, COM3, COM4, COM5,",
           " COM6, COM7, COM8, COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6,",
           " LPT7, LPT8, and LPT9.  Also, \"mm*.html\" is reserved for",
-          " Metamath file names.  Use another name for this label.", NULL),
+          " Metamath file names.  Use another name for this label.", null),
           "    ", " ");
 
       errFound = 1;
@@ -4640,7 +4640,7 @@ void verifyMarkup(vstring labelMatch,
               " in file \"", g_Statement[stmtNum].fileName,
               "\", the label does not start with \"ax-\" or \"df-\"",
               " per our convention for axiomatic assertions (\"$a |- ...\").",
-              NULL), "    ", " ");
+              null), "    ", " ");
           errFound = 1;
         }
       }
@@ -4657,7 +4657,7 @@ void verifyMarkup(vstring labelMatch,
 
 
   for (p1 = 0; p1 < g_mathTokens; p1++) {
-    if (strchr(g_MathToken[p1].tokenName, '@') != NULL) {
+    if (strchr(g_MathToken[p1].tokenName, '@') != null) {
       stmtNum = g_MathToken[p1].statement;
       assignStmtFileAndLineNum(stmtNum);
       printLongLine(cat("?Warning: The token \"",
@@ -4668,12 +4668,12 @@ void verifyMarkup(vstring labelMatch,
           "\" has an \"@\" character, which is discouraged because ",
           "\"@\" is traditionally used to replace \"$\" in commented-out ",
           "database source code.",
-          NULL),
+          null),
           "    ", " ");
 
       errFound = 1;
     }
-    if (strchr(g_MathToken[p1].tokenName, '?') != NULL) {
+    if (strchr(g_MathToken[p1].tokenName, '?') != null) {
       stmtNum = g_MathToken[p1].statement;
       assignStmtFileAndLineNum(stmtNum);
       printLongLine(cat("?Warning: The token \"",
@@ -4683,7 +4683,7 @@ void verifyMarkup(vstring labelMatch,
           " in file \"", g_Statement[stmtNum].fileName,
           "\" has a \"?\" character, which is discouraged because ",
           "\"?\" is sometimes used as a math token search wildcard.",
-          NULL),
+          null),
           "    ", " ");
 
       errFound = 1;
@@ -4711,7 +4711,7 @@ void verifyMarkup(vstring labelMatch,
 
     let(&str1, g_Statement[stmtNum].labelName);
 
-    let(&str2, cat(left(str1, 2), right(str1, 4), NULL));
+    let(&str2, cat(left(str1, 2), right(str1, 4), null));
 
     p1 = lookupLabel(str2);
     if (p1 == -1) continue;
@@ -4728,7 +4728,7 @@ void verifyMarkup(vstring labelMatch,
       printLongLine(cat("?Warning: The assertions for statements \"",
           g_Statement[stmtNum].labelName, "\" and \"",
           g_Statement[p1].labelName, "\" are different.",
-          NULL), "  ", " ");
+          null), "  ", " ");
       errFound = 1;
       continue;
     }
@@ -4741,7 +4741,7 @@ void verifyMarkup(vstring labelMatch,
           " mandatory hypotheses but \"",
           g_Statement[p1].labelName, "\" has ",
           str((double)(g_Statement[p1].numReqHyp)), ".",
-          NULL), "  ", " ");
+          null), "  ", " ");
       errFound = 1;
       continue;
     }
@@ -4754,7 +4754,7 @@ void verifyMarkup(vstring labelMatch,
           g_Statement[stmtNum].labelName, "\" and \"",
           g_Statement[p1].labelName,
           "\" are different or have a different order.",
-          NULL), "  ", " ");
+          null), "  ", " ");
       errFound = 1;
       continue;
     } else if (nmbrEq(g_Statement[stmtNum].reqDisjVarsB,
@@ -4764,7 +4764,7 @@ void verifyMarkup(vstring labelMatch,
           g_Statement[stmtNum].labelName, "\" and \"",
           g_Statement[p1].labelName,
           "\" are different or have a different order.",
-          NULL), "  ", " ");
+          null), "  ", " ");
       errFound = 1;
       continue;
     }
@@ -4776,7 +4776,7 @@ void verifyMarkup(vstring labelMatch,
         printLongLine(cat("?Warning: The mandatory hypotheses of statements \"",
             g_Statement[stmtNum].labelName, "\" and \"",
             g_Statement[p1].labelName, "\" are different.",
-            NULL), "  ", " ");
+            null), "  ", " ");
         errFound = 1;
         break;
       }
@@ -4788,7 +4788,7 @@ void verifyMarkup(vstring labelMatch,
         printLongLine(cat("?Warning: The mandatory hypotheses of statements \"",
             g_Statement[stmtNum].labelName, "\" and \"",
             g_Statement[p1].labelName, "\" are different.",
-            NULL), "  ", " ");
+            null), "  ", " ");
         errFound = 1;
         break;
       }
@@ -4830,7 +4830,7 @@ void verifyMarkup(vstring labelMatch,
             printLongLine(cat("?Warning: Line number ",
                 str((double)lnum),
                 " ends with a space character, which is discouraged.",
-                NULL), "    ", " ");
+                null), "    ", " ");
             errFound = 1;
           }
         }
@@ -4847,7 +4847,7 @@ void verifyMarkup(vstring labelMatch,
               " characters (should have ",
               str((double)g_screenWidth),
               " or less):",
-              NULL), "    ", " ");
+              null), "    ", " ");
           print2("    %s...\n", left(str2, g_screenWidth - 7));
           errFound = 1;
           let(&str2, "");
@@ -4861,7 +4861,7 @@ void verifyMarkup(vstring labelMatch,
         printLongLine(cat("?Warning: Line number ",
             str((double)lnum + 1),
             " contains a tab, which is discouraged.",
-            NULL), "    ", " ");
+            null), "    ", " ");
         errFound = 1;
       }
 
@@ -4919,7 +4919,7 @@ void verifyMarkup(vstring labelMatch,
       printLongLine(cat(
           "?Warning: Contributor \"", DEFAULT_CONTRIBUTOR,
           "\" should be updated in statement \"",
-          g_Statement[stmtNum].labelName, "\".", NULL), "    ", " ");
+          g_Statement[stmtNum].labelName, "\".", null), "    ", " ");
       errFound = 1;
     }
 
@@ -4929,7 +4929,7 @@ void verifyMarkup(vstring labelMatch,
       printLongLine(cat(
           "?Warning: Reviser \"", DEFAULT_CONTRIBUTOR,
           "\" should be updated in statement \"",
-          g_Statement[stmtNum].labelName, "\".", NULL), "    ", " ");
+          g_Statement[stmtNum].labelName, "\".", null), "    ", " ");
       errFound = 1;
     }
 
@@ -4959,7 +4959,7 @@ void verifyMarkup(vstring labelMatch,
 
 
     g_showStatement  = stmtNum;
-    g_texFilePtr   = NULL;
+    g_texFilePtr   = null;
 
     f = printTexComment(descr,
         0,
@@ -4974,7 +4974,7 @@ void verifyMarkup(vstring labelMatch,
         printLongLine(cat(
             "?Warning: Statement \"", g_Statement[stmtNum].labelName,
             "\" is a $a but has a \"(Proof modification is discouraged.)\" tag.",
-            NULL), "    ", " ");
+            null), "    ", " ");
         errFound = 1;
       }
     }
@@ -4989,7 +4989,7 @@ void verifyMarkup(vstring labelMatch,
             "?Warning: Statement \"", g_Statement[stmtNum].labelName,
             "\" has suffix \"", str1,
             "\" but has no \"(Proof modification is discouraged.)\" tag.",
-            NULL), "    ", " ");
+            null), "    ", " ");
         errFound = 1;
       }
       if (getMarkupFlag(stmtNum, USAGE_DISCOURAGED) != 1) {
@@ -4997,7 +4997,7 @@ void verifyMarkup(vstring labelMatch,
             "?Warning: Statement \"", g_Statement[stmtNum].labelName,
             "\" has suffix \"", str1,
             "\" but has no \"(New usage is discouraged.)\" tag.",
-            NULL), "    ", " ");
+            null), "    ", " ");
         errFound = 1;
       }
     }
@@ -5015,7 +5015,7 @@ void verifyMarkup(vstring labelMatch,
     if (p1 == 0) {
       printLongLine(cat(
           "?Warning: There is no \"Version of \" comment at the top of the",
-          " file \"", g_input_fn, "\".", NULL), "    ", " ");
+          " file \"", g_input_fn, "\".", null), "    ", " ");
       errFound = 1;
     } else {
       p2 = instr(p1 + 11, str1, " ");
@@ -5024,7 +5024,7 @@ void verifyMarkup(vstring labelMatch,
       if (f == 1) {
         printLongLine(cat(
             "?Warning: The Version date \"", str2, "\" at the top of file \"",
-            g_input_fn, "\" is not a valid date.", NULL), "    ", " ");
+            g_input_fn, "\" is not a valid date.", null), "    ", " ");
         errFound = 1;
       } else {
         if (compareDates(mostRecentDate, str2) == 1) {
@@ -5034,7 +5034,7 @@ void verifyMarkup(vstring labelMatch,
               g_input_fn,
               "\" is less recent than the date ", mostRecentDate,
               " in the description of statement \"",
-              g_Statement[mostRecentStmt].labelName, "\".", NULL), "    ", " ");
+              g_Statement[mostRecentStmt].labelName, "\".", null), "    ", " ");
           errFound = 1;
         }
       }
@@ -5070,7 +5070,7 @@ void verifyMarkup(vstring labelMatch,
     if (f != 0) errFound = 1;
 
     g_showStatement  = stmtNum;
-    g_texFilePtr   = NULL;
+    g_texFilePtr   = null;
 
     f = 0;
     if (hugeHdrComment[0] != 0)
@@ -5142,12 +5142,12 @@ void verifyMarkup(vstring labelMatch,
 
 
 
-            let(&str1, cat(str((double)pstmt), "-", str((double)stmt), NULL));
+            let(&str1, cat(str((double)pstmt), "-", str((double)stmt), null));
             if (lookup(str1, dupCheck) != 0) {
               continue;
             } else {
               let(&dupCheck, cat(dupCheck,
-                  (dupCheck[0] == 0) ? "" : ",", str1, NULL));
+                  (dupCheck[0] == 0) ? "" : ",", str1, null));
             }
 
             mbox = getMathboxNum(stmt);
@@ -5159,7 +5159,7 @@ void verifyMarkup(vstring labelMatch,
                   " references \"", g_Statement[stmt].labelName,
                   "\" in the mathbox for ", (vstring *)(g_mathboxUser[mbox - 1]),
                   ".",
-                  NULL),
+                  null),
                   "    ", " ");
             } else {
 
@@ -5176,7 +5176,7 @@ void verifyMarkup(vstring labelMatch,
                   " in file \"", g_Statement[stmt].fileName,
                   "\".  ",
                   "(Use the / MATHBOX_SKIP qualifier to skip this check.)",
-                  NULL),
+                  null),
                   "    ", " ");
             }
 
@@ -5245,7 +5245,7 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
 
   let(&inputFileContent, "");
   inputFileContent = readFileToString(inputFileName, 1, &size);
-  if (inputFileContent == NULL) {
+  if (inputFileContent == null) {
 
     inputFileContent = "";
     C.go2("PROCESS_MARKUP_RETURN");
@@ -5258,12 +5258,12 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
     p = instr(1, edit(inputFileContent, 32), "</HEAD>");
     if (p != 0) {
       let(&inputFileContent, cat(left(inputFileContent, p - 1),
-          g_htmlCSS, "\n", right(inputFileContent, p), NULL));
+          g_htmlCSS, "\n", right(inputFileContent, p), null));
     }
   }
 
   outputFilePtr = fSafeOpen(outputFileName, "w", 0);
-  if (outputFilePtr == NULL) {
+  if (outputFilePtr == null) {
 
 
     C.go2("PROCESS_MARKUP_RETURN");
@@ -5279,7 +5279,7 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
       actionBits,
       0 );
   fclose(g_texFilePtr);
-  g_texFilePtr = NULL;
+  g_texFilePtr = null;
 
   C.label("PROCESS_MARKUP_RETURN");
 
@@ -5515,7 +5515,7 @@ long getStatementNum(vstring stmtName,
 
   hasWildcard = 0;
 
-  if (strpbrk(stmtName, "*?=~%#@,") != NULL) {
+  if (strpbrk(stmtName, "*?=~%#@,") != null) {
     hasWildcard = 1;
   }
   matchesFound = 0;
@@ -5607,7 +5607,7 @@ long getStatementNum(vstring stmtName,
         printLongLine(cat("?A statement label matching \"",
             stmtName,
             "\" was not found or is not a hypothesis of the statement ",
-            "being proved.", NULL), "", " ");
+            "being proved.", null), "", " ");
       } else {
 
         print2(
@@ -5619,14 +5619,14 @@ long getStatementNum(vstring stmtName,
         " 2 matches for \"",
         stmtName, "\":  \"", g_Statement[matchStmt].labelName,
         "\" and \"", g_Statement[matchStmt2].labelName, "\".",
-        NULL), "", " ");
+        null), "", " ");
   } else if (matchesFound > 2) {
     printLongLine(cat("?This command requires a unique label, but there are ",
         str((double)matchesFound), " (allowed) matches for \"",
         stmtName, "\".  The first 2 are \"", g_Statement[matchStmt].labelName,
         "\" and \"", g_Statement[matchStmt2].labelName, "\".",
         "  Use SHOW LABELS \"", stmtName, "\" to see all non-$e matches.",
-        NULL), "", " ");
+        null), "", " ");
   }
   if (!uniqueFlag && matchesFound > 1) bug(248);
   if (matchesFound != 1) matchStmt = -1;
@@ -5739,44 +5739,44 @@ void outputMidi(long plen, nmbrString *indentationLevels,
   midiTime = 0;
   midiPreviousFormulaStep = 0;
   midiPreviousLogicalStep = 0;
-  midiFilePtr = NULL;
+  midiFilePtr = null;
 
 
   let(&midiLocalParam, edit(g_midiParameter, 32));
 
 
-  if (strchr(midiLocalParam, 'S') != NULL) {
+  if (strchr(midiLocalParam, 'S') != null) {
     midiSyncopate = 1;
   } else {
     midiSyncopate = 0;
   }
-  if (strchr(midiLocalParam, 'H') != NULL) {
+  if (strchr(midiLocalParam, 'H') != null) {
     midiHesitate = 1;
   } else {
     midiHesitate = 0;
   }
 
-  if (strchr(midiLocalParam, 'F') != NULL) {
+  if (strchr(midiLocalParam, 'F') != null) {
     midiTempo = 2 * TEMPO;
   } else {
-    if (strchr(midiLocalParam, 'M') != NULL) {
+    if (strchr(midiLocalParam, 'M') != null) {
       midiTempo = 3 * TEMPO / 2;
     } else {
       midiTempo = TEMPO;
     }
   }
 
-  if (strchr(midiLocalParam, 'W') != NULL) {
+  if (strchr(midiLocalParam, 'W') != null) {
     keyboardType = WHITEKEYSFLAG;
   } else {
-    if (strchr(midiLocalParam, 'B') != NULL) {
+    if (strchr(midiLocalParam, 'B') != null) {
       keyboardType = BLACKKEYSFLAG;
     } else {
       keyboardType = ALLKEYSFLAG;
     }
   }
 
-  if (strchr(midiLocalParam, 'I') != NULL) {
+  if (strchr(midiLocalParam, 'I') != null) {
 
     midiKeyInc = 1 + 1;
   } else {
@@ -5859,11 +5859,11 @@ void outputMidi(long plen, nmbrString *indentationLevels,
 
 
   let(&midiFileName, cat(g_Statement[g_showStatement].labelName,
-      ".txt", NULL));
+      ".txt", null));
   print2("Creating MIDI source file \"%s\"...", midiFileName);
 
   midiFilePtr = fSafeOpen(midiFileName, "w", 0);
-  if (midiFilePtr == NULL) {
+  if (midiFilePtr == null) {
     print2("?Couldn't open %s\n", midiFileName);
     C.go2("midi_return");
   }
@@ -5873,7 +5873,7 @@ void outputMidi(long plen, nmbrString *indentationLevels,
   fprintf(midiFilePtr, "MTrk\n");
 
   let(&tmpStr, cat("Theorem ", statementLabel, " ", g_midiParameter,
-      space(30), NULL));
+      space(30), null));
   let(&tmpStr, left(tmpStr, 38));
   fprintf(midiFilePtr, "0 Meta Text \"%s\"\n", tmpStr);
   fprintf(midiFilePtr,

@@ -118,16 +118,16 @@ char verifyProof(long statemNum)
 
         nmbrLet(&bigSubstSchemeHyp,
             nmbrCat(bigSubstSchemeHyp,
-            nmbrAddElement(nmbrTmpPtr, g_mathTokens), NULL));
+            nmbrAddElement(nmbrTmpPtr, g_mathTokens), null));
       } else {
         nmbrLet(&bigSubstSchemeHyp,
             nmbrCat(bigSubstSchemeHyp,
             nmbrAddElement(g_Statement[nmbrHypPtr[j]].mathString,
-            g_mathTokens), NULL));
+            g_mathTokens), null));
       }
       nmbrLet(&bigSubstInstHyp,
           nmbrCat(bigSubstInstHyp,
-          nmbrAddElement(nmbrTmpPtr, g_mathTokens), NULL));
+          nmbrAddElement(nmbrTmpPtr, g_mathTokens), null));
       j++;
 
 
@@ -147,13 +147,13 @@ char verifyProof(long statemNum)
     }
 
 if(db7)printLongLine(cat("step ", str((double)step+1), " sch ",
-    nmbrCvtMToVString(bigSubstSchemeHyp), NULL), "", " ");
+    nmbrCvtMToVString(bigSubstSchemeHyp), null), "", " ");
 if(db7)printLongLine(cat("step ", str((double)step+1), " ins ",
-    nmbrCvtMToVString(bigSubstInstHyp), NULL), "", " ");
+    nmbrCvtMToVString(bigSubstInstHyp), null), "", " ");
     nmbrTmpPtr = assignVar(bigSubstSchemeHyp,
         bigSubstInstHyp, stmt, statemNum, step, unkHypFlag);
 if(db7)printLongLine(cat("step ", str((double)step+1), " res ",
-    nmbrCvtMToVString(nmbrTmpPtr), NULL), "", " ");
+    nmbrCvtMToVString(nmbrTmpPtr), null), "", " ");
 
 
     nmbrLet(&nmbrTmp, NULL_NMBRSTRING);
@@ -191,7 +191,7 @@ if(db7)printLongLine(cat("step ", str((double)step+1), " res ",
             "\" but the statement is \"",
             nmbrCvtMToVString(g_Statement[statemNum].mathString),
             "\".  Type \"SHOW PROOF ",g_Statement[statemNum].labelName,
-            "\" to see the proof attempt.",NULL));
+            "\" to see the proof attempt.",null));
       }
       g_WrkProof.errorCount++;
     }
@@ -315,7 +315,7 @@ nmbrString *assignVar(nmbrString *bigSubstSchemeAss,
 if(db7&&v>=0)printLongLine(cat("p ", str((double)p), " q ", str((double)q), " VAR ",str((double)v),
     " ASSIGNED ", nmbrCvtMToVString(
     nmbrMid(bigSubstInstAss,substInstFrstVarOcc[v]+1,
-    varAssLen[v])), NULL), "", " ");
+    varAssLen[v])), null), "", " ");
 if(db7)nmbrLet(&bigSubstInstAss,bigSubstInstAss);
 if(db7){print2("Enter scan: v=%ld,p=%ld,q=%ld\n",v,p,q); let(&tmpStr,"");}
     tokenNum = bigSubstSchemeAss[p];
@@ -427,7 +427,7 @@ if(db7)print2(" Exit, vold ok: v=%ld,p=%ld,q=%ld\n",v,p,q);
   }
 
 if(db7)printLongLine(cat("BIGVR ", nmbrCvtMToVString(bigSubstSchemeVars),
-    NULL), "", " ");
+    null), "", " ");
 if(db7)print2(
 "p=%ld,bigSubstSchemeLen=%ld;q=%ld,bigSubstInstLen=%ld;v=%ld,bigSubstSchemeVarLen=%ld\n",
   p,bigSubstSchemeLen,q,bigSubstInstLen,v,bigSubstSchemeVarLen);
@@ -449,7 +449,7 @@ if(db7)print2(
             nmbrCvtMToVString(
                 g_Statement[g_Statement[substScheme].reqHypList[i]].mathString),
             "\n  Step ", str((double)k + 1),
-            ":  ", tmpStr2, NULL));
+            ":  ", tmpStr2, null));
       }
 
       sourceError(g_WrkProof.stepSrcPtrPntr[step],
@@ -457,7 +457,7 @@ if(db7)print2(
           statementNum, cat(
           "The hypotheses of statement \"", g_Statement[substScheme].labelName,
           "\" at proof step ", str((double)step + 1),
-          " cannot be unified.", tmpStr, NULL));
+          " cannot be unified.", tmpStr, null));
 
       let(&tmpStr, "");
       let(&tmpStr2, "");
@@ -604,7 +604,7 @@ if(db7)print2(
                   "\".  These substitutions have variable \"",
                   g_MathToken[aToken].tokenName,
                   "\" in common.",
-                  NULL));
+                  null));
               let(&tmpStr, "");
               nmbrLet(&nmbrTmp,NULL_NMBRSTRING);
             }
@@ -663,7 +663,7 @@ if(db7)print2(
                     "\" was substituted with \"",
                     nmbrCvtMToVString(nmbrMid(bigSubstInstAss, instBPos + 1,
                         substBLen)),
-                    "\".", NULL));
+                    "\".", null));
                 printLongLine(cat("Variables \"",
 
                     (strcmp(g_MathToken[aToken].tokenName,
@@ -678,7 +678,7 @@ if(db7)print2(
                     "\" do not have a disjoint variable requirement in the ",
                     "assertion being proved, \"",
                     g_Statement[statementNum].labelName,
-                    "\".", NULL), "", " ");
+                    "\".", null), "", " ");
                 let(&tmpStr, "");
                 nmbrLet(&nmbrTmp,NULL_NMBRSTRING);
               }
@@ -720,7 +720,7 @@ if(db7)print2(
       q = q + i;
     }
   }
-if(db7)printLongLine(cat("result ", nmbrCvtMToVString(result), NULL),""," ");
+if(db7)printLongLine(cat("result ", nmbrCvtMToVString(result), null),""," ");
 
   if (ambiguityCheckFlag) {
     if (!g_WrkProof.errorCount) {
@@ -734,7 +734,7 @@ if(db7)printLongLine(cat("result ", nmbrCvtMToVString(result), NULL),""," ");
           nmbrCvtMToVString(saveResult),
           "\" and \"",nmbrCvtMToVString(result),
           "\".  Type \"SHOW PROOF ",g_Statement[statementNum].labelName,
-          "\" to see the proof attempt.",NULL));
+          "\" to see the proof attempt.",null));
     }
     g_WrkProof.errorCount++;
     C.go2("returnPoint");

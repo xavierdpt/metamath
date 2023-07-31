@@ -78,7 +78,7 @@ char *readRawSource(
             rawSourceError(fileBuf, fbPtr, 1,
                 cat("Illegal character (ASCII code ",
                 str((double)((unsigned char)tmpch)),
-                " decimal).",NULL));
+                " decimal).",null));
 
         }
       }
@@ -337,7 +337,7 @@ if(db5)print2("Finished initializing statement array.\n");
         if (mode == 0) {
           sourceError(fbPtr - 1, 2, g_statements, cat(
               "Expected \"$c\", \"$v\", \"$e\", \"$f\", \"$d\",",
-              " \"$a\", \"$p\", \"${\", or \"$}\" here.",NULL));
+              " \"$a\", \"$p\", \"${\", or \"$}\" here.",null));
           continue;
         }
         if (mode == 1) {
@@ -674,7 +674,7 @@ if(db5){print2("The first (up to 5) sorted math tokens are:\n");
          str((double)(g_Statement[g_MathToken[i].statement].lineNum)),
          " of file \"",
          g_Statement[g_MathToken[i].statement].fileName,
-         "\".", NULL));
+         "\".", null));
     }
   }
 
@@ -1175,7 +1175,7 @@ void parseStatements()
               if (g_MathToken[tokenNum].tokenType != (char)con_) {
                 sourceError(fbPtr, symbolLen, stmt, cat(
                     "The first symbol must be a constant in a \"$",
-                    chr(type), "\" statement.", NULL));
+                    chr(type), "\" statement.", null));
               }
             } else {
               if (type == f_) {
@@ -1498,7 +1498,7 @@ if(db5){if(stmt<5)print2("Statement %ld mathString: %s.\n",stmt,
                     "'s \"$e\" hypotheses, whereas variable \"",
                     g_MathToken[n].tokenName,
                    "\" DOES occur.  A \"$f\" hypothesis may not contain such a",
-                    " mixture of variables.",NULL));
+                    " mixture of variables.",null));
               } else {
                 mathTokenError(m - 1, g_Statement[k].mathString, k,
                     cat("This variable occurs in statement ",
@@ -1507,7 +1507,7 @@ if(db5){if(stmt<5)print2("Statement %ld mathString: %s.\n",stmt,
                     "'s \"$e\" hypotheses, whereas variable \"",
                     g_MathToken[n].tokenName,
                "\" does NOT occur.  A \"$f\" hypothesis may not contain such a",
-                    " mixture of variables.",NULL));
+                    " mixture of variables.",null));
               }
               break;
             }
@@ -1529,7 +1529,7 @@ if(db5){if(stmt<5)print2("Statement %ld mathString: %s.\n",stmt,
                     cat("This variable does not occur in any active ",
                     "\"$e\" or \"$f\" hypothesis.  All variables in \"$a\" and",
                     " \"$p\" statements must appear in at least one such",
-                    " hypothesis.",NULL));
+                    " hypothesis.",null));
               activeVarStack[g_MathToken[k].tmp].tmpFlag = 1;
             }
           }
@@ -1688,7 +1688,7 @@ if(db5){if(stmt<5)print2("Statement %ld mathString: %s.\n",stmt,
         if (g_Statement[stmt].mathStringLen == 1) {
           g_minSubstLen = 0;
           printLongLine(cat("SET EMPTY_SUBSTITUTION was",
-             " turned ON (allowed) for this database.", NULL),
+             " turned ON (allowed) for this database.", null),
              "    ", " ");
         }
       }
@@ -1728,7 +1728,7 @@ if(db5){if(stmt<5)print2("Statement %ld mathString: %s.\n",stmt,
                   0,
                   m, cat(
                   "The variable \"", g_MathToken[tokenNum].tokenName,
-                  "\" does not appear in an active \"$f\" statement.", NULL));
+                  "\" does not appear in an active \"$f\" statement.", null));
             }
           }
         } else {
@@ -1752,7 +1752,7 @@ if(db5){if(stmt<5)print2("Statement %ld mathString: %s.\n",stmt,
                   str((double)(g_Statement[n].lineNum)),
                   " in file \"",
                   g_Statement[n].fileName,
-                  "\".", NULL));
+                  "\".", null));
               break;
             }
           }
@@ -1767,11 +1767,11 @@ if(db5){if(stmt<5)print2("Statement %ld mathString: %s.\n",stmt,
     if (g_currentScope == 1) {
       let(&tmpStr,"A \"$}\" is");
     } else {
-      let(&tmpStr,cat(str((double)g_currentScope)," \"$}\"s are",NULL));
+      let(&tmpStr,cat(str((double)g_currentScope)," \"$}\"s are",null));
     }
     sourceError(g_Statement[g_statements].labelSectionPtr +
         g_Statement[g_statements].labelSectionLen, 2, 0,
-        cat(tmpStr," missing at the end of the file.",NULL));
+        cat(tmpStr," missing at the end of the file.",null));
   }
 
 
@@ -2061,7 +2061,7 @@ char parseProof(long statemNum)
               str((double)(g_WrkProof.numSteps + 1)),
               " is incorrect.  Only letters,",
               " digits, \"_\", \"-\", and \".\" are allowed in local labels.",
-              NULL));
+              null));
         }
         if (returnFlag < 2) returnFlag = 2;
         g_WrkProof.errorCount++;
@@ -2094,7 +2094,7 @@ char parseProof(long statemNum)
               " in file \"",
               g_Statement[j].fileName,
               "\".  Local labels must be different from active statement labels.",
-              NULL));
+              null));
         }
         g_WrkProof.errorCount++;
         if (returnFlag < 2) returnFlag = 2;
@@ -2119,7 +2119,7 @@ char parseProof(long statemNum)
             " in file \"",
             g_Statement[j].fileName,
             "\".  Local labels must be different from active statement labels.",
-            NULL));
+            null));
       }
       g_WrkProof.errorCount++;
       if (returnFlag < 2) returnFlag = 2;
@@ -2143,7 +2143,7 @@ char parseProof(long statemNum)
         if (step >= g_WrkProof.numSteps) {
           if (!g_WrkProof.errorCount) {
             sourceError(fbPtr, g_WrkProof.tokenSrcPtrNmbr[tok], statemNum, cat(
-                "There are more target labels than proof steps.", NULL));
+                "There are more target labels than proof steps.", null));
           }
           g_WrkProof.errorCount++;
           if (returnFlag < 2) returnFlag = 2;
@@ -2157,7 +2157,7 @@ char parseProof(long statemNum)
             sourceError(fbPtr, g_WrkProof.tokenSrcPtrNmbr[tok], statemNum, cat(
                 "The target label for step ", str((double)step + 1),
                 " is not assigned to that step.  ",
-                "(Check for missing or extra \"=\".)", NULL));
+                "(Check for missing or extra \"=\".)", null));
           }
           g_WrkProof.errorCount++;
           if (returnFlag < 2) returnFlag = 2;
@@ -2172,7 +2172,7 @@ char parseProof(long statemNum)
             g_WrkProof.tokenSrcPtrNmbr[g_WrkProof.numTokens - 1],
             statemNum, cat(
                 "There are ", str((double)(g_WrkProof.numSteps)), " proof steps but only ",
-                str((double)step), " target labels.", NULL));
+                str((double)step), " target labels.", null));
       }
       g_WrkProof.errorCount++;
       if (returnFlag < 2) returnFlag = 2;
@@ -2206,7 +2206,7 @@ char parseProof(long statemNum)
               proofTokenLen(fbPtr), statemNum,
               cat("The local label at proof step ", str((double)k + 1),
               " is the same as the one declared at step ",
-              str((double)j + 1), ".", NULL));
+              str((double)j + 1), ".", null));
         }
         g_WrkProof.errorCount++;
         if (returnFlag < 2) returnFlag = 2;
@@ -2271,7 +2271,7 @@ char parseProof(long statemNum)
             sourceError(fbPtr, tokLength, statemNum,cat("Proof step ",
                 str((double)step + 1),
                 " references a local label before it is declared.",
-                NULL));
+                null));
           }
           g_WrkProof.proofString[step] = -(long)'?';
           g_WrkProof.errorCount++;
@@ -2284,7 +2284,7 @@ char parseProof(long statemNum)
                 "The local label reference at proof step ",
                 str((double)step + 1),
                 " declares a local label.  Only \"$a\" and \"$p\" statement",
-                " labels may have local label declarations.",NULL));
+                " labels may have local label declarations.",null));
           }
           g_WrkProof.errorCount++;
           if (returnFlag < 2) returnFlag = 2;
@@ -2296,7 +2296,7 @@ char parseProof(long statemNum)
                 "The hypothesis reference at proof step ",
                 str((double)step + 1),
                 " declares a local label.  Only \"$a\" and \"$p\" statement",
-                " labels may have local label declarations.",NULL));
+                " labels may have local label declarations.",null));
           }
           g_WrkProof.errorCount++;
           if (returnFlag < 2) returnFlag = 2;
@@ -2315,7 +2315,7 @@ char parseProof(long statemNum)
         sourceError(fbPtr, tokLength, statemNum, cat(
             "The token at proof step ",
             str((double)step + 1),
-            " is not an active statement label or a local label.",NULL));
+            " is not an active statement label or a local label.",null));
       }
       g_WrkProof.errorCount++;
       g_WrkProof.proofString[step] = -(long)'?';
@@ -2338,7 +2338,7 @@ char parseProof(long statemNum)
               "The label at proof step ",
               str((double)step + 1),
               " is the label of this statement.  A statement may not be used to",
-              " prove itself.",NULL));
+              " prove itself.",null));
         } else {
           assignStmtFileAndLineNum(j);
           sourceError(fbPtr, tokLength, statemNum, cat(
@@ -2348,7 +2348,7 @@ char parseProof(long statemNum)
               str((double)(g_Statement[j].lineNum)),
               " in file ",g_Statement[j].fileName,
       ").  Only local labels or previous, active statements may be referenced.",
-              NULL));
+              null));
         }
       }
       g_WrkProof.errorCount++;
@@ -2366,19 +2366,19 @@ char parseProof(long statemNum)
           i = instr(1,tmpStrPtr,"contains ");
           let(&tmpStrPtr,cat(left(tmpStrPtr,i + 7)," only",
             right(tmpStrPtr,i + 8),
-            NULL));
+            null));
         }
         if (numReqHyp == 1) {
-          let(&tmpStrPtr,cat("a hypothesis but the ",tmpStrPtr,NULL));
+          let(&tmpStrPtr,cat("a hypothesis but the ",tmpStrPtr,null));
         } else {
           let(&tmpStrPtr,cat(str((double)numReqHyp)," hypotheses but the ",tmpStrPtr,
-              NULL));
+              null));
         }
         sourceError(fbPtr, tokLength, statemNum, cat(
             "At proof step ",
             str((double)step + 1),", statement \"",
             g_Statement[j].labelName,"\" requires ",
-            tmpStrPtr,".",NULL));
+            tmpStrPtr,".",null));
         let(&tmpStrPtr, "");
       }
 
@@ -2449,7 +2449,7 @@ char parseProof(long statemNum)
                 "\" of the assertion \"",
                 g_Statement[j].labelName,
                 "\" in step ",  str((double)step + 1), ".",
-                NULL));
+                null));
           }
           g_WrkProof.errorCount++;
           if (returnFlag < 2) returnFlag = 2;
@@ -2457,9 +2457,9 @@ char parseProof(long statemNum)
         }
 
         nmbrLet(&rearrangedSubProofs, nmbrCat(rearrangedSubProofs,
-            reqHypSubProof[matchingHyp], NULL));
+            reqHypSubProof[matchingHyp], null));
         nmbrLet(&rearrangedOldStepNums, nmbrCat(rearrangedOldStepNums,
-            reqHypOldStepNums[matchingHyp], NULL));
+            reqHypOldStepNums[matchingHyp], null));
       }
 
       if (matchingHyp != -1) {
@@ -2471,11 +2471,11 @@ char parseProof(long statemNum)
         nmbrLet(&(wrkProofString), nmbrCat(
             nmbrLeft(wrkProofString, step - conclSubProofLen + 1),
             rearrangedSubProofs,
-            nmbrRight(wrkProofString, step + 1), NULL));
+            nmbrRight(wrkProofString, step + 1), null));
         nmbrLet(&oldStepNums, nmbrCat(
             nmbrLeft(oldStepNums, step - conclSubProofLen + 1),
             rearrangedOldStepNums,
-            nmbrRight(oldStepNums, step + 1), NULL));
+            nmbrRight(oldStepNums, step + 1), null));
       }
 
 
@@ -2516,7 +2516,7 @@ char parseProof(long statemNum)
     if (!g_WrkProof.errorCount) {
       sourceError(fbPtr, proofTokenLen(fbPtr), statemNum, cat("After proof step ",
           str((double)(g_WrkProof.numSteps))," (the last step), the ",
-          tmpStrPtr,".  It should contain exactly one entry.",NULL));
+          tmpStrPtr,".  It should contain exactly one entry.",null));
     }
     g_WrkProof.errorCount++;
     if (returnFlag < 3) returnFlag = 3;
@@ -2574,7 +2574,7 @@ char parseProof(long statemNum)
                 nmbrMid(g_WrkProof.proofString, step + 1, 1),
 
                 nmbrRight(g_WrkProof.proofString, k + 2),
-                NULL));
+                null));
             if (nmbrLen(wrkProofString) != g_WrkProof.numSteps) {
               bug(1736);
             }
@@ -2916,7 +2916,7 @@ char parseCompressedProof(long statemNum)
               "The label at proof step ",
               str((double)step + 1),
              " is the label of this statement.  A statement may not be used to",
-              " prove itself.",NULL));
+              " prove itself.",null));
         } else {
           assignStmtFileAndLineNum(j);
           sourceError(fbPtr, tokLength, statemNum, cat(
@@ -2926,7 +2926,7 @@ char parseCompressedProof(long statemNum)
               str((double)(g_Statement[j].lineNum)),
               " in file ",g_Statement[j].fileName,
               ").  Only previous statements may be referenced.",
-              NULL));
+              null));
         }
       }
       g_WrkProof.errorCount++;
@@ -2959,8 +2959,8 @@ char parseCompressedProof(long statemNum)
   bggyZapSave = fbPtr[bggyProofLen];
   fbPtr[bggyProofLen] = 0;
   bggyAlgo = 0;
-  if (strstr(fbPtr, "UV") != NULL) {
-    if (strstr(fbPtr, "UU") == NULL) {
+  if (strstr(fbPtr, "UV") != null) {
+    if (strstr(fbPtr, "UU") == null) {
       bggyAlgo = 1;
       print2("?Warning: the proof of \"%s\" uses obsolete compression.\n",
           g_Statement[statemNum].labelName);
@@ -2993,7 +2993,7 @@ char parseCompressedProof(long statemNum)
      "This compressed label reference is outside the range of the label list.",
                 "  The compressed label value is ", str((double)labelMapIndex),
                 " but the largest label defined is ",
-                str((double)(g_WrkProof.compressedPfNumLabels - 1)), ".", NULL));
+                str((double)(g_WrkProof.compressedPfNumLabels - 1)), ".", null));
           }
           g_WrkProof.errorCount++;
           if (returnFlag < 2) returnFlag = 2;
@@ -3028,19 +3028,19 @@ char parseCompressedProof(long statemNum)
                 i = instr(1,tmpStrPtr,"contains ");
                 let(&tmpStrPtr,cat(left(tmpStrPtr,i + 7)," only",
                   right(tmpStrPtr,i + 8),
-                  NULL));
+                  null));
               }
               if (numReqHyp == 1) {
-                let(&tmpStrPtr,cat("a hypothesis but the ",tmpStrPtr,NULL));
+                let(&tmpStrPtr,cat("a hypothesis but the ",tmpStrPtr,null));
               } else {
                 let(&tmpStrPtr,cat(str((double)numReqHyp)," hypotheses but the ",tmpStrPtr,
-                    NULL));
+                    null));
               }
               sourceError(fbPtr, tokLength, statemNum, cat(
                   "At proof step ",
                   str((double)(g_WrkProof.numSteps + 1)),", statement \"",
                   g_Statement[stmt].labelName,"\" requires ",
-                  tmpStrPtr,".",NULL));
+                  tmpStrPtr,".",null));
               let(&tmpStrPtr, "");
             }
 
@@ -3102,7 +3102,7 @@ char parseCompressedProof(long statemNum)
         if (g_WrkProof.numSteps == 0) {
           if (!g_WrkProof.errorCount) {
             sourceError(fbPtr, 1, statemNum, cat(
-              "A local label character must occur after a proof step.",NULL));
+              "A local label character must occur after a proof step.",null));
           }
           g_WrkProof.errorCount++;
           if (returnFlag < 2) returnFlag = 2;
@@ -3123,7 +3123,7 @@ char parseCompressedProof(long statemNum)
                 "The hypothesis or local label reference at proof step ",
                 str((double)(g_WrkProof.numSteps)),
                 " declares a local label.  Only \"$a\" and \"$p\" statement",
-                " labels may have local label declarations.",NULL));
+                " labels may have local label declarations.",null));
           }
           g_WrkProof.errorCount++;
           if (returnFlag < 2) returnFlag = 2;
@@ -3248,7 +3248,7 @@ char parseCompressedProof(long statemNum)
       sourceError(fbPtr, proofTokenLen(fbPtr), statemNum,
           cat("After proof step ",
           str((double)(g_WrkProof.numSteps))," (the last step), the ",
-          tmpStrPtr,".  It should contain exactly one entry.",NULL));
+          tmpStrPtr,".  It should contain exactly one entry.",null));
     }
     g_WrkProof.errorCount++;
    if (returnFlag < 3) returnFlag = 3;
@@ -3412,7 +3412,7 @@ void sourceError(char *ptr, long tokLen, long stmtNum, vstring errMsg)
   if (!lineNum) {
 
     errorMessage(errLine, lineNum, ptr - startLine + 1, tokLen, errorMsg,
-        NULL, stmtNum, (char)error_);
+        null, stmtNum, (char)error_);
   } else {
     errorMessage(errLine, lineNum,
         ptr - startLine + 1, tokLen,
@@ -3456,27 +3456,27 @@ vstring shortDumpRPNStack() {
      memcpy(tmpStr,g_WrkProof.stepSrcPtrPntr[k],
          (size_t)(g_WrkProof.stepSrcPtrNmbr[k]));
      let(&tmpStr2,cat(
-         tmpStr2,", ","\"",tmpStr,"\" (step ", str((double)k + 1),")",NULL));
+         tmpStr2,", ","\"",tmpStr,"\" (step ", str((double)k + 1),")",null));
   }
   let(&tmpStr2,right(tmpStr2,3));
   if (g_WrkProof.RPNStackPtr == 2) {
     m = instr(1, tmpStr2, ",");
     let(&tmpStr2,cat(left(tmpStr2,m - 1)," and ",
-        right(tmpStr2,m + 1),NULL));
+        right(tmpStr2,m + 1),null));
   }
   if (g_WrkProof.RPNStackPtr > 2) {
     for (m = (long)strlen(tmpStr2); m > 0; m--) {
       if (tmpStr2[m - 1] == ',') break;
     }
     let(&tmpStr2,cat(left(tmpStr2,m - 1),", and ",
-        right(tmpStr2,m + 1),NULL));
+        right(tmpStr2,m + 1),null));
   }
   if (g_WrkProof.RPNStackPtr == 1) {
-    let(&tmpStr2,cat("one entry, ",tmpStr2,NULL));
+    let(&tmpStr2,cat("one entry, ",tmpStr2,null));
   } else {
-    let(&tmpStr2,cat(str((double)(g_WrkProof.RPNStackPtr))," entries: ",tmpStr2,NULL));
+    let(&tmpStr2,cat(str((double)(g_WrkProof.RPNStackPtr))," entries: ",tmpStr2,null));
   }
-  let(&tmpStr2,cat("RPN stack contains ",tmpStr2,NULL));
+  let(&tmpStr2,cat("RPN stack contains ",tmpStr2,null));
   if (g_WrkProof.RPNStackPtr == 0) let(&tmpStr2,"RPN stack is empty");
   let(&tmpStr, "");
   return(tmpStr2);
@@ -3571,7 +3571,7 @@ long whiteSpaceLen(char *ptr)
           for (ptr1 = ptr + i + 2; ptr1[0] != '$'; ptr1++) {
             if (ptr1[0] == 0) {
               if ('$' != 0)
-                ptr1 = NULL;
+                ptr1 = null;
               break;
             }
           }
@@ -3774,11 +3774,11 @@ vstring outputStatement(long stmt,
 
 
 
-    if (strchr(labelSection, '\t') != NULL) {
+    if (strchr(labelSection, '\t') != null) {
       let(&labelSection, edit(labelSection, 2048));
     }
 
-    if (strchr(mathSection, '\t') != NULL) {
+    if (strchr(mathSection, '\t') != null) {
       let(&mathSection, edit(mathSection, 2048));
     }
 
@@ -3789,7 +3789,7 @@ vstring outputStatement(long stmt,
       pos = instr(1, labelSection, " \n");
       if (pos == 0) break;
       let(&labelSection, cat(left(labelSection, pos - 1),
-          right(labelSection, pos + 1), NULL));
+          right(labelSection, pos + 1), null));
     }
 
 
@@ -3799,7 +3799,7 @@ vstring outputStatement(long stmt,
 
       if (pos == 0) break;
       let(&labelSection, cat(left(labelSection, pos - 1),
-          right(labelSection, pos + 1), NULL));
+          right(labelSection, pos + 1), null));
     }
 
     switch (g_Statement[stmt].type) {
@@ -3816,7 +3816,7 @@ vstring outputStatement(long stmt,
 
 
         if (slen != 0 && labelSection[slen - 1] != '\n') {
-          let(&labelSection, cat(labelSection, "\n", NULL));
+          let(&labelSection, cat(labelSection, "\n", null));
           slen++;
         }
 
@@ -3828,7 +3828,7 @@ vstring outputStatement(long stmt,
           } else {
 
             if (instr(1, labelSection, "\n\n") == 0) {
-              let(&labelSection, cat(labelSection, "\n", NULL));
+              let(&labelSection, cat(labelSection, "\n", null));
               slen++;
             }
           }
@@ -3836,11 +3836,11 @@ vstring outputStatement(long stmt,
         if (slen == 0) {
 
 
-          let(&labelSection, cat(labelSection, "  ", NULL));
+          let(&labelSection, cat(labelSection, "  ", null));
           slen = 2;
         } else {
 
-          let(&labelSection, cat(labelSection, space(indent), NULL));
+          let(&labelSection, cat(labelSection, space(indent), null));
           slen = slen + indent;
         }
         if (g_Statement[stmt].type == d_) {
@@ -3860,7 +3860,7 @@ vstring outputStatement(long stmt,
 
                 dollarDpos = indent + (long)strlen(mathSection) + 4;
 
-                let(&labelSection, cat("\n", space(indent), NULL));
+                let(&labelSection, cat("\n", space(indent), null));
               }
             } else {
               dollarDpos = indent + (long)strlen(mathSection) + 4;
@@ -3906,7 +3906,7 @@ vstring outputStatement(long stmt,
 
         if (pos == 0 && stmt > 1) {
           let(&labelSection, cat(edit(labelSection, 128 ),
-              "\n", NULL));
+              "\n", null));
           pos = (long)strlen(labelSection) + 1;
         }
 
@@ -3946,14 +3946,14 @@ vstring outputStatement(long stmt,
                 (comment[pos + length] != '\n')
                     ? space(indent + 3)
                     : "",
-                right(comment, pos + length + 1), NULL));
+                right(comment, pos + length + 1), null));
           }
 
 
           if (g_outputToString == 1) bug(1726);
           g_outputToString = 1;
           let(&g_printString, "");
-          printLongLine(cat(space(indent), comment, NULL),
+          printLongLine(cat(space(indent), comment, null),
               space(indent + 3), " ");
           let(&comment, g_printString);
           let(&g_printString, "");
@@ -3969,7 +3969,7 @@ vstring outputStatement(long stmt,
         }  else {
 
 
-          let(&comment, cat(comment, "\n", NULL));
+          let(&comment, cat(comment, "\n", null));
         }
 
 
@@ -3978,13 +3978,13 @@ vstring outputStatement(long stmt,
           pos = instr(pos + 1, comment, " \n");
           if (!pos) break;
           let(&comment, cat(left(comment, pos - 1), right(comment, pos + 1),
-              NULL));
+              null));
           pos = pos - 2;
         }
 
 
         let(&labelSection, cat(labelSection, comment,
-            space(indent), g_Statement[stmt].labelName, " ", NULL));
+            space(indent), g_Statement[stmt].labelName, " ", null));
         break;
       case e_:
       case f_:
@@ -3994,7 +3994,7 @@ vstring outputStatement(long stmt,
 
         if (pos == 0 && stmt > 1) {
           let(&labelSection, cat(edit(labelSection, 128 ),
-              "\n", NULL));
+              "\n", null));
           pos = (long)strlen(labelSection) + 1;
         }
         let(&labelSection, left(labelSection, pos));
@@ -4005,7 +4005,7 @@ vstring outputStatement(long stmt,
         }
 
         let(&labelSection, cat(labelSection,
-            space(indent), g_Statement[stmt].labelName, " ", NULL));
+            space(indent), g_Statement[stmt].labelName, " ", null));
         break;
       default: bug(1727);
     }
@@ -4026,7 +4026,7 @@ vstring outputStatement(long stmt,
           pos = instr(1, mathSection, "\n\n");
           if (pos == 0) break;
           let(&mathSection, cat(left(mathSection, pos),
-              right(mathSection, pos + 2), NULL));
+              right(mathSection, pos + 2), null));
         }
 
 
@@ -4039,7 +4039,7 @@ vstring outputStatement(long stmt,
             if (mathSection[pos - 2] != '\n' && mathSection[pos - 2] != ' ') {
 
               let(&mathSection, cat(left(mathSection, pos),
-                  right(mathSection, pos + 2), NULL));
+                  right(mathSection, pos + 2), null));
               pos--;
             }
           }
@@ -4063,26 +4063,26 @@ vstring outputStatement(long stmt,
   let(&output, labelSection);
 
 
-  let(&output, cat(output, "$", chr(g_Statement[stmt].type), NULL));
+  let(&output, cat(output, "$", chr(g_Statement[stmt].type), null));
 
 
   if (g_Statement[stmt].mathSectionLen != 0) {
-    let(&output, cat(output, mathSection, NULL));
+    let(&output, cat(output, mathSection, null));
 
 
     if (g_Statement[stmt].type == (char)p_) {
-      let(&output, cat(output, "$=", proofSection, NULL));
+      let(&output, cat(output, "$=", proofSection, null));
 
 
 
     }
-    let(&output, cat(output, "$.", NULL));
+    let(&output, cat(output, "$.", null));
 
   }
 
 
 
-  if (strchr(output, '\r') != NULL) {
+  if (strchr(output, '\r') != null) {
 
 
 
@@ -4171,13 +4171,13 @@ vstring rewrapComment(vstring comment1)
       if (mathmode == 1 || (comment[pos] != '_' && comment[pos] != '-')) {
 
         let(&comment, cat(left(comment, pos), " ",
-            right(comment, pos + 1), NULL));
+            right(comment, pos + 1), null));
       }
     }
     if (comment[pos - 2] != ' ') {
 
       let(&comment, cat(left(comment, pos - 1), " ",
-          right(comment, pos), NULL));
+          right(comment, pos), null));
       pos++;
     }
   }
@@ -4193,12 +4193,12 @@ vstring rewrapComment(vstring comment1)
       if (comment[pos] != ' ') {
 
         let(&comment, cat(left(comment, pos), " ",
-            right(comment, pos + 1), NULL));
+            right(comment, pos + 1), null));
       }
       if (comment[pos - 2] != ' ') {
 
         let(&comment, cat(left(comment, pos - 1), " ",
-            right(comment, pos), NULL));
+            right(comment, pos), null));
         pos++;
       }
     }
@@ -4220,13 +4220,13 @@ vstring rewrapComment(vstring comment1)
 
     if (comment[length - 4] != ' ' && comment[length - 4] != '\n') break;
     let(&comment, cat(left(comment, length - 4),
-        right(comment, length - 2), NULL));
+        right(comment, length - 2), null));
   }
 
 
   length = (long)strlen(comment);
   if (islower((unsigned char)(comment[length - 4]))) {
-    let(&comment, cat(left(comment, length - 3), ". $)", NULL));
+    let(&comment, cat(left(comment, length - 3), ". $)", null));
   }
 
   mathmode = 0;
@@ -4278,13 +4278,13 @@ vstring rewrapComment(vstring comment1)
       if (pos == 0) break;
       if (ch[0] == '.' && comment[pos - 2] >= 'A' && comment[pos - 2] <= 'Z')
         continue;
-      if (strchr(SENTENCE_END_PUNCTUATION, comment[pos]) != NULL)
+      if (strchr(SENTENCE_END_PUNCTUATION, comment[pos]) != null)
         pos++;
       if (comment[pos] != ' ') continue;
       if ((comment[pos + 1] >= 'A' && comment[pos + 1] <= 'Z')
-          || strchr(OPENING_PUNCTUATION, comment[pos + 1]) != NULL) {
+          || strchr(OPENING_PUNCTUATION, comment[pos + 1]) != null) {
         let(&comment, cat(left(comment, pos + 1), " ",
-            right(comment, pos + 2), NULL));
+            right(comment, pos + 2), null));
       }
     }
   }
@@ -4297,15 +4297,15 @@ vstring rewrapComment(vstring comment1)
 
         commentTemplate[pos] = ASCII_4;
       } else if ((comment[pos - 2] == ' '
-            || strchr(OPENING_PUNCTUATION, comment[pos - 2]) != NULL)
-          && strchr(OPENING_PUNCTUATION, comment[pos - 1]) != NULL) {
+            || strchr(OPENING_PUNCTUATION, comment[pos - 2]) != null)
+          && strchr(OPENING_PUNCTUATION, comment[pos - 1]) != null) {
 
         commentTemplate[pos] = ASCII_4;
       } else if ((comment[pos + 2] == ' '
             || comment[pos + 2] == '\n'
             || comment[pos + 2] == ASCII_4
-            || strchr(CLOSING_PUNCTUATION, comment[pos + 2]) != NULL)
-          && strchr(CLOSING_PUNCTUATION, comment[pos + 1]) != NULL) {
+            || strchr(CLOSING_PUNCTUATION, comment[pos + 2]) != null)
+          && strchr(CLOSING_PUNCTUATION, comment[pos + 1]) != null) {
 
         commentTemplate[pos] = ASCII_4;
       } else if (comment[pos - 3] == ' ' && comment[pos - 2] == 'p'
@@ -4368,7 +4368,7 @@ nmbrString *parseMathTokens(vstring userText, long statemNum)
   tokenNum = 0;
 
 
-  let(&nlUserText, cat("\n", userText, NULL));
+  let(&nlUserText, cat("\n", userText, null));
 
 
   if (!g_mathTokens) bug(1717);
@@ -4901,7 +4901,7 @@ vstring writeSourceToBuffer()
   long endPos2;
   char cmdType;
   startOffset = 0;
-  let(&fileNameWithPath, cat(g_rootDirectory, fileName, NULL));
+  let(&fileNameWithPath, cat(g_rootDirectory, fileName, null));
   while (true) {
     getNextInclusion(*fileBuf, startOffset,
 
@@ -4920,12 +4920,12 @@ vstring writeSourceToBuffer()
 
         let(&tmpStr1, "");
         tmpStr1 = readFileToString(fileNameWithPath, 0, &size);
-        if (tmpStr1 == NULL) {
+        if (tmpStr1 == null) {
           tmpStr1 = "";
 
-          let(&tmpFileName, cat(fileNameWithPath, "~1", NULL));
+          let(&tmpFileName, cat(fileNameWithPath, "~1", null));
           tmpStr1 = readFileToString(tmpFileName, 0, &size);
-          if (tmpStr1 == NULL) {
+          if (tmpStr1 == null) {
             tmpStr1 = "";
 
             writeFlag = 1;
@@ -4956,7 +4956,7 @@ vstring writeSourceToBuffer()
       }
       if (writeFlag == 1) {
         fp = fSafeOpen(fileNameWithPath, "w", 0);
-        if (fp == NULL) {
+        if (fp == null) {
 
           print2("?Error: couldn't create the file \"%s\"\n", fileNameWithPath);
           print2("  Make sure any directories needed have been created.\n");
@@ -4972,18 +4972,18 @@ vstring writeSourceToBuffer()
       break;
     } else if (cmdType == 'S') {
 
-      let(&tmpStr1, cat("$[ ", includeFn, " $]", NULL));
+      let(&tmpStr1, cat("$[ ", includeFn, " $]", null));
       startOffset = cmdPos1 - 1 + (long)strlen(tmpStr1);
       let(&(*fileBuf), cat(left(*fileBuf, cmdPos1 - 1), tmpStr1,
-          right(*fileBuf, cmdPos2), NULL));
+          right(*fileBuf, cmdPos2), null));
       continue;
     } else if (cmdType == 'B') {
 
-      let(&tmpStr1, cat("$[ ", includeFn, " $]", NULL));
+      let(&tmpStr1, cat("$[ ", includeFn, " $]", null));
       startOffset = cmdPos1 - 1 + (long)strlen(tmpStr1);
       let(&includeBuf, seg(*fileBuf, cmdPos2, endPos1 - 1));
       let(&(*fileBuf), cat(left(*fileBuf, cmdPos1 - 1), tmpStr1,
-          right(*fileBuf, endPos2), NULL));
+          right(*fileBuf, endPos2), null));
 
       writeSplitSource(&includeBuf, includeFn, noVersioningFlag, noDeleteFlag);
       continue;
@@ -5033,10 +5033,10 @@ vstring writeSourceToBuffer()
         &includeFn  );
 
     if (cmdType == 'B') {
-      let(&fileNameWithPath, cat(g_rootDirectory, includeFn, NULL));
+      let(&fileNameWithPath, cat(g_rootDirectory, includeFn, null));
 
       fp = fopen(fileNameWithPath, "r");
-      if (fp != NULL) {
+      if (fp != null) {
         fclose(fp);
         if (noVersioningFlag == 1) {
           print2("Deleting \"%s\"...\n", fileNameWithPath);
@@ -5196,7 +5196,7 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
     g_MAX_INCLUDECALLS);
       g_IncludeCall = realloc(g_IncludeCall, (size_t)g_MAX_INCLUDECALLS *
           sizeof(struct includeCall_struct));
-      if (g_IncludeCall == NULL) outOfMemory("#2 (g_IncludeCall)");
+      if (g_IncludeCall == null) outOfMemory("#2 (g_IncludeCall)");
     }
     g_IncludeCall[g_includeCalls].pushOrPop = 0;
 
@@ -5260,10 +5260,10 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           break;
         case 'I':
 
-          let(&fullIncludeFn, cat(g_rootDirectory, includeFn, NULL));
+          let(&fullIncludeFn, cat(g_rootDirectory, includeFn, null));
           let(&tmpSource, "");
           tmpSource = readFileToString(fullIncludeFn, 0, &inclSize);
-          if (tmpSource == NULL) {
+          if (tmpSource == null) {
 
             print2(
 
@@ -5278,8 +5278,8 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           }
 
 
-          let(&inclPrefix, cat("$( Begin $[ ", includeFn, " $] $)\n", NULL));
-          let(&inclSuffix, cat("$( End $[ ", includeFn, " $] $)", NULL));
+          let(&inclPrefix, cat("$( Begin $[ ", includeFn, " $] $)\n", null));
+          let(&inclSuffix, cat("$( End $[ ", includeFn, " $] $)", null));
 
 
 
@@ -5304,7 +5304,7 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           oldInclSize = cmdPos2 - cmdPos1;
           let(&newFileBuf, cat(left(newFileBuf, cmdPos1 - 1),
               inclPrefix, inclSource, inclSuffix,
-              right(newFileBuf, cmdPos2), NULL));
+              right(newFileBuf, cmdPos2), null));
           *size = *size - (cmdPos2 - cmdPos1) + (long)strlen(inclPrefix)
               + inclSize + (long)strlen(inclSuffix);
           newInclSize = (long)strlen(inclPrefix) + inclSize +
@@ -5315,10 +5315,10 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           break;
         case 'S':
 
-          let(&fullIncludeFn, cat(g_rootDirectory, includeFn, NULL));
+          let(&fullIncludeFn, cat(g_rootDirectory, includeFn, null));
           let(&tmpSource, "");
           tmpSource = readFileToString(fullIncludeFn, 1, &inclSize);
-          if (tmpSource == NULL) {
+          if (tmpSource == null) {
 
             print2(
 
@@ -5330,8 +5330,8 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           }
 
 
-          let(&inclPrefix, cat("$( Begin $[ ", includeFn, " $] $)\n", NULL));
-          let(&inclSuffix, cat("$( End $[ ", includeFn, " $] $)", NULL));
+          let(&inclPrefix, cat("$( Begin $[ ", includeFn, " $] $)\n", null));
+          let(&inclSuffix, cat("$( End $[ ", includeFn, " $] $)", null));
 
 
           befInclLineNum = parentLineNum + countLines(
@@ -5356,7 +5356,7 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           oldInclSize = cmdPos2 - cmdPos1;
           let(&newFileBuf, cat(left(newFileBuf, cmdPos1 - 1),
               inclPrefix, inclSource, inclSuffix,
-              right(newFileBuf, cmdPos2), NULL));
+              right(newFileBuf, cmdPos2), null));
           newInclSize = (long)strlen(inclPrefix) + inclSize +
                 (long)strlen(inclSuffix);
           *size = *size - (cmdPos2 - cmdPos1) + (long)strlen(inclPrefix)
@@ -5391,7 +5391,7 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           }
           oldSource = "";
 
-          let(&inclPrefix, cat("$( Skip $[ ", includeFn, " $] $)", NULL));
+          let(&inclPrefix, cat("$( Skip $[ ", includeFn, " $] $)", null));
           let(&inclSuffix, "");
 
 
@@ -5410,14 +5410,14 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           oldInclSize = endPos2 - cmdPos1;
           let(&newFileBuf, cat(left(newFileBuf, cmdPos1 - 1),
               inclPrefix,
-              right(newFileBuf, endPos2), NULL));
+              right(newFileBuf, endPos2), null));
           newInclSize = (long)strlen(inclPrefix);
           *size = *size - (endPos2 - cmdPos1) + newInclSize;
           startOffset = cmdPos1 + newInclSize - 1;
           break;
         case 'I':
 
-          let(&inclPrefix, cat("$( Skip $[ ", includeFn, " $] $)", NULL));
+          let(&inclPrefix, cat("$( Skip $[ ", includeFn, " $] $)", null));
           let(&inclSuffix, "");
 
 
@@ -5436,7 +5436,7 @@ if(db5)print2("'Include' call table was increased to %ld entries.\n",
           oldInclSize = cmdPos2 - cmdPos1;
           let(&newFileBuf, cat(left(newFileBuf, cmdPos1 - 1),
               inclPrefix,
-              right(newFileBuf, cmdPos2), NULL));
+              right(newFileBuf, cmdPos2), null));
           newInclSize = (long)strlen(inclPrefix);
           *size = *size - (cmdPos2 - cmdPos1) + (long)strlen(inclPrefix);
 
@@ -5526,9 +5526,9 @@ char *readSourceAndIncludes(vstring inputFn , long *size )
   flag errorFlag = 0;
 
 
-  let(&fullInputFn, cat(g_rootDirectory, inputFn, NULL));
+  let(&fullInputFn, cat(g_rootDirectory, inputFn, null));
   fileBuf = readFileToString(fullInputFn, 1, &(*size));
-  if (fileBuf == NULL) {
+  if (fileBuf == null) {
     print2(
         "?Error: file \"%s\" was not found\n", fullInputFn);
     fileBuf = "";
@@ -5576,7 +5576,7 @@ char *readSourceAndIncludes(vstring inputFn , long *size )
       let(&g_IncludeCall[i].current_includeSource, "");
       g_includeCalls = -1;
     }
-    return NULL;
+    return null;
   } else {
 
 

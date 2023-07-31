@@ -176,7 +176,7 @@ int linput(File stream, const char* ask, vstring *target)
     fflush(stdout);
 #endif
   }
-  if (stream == NULL) stream = stdin;
+  if (stream == null) stream = stdin;
   while (!eol_found && fgets(f, sizeof(f), stream))
   {
     size_t endpos = strlen(f) - 1;
@@ -185,7 +185,7 @@ int linput(File stream, const char* ask, vstring *target)
       f[endpos] = 0;
     if (result)
 
-      let(target , cat(*target, f, NULL));
+      let(target , cat(*target, f, null));
     else
       let(target, f);
     result = 1;
@@ -694,7 +694,7 @@ vstring num1(double f)
 
 vstring num(double f)
 {
-  return (cat(" ",str(f)," ",NULL));
+  return (cat(" ",str(f)," ",null));
 }
 
 

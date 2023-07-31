@@ -31,17 +31,17 @@ int g_currentScope = 0;
 long g_MAX_STATEMENTS = 1;
 long g_MAX_MATHTOKENS = 1;
 long g_MAX_INCLUDECALLS = 2;
-struct statement_struct *g_Statement = NULL;
-long *g_labelKey = NULL;
+struct statement_struct *g_Statement = null;
+long *g_labelKey = null;
 struct mathToken_struct *g_MathToken;
-long *g_mathKey = NULL;
+long *g_mathKey = null;
 long g_statements = 0, labels = 0, g_mathTokens = 0;
 
 
-struct includeCall_struct *g_IncludeCall = NULL;
+struct includeCall_struct *g_IncludeCall = null;
 long g_includeCalls = -1;
 
-char *g_sourcePtr = NULL;
+char *g_sourcePtr = null;
 long g_sourceLen;
 
 
@@ -49,7 +49,7 @@ long g_sourceLen;
 struct nullNmbrStruct g_NmbrNull = {-1, sizeof(long), sizeof(long), -1};
 
 
-struct nullPntrStruct g_PntrNull = {-1, sizeof(long), sizeof(long), NULL};
+struct nullPntrStruct g_PntrNull = {-1, sizeof(long), sizeof(long), null};
 
 nmbrString *nmbrTempAlloc(long size);
 
@@ -70,10 +70,10 @@ vstring g_qsortKey;
 long poolAbsoluteMax = 1000000;
 long poolTotalFree = 0;
 long i1,j1_,k1;
-void **memUsedPool = NULL;
+void **memUsedPool = null;
 long memUsedPoolSize = 0;
 long memUsedPoolMax = 0;
-void **memFreePool = NULL;
+void **memFreePool = null;
 long memFreePoolSize = 0;
 long memFreePoolMax = 0;
 
@@ -88,7 +88,7 @@ if(db9)getPoolStats(&i1,&j1_,&k1); if(db9)printf("a0: pool %ld stat %ld\n",poolT
   if (!memFreePoolSize) {
     ptr = malloc( 3 * sizeof(long) + (size_t)size);
     if (!ptr) outOfMemory(
-        cat("#25 (poolFixedMalloc ", str((double)size), ")", NULL));
+        cat("#25 (poolFixedMalloc ", str((double)size), ")", null));
 
     ptr = (long *)ptr + 3;
     ((long *)ptr)[-1] = size;
@@ -115,7 +115,7 @@ if(db9)getPoolStats(&i1,&j1_,&k1); if(db9)printf("a: pool %ld stat %ld\n",poolTo
       memFreePoolPurge(0);
       ptr = malloc( 3 * sizeof(long) + (size_t)size);
       if (!ptr) outOfMemory(
-          cat("#26 (poolMalloc ", str((double)size), ")", NULL));
+          cat("#26 (poolMalloc ", str((double)size), ")", null));
 
     }
     ptr = (long *)ptr + 3;
@@ -143,7 +143,7 @@ if(db9)getPoolStats(&i1,&j1_,&k1); if(db9)printf("b0: pool %ld stat %ld\n",poolT
   if (!memFreePoolSize) {
     ptr = malloc( 3 * sizeof(long) + (size_t)size);
     if (!ptr) {
-      outOfMemory(cat("#27 (poolMalloc ", str((double)size), ")", NULL));
+      outOfMemory(cat("#27 (poolMalloc ", str((double)size), ")", null));
     }
     ptr = (long *)ptr + 3;
     ((long *)ptr)[-1] = size;
@@ -167,7 +167,7 @@ if(db9)getPoolStats(&i1,&j1_,&k1); if(db9)printf("b: pool %ld stat %ld\n",poolTo
         memFreePoolPurge(0);
         ptr = malloc( 3 * sizeof(long) + (size_t)size);
         if (!ptr) outOfMemory(
-            cat("#28 (poolMalloc ", str((double)size), ")", NULL));
+            cat("#28 (poolMalloc ", str((double)size), ")", null));
 
       }
       ptr = (long *)ptr + 3;
@@ -196,7 +196,7 @@ if(db9)printf("Growing used pool to %ld\n",memUsedPoolTmpMax);
           (size_t)memUsedPoolTmpMax * sizeof(void *));
     }
     if (!memUsedPoolTmpPtr) {
-      outOfMemory(cat("#29 (poolMalloc ", str((double)memUsedPoolTmpMax), ")", NULL));
+      outOfMemory(cat("#29 (poolMalloc ", str((double)memUsedPoolTmpMax), ")", null));
     } else {
 
       memUsedPool = memUsedPoolTmpPtr;
@@ -253,7 +253,7 @@ if(db9)printf("Growing free pool to %ld\n",memFreePoolTmpMax);
     }
     if (!memFreePoolTmpPtr) {
 if(db9)printf("Realloc failed\n");
-      outOfMemory(cat("#30 (poolFree ", str((double)memFreePoolTmpMax), ")", NULL));
+      outOfMemory(cat("#30 (poolFree ", str((double)memFreePoolTmpMax), ")", null));
     } else {
 
       memFreePool = memFreePoolTmpPtr;
@@ -1224,11 +1224,11 @@ vstring nmbrCvtRToVString(nmbrString *proof,
             ((explicitTargets == 1) ? g_Statement[targetHyps[step]].labelName : ""),
             ((explicitTargets == 1) ? "=" : ""),
 
-            str((double)(localLabelNames[stmt])), " ", NULL));
+            str((double)(localLabelNames[stmt])), " ", null));
 
 
       } else if (stmt != -(long)'?') {
-        let(&tmpStr, cat("??", str((double)stmt), " ", NULL));
+        let(&tmpStr, cat("??", str((double)stmt), " ", null));
 
       } else {
         if (stmt != -(long)'?') bug(1391);
@@ -1238,12 +1238,12 @@ vstring nmbrCvtRToVString(nmbrString *proof,
             ((explicitTargets == 1) ? g_Statement[targetHyps[step]].labelName : ""),
             ((explicitTargets == 1) ? "=" : ""),
 
-            chr(-stmt), " ", NULL));
+            chr(-stmt), " ", null));
       }
 
 
     } else if (stmt < 1 || stmt > g_statements) {
-      let(&tmpStr, cat("??", str((double)stmt), " ", NULL));
+      let(&tmpStr, cat("??", str((double)stmt), " ", null));
 
     } else {
       let(&tmpStr,"");
@@ -1259,7 +1259,7 @@ vstring nmbrCvtRToVString(nmbrString *proof,
           let(&tmpStr, str((double)nextLocLabNum));
         }
         localLabelNames[step] = nextLocLabNum;
-        let(&tmpStr, cat(tmpStr, ":", NULL));
+        let(&tmpStr, cat(tmpStr, ":", null));
         nextLocLabNum++;
       }
       let(&tmpStr, cat(tmpStr,
@@ -1268,7 +1268,7 @@ vstring nmbrCvtRToVString(nmbrString *proof,
           ((explicitTargets == 1) ? g_Statement[targetHyps[step]].labelName : ""),
           ((explicitTargets == 1) ? "=" : ""),
 
-          g_Statement[stmt].labelName, " ", NULL));
+          g_Statement[stmt].labelName, " ", null));
     }
     j = (long)strlen(tmpStr);
     memcpy(ptr, tmpStr, (size_t)j);
@@ -1341,7 +1341,7 @@ vstring nmbrCvtAnyToVString(nmbrString *s)
   g_startTempAllocStack = g_tempAllocStackTop;
 
   for (i = 1; i <= nmbrLen(s); i++) {
-    let(&tmpStr,cat(tmpStr," ", str((double)(s[i-1])),NULL));
+    let(&tmpStr,cat(tmpStr," ", str((double)(s[i-1])),null));
   }
 
   g_startTempAllocStack = saveTempAllocStack;
@@ -1519,7 +1519,7 @@ nmbrString *nmbrSquishProof(nmbrString *proof)
 
       nmbrLet(&newProof,
             nmbrCat(nmbrAddElement(nmbrLeft(newProof, matchStep - 1),
-            -1000 - step), nmbrRight(newProof, matchStep + subPrfLen), NULL));
+            -1000 - step), nmbrRight(newProof, matchStep + subPrfLen), null));
       matchStep = matchStep - subPrfLen + 1;
     }
     if (foundFlag) {
@@ -1529,7 +1529,7 @@ nmbrString *nmbrSquishProof(nmbrString *proof)
       dummyStep = dummyStep + 1 - subPrfLen;
       nmbrLet(&dummyProof,
           nmbrCat(nmbrAddElement(nmbrLeft(dummyProof, dummyStep),
-          -1000 - step), nmbrRight(newProof, step + 2), NULL));
+          -1000 - step), nmbrRight(newProof, step + 2), null));
     }
     dummyStep++;
   }
@@ -1556,7 +1556,7 @@ nmbrString *nmbrUnsquishProof(nmbrString *proof)
     subPrfLen = nmbrGetSubproofLen(newProof, stmt);
     nmbrLet(&newProof, nmbrCat(nmbrLeft(newProof, step),
         nmbrSeg(newProof, stmt - subPrfLen + 2, stmt + 1),
-        nmbrRight(newProof, step + 2), NULL));
+        nmbrRight(newProof, step + 2), null));
     step = step + subPrfLen - 1;
   }
   nmbrLet(&subProof, NULL_NMBRSTRING);
@@ -1835,7 +1835,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
 
       nmbrRight(hypList, g_Statement[statemNum].numReqHyp + 1),
 
-      assertionList, NULL));
+      assertionList, null));
   explLabels = nmbrLen(explList);
 
 
@@ -1971,7 +1971,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
 
   C.label("OLD_ALGORITHM");
 
-  nmbrLet(&labelList, nmbrCat(hypList, assertionList, localList, NULL));
+  nmbrLet(&labelList, nmbrCat(hypList, assertionList, localList, null));
 
 
   outputLen = 0;
@@ -1989,7 +1989,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
       if (outputLen + 1 > outputAllocated) {
 
         let(&output, cat(output, space(outputLen + 1 - outputAllocated +
-            COMPR_INC), NULL));
+            COMPR_INC), null));
         outputAllocated = outputLen + 1 + COMPR_INC;
 
 
@@ -2022,7 +2022,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
     if (outputLen + numchrs > outputAllocated) {
 
       let(&output, cat(output, space(outputLen + numchrs - outputAllocated +
-          COMPR_INC), NULL));
+          COMPR_INC), null));
       outputAllocated = outputLen + numchrs + COMPR_INC;
 
 
@@ -2053,7 +2053,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
     if (outputLen + 1 > outputAllocated) {
 
       let(&output, cat(output, space(outputLen + 1 - outputAllocated +
-          COMPR_INC), NULL));
+          COMPR_INC), null));
       outputAllocated = outputLen + 1 + COMPR_INC;
 
 
@@ -2069,11 +2069,11 @@ vstring compressProof(nmbrString *proof, long statemNum,
   let(&output, cat("( ", nmbrCvtRToVString(nmbrCat(
 
       nmbrRight(hypList, g_Statement[statemNum].numReqHyp + 1),
-      assertionList, NULL),
+      assertionList, null),
 
                 0,
                 0 ),
-      " ) ", left(output, outputLen), NULL));
+      " ) ", left(output, outputLen), null));
 
   nmbrLet(&saveProof, NULL_NMBRSTRING);
   nmbrLet(&labelList, NULL_NMBRSTRING);
@@ -2170,7 +2170,7 @@ void pntrMakeTempAlloc(pntrString *s)
 #endif
       bug(1370);
     }
-    if (s[0] != NULL) {
+    if (s[0] != null) {
       pntrTempAllocStack[g_pntrTempAllocStackTop++] = s;
     }
 db2=db2+(pntrLen(s)+1)*(long)(sizeof(pntrString));
@@ -2370,7 +2370,7 @@ void pntrCpy(pntrString *s, pntrString *t)
 {
   long i;
   i = 0;
-  while (t[i] != NULL) {
+  while (t[i] != null) {
     s[i] = t[i];
     i++;
   }
@@ -2385,7 +2385,7 @@ void pntrNCpy(pntrString *s,pntrString *t,long n)
 {
   long i;
   i = 0;
-  while (t[i] != NULL) {
+  while (t[i] != null) {
     if (i >= n) break;
     s[i] = t[i];
     i++;
@@ -2399,7 +2399,7 @@ int pntrEq(pntrString *s,pntrString *t)
 {
   long i;
   for (i = 0; s[i] == t[i]; i++)
-    if (s[i] == NULL)
+    if (s[i] == null)
       return 1;
   return 0;
 }
@@ -2637,13 +2637,13 @@ long **alloc2DMatrix(size_t xsize, size_t ysize)
   long **matrix;
   long i;
   matrix = malloc(xsize * sizeof(long *));
-  if (matrix == NULL) {
+  if (matrix == null) {
     fprintf(stderr,"?FATAL ERROR 1376 Out of memory\n");
     exit(1);
   }
   for (i = 0; i < (long)xsize; i++) {
     matrix[i] = malloc(ysize * sizeof(long));
-    if (matrix[i] == NULL) {
+    if (matrix[i] == null) {
       fprintf(stderr,"?FATAL ERROR 1377 Out of memory\n");
       exit(1);
     }
@@ -2657,10 +2657,10 @@ void free2DMatrix(long **matrix, size_t xsize )
 {
   long i;
   for (i = (long)xsize - 1; i >= 0; i--) {
-    if (matrix[i] == NULL) bug(1378);
+    if (matrix[i] == null) bug(1378);
     free(matrix[i]);
   }
-  if (matrix == NULL) bug(1379);
+  if (matrix == null) bug(1379);
   free(matrix);
   return;
 }
@@ -2734,10 +2734,10 @@ vstring getDescriptionAndLabel(long stmt) {
   let(&descriptionAndLabel, right(descriptionAndLabel, p1 + 1));
 
 
-  if (instr(1, descriptionAndLabel, cat("\n", TINY_DECORATION, NULL)) != 0
-      || instr(1, descriptionAndLabel, cat("\n", SMALL_DECORATION, NULL)) != 0
-      || instr(1, descriptionAndLabel, cat("\n", BIG_DECORATION, NULL)) != 0
-      || instr(1, descriptionAndLabel, cat("\n", HUGE_DECORATION, NULL)) != 0) {
+  if (instr(1, descriptionAndLabel, cat("\n", TINY_DECORATION, null)) != 0
+      || instr(1, descriptionAndLabel, cat("\n", SMALL_DECORATION, null)) != 0
+      || instr(1, descriptionAndLabel, cat("\n", BIG_DECORATION, null)) != 0
+      || instr(1, descriptionAndLabel, cat("\n", HUGE_DECORATION, null)) != 0) {
 
     dontUseComment = 1;
   }
@@ -2969,7 +2969,7 @@ vstring getContrib(long stmtNum, char mode) {
     description = getDescription(stmtNum);
     let(&description, edit(description,
         4 + 8 + 16 + 128));
-    let(&description, cat(" ", description, " ", NULL));
+    let(&description, cat(" ", description, " ", null));
 
     cStart = instr(1, description, CONTRIB_MATCH);
     if (cStart != 0) {
@@ -3106,7 +3106,7 @@ vstring getContrib(long stmtNum, char mode) {
         "?Warning: There is no \"", edit(CONTRIB_MATCH, 8+128),
         "...)\" in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
 
   if (instr(cStart + 1, description, CONTRIB_MATCH) != 0) {
@@ -3116,7 +3116,7 @@ vstring getContrib(long stmtNum, char mode) {
         "...)\" ",
         "in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
 
 
@@ -3127,7 +3127,7 @@ vstring getContrib(long stmtNum, char mode) {
         ", or period is missing,",
         " in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (rStart != 0 && description[rMid - 2] != ',') {
     err = 1;
@@ -3136,7 +3136,7 @@ vstring getContrib(long stmtNum, char mode) {
         ", or period is missing,",
         " in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (sStart != 0 && description[sMid - 2] != ',') {
     err = 1;
@@ -3145,7 +3145,7 @@ vstring getContrib(long stmtNum, char mode) {
         ", or period is missing,",
         " in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (instr(1, contributor, ",") != 0) {
     err = 1;
@@ -3154,7 +3154,7 @@ vstring getContrib(long stmtNum, char mode) {
         contributor,
         "\" in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (instr(1, reviser, ",") != 0) {
     err = 1;
@@ -3163,7 +3163,7 @@ vstring getContrib(long stmtNum, char mode) {
         reviser,
         "\" in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (instr(1, shortener, ",") != 0) {
     err = 1;
@@ -3172,7 +3172,7 @@ vstring getContrib(long stmtNum, char mode) {
         shortener,
         "\" in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
 
 
@@ -3187,7 +3187,7 @@ vstring getContrib(long stmtNum, char mode) {
         edit(SHORTEN_MATCH, 8+128) ,
         "...)\" in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
 
   if ((cStart !=0 && (cMid == 0 || cEnd == 0 || cMid == cEnd
@@ -3204,7 +3204,7 @@ vstring getContrib(long stmtNum, char mode) {
         edit(SHORTEN_MATCH, 8+128),
         "...)\" entry in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
 
   if (contribDate[0] != 0) {
@@ -3217,7 +3217,7 @@ vstring getContrib(long stmtNum, char mode) {
           edit(CONTRIB_MATCH, 8+128),  "...)\" date \"", contribDate, "\""
           " in the comment above statement ",
           str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-          NULL), "    ", " ");
+          null), "    ", " ");
     }
   }
 
@@ -3231,7 +3231,7 @@ vstring getContrib(long stmtNum, char mode) {
           edit(REVISE_MATCH, 8+128) , "...)\" date \"", reviseDate, "\""
           " in the comment above statement ",
           str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-          NULL), "    ", " ");
+          null), "    ", " ");
     }
   }
 
@@ -3245,7 +3245,7 @@ vstring getContrib(long stmtNum, char mode) {
           edit(SHORTEN_MATCH, 8+128) , "...)\" date \"", shortenDate, "\""
           " in the comment above statement ",
           str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-          NULL), "    ", " ");
+          null), "    ", " ");
     }
   }
 
@@ -3262,7 +3262,7 @@ vstring getContrib(long stmtNum, char mode) {
         edit(SHORTEN_MATCH, 8+128),
         "...)\" date in the comment above statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
 
   if (reviseDate[0] != 0 && shortenDate[0] != 0) {
@@ -3275,7 +3275,7 @@ vstring getContrib(long stmtNum, char mode) {
           edit(SHORTEN_MATCH, 8+128),
          "...)\" dates are in the wrong order in the comment above statement ",
           str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-          NULL), "    ", " ");
+          null), "    ", " ");
     }
   }
 
@@ -3290,7 +3290,7 @@ vstring getContrib(long stmtNum, char mode) {
     if (mode == GC_ERROR_CHECK_PRINT) printLongLine(cat(
         "?Warning: There is no date below the proof in statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (tmpDate2[0] == 0
       && (reviseDate[0] != 0 || shortenDate[0] != 0)) {
@@ -3302,7 +3302,7 @@ vstring getContrib(long stmtNum, char mode) {
         "...)\" but there is only one date below the proof",
         " in statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (tmpDate2[0] != 0 && reviseDate[0] == 0 && shortenDate[0] == 0) {
     err = 1;
@@ -3312,7 +3312,7 @@ vstring getContrib(long stmtNum, char mode) {
         edit(SHORTEN_MATCH, 8+128),
         "...)\" entry in statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (tmpDate2[0] != 0
       && (reviseDate[0] != 0 || shortenDate[0] != 0)
@@ -3326,7 +3326,7 @@ vstring getContrib(long stmtNum, char mode) {
         "matches the date ", tmpDate1,
         " below the proof in statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (tmpDate2[0] != 0
       && reviseDate[0] != 0
@@ -3338,7 +3338,7 @@ vstring getContrib(long stmtNum, char mode) {
         " is later than the date ", tmpDate1,
         " below the proof in statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (tmpDate2[0] != 0
       && shortenDate[0] != 0
@@ -3350,7 +3350,7 @@ vstring getContrib(long stmtNum, char mode) {
         " is later than the date ", tmpDate1,
         " below the proof in statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (tmpDate2[0] != 0 && compareDates(tmpDate2, tmpDate1) != -1) {
     err = 1;
@@ -3359,7 +3359,7 @@ vstring getContrib(long stmtNum, char mode) {
         ", is not newer than the second, ", tmpDate2,
         ", in statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
   if (tmpDate2[0] == 0) {
     let(&tmpDate0, tmpDate1);
@@ -3375,7 +3375,7 @@ vstring getContrib(long stmtNum, char mode) {
         " doesn't match the date ", tmpDate0,
         " below the proof in statement ",
         str((double)stmtNum), ", label \"", g_Statement[stmtNum].labelName, "\".",
-        NULL), "    ", " ");
+        null), "    ", " ");
   }
 
 #endif
@@ -3466,7 +3466,7 @@ flag parseDate(vstring dateStr, long *dd, long *mmm, long *yyyy) {
 
 void buildDate(long dd, long mmm, long yyyy, vstring *dateStr) {
   let(&(*dateStr), cat(str((double)dd), "-", mid(MONTHS, mmm * 3 - 2, 3), "-",
-      str((double)yyyy), NULL));
+      str((double)yyyy), null));
   return;
 }
 
