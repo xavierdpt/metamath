@@ -51,7 +51,7 @@ char *readRawSource(
   mode = 0;
   insideComment = 0;
 
-  while (1) {
+  while (true) {
 
 
     tmpch = fbPtr[0];
@@ -250,7 +250,7 @@ if(db5)print2("Finished initializing statement array.\n");
   insideComment = 0;
   startSection = fbPtr;
 
-  while (1) {
+  while (true) {
 
 
     tmpch = fbPtr[0];
@@ -580,7 +580,7 @@ if(db5)print2("%ld potential symbols were computed.\n",potentialSymbols);
       case v_:
         oldG_mathTokens = g_mathTokens;
         fbPtr = g_Statement[stmt].mathSectionPtr;
-        while (1) {
+        while (true) {
           i = whiteSpaceLen(fbPtr);
           j = tokenLen(fbPtr + i);
           if (!j) break;
@@ -967,7 +967,7 @@ void parseStatements()
 
         i = 0;
         nmbrTmpPtr = g_Statement[stmt].mathString;
-        while (1) {
+        while (true) {
           tokenNum = nmbrTmpPtr[i];
           if (tokenNum == -1) break;
           if (mathTokenSameAs[reverseMathKey[tokenNum]]) {
@@ -1054,7 +1054,7 @@ void parseStatements()
 
         mathStringLen = 0;
         fbPtr = g_Statement[stmt].mathSectionPtr;
-        while (1) {
+        while (true) {
           fbPtr = fbPtr + whiteSpaceLen(fbPtr);
           origSymbolLen = tokenLen(fbPtr);
           if (!origSymbolLen) break;
@@ -1943,7 +1943,7 @@ char parseProof(long statemNum)
 
 
 
-  while (1) {
+  while (true) {
     tokLength = proofTokenLen(fbPtr);
     if (!tokLength) break;
     g_WrkProof.tokenSrcPtrPntr[g_WrkProof.numTokens] = fbPtr;
@@ -1973,7 +1973,7 @@ char parseProof(long statemNum)
 
   nmbrTmpPtr = g_Statement[statemNum].optHypList;
 
-  while (1) {
+  while (true) {
     i = nmbrTmpPtr[g_WrkProof.numHypAndLoc];
     if (i == -1) break;
     g_WrkProof.hypAndLocLabel[g_WrkProof.numHypAndLoc].labelTokenNum = i;
@@ -2800,7 +2800,7 @@ char parseCompressedProof(long statemNum)
 
 
 
-  while (1) {
+  while (true) {
     fbPtr = fbPtr + whiteSpaceLen(fbPtr);
     tokLength = proofTokenLen(fbPtr);
     if (!tokLength) {
@@ -2827,7 +2827,7 @@ char parseCompressedProof(long statemNum)
 
   nmbrTmpPtr = g_Statement[statemNum].optHypList;
 
-  while (1) {
+  while (true) {
     i = nmbrTmpPtr[g_WrkProof.numHypAndLoc];
     if (i == -1) break;
     g_WrkProof.hypAndLocLabel[g_WrkProof.numHypAndLoc].labelTokenNum = i;
@@ -2973,7 +2973,7 @@ char parseCompressedProof(long statemNum)
   fbPtr = fbStartProof;
   breakFlag = 0;
   labelMapIndex = 0;
-  while (1) {
+  while (true) {
     switch (chrType[(long)(fbPtr[0])]) {
       case 0:
         if (!labelMapIndex) labelStart = fbPtr;
@@ -3560,12 +3560,12 @@ long whiteSpaceLen(char *ptr)
   long i = 0;
   char tmpchr;
   char *ptr1;
-  while (1) {
+  while (true) {
     tmpchr = ptr[i];
     if (!tmpchr) return (i);
     if (tmpchr == '$') {
       if (ptr[i + 1] == '(') {
-        while (1) {
+        while (true) {
 
 
           for (ptr1 = ptr + i + 2; ptr1[0] != '$'; ptr1++) {
@@ -3606,7 +3606,7 @@ long rawWhiteSpaceLen(char *ptr)
 {
   long i = 0;
   char tmpchr;
-  while (1) {
+  while (true) {
     tmpchr = ptr[i];
     if (!tmpchr) return (i);
     if (isgraph((unsigned char)tmpchr)) return (i);
@@ -3620,7 +3620,7 @@ long tokenLen(char *ptr)
 {
   long i = 0;
   char tmpchr;
-  while (1) {
+  while (true) {
     tmpchr = ptr[i];
     if (tmpchr == '$') {
       if (ptr[i + 1] == '$') {
@@ -3647,7 +3647,7 @@ long rawTokenLen(char *ptr)
 {
   long i = 0;
   char tmpchr;
-  while (1) {
+  while (true) {
     tmpchr = ptr[i];
     if (!isgraph((unsigned char)tmpchr)) return (i);
     i++;
@@ -3666,7 +3666,7 @@ long proofTokenLen(char *ptr)
   if (ptr[0] == ')') return (1);
 
   if (ptr[0] == '=') return (1);
-  while (1) {
+  while (true) {
     tmpchr = ptr[i];
     if (tmpchr == '$') {
       if (ptr[i + 1] == '$') {
@@ -3694,7 +3694,7 @@ long countLines(vstring start, long length) {
   lines = 0;
   if (length == -1) {
     i = 0;
-    while (1) {
+    while (true) {
       if (start[i] == '\n') lines++;
       if (start[i] == 0) break;
       i++;
@@ -3785,7 +3785,7 @@ vstring outputStatement(long stmt,
 
 
 
-    while (1) {
+    while (true) {
       pos = instr(1, labelSection, " \n");
       if (pos == 0) break;
       let(&labelSection, cat(left(labelSection, pos - 1),
@@ -3793,7 +3793,7 @@ vstring outputStatement(long stmt,
     }
 
 
-    while (1) {
+    while (true) {
 
       pos = instr(1, labelSection, "\n\n\n\n");
 
@@ -3932,12 +3932,12 @@ vstring outputStatement(long stmt,
           }
 
           pos = 0;
-          while (1) {
+          while (true) {
             pos = instr(pos + 1, comment, "\n");
             if (pos == 0) break;
 
             length = 0;
-            while (1) {
+            while (true) {
               if (comment[pos + length] != ' ') break;
               length++;
             }
@@ -3974,7 +3974,7 @@ vstring outputStatement(long stmt,
 
 
         pos = 2;
-        while(1) {
+        while(true) {
           pos = instr(pos + 1, comment, " \n");
           if (!pos) break;
           let(&comment, cat(left(comment, pos - 1), right(comment, pos + 1),
@@ -4022,7 +4022,7 @@ vstring outputStatement(long stmt,
       case e_:
       case f_:
 
-        while (1) {
+        while (true) {
           pos = instr(1, mathSection, "\n\n");
           if (pos == 0) break;
           let(&mathSection, cat(left(mathSection, pos),
@@ -4032,7 +4032,7 @@ vstring outputStatement(long stmt,
 
 
         pos = 0;
-        while(1) {
+        while(true) {
           pos = instr(pos + 1, mathSection, "  ");
           if (pos == 0) break;
           if (pos > 1) {
@@ -4161,7 +4161,7 @@ vstring rewrapComment(vstring comment1)
 
   pos = 2;
   mathmode = 0;
-  while (1) {
+  while (true) {
     pos = instr(pos + 1, comment, "`");
     if (pos == 0) break;
     mathmode = (flag)(1 - mathmode);
@@ -4185,7 +4185,7 @@ vstring rewrapComment(vstring comment1)
 
   if (instr(2, comment, "`") == 0) {
     pos = 2;
-    while (1) {
+    while (true) {
       pos = instr(pos + 1, comment, "~");
       if (pos == 0) break;
       if (comment[pos - 2] == '~' || comment[pos] == '~') continue;
@@ -4214,7 +4214,7 @@ vstring rewrapComment(vstring comment1)
   let(&comment, edit(comment, 16 ));
 
 
-  while (1) {
+  while (true) {
     length = (long)strlen(comment);
     if (comment[length - 3] != ' ') bug(1730);
 
@@ -4273,7 +4273,7 @@ vstring rewrapComment(vstring comment1)
       case 3: ch = ":";
     }
     pos = 2;
-    while (1) {
+    while (true) {
       pos = instr(pos + 1, comment, ch);
       if (pos == 0) break;
       if (ch[0] == '.' && comment[pos - 2] >= 'A' && comment[pos - 2] <= 'Z')
@@ -4430,7 +4430,7 @@ nmbrString *parseMathTokens(vstring userText, long statemNum)
 
         mathStringLen = 0;
         fbPtr = nlUserText;
-        while (1) {
+        while (true) {
           fbPtr = fbPtr + whiteSpaceLen(fbPtr);
           origSymbolLen = tokenLen(fbPtr);
           if (!origSymbolLen) break;
@@ -4595,7 +4595,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
 
   fbPtr = fileBuf + startOffset;
 
-  while (1) {
+  while (true) {
     fbPtr = fbPtr + rawWhiteSpaceLen(fbPtr);
     j = rawTokenLen(fbPtr);
     if (j == 0) {
@@ -4735,7 +4735,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
 
     tmpPtr = fbPtr;
     i = 0;
-    while (1) {
+    while (true) {
 
 
 
@@ -4902,7 +4902,7 @@ vstring writeSourceToBuffer()
   char cmdType;
   startOffset = 0;
   let(&fileNameWithPath, cat(g_rootDirectory, fileName, NULL));
-  while (1) {
+  while (true) {
     getNextInclusion(*fileBuf, startOffset,
 
         &cmdPos1, &cmdPos2,
@@ -5024,7 +5024,7 @@ vstring writeSourceToBuffer()
   long endPos2;
   char cmdType;
   startOffset = 0;
-  while (1) {
+  while (true) {
     getNextInclusion(*fileBuf, startOffset,
 
         &cmdPos1, &cmdPos2,
@@ -5165,7 +5165,7 @@ char *readInclude(vstring fileBuf, long fileBufOffset,
 
   startOffset = 0;
 
-  while (1) {
+  while (true) {
     getNextInclusion(newFileBuf, startOffset,
 
         &cmdPos1, &cmdPos2,

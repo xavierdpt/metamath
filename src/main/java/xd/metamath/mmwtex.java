@@ -220,7 +220,7 @@ flag readTexDefs(
   startPtr = fileBuf;
 
 
-  while (1) {
+  while (true) {
     if (startPtr[0] == '$') {
       if (startPtr[1] == 't') {
         startPtr++;
@@ -242,7 +242,7 @@ flag readTexDefs(
 
 
   tmpPtr = startPtr;
-  while (1) {
+  while (true) {
     if (tmpPtr[0] == '$') {
       if (tmpPtr[1] == ')') {
         break;
@@ -261,7 +261,7 @@ flag readTexDefs(
 
 
   tmpPtr2 = tmpPtr;
-  while (1) {
+  while (true) {
     if (tmpPtr2[0] == '$') {
       if (tmpPtr2[1] == 't') {
         print2(
@@ -287,7 +287,7 @@ flag readTexDefs(
     numSymbs = 0;
     fbPtr = startPtr;
 
-    while (1) {
+    while (true) {
 
 
       fbPtr = fbPtr + texDefWhiteSpaceLen(fbPtr);
@@ -421,7 +421,7 @@ flag readTexDefs(
       }
 
 
-      while (1) {
+      while (true) {
 
 
         fbPtr = fbPtr + texDefWhiteSpaceLen(fbPtr);
@@ -657,7 +657,7 @@ flag readTexDefs(
     for (i = 0; i < numSymbs; i++) {
       tmpPtr = g_TexDefs[i].texEquiv;
       k = 0;
-      while (1) {
+      while (true) {
         j = instr(k + 1, tmpPtr, "IMG SRC=");
         if (j == 0) break;
         k = instr(j + 9, g_TexDefs[i].texEquiv, mid(tmpPtr, j + 8, 1));
@@ -799,7 +799,7 @@ long texDefWhiteSpaceLen(char *ptr)
   long i = 0;
   char tmpchr;
   char *ptr1;
-  while (1) {
+  while (true) {
     tmpchr = ptr[i];
     if (!tmpchr) return (i);
     if (isalnum((unsigned char)(tmpchr))) return (i);
@@ -808,7 +808,7 @@ long texDefWhiteSpaceLen(char *ptr)
 
     if (tmpchr == '/') {
       if (ptr[i + 1] == '*') {
-        while (1) {
+        while (true) {
           ptr1 = strchr(ptr + i + 2, '*');
           if (!ptr1) {
             return(i + (long)strlen(&ptr[i]));
@@ -837,7 +837,7 @@ long texDefTokenLen(char *ptr)
   char *ptr1;
   tmpchr = ptr[i];
   if (tmpchr == '\"') {
-    while (1) {
+    while (true) {
       ptr1 = strchr(ptr + i + 1, '\"');
       if (!ptr1) {
         return(i + (long)strlen(&ptr[i]));
@@ -847,7 +847,7 @@ long texDefTokenLen(char *ptr)
     }
   }
   if (tmpchr == '\'') {
-    while (1) {
+    while (true) {
       ptr1 = strchr(ptr + i + 1, '\'');
       if (!ptr1) {
         return(i + (long)strlen(&ptr[i]));
@@ -857,7 +857,7 @@ long texDefTokenLen(char *ptr)
     }
   }
   if (ispunct((unsigned char)tmpchr)) return (1);
-  while (1) {
+  while (true) {
     tmpchr = ptr[i];
     if (!isalnum((unsigned char)tmpchr)) return (i);
     i++;
@@ -1063,7 +1063,7 @@ vstring asciiMathToTex(vstring mathComment, long statemNum)
   let(&texLine, "");
   let(&lastTex, "");
 
-  while(1) {
+  while(true) {
     i = whiteSpaceLen(srcptr);
     srcptr = srcptr + i;
     i = tokenLen(srcptr);
@@ -1146,7 +1146,7 @@ vstring getCommentModeSection(vstring *srcptr, char *mode)
   }
 
   ptr = (*srcptr) + 1;
-  while (1) {
+  while (true) {
     if (ptr[0] == DOLLAR_SUBST ) {
       switch (ptr[1]) {
         case 'l':
@@ -1570,7 +1570,7 @@ void printTexHeader(flag texHeaderFlag)
 
       let(&tmpStr, htmlExtUrl);
       i = 1;
-      while (1) {
+      while (true) {
         i = instr(i, tmpStr, "*");
         if (i == 0) break;
         let(&tmpStr, cat(left(tmpStr, i - 1),
@@ -1735,9 +1735,9 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
     mode = 1;
     let(&tmp, "");
     let(&tmpMasked, "");
-    while (1) {
+    while (true) {
       pos1 = 0;
-      while (1) {
+      while (true) {
         pos1 = instr(pos1 + 1, cmt, "`");
         if (!pos1) break;
         if (cmt[pos1] == '`') {
@@ -1795,7 +1795,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
       ) {
     pos1 = 0;
-    while (1) {
+    while (true) {
       pos1 = instr(pos1 + 1, cmtMasked, "~");
       if (!pos1) break;
       if (cmtMasked[pos1] == '~') {
@@ -1803,7 +1803,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         continue;
       }
 
-      while (1) {
+      while (true) {
         if (cmtMasked[pos1] == 0) break;
         if (isspace((unsigned char)(cmtMasked[pos1]))) {
           pos1++;
@@ -1813,7 +1813,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         }
       }
 
-      while (1) {
+      while (true) {
         if (cmtMasked[pos1] == 0) break;
         if (!(isspace((unsigned char)(cmtMasked[pos1])))) {
           if (cmtMasked[pos1] == '_') {
@@ -1840,7 +1840,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
 
     pos1 = 0;
-    while (1) {
+    while (true) {
       pos1 = instr(pos1 + 1, cmt, "$");
       if (!pos1) break;
 
@@ -1904,7 +1904,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
   if (g_htmlFlag != 0
       && processUnderscores != 0) {
     pos1 = 0;
-    while (1) {
+    while (true) {
 
 
       pos1 = instr(pos1 + 1, cmtMasked, "_");
@@ -1916,7 +1916,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
 
       pos2 = pos1 - 1;
-      while (1) {
+      while (true) {
         if (pos2 == 0 || isspace((unsigned char)(cmt[pos2]))) break;
         pos2--;
       }
@@ -1945,7 +1945,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
 
             pos2 = pos1 + 1;
-            while (1) {
+            while (true) {
               if (!cmt[pos2]) break;
 
               if (isspace((unsigned char)(cmt[pos2]))
@@ -2019,7 +2019,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
   if (!g_htmlFlag) {
     i = 1;
     pos1 = 0;
-    while (1) {
+    while (true) {
 
       pos1 = instr(pos1 + 1, cmtMasked, "\"");
       if (pos1 == 0) break;
@@ -2054,7 +2054,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
     }
     if (bibFileName[0]) {
       pos1 = 0;
-      while (1) {
+      while (true) {
 
 
 
@@ -2118,7 +2118,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
               let(&bibFileContentsUpper, edit(bibFileContents, 32));
               htmlpos1 = 0;
-              while (1) {
+              while (true) {
                 htmlpos1 = instr(htmlpos1 + 1, bibFileContentsUpper, "<ANAME=");
                 if (!htmlpos1) break;
                 htmlpos1 = htmlpos1 + 7;
@@ -2344,7 +2344,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
 
   pos1 = -1;
-  while (1) {
+  while (true) {
     pos1 = instr(pos1 + 2, cmt, "<HTML>");
     if (pos1 == 0
       || convertToHtml == 0
@@ -2359,7 +2359,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
     let(&cmt, cat(left(cmt, pos1 - 1), "\n", right(cmt, pos1), NULL));
   }
   pos1 = -1;
-  while (1) {
+  while (true) {
     pos1 = instr(pos1 + 2, cmt, "</HTML>");
     if (pos1 == 0
       || convertToHtml == 0
@@ -2380,11 +2380,11 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
   g_outputToString = 1;
 
 
-  while (1) {
+  while (true) {
     lineStart = cmtptr;
     textMode = 1;
     lastLineFlag = 0;
-    while (1) {
+    while (true) {
       if (cmtptr[0] == 0) {
         lastLineFlag = 1;
         break;
@@ -2429,7 +2429,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
     let(&outputLine, "");
     srcptr = sourceLine;
-    while (1) {
+    while (true) {
       modeSection = getCommentModeSection(&srcptr, &mode);
       if (!mode) break;
       let(&modeSection, right(modeSection, 3));
@@ -2595,7 +2595,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
     if (!g_htmlFlag) {
 
 
-      while (1) {
+      while (true) {
         pos1 = instr(1, outputLine, "<PRE>");
         if (pos1) {
           let(&outputLine, cat(left(outputLine, pos1 - 1), "\\begin{verbatim} ",
@@ -2604,7 +2604,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
           break;
         }
       }
-      while (1) {
+      while (true) {
         pos1 = instr(1, outputLine, "</PRE>");
         if (pos1) {
           let(&outputLine, cat(left(outputLine, pos1 - 1), "\\end{verbatim} ",
@@ -2614,7 +2614,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         }
       }
 
-      while (1) {
+      while (true) {
         pos1 = instr(1, outputLine, "<HTML>");
         if (pos1) {
           let(&outputLine, cat(left(outputLine, pos1 - 1),
@@ -2623,7 +2623,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
           break;
         }
       }
-      while (1) {
+      while (true) {
         pos1 = instr(1, outputLine, "</HTML>");
         if (pos1) {
           let(&outputLine, cat(left(outputLine, pos1 - 1),
@@ -4430,7 +4430,7 @@ flag getSectionHeadings(long stmt,
 
   pos = 0;
   pos2 = 0;
-  while (1) {
+  while (true) {
     pos1 = pos;
     pos = instr(pos + 1, labelStr, "$(\n" HUGE_DECORATION);
 
@@ -4482,7 +4482,7 @@ flag getSectionHeadings(long stmt,
     }
   }
   pos2 = 0;
-  while (1) {
+  while (true) {
     pos1 = pos;
     pos = instr(pos + 1, labelStr, "$(\n" BIG_DECORATION);
 
@@ -4534,7 +4534,7 @@ flag getSectionHeadings(long stmt,
     }
   }
   pos2 = 0;
-  while (1) {
+  while (true) {
     pos1 = pos;
     pos = instr(pos + 1, labelStr, "$(\n" SMALL_DECORATION);
 
@@ -4588,7 +4588,7 @@ flag getSectionHeadings(long stmt,
 
 
   pos2 = 0;
-  while (1) {
+  while (true) {
     pos1 = pos;
     pos = instr(pos + 1, labelStr, "$(\n" TINY_DECORATION);
 
@@ -5222,7 +5222,7 @@ flag writeBibliography(vstring bibFile,
 
 
   if (noFileCheck == 0) {
-    while (1) {
+    while (true) {
       if (!linput(list1_fp, NULL, &str1)) {
         print2(
   "?Error: Could not find \"<!-- #START# -->\" line in input file \"%s\".\n",
@@ -5240,7 +5240,7 @@ flag writeBibliography(vstring bibFile,
 
   p2 = 1;
   lines = 0;
-  while (1) {
+  while (true) {
 
     if (p2 == 2) {
 
@@ -5296,7 +5296,7 @@ flag writeBibliography(vstring bibFile,
 
 
       j = 0;
-      while (1) {
+      while (true) {
         j = instr(j + 1, str1, " p. ");
         if (!j) break;
         if (j) {
@@ -5315,7 +5315,7 @@ flag writeBibliography(vstring bibFile,
 
       j = 0;
       n = 0;
-      while (1) {
+      while (true) {
         j = instr(j + 1, str1, "[");
         if (!j) break;
 
@@ -5549,7 +5549,7 @@ flag writeBibliography(vstring bibFile,
 
 
   if (noFileCheck == 0) {
-    while (1) {
+    while (true) {
       if (!linput(list1_fp, NULL, &str1)) {
         print2(
   "?Error: Could not find \"<!-- #END# -->\" line in input file \"%s\".\n",
@@ -5569,7 +5569,7 @@ flag writeBibliography(vstring bibFile,
 
   if (noFileCheck == 0 && errorsOnly == 0) {
 
-    while (1) {
+    while (true) {
       if (!linput(list1_fp, NULL, &str1)) {
         break;
       }
@@ -5678,7 +5678,7 @@ long getMathboxLoc(nmbrString **mathboxStart, nmbrString **mathboxEnd,
     let(&comment, left(g_Statement[stmt].labelSectionPtr,
         g_Statement[stmt].labelSectionLen));
     p = 0;
-    while (1) {
+    while (true) {
       q = instr(p + 1, comment, MB_TAG);
       if (q == 0) break;
       p = q;

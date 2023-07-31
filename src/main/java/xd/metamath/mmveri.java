@@ -741,7 +741,7 @@ if(db7)printLongLine(cat("result ", nmbrCvtMToVString(result), NULL),""," ");
   } else {
 
 
-    while (1) {
+    while (true) {
       v--;
       if (v < 0) {
         C.go2("returnPoint");

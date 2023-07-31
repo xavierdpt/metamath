@@ -190,7 +190,7 @@ static final long SYNTAX =D.SYNTAX;
   tagStartCounter = 0;
   tagEndCounter = 0;
 
-  while (1) {
+  while (true) {
 
     if (g_listMode) {
 
@@ -663,7 +663,7 @@ static final long SYNTAX =D.SYNTAX;
             outMsgFlag = 1;
         }
         let(&bufferedLine, "");
-        while (1) {
+        while (true) {
           if (bufferedLine[0]) {
 
             let(&str1, bufferedLine);
@@ -779,7 +779,7 @@ static final long SYNTAX =D.SYNTAX;
               changedLines++;
               for (i = 0; i < (signed)(strlen(g_fullArg[2])); i++) {
                 p = 0;
-                while (1) {
+                while (true) {
                   p = instr(p + 1, str2, chr(((vstring)(g_fullArg[2]))[i]));
                   if (!p) break;
 
@@ -1058,7 +1058,7 @@ static final long SYNTAX =D.SYNTAX;
         p = 0; q = 0;
         j = 0;
         let(&str3, "");
-        while (1) {
+        while (true) {
           let(&str1, "");
           if (p1) {
             p1 = linput(list1_fp, NULL, &str1);
@@ -1148,7 +1148,7 @@ static final long SYNTAX =D.SYNTAX;
             }
             p1++;
             p = 0;
-            while (1) {
+            while (true) {
               p = instr(p + 1, str1, g_fullArg[2]);
               if (!p) break;
               p2++;
@@ -1227,7 +1227,7 @@ static final long SYNTAX =D.SYNTAX;
         let(&str4, cat(g_fullArg[1], ",", NULL));
         lines = 0;
         j = 0;
-        while (1) {
+        while (true) {
           if (!str4[0]) break;
           p = instr(1, str4, ",");
           let(&str3, left(str4, p - 1));
@@ -1469,7 +1469,7 @@ static final long SYNTAX =D.SYNTAX;
       if (list1_fp == NULL) bug(1117);
 
 
-      while (1) {
+      while (true) {
         if (!linput(list1_fp, NULL, &str1)) {
           print2(
 "?Error: Could not find \"<!-- #START# -->\" line in input file \"%s\".\n",
@@ -1652,7 +1652,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
 
-      while (1) {
+      while (true) {
         if (!linput(list1_fp, NULL, &str1)) {
           print2(
 "?Error: Could not find \"<!-- #END# -->\" line in input file \"%s\".\n",
@@ -1668,7 +1668,7 @@ static final long SYNTAX =D.SYNTAX;
       if (tmpFlag) C.go2("wrrecent_error");
 
 
-      while (1) {
+      while (true) {
         if (!linput(list1_fp, NULL, &str1)) {
           break;
         }
@@ -3515,7 +3515,7 @@ static final long SYNTAX =D.SYNTAX;
         }
       } else {
         q = 0;
-        while (1) {
+        while (true) {
           g_proofChangedFlag = 0;
           autoUnify(0);
           for (s = m - 1; s >= 0; s--) {
@@ -5119,13 +5119,13 @@ static final long SYNTAX =D.SYNTAX;
         }
         let(&str1, left(str3, q + s));
 
-        while (1) {
+        while (true) {
           p = instr(1, str1, "$?");
           if (!p) break;
           let(&str1, cat(left(str1, p - 1), chr(3), right(str1, p + 2), NULL));
         }
 
-        while (1) {
+        while (true) {
           p = instr(1, str1, "?");
           if (!p) break;
           let(&str1, cat(left(str1, p - 1), chr(3), right(str1, p + 1), NULL));
@@ -5134,25 +5134,25 @@ static final long SYNTAX =D.SYNTAX;
 
 
 
-        while (1) {
+        while (true) {
           p = instr(1, str1, " $* ");
           if (!p) break;
 
           let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 4), NULL));
         }
-        while (1) {
+        while (true) {
           p = instr(1, str1, "$*");
           if (!p) break;
 
           let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 2), NULL));
         }
 
-        while (1) {
+        while (true) {
           p = instr(1, str1, " $ ");
           if (!p) break;
           let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 3), NULL));
         }
-        while (1) {
+        while (true) {
           p = instr(1, str1, "$");
           if (!p) break;
           let(&str1, cat(left(str1, p - 1), chr(2), right(str1, p + 1), NULL));
@@ -5519,7 +5519,7 @@ static final long SYNTAX =D.SYNTAX;
     if (cmdMatches("MORE")) {
       list1_fp = fSafeOpen(g_fullArg[1], "r", 0);
       if (!list1_fp) continue;
-      while (1) {
+      while (true) {
         if (!linput(list1_fp, NULL, &str1)) break;
 
         if (!print2("%s\n", str1)) break;

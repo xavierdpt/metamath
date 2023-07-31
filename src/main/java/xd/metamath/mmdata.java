@@ -656,7 +656,7 @@ flag matches(vstring testString, vstring pattern, char wildCard,
 
   pctr = 0;
   i = 0;
-  while (1) {
+  while (true) {
     if (pattern[ppos + 1 + i] == wildCard) {
       tpos = tpos + pctr + i;
       ppos = ppos + 1 + i;
@@ -1249,7 +1249,7 @@ vstring nmbrCvtRToVString(nmbrString *proof,
       if (nmbrElementIn(1, localLabels, step)) {
 
         let(&tmpStr, str((double)nextLocLabNum));
-        while (1) {
+        while (true) {
           voidPtr = (void *)bsearch(tmpStr,
               g_allLabelKeyBase, (size_t)g_numAllLabelKeys,
               sizeof(long), labelSrchCmp);
@@ -1511,7 +1511,7 @@ nmbrString *nmbrSquishProof(nmbrString *proof)
         dummyStep + 1));
     matchStep = step + 1;
     foundFlag = 0;
-    while (1) {
+    while (true) {
       matchStep = nmbrInstr(matchStep + 1, newProof, subProof);
       if (!matchStep) break;
       foundFlag = 1;
@@ -1878,7 +1878,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
 
         numchrs = 1;
         k = lab / lettersLen;
-        while (1) {
+        while (true) {
           if (!k) break;
           numchrs++;
           k = (k - 1) / digitsLen;
@@ -2011,7 +2011,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
     if (lab < 0) bug(1373);
     numchrs = 1;
     i = lab / lettersLen;
-    while (1) {
+    while (true) {
       if (!i) break;
       numchrs++;
       i = (i - 1) / digitsLen;
@@ -2037,7 +2037,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
     i = 1;
     output[outputLen - i] = letters[(j - 1) % lettersLen];
     j = (j - 1) / lettersLen;
-    while (1) {
+    while (true) {
       if (!j) break;
       i++;
       output[outputLen - i] = digits[(j - 1) % digitsLen];
@@ -2674,7 +2674,7 @@ long getSourceIndentation(long statemNum) {
   if (fbPtr[0] == 0) return 0;
   startLabel = g_Statement[statemNum].labelSectionPtr;
   if (startLabel[0] == 0) return 0;
-  while (1) {
+  while (true) {
     if (fbPtr <= startLabel) break;
     if (fbPtr[0] == '\n') break;
     if (fbPtr[0] == ' ') {

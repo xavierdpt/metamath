@@ -90,7 +90,7 @@ flag print2(char* fmt,...)
       && printedLines >=  g_screenHeight && !g_outputToString)
       || backFromCmdInput) {
 
-    while(1) {
+    while(true) {
       if (backFromCmdInput && backBufferPos == pntrLen(backBuffer))
         break;
       if (backBufferPos < 1 || backBufferPos > pntrLen(backBuffer)) {
@@ -429,7 +429,7 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
       }
     }
     i = 0;
-    while (1) {
+    while (true) {
       i = instr(i + 1, multiLine, "Arial Narrow");
       if (i) multiLine[i + 4] = QUOTED_SPACE;
       else break;
@@ -592,7 +592,7 @@ vstring cmdInput(File stream, vstring ask)
   long i;
     static final long  CMD_BUFFER_SIZE =D.CMD_BUFFER_SIZE;
 
-  while (1) {
+  while (true) {
     if (ask != NULL && !g_commandFileSilentFlag) {
       printf("%s",ask);
 #if __STDC__
@@ -726,7 +726,7 @@ vstring cmdInput1(vstring ask)
   g_quitPrint = 0;
   localScrollMode = 1;
 
-  while (1) {
+  while (true) {
     if (g_commandFileNestingLevel == 0) {
       commandLn = cmdInput(stdin, ask1);
       if (!commandLn) {
@@ -1064,7 +1064,7 @@ vstring fGetTmpName(vstring filePrefix)
   File fp;
   vstring fname = "";
   static long counter = 0;
-  while (1) {
+  while (true) {
     counter++;
     let(&fname, cat(filePrefix, str((double)counter), ".tmp", NULL));
     fp = fopen(fname, "r");

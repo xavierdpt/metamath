@@ -141,7 +141,7 @@ flag processCommandLine()
         C.go2("pclbad");
 
       i = 1;
-      while (1) {
+      while (true) {
         i++;
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
@@ -175,7 +175,7 @@ flag processCommandLine()
 
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -209,7 +209,7 @@ flag processCommandLine()
         }
 
         i = 1;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -257,7 +257,7 @@ flag processCommandLine()
 
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -313,7 +313,7 @@ flag processCommandLine()
 
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -352,7 +352,7 @@ flag processCommandLine()
 
 
         i = 3;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -426,7 +426,7 @@ flag processCommandLine()
 
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -473,7 +473,7 @@ flag processCommandLine()
 
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -502,7 +502,7 @@ flag processCommandLine()
           C.go2("pclbad");
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -526,7 +526,7 @@ flag processCommandLine()
           C.go2("pclbad");
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -567,7 +567,7 @@ flag processCommandLine()
 
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -627,7 +627,7 @@ flag processCommandLine()
 
 
         i = 1;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -687,7 +687,7 @@ flag processCommandLine()
         C.go2("pclbad");
 
       i = 2;
-      while (1) {
+      while (true) {
         i++;
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
@@ -734,7 +734,7 @@ flag processCommandLine()
 
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -761,7 +761,7 @@ flag processCommandLine()
 
 
         i = 1;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -805,7 +805,7 @@ flag processCommandLine()
 
 
       i = 1;
-      while (1) {
+      while (true) {
         i++;
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
@@ -829,7 +829,7 @@ flag processCommandLine()
         if (!getFullArg(2, "# What step number? ")) C.go2("pclbad");
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -853,7 +853,7 @@ flag processCommandLine()
       if (cmdMatches("MATCH ALL")) {
 
         i = 1;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -892,7 +892,7 @@ flag processCommandLine()
 
 
       i = 1;
-      while (1) {
+      while (true) {
         i++;
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
@@ -922,7 +922,7 @@ flag processCommandLine()
       if (!getFullArg(1, "* What statement label? ")) C.go2("pclbad");
 
       i = 1;
-      while (1) {
+      while (true) {
         i++;
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
@@ -987,7 +987,7 @@ flag processCommandLine()
       if (cmdMatches("UNIFY ALL")) {
 
         i = 1;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -1030,7 +1030,7 @@ flag processCommandLine()
       i = 2;
 
 
-      while (1) {
+      while (true) {
         i++;
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
@@ -1069,7 +1069,7 @@ flag processCommandLine()
       if (!getFullArg(2, "* With what statement label? ")) C.go2("pclbad");
 
       i = 2;
-      while (1) {
+      while (true) {
         i++;
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
@@ -1256,7 +1256,7 @@ flag processCommandLine()
 
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -1286,7 +1286,7 @@ flag processCommandLine()
 
 
         i = 2;
-        while (1) {
+        while (true) {
           i++;
           if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
           if (lastArgMatches("/")) {
@@ -1326,7 +1326,7 @@ flag processCommandLine()
 
 
       i = 2;
-      while (1) {
+      while (true) {
         i++;
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
@@ -1353,7 +1353,7 @@ flag processCommandLine()
         C.go2("pclbad");
 
       i = 1;
-      while (1) {
+      while (true) {
         i++;
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
@@ -1377,7 +1377,7 @@ flag processCommandLine()
 
 
       i = 0;
-      while (1) {
+      while (true) {
         i++;
         if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
         if (lastArgMatches("/")) {
@@ -1626,7 +1626,7 @@ flag processCommandLine()
 
 
     i = 1;
-    while (1) {
+    while (true) {
       i++;
       if (!getFullArg(i, "/|$|<$>")) C.go2("pclbad");
       if (lastArgMatches("/")) {
@@ -1829,7 +1829,7 @@ flag getFullArg(long arg, vstring cmdList1)
 
   possCmds = 0;
   p = 0;
-  while (1) {
+  while (true) {
     q = p;
     p = instr(p + 1, cat(cmdList, "|", NULL), "|");
     if (!p) break;

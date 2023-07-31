@@ -2255,7 +2255,7 @@ void showDetailStep(long statemNum, long detailStep) {
       if (nmbrElementIn(1, localLabels, step)) {
 
         let(&tmpStr1, str((double)nextLocLabNum));
-        while (1) {
+        while (true) {
           voidPtr = (void *)bsearch(tmpStr,
               g_allLabelKeyBase, (size_t)g_numAllLabelKeys,
               sizeof(long), labelSrchCmp);
@@ -4206,7 +4206,7 @@ void fixUndefinedLabels(vstring extractNeeded,
 
   p1 = 0;
   let(&(*buf), cat(*buf, " \n", NULL));
-  while (1) {
+  while (true) {
     p1 = instr(p1 + 1, *buf, "~");
     if (p1 == 0) break;
     if (p1 - 2 >= 0) {
@@ -4214,7 +4214,7 @@ void fixUndefinedLabels(vstring extractNeeded,
         continue;
       }
     }
-    while (1) {
+    while (true) {
 
       if ((*buf)[p1 + 1] == 0) break;
       if ((*buf)[p1 + 1] != ' ' && (*buf)[p1 + 1] != '\n') {

@@ -428,7 +428,7 @@ char strcmpe(vstring s1, vstring s2)
   }
 
   if (ignoreSameLineComments) {
-    while (1) {
+    while (true) {
       i = instr(1, tmps1, "/*");
       if (i == 0) break;
       i2 = instr(i + 2, tmps1, "*/");
@@ -438,7 +438,7 @@ char strcmpe(vstring s1, vstring s2)
       if (i2 - i > 7) break;
       let(&tmps1, cat(left(tmps1, i - 1), right(tmps1, i2 + 2), NULL));
     }
-    while (1) {
+    while (true) {
       i = instr(1, tmps2, "/*");
       if (i == 0) break;
       i2 = instr(i + 2, tmps2, "*/");
@@ -468,7 +468,7 @@ vstring stripAndTag(vstring line, vstring tag, flag tagBlankLines)
   i = 0;
   let(&line1, edit(line, 128 + 2048));
 
-  while (1) {
+  while (true) {
     j = instr(i + 1, line1, "/*");
     if (j == 0) break;
     i = j;

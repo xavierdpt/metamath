@@ -157,7 +157,7 @@ void interactiveMatch(long step, long maxEssential)
         g_Statement[stmt].labelName);
   } else {
 
-    while (1) {
+    while (true) {
       let(&tmpStr3, cat("What statement to select for step ", str((double)step + 1),
           " (<return> to bypass)? ", NULL));
       tmpStr2 = cmdInput1(tmpStr3);
@@ -483,7 +483,7 @@ nmbrString *replaceStatement(long replStatemNum, long prfStep,
 
   reqHyps = g_Statement[provStmtNum].numReqHyp;
 
-  while (1) {
+  while (true) {
     tmpFlag = unifyH(scheme, prfMath, &stateVector, reEntryFlag);
     if (!tmpFlag) break;
     if (tmpFlag == 2) {
@@ -1088,7 +1088,7 @@ nmbrString *expandProof(
     C.go2("RETURN_POINT");
   }
 
-  while (1) {
+  while (true) {
     nmbrLet(&targetProof, expandedTargetProof);
     targetPLen = nmbrLen(targetProof);
     foundMatch = 0;
@@ -1637,7 +1637,7 @@ if (db8)print2("%s\n", cat(space(depth+2), "Entered: ",
     reEntryFlag = 0;
 
 unNum = 0;
-    while (1) {
+    while (true) {
       tmpFlag = unifyH(scheme, mString, &stateVector, reEntryFlag);
       if (!tmpFlag) break;
       if (tmpFlag == 2) {
@@ -1887,7 +1887,7 @@ void minimizeProof(long repStatemNum, long prvStatemNum,
 
   if (allowGrowthFlag) startingPlen = nmbrLen(g_ProofInProgress.proof);
 
-  while (1) {
+  while (true) {
     plen = nmbrLen(g_ProofInProgress.proof);
     foundFlag = 0;
     for (step = plen - 1; step >= 0; step--) {
@@ -2348,7 +2348,7 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
   reEntryFlag = 0;
   minUnifWeight = -1;
   maxUnifWeight = 0;
-  while (1) {
+  while (true) {
     unifFlag = unifyH(schemeA, schemeB, &(*stateVector), reEntryFlag);
     if (unifFlag == 2) {
       printLongLine(
@@ -2468,7 +2468,7 @@ char interactiveUnify(nmbrString *schemeA, nmbrString *schemeB,
         nmbrLet(&nmbrTmp,NULL_NMBRSTRING);
       }
 
-      while(1) {
+      while(true) {
         tmpStr = cmdInput1("  Accept (A), reject (R), or quit (Q) <A>? ");
         if (!tmpStr[0]) {
 

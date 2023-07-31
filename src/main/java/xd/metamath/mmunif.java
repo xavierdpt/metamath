@@ -741,7 +741,7 @@ if(db6)print2("Impossible subst: %s\n", nmbrCvtMToVString(substitution));
 
 if(db6)print2("Substitution is '%s'\n",nmbrCvtMToVString(substitution));
   k = 1;
-  while (1) {
+  while (true) {
 
     k = nmbrElementIn(k, schA, substToken);
     if (!k) break;
@@ -773,7 +773,7 @@ if(db6)print2("Scheme A adjusted p=%ld\n",p);
     k = k + j - 1;
   }
   k = 1;
-  while (1) {
+  while (true) {
 
     k = nmbrElementIn(k, schB, substToken);
     if (!k) break;
@@ -1003,7 +1003,7 @@ nmbrString *oldStackUnkVarLen;
     }
     return (tmpFlag);
   } else {
-    while (1) {
+    while (true) {
       tmpFlag = unify(schemeA, schemeB, stateVector, 1);
       if (!tmpFlag) return (0);
 
@@ -1264,7 +1264,7 @@ char unifyH(
 
   } else {
 
-    while (1) {
+    while (true) {
       tmpFlag = unify(schemeA, schemeB, stateVector, 1);
       if (tmpFlag == 1) {
 

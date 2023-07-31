@@ -517,7 +517,7 @@ long rinstr(vstring string1, vstring string2)
   long pos = 0;
   long savePos = 0;
 
-  while (1) {
+  while (true) {
     pos = instr(pos + 1, string1, string2);
     if (!pos) break;
     savePos = pos;
