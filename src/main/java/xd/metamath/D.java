@@ -190,4 +190,8 @@ public class D {
     public static final String REVISE_MATCH = " (Revised by ";
     public static final String SHORTEN_MATCH = " (Proof shortened by ";
     public static final String END_MATCH = ".) ";
+
+    public static void main(String[] args) {
+
+    }
 }

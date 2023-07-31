@@ -2,29 +2,13 @@ package xd.metamath;
 
 public class metamath {
 
-   static final String MVERSION =D.MVERSION;
+  static final String MVERSION = D.MVERSION;
 
 
-
-
-
-void command(int argc, char *argv[]);
-
-int main(int argc, char *argv[])
-{
-
-
-
-
-
-
-
-  g_listMode = 0;
-
-
-  g_toolsMode = g_listMode;
-
-  if (!g_listMode) {
+  public static void main(String[] args) {
+    G.g_listMode.set(0);
+    G.g_toolsMode.set(G.g_listMode);
+    if (!G.g_listMode.asBoolean()) {
 
     print2("Metamath - Version %s%s", MVERSION, space(27 - (long)strlen(MVERSION)));
   }
