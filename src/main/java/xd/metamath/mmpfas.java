@@ -990,8 +990,8 @@ vstring getKnownSubProofs()
   proofLen = nmbrLen(g_ProofInProgress.proof);
 
 
-  let(&unkSubPrfSteps, space(proofLen));
-  let(&unkSubPrfStack, space(proofLen));
+  let(&unkSubPrfSteps, mmvstr.space(proofLen));
+  let(&unkSubPrfStack, mmvstr.space(proofLen));
   stackPtr = -1;
   for (prfStep = 0; prfStep < proofLen; prfStep++) {
     stmt = (g_ProofInProgress.proof)[prfStep];
@@ -1433,7 +1433,7 @@ nmbrString *proveFloating(nmbrString *mString, long statemNum, long maxEDepth,
   long prfMbox;
 
   long unNum;
-if (db8)mminou.print2("%s\n", cat(space(depth+2), "Entered: ",
+if (db8)mminou.print2("%s\n", cat(mmvstr.space(depth+2), "Entered: ",
    nmbrCvtMToVString(mString), null));
 
   prfMbox = getMathboxNum(statemNum);
@@ -1648,7 +1648,7 @@ unNum = 0;
       }
 
 unNum++;
-if (db8)mminou.print2("%s\n", cat(space(depth+2), "Testing unification ",
+if (db8)mminou.print2("%s\n", cat(mmvstr.space(depth+2), "Testing unification ",
    str((double)unNum), " statement ", g_Statement[stmt].labelName,
    ": ", nmbrCvtMToVString(scheme), null));
       reEntryFlag = 1;
@@ -1656,7 +1656,7 @@ if (db8)mminou.print2("%s\n", cat(space(depth+2), "Testing unification ",
       nmbrLet(&proof, NULL_NMBRSTRING);
       breakFlag = 0;
       for (hyp = 0; hyp < schReqHyps; hyp++) {
-if (db8)mminou.print2("%s\n", cat(space(depth+2), "Proving hyp. ",
+if (db8)mminou.print2("%s\n", cat(mmvstr.space(depth+2), "Proving hyp. ",
    str((double)(hypOrdMap[hyp])), "(#", str((double)hyp), "):  ",
    nmbrCvtMToVString(hypList[hypOrdMap[hyp]]), null));
         makeSubstPtr = makeSubstUnif(&tmpFlag, hypList[hypOrdMap[hyp]],
@@ -1779,7 +1779,7 @@ if (db8)mminou.print2("%s\n", cat(space(depth+2), "Proving hyp. ",
   nmbrLet(&hypOrdMap, NULL_NMBRSTRING);
   pntrLet(&hypProofList, NULL_PNTRSTRING);
   depth--;
-if(db8)mminou.print2("%s\n", cat(space(depth+2), "Returned: ",
+if(db8)mminou.print2("%s\n", cat(mmvstr.space(depth+2), "Returned: ",
    nmbrCvtRToVString(proof,
 
                 0,

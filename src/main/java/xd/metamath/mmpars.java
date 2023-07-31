@@ -3308,7 +3308,7 @@ void rawSourceError(char *startFile, char *ptr, long tokLen,
     endLine++;
   }
   endLine--;
-  let(&errLine, space(endLine - startLine + 1));
+  let(&errLine, mmvstr.space(endLine - startLine + 1));
   if (endLine - startLine + 1 < 0) bug(1721);
   memcpy(errLine, startLine, (size_t)(endLine - startLine) + 1);
   errorMessage(errLine, lineNum, ptr - startLine + 1, tokLen, errorMsg,
@@ -3406,7 +3406,7 @@ void sourceError(char *ptr, long tokLen, long stmtNum, vstring errMsg)
   endLine--;
 
 
-  let(&errLine, space(endLine - startLine + 1));
+  let(&errLine, mmvstr.space(endLine - startLine + 1));
   memcpy(errLine, startLine, (size_t)(endLine - startLine) + 1);
 
   if (!lineNum) {
@@ -3452,7 +3452,7 @@ vstring shortDumpRPNStack() {
 
   for (i = 0; i < g_WrkProof.RPNStackPtr; i++) {
      k = g_WrkProof.RPNStack[i];
-     let(&tmpStr,space(g_WrkProof.stepSrcPtrNmbr[k]));
+     let(&tmpStr,mmvstr.space(g_WrkProof.stepSrcPtrNmbr[k]));
      memcpy(tmpStr,g_WrkProof.stepSrcPtrPntr[k],
          (size_t)(g_WrkProof.stepSrcPtrNmbr[k]));
      let(&tmpStr2,cat(
@@ -3743,18 +3743,18 @@ vstring outputStatement(long stmt,
     dollarDpos = 0;
   }
 
-  let(&labelSection, space(g_Statement[stmt].labelSectionLen));
+  let(&labelSection, mmvstr.space(g_Statement[stmt].labelSectionLen));
   memcpy(labelSection, g_Statement[stmt].labelSectionPtr,
       (size_t)(g_Statement[stmt].labelSectionLen));
 
   if (stmt == g_statements + 1) return labelSection;
 
 
-  let(&mathSection, space(g_Statement[stmt].mathSectionLen));
+  let(&mathSection, mmvstr.space(g_Statement[stmt].mathSectionLen));
   memcpy(mathSection, g_Statement[stmt].mathSectionPtr,
       (size_t)(g_Statement[stmt].mathSectionLen));
 
-  let(&proofSection, space(g_Statement[stmt].proofSectionLen));
+  let(&proofSection, mmvstr.space(g_Statement[stmt].proofSectionLen));
   memcpy(proofSection, g_Statement[stmt].proofSectionPtr,
       (size_t)(g_Statement[stmt].proofSectionLen));
 
@@ -3840,7 +3840,7 @@ vstring outputStatement(long stmt,
           slen = 2;
         } else {
 
-          let(&labelSection, cat(labelSection, space(indent), null));
+          let(&labelSection, cat(labelSection, mmvstr.space(indent), null));
           slen = slen + indent;
         }
         if (g_Statement[stmt].type == d_) {
@@ -3860,7 +3860,7 @@ vstring outputStatement(long stmt,
 
                 dollarDpos = indent + (long)C.strlen(mathSection) + 4;
 
-                let(&labelSection, cat("\n", space(indent), null));
+                let(&labelSection, cat("\n", mmvstr.space(indent), null));
               }
             } else {
               dollarDpos = indent + (long)C.strlen(mathSection) + 4;
@@ -3944,7 +3944,7 @@ vstring outputStatement(long stmt,
 
             let(&comment, cat(left(comment, pos),
                 (comment[pos + length] != '\n')
-                    ? space(indent + 3)
+                    ? mmvstr.space(indent + 3)
                     : "",
                 right(comment, pos + length + 1), null));
           }
@@ -3953,8 +3953,8 @@ vstring outputStatement(long stmt,
           if (g_outputToString == 1) bug(1726);
           g_outputToString = 1;
           let(&g_printString, "");
-          printLongLine(cat(space(indent), comment, null),
-              space(indent + 3), " ");
+          printLongLine(cat(mmvstr.space(indent), comment, null),
+                  mmvstr.space(indent + 3), " ");
           let(&comment, g_printString);
           let(&g_printString, "");
           g_outputToString = 0;
@@ -3984,7 +3984,7 @@ vstring outputStatement(long stmt,
 
 
         let(&labelSection, cat(labelSection, comment,
-            space(indent), g_Statement[stmt].labelName, " ", null));
+                mmvstr.space(indent), g_Statement[stmt].labelName, " ", null));
         break;
       case e_:
       case f_:
@@ -4005,7 +4005,7 @@ vstring outputStatement(long stmt,
         }
 
         let(&labelSection, cat(labelSection,
-            space(indent), g_Statement[stmt].labelName, " ", null));
+                mmvstr.space(indent), g_Statement[stmt].labelName, " ", null));
         break;
       default: bug(1727);
     }
@@ -4290,7 +4290,7 @@ vstring rewrapComment(vstring comment1)
   }
 
   length = (long)C.strlen(comment);
-  let(&commentTemplate, space(length));
+  let(&commentTemplate, mmvstr.space(length));
   for (pos = 3; pos < length - 2; pos++) {
     if (comment[pos] == ' ') {
       if (comment[pos - 1] == '~' && comment[pos - 2] != '~') {

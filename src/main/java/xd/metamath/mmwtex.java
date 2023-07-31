@@ -1068,7 +1068,7 @@ vstring asciiMathToTex(vstring mathComment, long statemNum)
     srcptr = srcptr + i;
     i = tokenLen(srcptr);
     if (!i) break;
-    let(&token, space(i));
+    let(&token, mmvstr.space(i));
     memcpy(token, srcptr, (size_t)i);
     srcptr = srcptr + i;
     tex = tokenToTex(token, statemNum);
@@ -1154,7 +1154,7 @@ vstring getCommentModeSection(vstring *srcptr, char *mode)
         case 'n':
         case ')':
           if (ptr[1] == ')') bug(2318);
-          let(&modeSection, space(ptr - (*srcptr)));
+          let(&modeSection, mmvstr.space(ptr - (*srcptr)));
           memcpy(modeSection, *srcptr, (size_t)(ptr - (*srcptr)));
           if (addMode) {
             let(&modeSection, cat(chr(DOLLAR_SUBST), "n",  modeSection,
@@ -1166,7 +1166,7 @@ vstring getCommentModeSection(vstring *srcptr, char *mode)
       }
     } else {
       if (ptr[0] == 0) {
-          let(&modeSection, space(ptr - (*srcptr)));
+          let(&modeSection, mmvstr.space(ptr - (*srcptr)));
           memcpy(modeSection, *srcptr, (size_t)(ptr - (*srcptr)));
           if (addMode) {
             let(&modeSection, cat(chr(DOLLAR_SUBST), "n",  modeSection,
@@ -1756,7 +1756,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         let(&tmpStr, left(cmt, pos1));
 
         if (mode == -1) {
-          let(&tmpStrMasked, cat(space(pos1 - 1),
+          let(&tmpStrMasked, cat(mmvstr.space(pos1 - 1),
               mid(cmtMasked, pos1, 1), null));
         } else {
           let(&tmpStrMasked, left(cmtMasked, pos1));
@@ -2251,7 +2251,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
           let(&tmp, mid(cmt, i + 2, 8));
           if (C.strlen(tmp) < 8)
-              let(&tmp, cat(tmp, space(8 - (long)C.strlen(tmp)), null));
+              let(&tmp, cat(tmp, mmvstr.space(8 - (long)C.strlen(tmp)), null));
           if (!strcmp(" &quot;", left(tmp, 7))
               && strchr(CLOSING_PUNCTUATION, tmp[7]) != null) {
             let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), null));
@@ -2406,7 +2406,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
       }
       cmtptr++;
     }
-    let(&sourceLine, space(cmtptr - lineStart));
+    let(&sourceLine, mmvstr.space(cmtptr - lineStart));
     memcpy(sourceLine, lineStart, (size_t)(cmtptr - lineStart));
     cmtptr++;
 
@@ -3867,7 +3867,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
       if (s == s + 0) C.go2("skip_date");
 
 
-      let(&str1, space(g_Statement[s + 1].labelSectionLen));
+      let(&str1, mmvstr.space(g_Statement[s + 1].labelSectionLen));
       memcpy(str1, g_Statement[s + 1].labelSectionPtr,
           (size_t)(g_Statement[s + 1].labelSectionLen));
       let(&str1, edit(str1, 2));
@@ -4423,7 +4423,7 @@ flag getSectionHeadings(long stmt,
   pos4 = (g_Statement[stmt].labelSectionPtr
         - g_Statement[pos3].labelSectionPtr)
         + g_Statement[stmt].labelSectionLen;
-  let(&labelStr, space(pos4));
+  let(&labelStr, mmvstr.space(pos4));
   memcpy(labelStr, g_Statement[pos3].labelSectionPtr,
       (size_t)(pos4));
 
@@ -5303,7 +5303,7 @@ flag writeBibliography(vstring bibFile,
           for (k = j + 4; k <= (signed)(C.strlen(str1)) + 1; k++) {
             if (!isdigit((unsigned char)(str1[k - 1]))) {
               let(&str1, cat(left(str1, j + 2),
-                  space(4 - (k - (j + 4))), right(str1, j + 3), null));
+                      mmvstr.space(4 - (k - (j + 4))), right(str1, j + 3), null));
 
               let(&str1, cat(left(str1, j + 7), "###", right(str1, j + 8),
                   null));
@@ -5449,7 +5449,7 @@ flag writeBibliography(vstring bibFile,
         let(&oldstr, cat(
 
 
-            str3, " ", str4, space(20 - (long)C.strlen(str2)), str2,
+            str3, " ", str4, mmvstr.space(20 - (long)C.strlen(str2)), str2,
             "|||",
 
             "<A HREF=\"", g_Statement[i].labelName,

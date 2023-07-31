@@ -468,7 +468,7 @@ vstring string(long n, char c)
 
 
 
-vstring space(long n)
+static vstring space(long n)
 {
   return (string(n, ' '));
 }

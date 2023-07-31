@@ -378,7 +378,7 @@ void typeStatement(long showStmt,
             if (!g_oldTexFlag) {
 
             } else {
-              let(&str3, space((long)C.strlen(str2)));
+              let(&str3, mmvstr.space((long)C.strlen(str2)));
               printTexLongMath(g_Statement[k].mathString,
                   str2, str3, 0, 0);
             }
@@ -456,7 +456,7 @@ void typeStatement(long showStmt,
         g_outputToString = 0;
 
       } else {
-        let(&str3, space((long)C.strlen(str2)));
+        let(&str3, mmvstr.space((long)C.strlen(str2)));
         printTexLongMath(g_Statement[showStmt].mathString,
             str2, str3, 0, 0);
       }
@@ -1697,33 +1697,33 @@ void typeProof(long statemNum,
 
       if (noIndentFlag) {
         let(&startPrefix, cat(
-            space(maxStepNumLen - (long)C.strlen(str((double)(stepRenumber[step])))),
+                mmvstr.space(maxStepNumLen - (long)C.strlen(str((double)(stepRenumber[step])))),
             str((double)(stepRenumber[step])),
             " ",
             srcLabel,
-            space(splitColumn - (long)C.strlen(srcLabel) - (long)C.strlen(locLabDecl) - 1
+                mmvstr.space(splitColumn - (long)C.strlen(srcLabel) - (long)C.strlen(locLabDecl) - 1
                 - maxStepNumLen - 1),
             " ", locLabDecl,
             null));
         if (pipFlag) {
           let(&tgtPrefix, startPrefix);
           let(&srcPrefix, cat(
-              space(maxStepNumLen - (long)C.strlen(str((double)(stepRenumber[step])))),
-              space((long)C.strlen(str((double)(stepRenumber[step])))),
+                  mmvstr.space(maxStepNumLen - (long)C.strlen(str((double)(stepRenumber[step])))),
+                  mmvstr.space((long)C.strlen(str((double)(stepRenumber[step])))),
               " ",
-              space(splitColumn - 1
+                  mmvstr.space(splitColumn - 1
                   - maxStepNumLen),
               null));
           let(&userPrefix, cat(
-              space(maxStepNumLen - (long)C.strlen(str((double)(stepRenumber[step])))),
-              space((long)C.strlen(str((double)(stepRenumber[step])))),
+                  mmvstr.space(maxStepNumLen - (long)C.strlen(str((double)(stepRenumber[step])))),
+                  mmvstr.space((long)C.strlen(str((double)(stepRenumber[step])))),
               " ",
               "(User)",
-              space(splitColumn - (long)C.strlen("(User)") - 1
+                  mmvstr.space(splitColumn - (long)C.strlen("(User)") - 1
                   - maxStepNumLen),
               null));
         }
-        let(&contPrefix, space((long)C.strlen(startPrefix) + 4));
+        let(&contPrefix, mmvstr.space((long)C.strlen(startPrefix) + 4));
       } else {
 
 
@@ -1732,52 +1732,52 @@ void typeProof(long statemNum,
           if (relativeStepNums[step] < 0) {
             let(&tmpStr, cat(" ", str((double)(relativeStepNums[step])), null));
           }
-          let(&tmpStr, cat(tmpStr, space(maxStepNumOffsetLen
+          let(&tmpStr, cat(tmpStr, mmvstr.space(maxStepNumOffsetLen
               - (long)(C.strlen(tmpStr))), null));
         }
 
         let(&startStringWithNum, cat(
-            space(maxStepNumLen - (long)C.strlen(str((double)(stepRenumber[step])))),
+                mmvstr.space(maxStepNumLen - (long)C.strlen(str((double)(stepRenumber[step])))),
             str((double)(stepRenumber[step])),
             tmpStr,
             " ", null));
-        let(&startStringWithoutNum, space(maxStepNumLen + 1));
+        let(&startStringWithoutNum, mmvstr.space(maxStepNumLen + 1));
 
 
         let(&startPrefix, cat(
             startStringWithNum,
-            space(indentationLevel[step] * PF_INDENT_INC
+                mmvstr.space(indentationLevel[step] * PF_INDENT_INC
                 - (long)C.strlen(locLabDecl)),
             locLabDecl,
             tgtLabel,
             srcLabel,
-            space(maxLabelLen - (long)C.strlen(tgtLabel)
+                mmvstr.space(maxLabelLen - (long)C.strlen(tgtLabel)
                 - (long)C.strlen(srcLabel)),
             null));
         if (pipFlag) {
           let(&tgtPrefix, cat(
               startStringWithNum,
-              space(indentationLevel[step] * PF_INDENT_INC - (long)C.strlen(locLabDecl)),
+                  mmvstr.space(indentationLevel[step] * PF_INDENT_INC - (long)C.strlen(locLabDecl)),
               locLabDecl,
               tgtLabel,
-              space((long)C.strlen(srcLabel)),
-              space(maxLabelLen - (long)C.strlen(tgtLabel) - (long)C.strlen(srcLabel)),
+                  mmvstr.space((long)C.strlen(srcLabel)),
+                  mmvstr.space(maxLabelLen - (long)C.strlen(tgtLabel) - (long)C.strlen(srcLabel)),
               null));
           let(&srcPrefix, cat(
               startStringWithoutNum,
-              space(indentationLevel[step] * PF_INDENT_INC - (long)C.strlen(locLabDecl)),
-              space((long)C.strlen(locLabDecl)),
-              space((long)C.strlen(tgtLabel)),
+                  mmvstr.space(indentationLevel[step] * PF_INDENT_INC - (long)C.strlen(locLabDecl)),
+                  mmvstr.space((long)C.strlen(locLabDecl)),
+                  mmvstr.space((long)C.strlen(tgtLabel)),
               srcLabel,
-              space(maxLabelLen - (long)C.strlen(tgtLabel) - (long)C.strlen(srcLabel)),
+                  mmvstr.space(maxLabelLen - (long)C.strlen(tgtLabel) - (long)C.strlen(srcLabel)),
               null));
           let(&userPrefix, cat(
               startStringWithoutNum,
-              space(indentationLevel[step] * PF_INDENT_INC - (long)C.strlen(locLabDecl)),
-              space((long)C.strlen(locLabDecl)),
-              space((long)C.strlen(tgtLabel)),
+                  mmvstr.space(indentationLevel[step] * PF_INDENT_INC - (long)C.strlen(locLabDecl)),
+                  mmvstr.space((long)C.strlen(locLabDecl)),
+                  mmvstr.space((long)C.strlen(tgtLabel)),
               "=(User)",
-              space(maxLabelLen - (long)C.strlen(tgtLabel) - (long)C.strlen("=(User)")),
+                  mmvstr.space(maxLabelLen - (long)C.strlen(tgtLabel) - (long)C.strlen("=(User)")),
               null));
         }
         let(&contPrefix, "");
@@ -2421,7 +2421,7 @@ void showDetailStep(long statemNum, long detailStep) {
         for (i = 0; i < j; i++) {
           printLongLine(cat("     ",
               g_MathToken[getStep.sourceSubstsNmbr[i]].tokenName," ",
-              space(9 - (long)C.strlen(
+                          mmvstr.space(9 - (long)C.strlen(
                 g_MathToken[getStep.sourceSubstsNmbr[i]].tokenName)),
               nmbrCvtMToVString(getStep.sourceSubstsPntr[i]), null),
               "                ", " ");
@@ -2453,7 +2453,7 @@ void showDetailStep(long statemNum, long detailStep) {
       for (i = 0; i < j; i++) {
         printLongLine(cat("     ",
             g_MathToken[getStep.targetSubstsNmbr[i]].tokenName, " ",
-            space(9 - (long)C.strlen(
+                        mmvstr.space(9 - (long)C.strlen(
               g_MathToken[getStep.targetSubstsNmbr[i]].tokenName)),
             nmbrCvtMToVString(getStep.targetSubstsPntr[i]), null),
             "                ", " ");
@@ -2639,7 +2639,7 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
                 nmbrCvtMToVString(g_Statement[k].mathString), " $.", null),
                 "      "," ");
           } else {
-            let(&str3, space((long)C.strlen(str2)));
+            let(&str3, mmvstr.space((long)C.strlen(str2)));
             printTexLongMath(g_Statement[k].mathString,
                 str2, str3, 0, 0);
           }
@@ -2656,7 +2656,7 @@ void proofStmtSumm(long statemNum, flag essentialFlag, flag texFlag) {
             nmbrCvtMToVString(g_Statement[stmt].mathString),
             str1, " $.", null), "      ", " ");
       } else {
-        let(&str3, space((long)C.strlen(str2)));
+        let(&str3, mmvstr.space((long)C.strlen(str2)));
         printTexLongMath(g_Statement[stmt].mathString,
             str2, str3, 0, 0);
       }
@@ -2967,7 +2967,7 @@ void traceProofTreeRec(long statemNum,
       (long)indentShift);
   }
 
-  let(&outputStr, cat(space(recursDepth * INDENT_INCR - indentShift),
+  let(&outputStr, cat(mmvstr.space(recursDepth * INDENT_INCR - indentShift),
       g_Statement[statemNum].labelName, " $", chr(g_Statement[statemNum].type),
       "  \"", edit(outputStr, 8 + 128), "\"", null));
 
@@ -3047,16 +3047,16 @@ void traceProofTreeRec(long statemNum,
   }
 
   if (len(outputStr)) {
-    printLongLine(cat(space(INDENT_INCR * (recursDepth + 1) - 1 - indentShift),
+    printLongLine(cat(mmvstr.space(INDENT_INCR * (recursDepth + 1) - 1 - indentShift),
       outputStr, " (shown above)", null),
-      space(INDENT_INCR * (recursDepth + 2) - indentShift), " ");
+            mmvstr.space(INDENT_INCR * (recursDepth + 2) - indentShift), " ");
   }
 
   if (unprovedFlag) {
-    printLongLine(cat(space(INDENT_INCR * (recursDepth + 1) - indentShift),
+    printLongLine(cat(mmvstr.space(INDENT_INCR * (recursDepth + 1) - indentShift),
       "*** Statement ", g_Statement[statemNum].labelName, " has not been proved."
       , null),
-      space(INDENT_INCR * (recursDepth + 2)), " ");
+            mmvstr.space(INDENT_INCR * (recursDepth + 2)), " ");
   }
 
   let(&outputStr, "");
@@ -3356,7 +3356,7 @@ vstring bigAdd(vstring bignum1, vstring bignum2) {
   len1 = (long)C.strlen(bignum1);
   len2 = (long)C.strlen(bignum2);
   maxlen = (len1 < len2 ? len2 : len1);
-  let(&bignum3, space(maxlen + 1));
+  let(&bignum3, mmvstr.space(maxlen + 1));
   carry = 0;
   for (p = 1; p <= maxlen; p++) {
     p1 = len1 - p;
@@ -3390,7 +3390,7 @@ vstring bigSub(vstring bignum1, vstring bignum2) {
   vstring bignum3 = "";
   vstring bignum1cmpl = "";
   len1 = (long)C.strlen(bignum1);
-  let(&bignum1cmpl, space(len1));
+  let(&bignum1cmpl, mmvstr.space(len1));
   for (p = 0; p <= len1 - 1; p++) {
 
     bignum1cmpl[p] = (char)(9 - (bignum1[p] - '0') + '0');
@@ -4007,7 +4007,7 @@ void writeExtractedSource(
   }
 
 
-  let(&buf, space(g_Statement[1].labelSectionLen));
+  let(&buf, mmvstr.space(g_Statement[1].labelSectionLen));
   memcpy(buf, g_Statement[1].labelSectionPtr,
       (size_t)(g_Statement[1].labelSectionLen));
   let(&buf, left(buf, instr(1, buf, "\n") - 1));
@@ -4086,7 +4086,7 @@ void writeExtractedSource(
         fprintf(fp, "$%c", g_Statement[stmt].type);
         if (g_Statement[stmt].type != lb_ && g_Statement[stmt].type != rb_) {
 
-          let(&buf, space(g_Statement[stmt].mathSectionLen));
+          let(&buf, mmvstr.space(g_Statement[stmt].mathSectionLen));
           memcpy(buf, g_Statement[stmt].mathSectionPtr,
               (size_t)(g_Statement[stmt].mathSectionLen));
           fprintf(fp, "%s", buf);
@@ -4096,7 +4096,7 @@ void writeExtractedSource(
           } else {
 
             fprintf(fp, "$=");
-            let(&buf, space(g_Statement[stmt].proofSectionLen));
+            let(&buf, mmvstr.space(g_Statement[stmt].proofSectionLen));
             memcpy(buf, g_Statement[stmt].proofSectionPtr,
                 (size_t)(g_Statement[stmt].proofSectionLen));
             fprintf(fp, "%s$.", buf);
@@ -4837,7 +4837,7 @@ void verifyMarkup(vstring labelMatch,
 
         if (p1 - lstart > g_screenWidth) {
 
-          let(&str2, space(p1 - lstart));
+          let(&str2, mmvstr.space(p1 - lstart));
           memcpy(str2, str1 + lstart,
             (size_t)(p1 - lstart));
           printLongLine(cat("?Warning: Line number ",
@@ -5007,7 +5007,7 @@ void verifyMarkup(vstring labelMatch,
 
   if (dateSkip == 0  && topDateSkip == 0) {
 
-    let(&str1, space(g_Statement[1].labelSectionLen));
+    let(&str1, mmvstr.space(g_Statement[1].labelSectionLen));
     memcpy(str1, g_Statement[1].labelSectionPtr,
       (size_t)(g_Statement[1].labelSectionLen));
 
@@ -5873,7 +5873,7 @@ void outputMidi(long plen, nmbrString *indentationLevels,
   fprintf(midiFilePtr, "MTrk\n");
 
   let(&tmpStr, cat("Theorem ", statementLabel, " ", g_midiParameter,
-      space(30), null));
+          mmvstr.space(30), null));
   let(&tmpStr, left(tmpStr, 38));
   fprintf(midiFilePtr, "0 Meta Text \"%s\"\n", tmpStr);
   fprintf(midiFilePtr,

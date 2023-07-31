@@ -540,7 +540,7 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
         if (treeIndentationFlag) {
           if (startNextLineLen + p - 1 < g_screenWidth) {
 
-            let(&prefix, cat(prefix, space(g_screenWidth - startNextLineLen
+            let(&prefix, cat(prefix, mmvstr.space(g_screenWidth - startNextLineLen
                 - p + 1), null));
           }
         }
@@ -566,7 +566,7 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
     if (!firstLine) {
       if (treeIndentationFlag) {
 
-        print2("%s\n",cat(startNextLine1, space(g_screenWidth
+        print2("%s\n",cat(startNextLine1, mmvstr.space(g_screenWidth
             - startNextLineLen - (long)(C.strlen(longLine))), longLine, null));
       } else {
         print2("%s\n",cat(startNextLine1, longLine, null));
@@ -601,7 +601,7 @@ vstring cmdInput(File stream, vstring ask)
       fflush(stdout);
 #endif
     }
-    let(&g, space(CMD_BUFFER_SIZE));
+    let(&g, mmvstr.space(CMD_BUFFER_SIZE));
     if (g[CMD_BUFFER_SIZE]) bug(1520);
     g[CMD_BUFFER_SIZE - 1] = 0;
     if (!fgets(g, CMD_BUFFER_SIZE, stream)) {

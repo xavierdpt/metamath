@@ -1105,7 +1105,7 @@ vstring nmbrCvtMToVString(nmbrString *s)
   for (i = 0; i < mstrLen; i++) {
     outputLen = outputLen + (long)C.strlen(g_MathToken[s[i]].tokenName) + 1;
   }
-  let(&tmpStr, space(outputLen));
+  let(&tmpStr, mmvstr.space(outputLen));
 
   ptr = tmpStr;
   for (i = 0; i < mstrLen; i++) {
@@ -1207,7 +1207,7 @@ vstring nmbrCvtRToVString(nmbrString *proof,
   nmbrLet(&localLabelNames, nmbrSpace(plen));
 
 
-  let(&proofStr, space(plen * (2 + maxLabelLen
+  let(&proofStr, mmvstr.space(plen * (2 + maxLabelLen
       + ((explicitTargets == 1) ? maxTargetLabelLen + 1 : 0)
 
       + maxLocalLen)));
@@ -1976,7 +1976,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
 
   outputLen = 0;
   static final long COMPR_INC =D.COMPR_INC;
-  let(&output, space(COMPR_INC));
+  let(&output, mmvstr.space(COMPR_INC));
   outputAllocated = COMPR_INC;
 
   plen = nmbrLen(saveProof);
@@ -1988,7 +1988,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
 
       if (outputLen + 1 > outputAllocated) {
 
-        let(&output, cat(output, space(outputLen + 1 - outputAllocated +
+        let(&output, cat(output, mmvstr.space(outputLen + 1 - outputAllocated +
             COMPR_INC), null));
         outputAllocated = outputLen + 1 + COMPR_INC;
 
@@ -2021,7 +2021,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
 
     if (outputLen + numchrs > outputAllocated) {
 
-      let(&output, cat(output, space(outputLen + numchrs - outputAllocated +
+      let(&output, cat(output, mmvstr.space(outputLen + numchrs - outputAllocated +
           COMPR_INC), null));
       outputAllocated = outputLen + numchrs + COMPR_INC;
 
@@ -2052,7 +2052,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
     if (!localLabelFlags[step]) continue;
     if (outputLen + 1 > outputAllocated) {
 
-      let(&output, cat(output, space(outputLen + 1 - outputAllocated +
+      let(&output, cat(output, mmvstr.space(outputLen + 1 - outputAllocated +
           COMPR_INC), null));
       outputAllocated = outputLen + 1 + COMPR_INC;
 
@@ -2693,7 +2693,7 @@ vstring getDescription(long statemNum) {
   vstring description = "";
   long p1, p2;
 
-  let(&description, space(g_Statement[statemNum].labelSectionLen));
+  let(&description, mmvstr.space(g_Statement[statemNum].labelSectionLen));
   memcpy(description, g_Statement[statemNum].labelSectionPtr,
       (size_t)(g_Statement[statemNum].labelSectionLen));
   p1 = rinstr(description, "$(");
@@ -2716,7 +2716,7 @@ vstring getDescriptionAndLabel(long stmt) {
   long p1, p2;
   flag dontUseComment = 0;
 
-  let(&descriptionAndLabel, space(g_Statement[stmt].labelSectionLen));
+  let(&descriptionAndLabel, mmvstr.space(g_Statement[stmt].labelSectionLen));
   memcpy(descriptionAndLabel, g_Statement[stmt].labelSectionPtr,
       (size_t)(g_Statement[stmt].labelSectionLen));
   p1 = rinstr(descriptionAndLabel, "$(");
@@ -2792,8 +2792,8 @@ flag getMarkupFlag(long statemNum, flag mode) {
     }
 
     let(&commentSearchedFlags, string(g_statements + 1, 'N'));
-    let(&proofFlags, space(g_statements + 1));
-    let(&usageFlags, space(g_statements + 1));
+    let(&proofFlags, mmvstr.space(g_statements + 1));
+    let(&usageFlags, mmvstr.space(g_statements + 1));
   }
 
   if (statemNum < 1 || statemNum > g_statements) bug(1392);
@@ -3414,7 +3414,7 @@ vstring getContrib(long stmtNum, char mode) {
 void getProofDate(long stmtNum, vstring *date1, vstring *date2) {
   vstring textAfterProof = "";
   long p1, p2;
-  let(&textAfterProof, space(g_Statement[stmtNum + 1].labelSectionLen));
+  let(&textAfterProof, mmvstr.space(g_Statement[stmtNum + 1].labelSectionLen));
   memcpy(textAfterProof, g_Statement[stmtNum + 1].labelSectionPtr,
       (size_t)(g_Statement[stmtNum + 1].labelSectionLen));
   let(&textAfterProof, edit(textAfterProof, 2));

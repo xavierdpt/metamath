@@ -10,7 +10,7 @@ public class metamath {
     mmdata.g_toolsMode.set(mmdata.g_listMode);
     if (!(mmdata.g_listMode.asBoolean())) {
 
-    mminou.print2("Metamath - Version %s%s", MVERSION, space(27 - (long)C.strlen(MVERSION)));
+    mminou.print2("Metamath - Version %s%s", MVERSION, mmvstr.space(27 - (long)C.strlen(MVERSION)));
   }
     mminou.print2("Type HELP for help, EXIT to exit.\n");
 
@@ -768,7 +768,7 @@ static final long SYNTAX =D.SYNTAX;
               break;
             case INSERT_MODE:
               if ((signed)(C.strlen(str2)) < p - 1)
-                let(&str2, cat(str2, space(p - 1 - (long)C.strlen(str2)), null));
+                let(&str2, cat(str2, mmvstr.space(p - 1 - (long)C.strlen(str2)), null));
               let(&str2, cat(left(str2, p - 1), g_fullArg[2],
                   right(str2, p), null));
               if (strcmp(str1, str2)) changedLines++;
@@ -833,7 +833,7 @@ static final long SYNTAX =D.SYNTAX;
               if (p) changedLines++;
               break;
             case RIGHT_MODE:
-              let(&str2, cat(space(p - (long)C.strlen(str2)), str2, null));
+              let(&str2, cat(mmvstr.space(p - (long)C.strlen(str2)), str2, null));
               if (strcmp(str1, str2)) changedLines++;
               break;
           }
@@ -1748,7 +1748,7 @@ static final long SYNTAX =D.SYNTAX;
           if (j == 0) {
             let(&str2, str1);
           } else {
-            let(&str2, cat(str2, space(k - (long)C.strlen(str2)), str1, null));
+            let(&str2, cat(str2, mmvstr.space(k - (long)C.strlen(str2)), str1, null));
           }
           j++;
         }
@@ -2876,7 +2876,7 @@ static final long SYNTAX =D.SYNTAX;
 
         if (switchPos("/ SIZE")) {
 
-          let(&str1, space(g_Statement[g_showStatement].proofSectionLen));
+          let(&str1, mmvstr.space(g_Statement[g_showStatement].proofSectionLen));
           memcpy(str1, g_Statement[g_showStatement].proofSectionPtr,
               (size_t)(g_Statement[g_showStatement].proofSectionLen));
           n = instr(1, str1, "$.");
@@ -2970,11 +2970,11 @@ static final long SYNTAX =D.SYNTAX;
 
           }
           if (switchPos("/ COMPRESSED")) {
-            printLongLine(cat(space(indentation), str1, " $.", null),
-              space(indentation), "& ");
+            printLongLine(cat(mmvstr.space(indentation), str1, " $.", null),
+                    mmvstr.space(indentation), "& ");
           } else {
-            printLongLine(cat(space(indentation), str1," $.", null),
-              space(indentation), " ");
+            printLongLine(cat(mmvstr.space(indentation), str1," $.", null),
+                    mmvstr.space(indentation), " ");
           }
 
 
@@ -3001,17 +3001,17 @@ static final long SYNTAX =D.SYNTAX;
               }
 
               if (str3[0] == 0) let(&str3, date());
-              let(&str4, cat("\n", space(indentation + 1),
+              let(&str4, cat("\n", mmvstr.space(indentation + 1),
 
                   "(Contributed by ", g_contributorName,
                       ", ", str3, ".) ", null));
               if (str5[0] != 0) {
-                let(&str4, cat(str4, "\n", space(indentation + 1),
+                let(&str4, cat(str4, "\n", mmvstr.space(indentation + 1),
                     "(Revised by ", DEFAULT_CONTRIBUTOR,
                         ", ", str5, ".) ", null));
               }
 
-              let(&str3, space(g_Statement[outStatement].labelSectionLen));
+              let(&str3, mmvstr.space(g_Statement[outStatement].labelSectionLen));
 
               memcpy(str3, g_Statement[outStatement].labelSectionPtr,
                   (size_t)(g_Statement[outStatement].labelSectionLen));
@@ -3038,7 +3038,7 @@ static final long SYNTAX =D.SYNTAX;
 #ifdef DATE_BELOW_PROOF
 
 
-              let(&str3, space(g_Statement[outStatement + 1].labelSectionLen));
+              let(&str3, mmvstr.space(g_Statement[outStatement + 1].labelSectionLen));
 
               memcpy(str3, g_Statement[outStatement + 1].labelSectionPtr,
                   (size_t)(g_Statement[outStatement + 1].labelSectionLen));
@@ -3046,7 +3046,7 @@ static final long SYNTAX =D.SYNTAX;
               if (instr(1, str3, "$( [") == 0) {
 
 
-                let(&str5, cat(space(indentation),
+                let(&str5, cat(mmvstr.space(indentation),
                     "$( [", date(), "] $)", null));
 
                 if (saveFlag) {
@@ -5107,7 +5107,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
         q = (long)C.strlen(str1);
-        let(&str3, space(q + q));
+        let(&str3, mmvstr.space(q + q));
         s = 0;
         for (p = 0; p < q; p++) {
           str3[p + s] = str1[p];
@@ -5225,7 +5225,7 @@ static final long SYNTAX =D.SYNTAX;
 
 
           q = (long)C.strlen(str2);
-          let(&str3, space(q + q));
+          let(&str3, mmvstr.space(q + q));
           s = 0;
           for (p = 0; p < q; p++) {
             str3[p + s] = str2[p];

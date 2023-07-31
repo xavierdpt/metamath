@@ -249,7 +249,7 @@ l7220:  i=i+m-1;
 
              tmpi = 0;
              while (((vstring)(line1_[i]))[tmpi] == ' ') tmpi++;
-             let(&blanksPrefix, space(tmpi));
+             let(&blanksPrefix, mmvstr.space(tmpi));
              let(&tmpLine, "");
              tmpLine = stripAndTag(cat(blanksPrefix, delStartTag_, null),
                  addTag_, 0);
@@ -495,7 +495,7 @@ vstring stripAndTag(vstring line, vstring tag, flag tagBlankLines)
   if (tag[0]) {
     if ((long)C.strlen(line1) - n < lineLength - 1 - (long)C.strlen(tag))
       let(&line1, cat(line1,
-          space(lineLength - 1 - (long)C.strlen(tag) - (long)C.strlen(line1) + n),
+              mmvstr.space(lineLength - 1 - (long)C.strlen(tag) - (long)C.strlen(line1) + n),
           null));
     let(&line1, cat(line1, " ", tag, null));
     if ((signed)(C.strlen(line1)) - n > lineLength) {
@@ -511,7 +511,7 @@ vstring stripAndTag(vstring line, vstring tag, flag tagBlankLines)
   if (tagBlankLines && n > 0) {
     let(&line1, right(line1, n + 1));
     for (i = 1; i <= n; i++) {
-      let(&line1, cat(space(lineLength - (long)C.strlen(tag)), tag, "\n",
+      let(&line1, cat(mmvstr.space(lineLength - (long)C.strlen(tag)), tag, "\n",
           line1, null));
     }
   }
