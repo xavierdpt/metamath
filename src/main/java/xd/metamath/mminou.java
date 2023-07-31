@@ -276,7 +276,7 @@ flag print2(char* fmt,...)
 #endif
   }
 
-  if (g_listMode && g_listFile_fp != null && !g_outputToString) {
+  if (mmdata.g_listMode.asBoolean() && g_listFile_fp != null && !g_outputToString) {
 
     fprintf(g_listFile_fp, "! %s", printBuffer);
   }
@@ -762,7 +762,7 @@ vstring cmdInput1(vstring ask)
           (vstring)(backBuffer[backBufferPos - 1]), ask1,
           commandLn, "\n", null));
 
-      if (g_listMode && g_listFile_fp != null) {
+      if (mmdata.g_listMode.asBoolean() && g_listFile_fp != null) {
 
         fprintf(g_listFile_fp, "! %s\n", commandLn);
       }

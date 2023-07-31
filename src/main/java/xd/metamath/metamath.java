@@ -191,7 +191,7 @@ static final long SYNTAX =D.SYNTAX;
 
   while (true) {
 
-    if (g_listMode) {
+    if (mmdata.g_listMode.asBoolean()) {
 
       if (argc > 1 && commandProcessedFlag &&
              g_commandFileNestingLevel == 0) return;
@@ -254,7 +254,7 @@ static final long SYNTAX =D.SYNTAX;
         let(&g_commandPrompt,"MM> ");
       }
     } else {
-      if (g_listMode) {
+      if (mmdata.g_listMode.asBoolean()) {
         let(&g_commandPrompt,"Tools> ");
       } else {
         let(&g_commandPrompt,"TOOLS> ");
@@ -266,7 +266,7 @@ static final long SYNTAX =D.SYNTAX;
     if (!commandProcessedFlag && argc > 1 && argsProcessed < argc - 1
         && g_commandFileNestingLevel == 0) {
 
-      if (g_listMode) {
+      if (mmdata.g_listMode.asBoolean()) {
         for (i = 1; i < argc; i++) {
           argsProcessed++;
           if (instr(1, argv[i], " ") || instr(1, argv[i], "\t")
@@ -419,11 +419,11 @@ static final long SYNTAX =D.SYNTAX;
 
 
       if (cmdMatches("_EXIT_PA")) {
-        if (!g_PFASmode || (g_toolsMode && !g_listMode)) bug(1127);
+        if (!g_PFASmode || (g_toolsMode && !mmdata.g_listMode.asBoolean())) bug(1127);
 
       }
 
-      if (g_toolsMode && !g_listMode) {
+      if (g_toolsMode && !mmdata.g_listMode.asBoolean()) {
 
         if (!g_PFASmode) {
           print2(
