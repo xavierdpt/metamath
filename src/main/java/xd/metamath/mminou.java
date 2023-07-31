@@ -21,7 +21,7 @@ int g_errorCount = 0;
 
 flag g_logFileOpenFlag = 0;
 File g_logFilePtr;
-File g_listFile_fp = NULL;
+static File g_listFile_fp = NULL;
 
 flag g_outputToString = 0;
 vstring g_printString = "";

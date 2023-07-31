@@ -6,37 +6,36 @@ public class metamath {
 
 
   public static void main(String[] args) {
-    G.g_listMode.set(0);
-    G.g_toolsMode.set(G.g_listMode);
-    if (!G.g_listMode.asBoolean()) {
+    mmdata.g_listMode.set(0);
+    mmdata.g_toolsMode.set(mmdata.g_listMode);
+    if (!mmdata.g_listMode.asBoolean()) {
 
     print2("Metamath - Version %s%s", MVERSION, space(27 - (long)strlen(MVERSION)));
   }
    print2("Type HELP for help, EXIT to exit.\n");
 
 
-  initBigArrays();
+    mmdata.initBigArrays();
 
 
 
-  let(&g_contributorName, DEFAULT_CONTRIBUTOR);
+  mmvstr.let(&mmdata.g_contributorName, hmmdata.DEFAULT_CONTRIBUTOR);
 
 
-  command(argc, argv);
+  command(args);
 
 
-  if (g_listMode && g_listFile_fp != NULL) {
-    fclose(g_listFile_fp);
+  if (mmdata.g_listMode.asBoolean() && mminou.g_listFile_fp != NULL) {
+    fclose(mminou.g_listFile_fp);
   }
 
-  return 0;
-
+  System.exit(0);
 }
 
 
 
 
-void command(int argc, char *argv[])
+static void command(String[] args)
 {
   long argsProcessed = 0;
 

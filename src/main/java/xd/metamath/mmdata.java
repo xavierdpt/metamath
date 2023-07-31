@@ -11,7 +11,8 @@ public class mmdata {
 
 
 long db=0,db0=0,db2=0,db3=0,db4=0,db5=0,db6=0,db7=0,db8=0,db9=0;
-flag g_toolsMode = 0;
+  static flag g_listMode = flag.of(0);
+  static flag g_toolsMode = flag.of(0);
 
 
 
@@ -21,7 +22,7 @@ vstring g_usageDiscouragedMarkup = "";
 flag g_globalDiscouragement = 1;
 
 
-vstring g_contributorName = "";
+static vstring g_contributorName = "";
 
 
 int g_currentScope = 0;
@@ -356,7 +357,7 @@ void getPoolStats(long *freeAlloc, long *usedAlloc, long *usedActual)
 
 
 
-void initBigArrays()
+static void initBigArrays()
 {
 
 
