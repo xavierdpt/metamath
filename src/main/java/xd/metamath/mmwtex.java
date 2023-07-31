@@ -189,7 +189,7 @@ flag readTexDefs(
     tmpPtr[j] = zapChar;
   }
 
-  j = (long)strlen(fileBuf);
+  j = (long)C.strlen(fileBuf);
   for (i = 0; i < j; i++) {
     if (fileBuf[i] == '\n') lineNumOffset--;
   }
@@ -361,7 +361,7 @@ flag readTexDefs(
 
 
           if (fbPtr[0] != '\"' && fbPtr[0] != '\'') bug(2329);
-          j = (long)strlen(token);
+          j = (long)C.strlen(token);
           for (i = 0; i < j - 1; i++) {
             if (token[i] == fbPtr[0] &&
                 token[i + 1] == fbPtr[0]) {
@@ -453,7 +453,7 @@ flag readTexDefs(
 
 
           if (fbPtr[0] != '\"' && fbPtr[0] != '\'') bug(2330);
-          j = (long)strlen(partialToken);
+          j = (long)C.strlen(partialToken);
           for (i = 0; i < j - 1; i++) {
             if (token[i] == fbPtr[0] &&
                 token[i + 1] == fbPtr[0]) {
@@ -741,7 +741,7 @@ flag readTexDefs(
 
 
 
-  j = (long)strlen(htmlTitle);
+  j = (long)C.strlen(htmlTitle);
   let(&htmlTitleAbbr, "");
   for (i = 1; i <= j; i++) {
     if (htmlTitle[i - 1] >= 'A' && htmlTitle[i -1] <= 'Z') {
@@ -771,7 +771,7 @@ flag readTexDefs(
     j = instr(i + 1, extHtmlHome, "\"");
     let(&extHtmlHomeIMG, seg(extHtmlHome, i + 1, j - 1));
 
-    j = (long)strlen(g_extHtmlTitle);
+    j = (long)C.strlen(g_extHtmlTitle);
     let(&g_extHtmlTitleAbbr, "");
     for (i = 1; i <= j; i++) {
       if (g_extHtmlTitle[i - 1] >= 'A' && g_extHtmlTitle[i -1] <= 'Z') {
@@ -811,7 +811,7 @@ long texDefWhiteSpaceLen(char *ptr)
         while (true) {
           ptr1 = strchr(ptr + i + 2, '*');
           if (!ptr1) {
-            return(i + (long)strlen(&ptr[i]));
+            return(i + (long)C.strlen(&ptr[i]));
           }
           if (ptr1[1] == '/') break;
           i = ptr1 - ptr;
@@ -840,7 +840,7 @@ long texDefTokenLen(char *ptr)
     while (true) {
       ptr1 = strchr(ptr + i + 1, '\"');
       if (!ptr1) {
-        return(i + (long)strlen(&ptr[i]));
+        return(i + (long)C.strlen(&ptr[i]));
       }
       if (ptr1[1] != '\"') return(ptr1 - ptr + 1);
       i = ptr1 - ptr + 1;
@@ -850,7 +850,7 @@ long texDefTokenLen(char *ptr)
     while (true) {
       ptr1 = strchr(ptr + i + 1, '\'');
       if (!ptr1) {
-        return(i + (long)strlen(&ptr[i]));
+        return(i + (long)C.strlen(&ptr[i]));
       }
       if (ptr1[1] != '\'') return(ptr1 - ptr + 1);
       i = ptr1 - ptr + 1;
@@ -894,7 +894,7 @@ vstring asciiToTt(vstring s)
   long i, j, k;
 
   let(&ttstr, s);
-  j = (long)strlen(ttstr);
+  j = (long)C.strlen(ttstr);
 
 
   for (i = 0; i < j; i++) {
@@ -1021,13 +1021,13 @@ vstring tokenToTex(vstring mtoken, long statemNum )
     }
 
 
-    j = (long)strlen(tex);
+    j = (long)C.strlen(tex);
     for (i = 0; i < j; i++) {
       if (ispunct((unsigned char)(tex[i]))) {
         tmpStr = asciiToTt(chr(tex[i]));
         if (!g_htmlFlag)
           let(&tmpStr, cat("{\\tt ", tmpStr, "}", null));
-        k = (long)strlen(tmpStr);
+        k = (long)C.strlen(tmpStr);
         let(&tex,
             cat(left(tex, i), tmpStr, right(tex, i + 2), null));
         i = i + k - 1;
@@ -1319,7 +1319,7 @@ void printTexHeader(flag texHeaderFlag)
     mminou.print2("     font-size: x-small;\n");
 
     printLongLine(cat("     color: ", seg(PINK_NUMBER_COLOR, 2,
-        (long)strlen(PINK_NUMBER_COLOR) - 1), ";", null), "", "&");
+        (long)C.strlen(PINK_NUMBER_COLOR) - 1), ";", null), "", "&");
     mminou.print2("   }\n");
 #else
     mminou.print2(".r { font-family: \"Arial Narrow\";\n");
@@ -1346,7 +1346,7 @@ void printTexHeader(flag texHeaderFlag)
     if (g_showStatement < g_extHtmlStmt) {
       mminou.print2("%s\n", cat("<TITLE>",
 
-          left(g_texFileName, (long)strlen(g_texFileName) - 5),
+          left(g_texFileName, (long)C.strlen(g_texFileName) - 5),
 
           " - ", htmlTitle,
           "</TITLE>", null));
@@ -1354,7 +1354,7 @@ void printTexHeader(flag texHeaderFlag)
     } else if (g_showStatement < g_mathboxStmt) {
       mminou.print2("%s\n", cat("<TITLE>",
 
-          left(g_texFileName, (long)strlen(g_texFileName) - 5),
+          left(g_texFileName, (long)C.strlen(g_texFileName) - 5),
 
           " - ", g_extHtmlTitle,
           "</TITLE>", null));
@@ -1395,7 +1395,7 @@ void printTexHeader(flag texHeaderFlag)
 
       printLongLine(cat("<TITLE>",
 
-          left(g_texFileName, (long)strlen(g_texFileName) - 5),
+          left(g_texFileName, (long)C.strlen(g_texFileName) - 5),
 
 
 
@@ -1558,7 +1558,7 @@ void printTexHeader(flag texHeaderFlag)
       }
       mminou.print2("      &nbsp;%s\n",
 
-          left(g_texFileName, (long)strlen(g_texFileName) - 5));
+          left(g_texFileName, (long)C.strlen(g_texFileName) - 5));
       mminou.print2("      </FONT>\n");
       mminou.print2("    </TD>\n");
       mminou.print2("    <TD COLSPAN=2 ALIGN=RIGHT VALIGN=TOP>\n");
@@ -1714,9 +1714,9 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
   if (metamathComment != 0) {
     i = instr(1, cmtptr, "$)");
-    if (!i) i = (long)strlen(cmtptr) + 1;
+    if (!i) i = (long)C.strlen(cmtptr) + 1;
   } else {
-    i = (long)strlen(cmtptr) + 1;
+    i = (long)C.strlen(cmtptr) + 1;
   }
   let(&cmt, left(cmtptr, i - 1));
 
@@ -1746,7 +1746,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
         }
         break;
       }
-      if (!pos1) pos1 = (long)strlen(cmt) + 1;
+      if (!pos1) pos1 = (long)C.strlen(cmt) + 1;
       if (mode == 1 && preformattedMode == 0) {
         let(&tmpStr, "");
 
@@ -1865,7 +1865,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
     } else {
       pos1 = 1;
     }
-    pos2 = (long)strlen(cmt);
+    pos2 = (long)C.strlen(cmt);
     tmpMathMode = 0;
     for (pos1 = pos1 + 0; pos1 <= pos2; pos1++) {
       if (cmt[pos1 - 1] == '`') tmpMathMode = (flag)(1 - tmpMathMode);
@@ -1893,8 +1893,8 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
             right(cmt, pos1 + 1), null));
         let(&cmtMasked, cat(left(cmtMasked, pos1 - 1), tmpStr,
             right(cmtMasked, pos1 + 1), null));
-        pos1 += (long)strlen(tmpStr) - 1;
-        pos2 += (long)strlen(tmpStr) - 1;
+        pos1 += (long)C.strlen(tmpStr) - 1;
+        pos2 += (long)C.strlen(tmpStr) - 1;
       }
     }
   }
@@ -2188,16 +2188,16 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
             pos2 + 1), null));
         let(&cmtMasked, cat(left(cmtMasked, pos1 - 1), tmp, right(cmtMasked,
             pos2 + 1), null));
-        pos1 = pos1 + (long)strlen(tmp) - (long)strlen(bibTag);
+        pos1 = pos1 + (long)C.strlen(tmp) - (long)C.strlen(bibTag);
       }
     }
   }
 
 
-  if (strlen(cmt) != strlen(cmtMasked)) bug(2334);
+  if (C.strlen(cmt) != C.strlen(cmtMasked)) bug(2334);
 
 
-  clen = (long)strlen(cmt);
+  clen = (long)C.strlen(cmt);
   mode = 'n';
   for (i = 0; i < clen; i++) {
     if (cmt[i] == '`') {
@@ -2250,8 +2250,8 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
           }
 
           let(&tmp, mid(cmt, i + 2, 8));
-          if (strlen(tmp) < 8)
-              let(&tmp, cat(tmp, space(8 - (long)strlen(tmp)), null));
+          if (C.strlen(tmp) < 8)
+              let(&tmp, cat(tmp, space(8 - (long)C.strlen(tmp)), null));
           if (!strcmp(" &quot;", left(tmp, 7))
               && strchr(CLOSING_PUNCTUATION, tmp[7]) != null) {
             let(&cmt, cat(left(cmt, i + 1), right(cmt, i + 3), null));
@@ -2335,7 +2335,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
     }
 
-    if ((signed)(strlen(cmt)) != clen) {
+    if ((signed)(C.strlen(cmt)) != clen) {
       bug(2311);
     }
   }
@@ -2352,7 +2352,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
       ) break;
 
     let(&tmpStr, edit(left(cmt, pos1 - 1), 2));
-    i = (long)strlen(tmpStr);
+    i = (long)C.strlen(tmpStr);
     if (i == 0) continue;
     if (tmpStr[i - 1] == '\n') continue;
 
@@ -2367,7 +2367,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
       ) break;
 
     let(&tmpStr, edit(left(cmt, pos1 - 1), 2));
-    i = (long)strlen(tmpStr);
+    i = (long)C.strlen(tmpStr);
     if (i == 0) continue;
     if (tmpStr[i - 1] == '\n') continue;
 
@@ -2413,8 +2413,8 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
     displayMode = 0;
     let(&tmpStr, edit(sourceLine, 8 + 128));
-    if (!strcmp(right(tmpStr, (long)strlen(tmpStr) - 1), cat(chr(DOLLAR_SUBST), "n",
-        null))) let(&tmpStr, left(tmpStr, (long)strlen(tmpStr) - 2));
+    if (!strcmp(right(tmpStr, (long)C.strlen(tmpStr) - 1), cat(chr(DOLLAR_SUBST), "n",
+        null))) let(&tmpStr, left(tmpStr, (long)C.strlen(tmpStr) - 2));
     srcptr = tmpStr;
     modeSection = getCommentModeSection(&srcptr, &mode);
     let(&modeSection, "");
@@ -2654,7 +2654,7 @@ flag printTexComment(vstring commentPtr, flag htmlCenterFlag,
 
 
       if (g_printString[0] != 0) {
-        i = (long)strlen(g_printString);
+        i = (long)C.strlen(g_printString);
         if (g_printString[i - 1] != '\n')  {
           mminou.print2("\n");
         } else {
@@ -2746,7 +2746,7 @@ void printTexLongMath(nmbrString *mathString,
   if (g_htmlFlag || !g_oldTexFlag) {
 
 
-    if (strlen(sPrefix)) {
+    if (C.strlen(sPrefix)) {
 
 
 
@@ -2812,7 +2812,7 @@ void printTexLongMath(nmbrString *mathString,
 
     } else {
       static final long  TRIMTHRESHOLD =D.TRIMTHRESHOLD;
-      i = (long)strlen(tex);
+      i = (long)C.strlen(tex);
       while (i > TRIMTHRESHOLD) {
         if (tex[i] == '\\') {
 
@@ -2833,7 +2833,7 @@ void printTexLongMath(nmbrString *mathString,
       mminou.print2("\\startm\n");
     }
   } else {
-    if (strlen(sPrefix)) {
+    if (C.strlen(sPrefix)) {
 
       if (htmHyp[0] == 0)
         let(&htmHyp, "&nbsp;");
@@ -2897,7 +2897,7 @@ void printTexLongMath(nmbrString *mathString,
           descr = getDescription(hypStmt);
           let(&descr, edit(descr, 4 + 16));
           static final long MAX_DESCR_LEN =D.MAX_DESCR_LEN;
-          if (strlen(descr) > MAX_DESCR_LEN) {
+          if (C.strlen(descr) > MAX_DESCR_LEN) {
             i = MAX_DESCR_LEN - 3;
             while (i >= 0) {
               if (descr[i] == ' ') break;
@@ -3163,7 +3163,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     mminou.print2("     font-size: x-small;\n");
 
     printLongLine(cat("     color: ", seg(PINK_NUMBER_COLOR, 2,
-        (long)strlen(PINK_NUMBER_COLOR) - 1), ";", null), "", "&");
+        (long)C.strlen(PINK_NUMBER_COLOR) - 1), ";", null), "", "&");
     mminou.print2("   }\n");
 #else
 
@@ -3309,7 +3309,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
 
 
     let(&str1, "");
-    s = (long)strlen(htmlTitle);
+    s = (long)C.strlen(htmlTitle);
     for (i = 0; i < s; i++) {
       if (htmlTitle[i] >= 'A' && htmlTitle[i] <= 'Z') {
         let(&str1, cat(str1, chr(htmlTitle[i]), null));
@@ -3808,12 +3808,12 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     let(&str3, "");
     if (page < 1) bug(2335);
     str3 = pinkHTML(nmbrStmtNmbr[(page - 1) * theoremsPerPage + 1]);
-    let(&str3, right(str3, (long)strlen(PINK_NBSP) + 1));
+    let(&str3, right(str3, (long)C.strlen(PINK_NBSP) + 1));
     let(&str4, "");
     str4 = pinkHTML((page < pages) ?
         nmbrStmtNmbr[page * theoremsPerPage] :
         nmbrStmtNmbr[assertions]);
-    let(&str4, right(str4, (long)strlen(PINK_NBSP) + 1));
+    let(&str4, right(str4, (long)C.strlen(PINK_NBSP) + 1));
 
 
     printLongLine(cat("<CAPTION><B>Theorem List for ", htmlTitle,
@@ -4719,10 +4719,10 @@ vstring pinkRangeHTML(long statemNum1, long statemNum2)
 
   let(&str3, "");
   str3 = pinkHTML(statemNum1);
-  let(&str3, right(str3, (long)strlen(PINK_NBSP) + 1));
+  let(&str3, right(str3, (long)C.strlen(PINK_NBSP) + 1));
   let(&str4, "");
   str4 = pinkHTML(statemNum2);
-  let(&str4, right(str4, (long)strlen(PINK_NBSP) + 1));
+  let(&str4, right(str4, (long)C.strlen(PINK_NBSP) + 1));
   let(&htmlCode, cat(str3, "-", str4, null));
   let(&str3, "");
   let(&str4, "");
@@ -5264,7 +5264,7 @@ flag writeBibliography(vstring bibFile,
       let(&str1, "");
       str1 = getDescription(i);
       if (!instr(1, str1, "[")) continue;
-      l = (signed)(strlen(str1));
+      l = (signed)(C.strlen(str1));
       for (j = 0; j < l; j++) {
         if (str1[j] == '\n') str1[j] = ' ';
         if (str1[j] == '\r') bug(2338);
@@ -5273,7 +5273,7 @@ flag writeBibliography(vstring bibFile,
 
 
       k = 0;
-      l = (signed)(strlen(str1));
+      l = (signed)(C.strlen(str1));
       for (j = 0; j < l - 1; j++) {
         if (k == 0) {
           if (str1[j] == '`') {
@@ -5300,7 +5300,7 @@ flag writeBibliography(vstring bibFile,
         j = instr(j + 1, str1, " p. ");
         if (!j) break;
         if (j) {
-          for (k = j + 4; k <= (signed)(strlen(str1)) + 1; k++) {
+          for (k = j + 4; k <= (signed)(C.strlen(str1)) + 1; k++) {
             if (!isdigit((unsigned char)(str1[k - 1]))) {
               let(&str1, cat(left(str1, j + 2),
                   space(4 - (k - (j + 4))), right(str1, j + 3), null));
@@ -5342,47 +5342,47 @@ flag writeBibliography(vstring bibFile,
 
 
 
-              || !strcmp(mid(str2, k, (long)strlen("THEOREM")), "THEOREM")
-              || !strcmp(mid(str2, k, (long)strlen("EQUATION")), "EQUATION")
-              || !strcmp(mid(str2, k, (long)strlen("DEFINITION")), "DEFINITION")
-              || !strcmp(mid(str2, k, (long)strlen("LEMMA")), "LEMMA")
-              || !strcmp(mid(str2, k, (long)strlen("EXERCISE")), "EXERCISE")
-              || !strcmp(mid(str2, k, (long)strlen("AXIOM")), "AXIOM")
-              || !strcmp(mid(str2, k, (long)strlen("CLAIM")), "CLAIM")
-              || !strcmp(mid(str2, k, (long)strlen("CHAPTER")), "CHAPTER")
-              || !strcmp(mid(str2, k, (long)strlen("COMPARE")), "COMPARE")
-              || !strcmp(mid(str2, k, (long)strlen("CONDITION")), "CONDITION")
-              || !strcmp(mid(str2, k, (long)strlen("CONJECTURE")), "CONJECTURE")
-              || !strcmp(mid(str2, k, (long)strlen("COROLLARY")), "COROLLARY")
-              || !strcmp(mid(str2, k, (long)strlen("EXAMPLE")), "EXAMPLE")
-              || !strcmp(mid(str2, k, (long)strlen("FIGURE")), "FIGURE")
-              || !strcmp(mid(str2, k, (long)strlen("ITEM")), "ITEM")
-              || !strcmp(mid(str2, k, (long)strlen("LEMMAS")), "LEMMAS")
-              || !strcmp(mid(str2, k, (long)strlen("LINE")), "LINE")
-              || !strcmp(mid(str2, k, (long)strlen("LINES")), "LINES")
-              || !strcmp(mid(str2, k, (long)strlen("NOTATION")), "NOTATION")
-              || !strcmp(mid(str2, k, (long)strlen("NOTE")), "NOTE")
-              || !strcmp(mid(str2, k, (long)strlen("OBSERVATION")), "OBSERVATION")
-              || !strcmp(mid(str2, k, (long)strlen("PART")), "PART")
-              || !strcmp(mid(str2, k, (long)strlen("POSTULATE")), "POSTULATE")
-              || !strcmp(mid(str2, k, (long)strlen("PROBLEM")), "PROBLEM")
-              || !strcmp(mid(str2, k, (long)strlen("PROPERTY")), "PROPERTY")
-              || !strcmp(mid(str2, k, (long)strlen("PROPOSITION")), "PROPOSITION")
-              || !strcmp(mid(str2, k, (long)strlen("REMARK")), "REMARK")
-              || !strcmp(mid(str2, k, (long)strlen("RESULT")), "RESULT")
-              || !strcmp(mid(str2, k, (long)strlen("RULE")), "RULE")
-              || !strcmp(mid(str2, k, (long)strlen("SCHEME")), "SCHEME")
-              || !strcmp(mid(str2, k, (long)strlen("SECTION")), "SECTION")
-              || !strcmp(mid(str2, k, (long)strlen("PROOF")), "PROOF")
-              || !strcmp(mid(str2, k, (long)strlen("STATEMENT")), "STATEMENT")
-              || !strcmp(mid(str2, k, (long)strlen("CONCLUSION")), "CONCLUSION")
-              || !strcmp(mid(str2, k, (long)strlen("FACT")), "FACT")
-              || !strcmp(mid(str2, k, (long)strlen("INTRODUCTION")), "INTRODUCTION")
-              || !strcmp(mid(str2, k, (long)strlen("PARAGRAPH")), "PARAGRAPH")
-              || !strcmp(mid(str2, k, (long)strlen("SCOLIA")), "SCOLIA")
-              || !strcmp(mid(str2, k, (long)strlen("SCOLION")), "SCOLION")
-              || !strcmp(mid(str2, k, (long)strlen("SUBSECTION")), "SUBSECTION")
-              || !strcmp(mid(str2, k, (long)strlen("TABLE")), "TABLE")
+              || !strcmp(mid(str2, k, (long)C.strlen("THEOREM")), "THEOREM")
+              || !strcmp(mid(str2, k, (long)C.strlen("EQUATION")), "EQUATION")
+              || !strcmp(mid(str2, k, (long)C.strlen("DEFINITION")), "DEFINITION")
+              || !strcmp(mid(str2, k, (long)C.strlen("LEMMA")), "LEMMA")
+              || !strcmp(mid(str2, k, (long)C.strlen("EXERCISE")), "EXERCISE")
+              || !strcmp(mid(str2, k, (long)C.strlen("AXIOM")), "AXIOM")
+              || !strcmp(mid(str2, k, (long)C.strlen("CLAIM")), "CLAIM")
+              || !strcmp(mid(str2, k, (long)C.strlen("CHAPTER")), "CHAPTER")
+              || !strcmp(mid(str2, k, (long)C.strlen("COMPARE")), "COMPARE")
+              || !strcmp(mid(str2, k, (long)C.strlen("CONDITION")), "CONDITION")
+              || !strcmp(mid(str2, k, (long)C.strlen("CONJECTURE")), "CONJECTURE")
+              || !strcmp(mid(str2, k, (long)C.strlen("COROLLARY")), "COROLLARY")
+              || !strcmp(mid(str2, k, (long)C.strlen("EXAMPLE")), "EXAMPLE")
+              || !strcmp(mid(str2, k, (long)C.strlen("FIGURE")), "FIGURE")
+              || !strcmp(mid(str2, k, (long)C.strlen("ITEM")), "ITEM")
+              || !strcmp(mid(str2, k, (long)C.strlen("LEMMAS")), "LEMMAS")
+              || !strcmp(mid(str2, k, (long)C.strlen("LINE")), "LINE")
+              || !strcmp(mid(str2, k, (long)C.strlen("LINES")), "LINES")
+              || !strcmp(mid(str2, k, (long)C.strlen("NOTATION")), "NOTATION")
+              || !strcmp(mid(str2, k, (long)C.strlen("NOTE")), "NOTE")
+              || !strcmp(mid(str2, k, (long)C.strlen("OBSERVATION")), "OBSERVATION")
+              || !strcmp(mid(str2, k, (long)C.strlen("PART")), "PART")
+              || !strcmp(mid(str2, k, (long)C.strlen("POSTULATE")), "POSTULATE")
+              || !strcmp(mid(str2, k, (long)C.strlen("PROBLEM")), "PROBLEM")
+              || !strcmp(mid(str2, k, (long)C.strlen("PROPERTY")), "PROPERTY")
+              || !strcmp(mid(str2, k, (long)C.strlen("PROPOSITION")), "PROPOSITION")
+              || !strcmp(mid(str2, k, (long)C.strlen("REMARK")), "REMARK")
+              || !strcmp(mid(str2, k, (long)C.strlen("RESULT")), "RESULT")
+              || !strcmp(mid(str2, k, (long)C.strlen("RULE")), "RULE")
+              || !strcmp(mid(str2, k, (long)C.strlen("SCHEME")), "SCHEME")
+              || !strcmp(mid(str2, k, (long)C.strlen("SECTION")), "SECTION")
+              || !strcmp(mid(str2, k, (long)C.strlen("PROOF")), "PROOF")
+              || !strcmp(mid(str2, k, (long)C.strlen("STATEMENT")), "STATEMENT")
+              || !strcmp(mid(str2, k, (long)C.strlen("CONCLUSION")), "CONCLUSION")
+              || !strcmp(mid(str2, k, (long)C.strlen("FACT")), "FACT")
+              || !strcmp(mid(str2, k, (long)C.strlen("INTRODUCTION")), "INTRODUCTION")
+              || !strcmp(mid(str2, k, (long)C.strlen("PARAGRAPH")), "PARAGRAPH")
+              || !strcmp(mid(str2, k, (long)C.strlen("SCOLIA")), "SCOLIA")
+              || !strcmp(mid(str2, k, (long)C.strlen("SCOLION")), "SCOLION")
+              || !strcmp(mid(str2, k, (long)C.strlen("SUBSECTION")), "SUBSECTION")
+              || !strcmp(mid(str2, k, (long)C.strlen("TABLE")), "TABLE")
               ) {
             m = k;
             break;
@@ -5431,12 +5431,12 @@ flag writeBibliography(vstring bibFile,
         let(&str4, seg(str1, q + 1, s - 1));
         str2[0] = (char)(toupper((unsigned char)(str2[0])));
 
-        for (k = (long)strlen(str2); k >=1; k--) {
+        for (k = (long)C.strlen(str2); k >=1; k--) {
           if (0
-              || !strcmp(mid(str2, k, (long)strlen(" of ")), " of ")
-              || !strcmp(mid(str2, k, (long)strlen(" in ")), " in ")
-              || !strcmp(mid(str2, k, (long)strlen(" from ")), " from ")
-              || !strcmp(mid(str2, k, (long)strlen(" on ")), " on ")
+              || !strcmp(mid(str2, k, (long)C.strlen(" of ")), " of ")
+              || !strcmp(mid(str2, k, (long)C.strlen(" in ")), " in ")
+              || !strcmp(mid(str2, k, (long)C.strlen(" from ")), " from ")
+              || !strcmp(mid(str2, k, (long)C.strlen(" on ")), " on ")
               ) {
             let(&str2, left(str2, k - 1));
             break;
@@ -5449,7 +5449,7 @@ flag writeBibliography(vstring bibFile,
         let(&oldstr, cat(
 
 
-            str3, " ", str4, space(20 - (long)strlen(str2)), str2,
+            str3, " ", str4, space(20 - (long)C.strlen(str2)), str2,
             "|||",
 
             "<A HREF=\"", g_Statement[i].labelName,
@@ -5668,7 +5668,7 @@ long getMathboxLoc(nmbrString **mathboxStart, nmbrString **mathboxEnd,
   vstring comment = "";
   vstring user = "";
   assignMathboxInfo();
-  tagLen = (long)strlen(MB_TAG);
+  tagLen = (long)C.strlen(MB_TAG);
 
   if (pntrLen((pntrString *)(*mathboxUser)) != 0) bug(2347);
   if (nmbrLen((nmbrString *)(*mathboxStart)) != 0) bug(2348);

@@ -30,4 +30,8 @@ public class C {
         }
     }
 
+    public static int strlen(String s) {
+        return s.length();
+    }
+
 }

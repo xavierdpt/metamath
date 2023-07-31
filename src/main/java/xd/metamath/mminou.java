@@ -211,7 +211,7 @@ static flag print2(char* fmt,...)
 
 
   nlpos = instr(1, printBuffer, "\n");
-  lineLen = (long)strlen(printBuffer);
+  lineLen = (long)C.strlen(printBuffer);
 
   for (i = 0; i < lineLen; i++) {
     if (printBuffer[i] == QUOTED_SPACE) printBuffer[i] = ' ';
@@ -372,7 +372,7 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
   }
 
 
-  j = (long)strlen(multiLine);
+  j = (long)C.strlen(multiLine);
 
   for (i = 0; i < j; i++) {
     if (multiLine[i] == QUOTED_SPACE) bug(1514);
@@ -467,14 +467,14 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
       C.label("HTML_RESTART");
     firstLine = 1;
 
-    startNextLineLen = (long)strlen(startNextLine1);
+    startNextLineLen = (long)C.strlen(startNextLine1);
 
     if (startNextLineLen > g_screenWidth - 4) {
       startNextLineLen = g_screenWidth - 4;
       let(&startNextLine1, left(startNextLine1, g_screenWidth - 4));
     }
 
-    while ((signed)(strlen(longLine)) + (1 - firstLine) * startNextLineLen >
+    while ((signed)(C.strlen(longLine)) + (1 - firstLine) * startNextLineLen >
         g_screenWidth - (long)tildeFlag - (long)(breakMatch1[0] == '\\')) {
 
       p = g_screenWidth - (long)tildeFlag - (long)(breakMatch1[0] == '\\') + 1;
@@ -483,7 +483,7 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
       if (p < 4) bug(1524);
 
       if (breakMatch1[0] == '&'
-          && ((!instr(p, left(longLine, (long)strlen(longLine) - 3), " ")
+          && ((!instr(p, left(longLine, (long)C.strlen(longLine) - 3), " ")
               && longLine[p - 3] != ' ')
 
             || longLine[p - 4] == ')'))  {
@@ -567,7 +567,7 @@ void printLongLine(vstring line, vstring startNextLine, vstring breakMatch)
       if (treeIndentationFlag) {
 
         print2("%s\n",cat(startNextLine1, space(g_screenWidth
-            - startNextLineLen - (long)(strlen(longLine))), longLine, null));
+            - startNextLineLen - (long)(C.strlen(longLine))), longLine, null));
       } else {
         print2("%s\n",cat(startNextLine1, longLine, null));
       }
@@ -617,7 +617,7 @@ vstring cmdInput(File stream, vstring ask)
       fflush(stdout);
 #endif
     }
-    i = (long)strlen(g);
+    i = (long)C.strlen(g);
 db = db - (CMD_BUFFER_SIZE - i);
 
     if (!i) {
@@ -707,7 +707,7 @@ vstring cmdInput1(vstring ask)
 
   let(&ask1, ask);
 
-  while ((signed)(strlen(ask1)) > g_screenWidth) {
+  while ((signed)(C.strlen(ask1)) > g_screenWidth) {
     p = g_screenWidth - 1;
     while (ask1[p] != ' ' && p > 0) p--;
     if (!p) p = g_screenWidth - 1;
@@ -715,7 +715,7 @@ vstring cmdInput1(vstring ask)
     let(&ask1, right(ask1, p + 1));
   }
 
-  if ((signed)(strlen(ask1)) > g_screenWidth - 10) {
+  if ((signed)(C.strlen(ask1)) > g_screenWidth - 10) {
     p = g_screenWidth - 11;
     while (ask1[p] != ' ' && p > 0) p--;
     if (p) {
@@ -822,7 +822,7 @@ void errorMessage(vstring line, long lineNum, long column, long tokenLength,
 
 
   if (line) {
-    if (line[strlen(line) - 1] != '\n') {
+    if (line[C.strlen(line) - 1] != '\n') {
       let(&line1, line);
     } else {
       bug(1509);
@@ -1227,7 +1227,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
   }
 
 
-  i = (long)strlen(fileBuf);
+  i = (long)C.strlen(fileBuf);
   if ((*charCount) != i) {
     if (verbose) {
       print2(
@@ -1235,7 +1235,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
           fileName);
       print2(
           "Its size is %ld characters with null at character %ld.\n",
-          (*charCount), strlen(fileBuf));
+          (*charCount), C.strlen(fileBuf));
     }
   }
 db = db + i;

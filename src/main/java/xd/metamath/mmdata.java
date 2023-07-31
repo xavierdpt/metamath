@@ -578,7 +578,7 @@ flag matches(vstring testString, vstring pattern, char wildCard,
         s1 = lookupLabel(left(pattern, i - 1));
       }
       s2 = lookupLabel(testString);
-      if (i == (long)strlen(pattern)) {
+      if (i == (long)C.strlen(pattern)) {
         s3 = g_statements;
       } else {
         s3 = lookupLabel(right(pattern, i + 1));
@@ -1103,14 +1103,14 @@ vstring nmbrCvtMToVString(nmbrString *s)
 
   outputLen = -1;
   for (i = 0; i < mstrLen; i++) {
-    outputLen = outputLen + (long)strlen(g_MathToken[s[i]].tokenName) + 1;
+    outputLen = outputLen + (long)C.strlen(g_MathToken[s[i]].tokenName) + 1;
   }
   let(&tmpStr, space(outputLen));
 
   ptr = tmpStr;
   for (i = 0; i < mstrLen; i++) {
     ptr2 = g_MathToken[s[i]].tokenName;
-    j = (long)strlen(ptr2);
+    j = (long)C.strlen(ptr2);
     memcpy(ptr, ptr2, (size_t)j);
     ptr = ptr + j + 1;
   }
@@ -1186,8 +1186,8 @@ vstring nmbrCvtRToVString(nmbrString *proof,
       }
 
       if (stmt > 0) {
-        if ((signed)(strlen(g_Statement[stmt].labelName)) > maxLabelLen) {
-          maxLabelLen = (long)strlen(g_Statement[stmt].labelName);
+        if ((signed)(C.strlen(g_Statement[stmt].labelName)) > maxLabelLen) {
+          maxLabelLen = (long)C.strlen(g_Statement[stmt].labelName);
         }
       }
     }
@@ -1197,8 +1197,8 @@ vstring nmbrCvtRToVString(nmbrString *proof,
 
       stmt = targetHyps[step];
       if (stmt <= 0) bug(1390);
-      if ((signed)(strlen(g_Statement[stmt].labelName)) > maxTargetLabelLen) {
-        maxTargetLabelLen = (long)strlen(g_Statement[stmt].labelName);
+      if ((signed)(C.strlen(g_Statement[stmt].labelName)) > maxTargetLabelLen) {
+        maxTargetLabelLen = (long)C.strlen(g_Statement[stmt].labelName);
       }
     }
 
@@ -1270,7 +1270,7 @@ vstring nmbrCvtRToVString(nmbrString *proof,
 
           g_Statement[stmt].labelName, " ", null));
     }
-    j = (long)strlen(tmpStr);
+    j = (long)C.strlen(tmpStr);
     memcpy(ptr, tmpStr, (size_t)j);
     ptr = ptr + j;
   }
@@ -1764,8 +1764,8 @@ vstring compressProof(nmbrString *proof, long statemNum,
   digits = "UVWXY";
   labelChar = 'Z';
 
-  lettersLen = (long)strlen(letters);
-  digitsLen = (long)strlen(digits);
+  lettersLen = (long)C.strlen(letters);
+  digitsLen = (long)C.strlen(digits);
 
   nmbrLet(&saveProof, proof);
 
@@ -1899,7 +1899,7 @@ vstring compressProof(nmbrString *proof, long statemNum,
 
   for (i = 0; i < explLabels; i++) {
     stmt = explList[i];
-    explLabelLen[i] = (long)(strlen(g_Statement[stmt].labelName)) + 1;
+    explLabelLen[i] = (long)(C.strlen(g_Statement[stmt].labelName)) + 1;
 
   }
 
@@ -2110,7 +2110,7 @@ long compressedProofSize(nmbrString *proof, long statemNum) {
           statemNum,
           0
           ));
-  bytes = (long)strlen(tmpStr);
+  bytes = (long)C.strlen(tmpStr);
 
   let(&tmpStr, "");
   nmbrLet(&tmpNmbr, NULL_NMBRSTRING);
@@ -2884,7 +2884,7 @@ vstring getContrib(long stmtNum, char mode) {
   if (mode == GC_RESET) {
 
     if (init != 0) {
-      if ((long)strlen(commentSearchedFlags) != g_statements + 1) {
+      if ((long)C.strlen(commentSearchedFlags) != g_statements + 1) {
         bug(1395);
       }
       if (stmtNum != 0) {
@@ -2919,7 +2919,7 @@ vstring getContrib(long stmtNum, char mode) {
 
   if (mode == GC_RESET_STMT) {
     if (init != 0) {
-      if ((long)strlen(commentSearchedFlags) != g_statements + 1) {
+      if ((long)C.strlen(commentSearchedFlags) != g_statements + 1) {
         bug(1398);
       }
       if (stmtNum < 1 || stmtNum > g_statements + 1) {
@@ -2973,7 +2973,7 @@ vstring getContrib(long stmtNum, char mode) {
 
     cStart = instr(1, description, CONTRIB_MATCH);
     if (cStart != 0) {
-      cStart = cStart + (long)strlen(CONTRIB_MATCH);
+      cStart = cStart + (long)C.strlen(CONTRIB_MATCH);
       cEnd = instr(cStart, description, END_MATCH);
       cMid = cEnd;
       if (cMid != 0) {
@@ -2994,12 +2994,12 @@ vstring getContrib(long stmtNum, char mode) {
       p = instr(rStart + 1, description, REVISE_MATCH);
       if (p != 0) {
         rStart = p;
-        if (firstR == 0) firstR = p + (long)strlen(REVISE_MATCH);
+        if (firstR == 0) firstR = p + (long)C.strlen(REVISE_MATCH);
 
       }
     } while (p != 0);
     if (rStart != 0) {
-      rStart = rStart + (long)strlen(REVISE_MATCH);
+      rStart = rStart + (long)C.strlen(REVISE_MATCH);
       rEnd = instr(rStart, description, END_MATCH);
       rMid = rEnd;
       if (rMid != 0) {
@@ -3020,12 +3020,12 @@ vstring getContrib(long stmtNum, char mode) {
       p = instr(sStart + 1, description, SHORTEN_MATCH);
       if (p != 0) {
         sStart = p;
-        if (firstS == 0) firstS = p + (long)strlen(SHORTEN_MATCH);
+        if (firstS == 0) firstS = p + (long)C.strlen(SHORTEN_MATCH);
 
       }
     } while (p != 0);
     if (sStart != 0) {
-      sStart = sStart + (long)strlen(SHORTEN_MATCH);
+      sStart = sStart + (long)C.strlen(SHORTEN_MATCH);
       sEnd = instr(sStart, description, END_MATCH);
       sMid = sEnd;
       if (sMid != 0) {

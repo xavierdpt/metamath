@@ -2878,7 +2878,7 @@ void declareDummyVars(long numNewVars)
     let(&g_MathToken[g_mathTokens + g_dummyVars].tokenName,
         cat("$", str((double)g_dummyVars), null));
     g_MathToken[g_mathTokens + g_dummyVars].length =
-        (long)strlen(g_MathToken[g_mathTokens + g_dummyVars].tokenName);
+        (long)C.strlen(g_MathToken[g_mathTokens + g_dummyVars].tokenName);
     g_MathToken[g_mathTokens + g_dummyVars].scope = g_currentScope;
     g_MathToken[g_mathTokens + g_dummyVars].active = 1;
     g_MathToken[g_mathTokens + g_dummyVars].tokenType = (char)var_;

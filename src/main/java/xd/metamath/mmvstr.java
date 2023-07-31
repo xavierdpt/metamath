@@ -30,7 +30,7 @@ static void freeTempAlloc()
 
   long i;
   for (i = g_startTempAllocStack; i < g_tempAllocStackTop; i++) {
-INCDB1(-1 - (long)strlen(tempAllocStack[i]));
+INCDB1(-1 - (long)C.strlen(tempAllocStack[i]));
 
     free(tempAllocStack[i]);
   }
@@ -72,8 +72,8 @@ INCDB1(size);
 void makeTempAlloc(vstring s)
 {
   pushTempAlloc(s);
-INCDB1((long)strlen(s) + 1);
-db-=(long)strlen(s) + 1;
+INCDB1((long)C.strlen(s) + 1);
+db-=(long)C.strlen(s) + 1;
 
 }
 
@@ -87,8 +87,8 @@ void let(vstring *target, vstring source)
 
 {
 
-  size_t sourceLength = strlen(source);
-  size_t targetLength = strlen(*target);
+  size_t sourceLength = C.strlen(source);
+  size_t targetLength = C.strlen(*target);
 if (targetLength) {
   db -= (long)targetLength+1;
 
@@ -149,7 +149,7 @@ vstring cat(vstring string1,...)
     }
     arg[numArgs] = curArg;
     argPos[numArgs] = pos;
-    pos += strlen(curArg);
+    pos += C.strlen(curArg);
   } while (++numArgs, (curArg = va_arg(ap,char *)) != 0);
   va_end(ap);
 
@@ -179,7 +179,7 @@ int linput(File stream, const char* ask, vstring *target)
   if (stream == null) stream = stdin;
   while (!eol_found && fgets(f, sizeof(f), stream))
   {
-    size_t endpos = strlen(f) - 1;
+    size_t endpos = C.strlen(f) - 1;
     eol_found = (f[endpos] == '\n');
     if (eol_found)
       f[endpos] = 0;
@@ -197,7 +197,7 @@ int linput(File stream, const char* ask, vstring *target)
 
 long len(vstring s)
 {
-  return ((long)strlen(s));
+  return ((long)C.strlen(s));
 }
 
 
@@ -233,7 +233,7 @@ vstring left(vstring sin,long n)
 
 vstring right(vstring sin, long n)
 {
-  return seg(sin, n, (long)(strlen(sin)));
+  return seg(sin, n, (long)(C.strlen(sin)));
 }
 
 
@@ -274,7 +274,7 @@ vstring edit(vstring sin,long control)
   discardcr_flag = control & 8192;
 
 
-  i = (long)strlen(sin) + 1;
+  i = (long)C.strlen(sin) + 1;
   if (untab_flag) i = i * 7;
   sout=tempAlloc(i);
   strcpy(sout,sin);
@@ -399,7 +399,7 @@ vstring edit(vstring sin,long control)
 
 
 
-    k = (long)strlen(sout);
+    k = (long)C.strlen(sout);
     m = 0;
     for (i = 1; i <= k; i++) {
       if (sout[i - 1] == '\n') {
@@ -423,7 +423,7 @@ vstring edit(vstring sin,long control)
   if (tab_flag) {
 
 
-    k = (long)strlen(sout);
+    k = (long)C.strlen(sout);
     for (i = 8; i < k; i = i + 8) {
       j = i;
 
@@ -494,8 +494,8 @@ long instr(long start_position, vstring string1, vstring string2)
   long ls1, ls2;
   long found = 0;
   if (start_position < 1) start_position = 1;
-  ls1 = (long)strlen(string1);
-  ls2 = (long)strlen(string2);
+  ls1 = (long)C.strlen(string1);
+  ls2 = (long)C.strlen(string2);
   if (start_position > ls1) start_position = ls1 + 1;
   sp1 = string1 + start_position - 1;
   while ((sp2 = strchr(sp1, string2[0])) != 0) {
@@ -533,8 +533,8 @@ vstring xlate(vstring sin,vstring table)
   long i, j;
   long table_entry;
   char m;
-  len_sin = (long)strlen(sin);
-  len_table = (long)strlen(table);
+  len_sin = (long)C.strlen(sin);
+  len_table = (long)C.strlen(table);
   sout = tempAlloc(len_sin+1);
   for (i = j = 0; i < len_sin; i++)
   {
@@ -562,7 +562,7 @@ double val(vstring s)
   char signFound = 0;
   double power = 1.0;
   long i;
-  for (i = (long)strlen(s); i >= 0; i--) {
+  for (i = (long)C.strlen(s); i >= 0; i--) {
     switch (s[i]) {
       case '.':
         v = v / power;
@@ -672,12 +672,12 @@ vstring str(double f)
   s = tempAlloc(50);
   sprintf(s,"%f", f);
   if (strchr(s, '.') != 0) {
-    for (i = (long)strlen(s) - 1; i > 0; i--) {
+    for (i = (long)C.strlen(s) - 1; i > 0; i--) {
       if (s[i] != '0') break;
       s[i] = 0;
     }
     if (s[i] == '.') s[i] = 0;
-INCDB1(-(49 - (long)strlen(s)));
+INCDB1(-(49 - (long)C.strlen(s)));
   }
   return (s);
 }

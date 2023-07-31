@@ -10,7 +10,7 @@ public class metamath {
     mmdata.g_toolsMode.set(mmdata.g_listMode);
     if (!(mmdata.g_listMode.asBoolean())) {
 
-    mminou.print2("Metamath - Version %s%s", MVERSION, space(27 - (long)strlen(MVERSION)));
+    mminou.print2("Metamath - Version %s%s", MVERSION, space(27 - (long)C.strlen(MVERSION)));
   }
     mminou.print2("Type HELP for help, EXIT to exit.\n");
 
@@ -327,8 +327,8 @@ static final long SYNTAX =D.SYNTAX;
 
         let(&str1, right(g_commandLine, 2));
         if (g_commandLine[0]) {
-          if (g_commandLine[0] == g_commandLine[strlen(g_commandLine) - 1]) {
-            let(&str1, left(str1, (long)(strlen(str1)) - 1));
+          if (g_commandLine[0] == g_commandLine[C.strlen(g_commandLine) - 1]) {
+            let(&str1, left(str1, (long)(C.strlen(str1)) - 1));
           }
         }
 
@@ -364,7 +364,7 @@ static final long SYNTAX =D.SYNTAX;
           let(&str1, cat(str1, g_fullArg[i], " ", null));
         }
       }
-      let(&str1, left(str1, (long)(strlen(str1)) - 1));
+      let(&str1, left(str1, (long)(C.strlen(str1)) - 1));
       if (mmdata.g_toolsMode.asBoolean() && g_listFile_fp != null) {
 
         fprintf(g_listFile_fp, "%s\n", str1);
@@ -388,7 +388,7 @@ static final long SYNTAX =D.SYNTAX;
       for (i = 0; i < k; i++) {
         let(&str1, cat(str1, g_fullArg[i], " ", null));
       }
-      let(&str1, left(str1, (long)(strlen(str1)) - 1));
+      let(&str1, left(str1, (long)(C.strlen(str1)) - 1));
       if (mmdata.g_toolsMode.asBoolean()) {
         help0(str1);
         help1(str1);
@@ -579,13 +579,13 @@ static final long SYNTAX =D.SYNTAX;
 
           p = 0;
           while (linput(list1_fp, null, &str1)) {
-            if (p < (signed)(strlen(str1))) p = (long)(strlen(str1));
+            if (p < (signed)(C.strlen(str1))) p = (long)(C.strlen(str1));
           }
           rewind(list1_fp);
         }
         let(&list2_fname, g_fullArg[1]);
-        if (list2_fname[strlen(list2_fname) - 2] == '~') {
-          let(&list2_fname, left(list2_fname, (long)(strlen(list2_fname)) - 2));
+        if (list2_fname[C.strlen(list2_fname) - 2] == '~') {
+          let(&list2_fname, left(list2_fname, (long)(C.strlen(list2_fname)) - 2));
           mminou.print2("The output file will be called %s.\n", list2_fname);
         }
         let(&list2_ftmpname, "");
@@ -691,12 +691,12 @@ static final long SYNTAX =D.SYNTAX;
               break;
             case DELETE_MODE:
               p1 = instr(1, str1, g_fullArg[2]);
-              if (strlen(g_fullArg[2]) == 0) p1 = 1;
+              if (C.strlen(g_fullArg[2]) == 0) p1 = 1;
               p2 = instr(p1, str1, g_fullArg[3]);
-              if (strlen(g_fullArg[3]) == 0) p2 = (long)strlen(str1) + 1;
+              if (C.strlen(g_fullArg[3]) == 0) p2 = (long)C.strlen(str1) + 1;
               if (p1 != 0 && p2 != 0) {
                 let(&str2, cat(left(str1, p1 - 1), right(str1, p2
-                    + (long)strlen(g_fullArg[3])), null));
+                    + (long)C.strlen(g_fullArg[3])), null));
                 changedLines++;
               }
               break;
@@ -743,13 +743,13 @@ static final long SYNTAX =D.SYNTAX;
                 p++;
                 if (p == q || q == -1) {
                   let(&str2, cat(left(str2, p1 - 1), newstr,
-                      right(str2, p1 + (long)strlen(g_fullArg[2])), null));
+                      right(str2, p1 + (long)C.strlen(g_fullArg[2])), null));
                   if (newstr[0] == '\n') {
 
                     lines++;
                     changedLines++;
                   }
-                  p1 = p1 + (long)strlen(newstr) - 1;
+                  p1 = p1 + (long)C.strlen(newstr) - 1;
 
                   if (q != -1) break;
                 }
@@ -761,14 +761,14 @@ static final long SYNTAX =D.SYNTAX;
               if (p1) {
                 p2 = instr(p1 + 1, str1, g_fullArg[2]);
                 if (p2) twoMatches++;
-                let(&str2, cat(right(str1, p1) + (long)strlen(g_fullArg[2]),
+                let(&str2, cat(right(str1, p1) + (long)C.strlen(g_fullArg[2]),
                     g_fullArg[2], left(str1, p1 - 1), null));
                 if (strcmp(str1, str2)) changedLines++;
               }
               break;
             case INSERT_MODE:
-              if ((signed)(strlen(str2)) < p - 1)
-                let(&str2, cat(str2, space(p - 1 - (long)strlen(str2)), null));
+              if ((signed)(C.strlen(str2)) < p - 1)
+                let(&str2, cat(str2, space(p - 1 - (long)C.strlen(str2)), null));
               let(&str2, cat(left(str2, p - 1), g_fullArg[2],
                   right(str2, p), null));
               if (strcmp(str1, str2)) changedLines++;
@@ -776,7 +776,7 @@ static final long SYNTAX =D.SYNTAX;
             case BREAK_MODE:
               let(&str2, str1);
               changedLines++;
-              for (i = 0; i < (signed)(strlen(g_fullArg[2])); i++) {
+              for (i = 0; i < (signed)(C.strlen(g_fullArg[2])); i++) {
                 p = 0;
                 while (true) {
                   p = instr(p + 1, str2, chr(((vstring)(g_fullArg[2]))[i]));
@@ -790,7 +790,7 @@ static final long SYNTAX =D.SYNTAX;
                 }
               }
               let(&str2, edit(str2, 8 + 16 + 128));
-              for (p = (long)strlen(str2) - 1; p >= 0; p--) {
+              for (p = (long)C.strlen(str2) - 1; p >= 0; p--) {
                 if (str2[p] == ' ') {
                   str2[p] = '\n';
                   changedLines++;
@@ -803,7 +803,7 @@ static final long SYNTAX =D.SYNTAX;
                 if (str4[0] == 0) {
                   let(&str4, str2);
                 } else {
-                  if ((long)strlen(str4) + (long)strlen(str2) > 72) {
+                  if ((long)C.strlen(str4) + (long)C.strlen(str2) > 72) {
                     let(&str4, cat(str4, "\n", str2, null));
                     changedLines++;
                   } else {
@@ -833,7 +833,7 @@ static final long SYNTAX =D.SYNTAX;
               if (p) changedLines++;
               break;
             case RIGHT_MODE:
-              let(&str2, cat(space(p - (long)strlen(str2)), str2, null));
+              let(&str2, cat(space(p - (long)C.strlen(str2)), str2, null));
               if (strcmp(str1, str2)) changedLines++;
               break;
           }
@@ -924,8 +924,8 @@ static final long SYNTAX =D.SYNTAX;
         list1_fp = fSafeOpen(g_fullArg[1], "r", 0);
         if (!list1_fp) continue;
         let(&list2_fname, g_fullArg[1]);
-        if (list2_fname[strlen(list2_fname) - 2] == '~') {
-          let(&list2_fname, left(list2_fname, (long)strlen(list2_fname) - 2));
+        if (list2_fname[C.strlen(list2_fname) - 2] == '~') {
+          let(&list2_fname, left(list2_fname, (long)C.strlen(list2_fname) - 2));
           mminou.print2("The output file will be called %s.\n", list2_fname);
         }
         let(&list2_ftmpname, "");
@@ -1102,8 +1102,8 @@ static final long SYNTAX =D.SYNTAX;
       if (cmdMatches("NUMBER")) {
         list1_fp = fSafeOpen(g_fullArg[1], "w", 0);
         if (!list1_fp) continue;
-        j = (long)strlen(str(val(g_fullArg[2])));
-        k = (long)strlen(str(val(g_fullArg[3])));
+        j = (long)C.strlen(str(val(g_fullArg[2])));
+        k = (long)C.strlen(str(val(g_fullArg[3])));
         if (k > j) j = k;
         for (i = (long)val(g_fullArg[2]); i <= val(g_fullArg[3]);
             i = i + (long)val(g_fullArg[4])) {
@@ -1129,14 +1129,14 @@ static final long SYNTAX =D.SYNTAX;
           lines++;
 
 
-          if (q < (signed)(strlen(str1))) {
-            q = (long)strlen(str1);
+          if (q < (signed)(C.strlen(str1))) {
+            q = (long)C.strlen(str1);
             let(&str4, str1);
             i = lines;
             j = 0;
           }
 
-          if (q == (signed)(strlen(str1))) {
+          if (q == (signed)(C.strlen(str1))) {
             j++;
           }
 
@@ -1730,10 +1730,10 @@ static final long SYNTAX =D.SYNTAX;
         if (!str2[0]) {
           j = 0;
         }
-        k = ((long)strlen(str2) + MIN_SPACE > j * COL)
-            ? (long)strlen(str2) + MIN_SPACE : j * COL;
+        k = ((long)C.strlen(str2) + MIN_SPACE > j * COL)
+            ? (long)C.strlen(str2) + MIN_SPACE : j * COL;
 
-        if (k + (long)strlen(str1) > g_screenWidth || linearFlag) {
+        if (k + (long)C.strlen(str1) > g_screenWidth || linearFlag) {
           if (j == 0) {
 
             printLongLine(str1, "", " ");
@@ -1748,7 +1748,7 @@ static final long SYNTAX =D.SYNTAX;
           if (j == 0) {
             let(&str2, str1);
           } else {
-            let(&str2, cat(str2, space(k - (long)strlen(str2)), str1, null));
+            let(&str2, cat(str2, space(k - (long)C.strlen(str2)), str1, null));
           }
           j++;
         }
@@ -1791,8 +1791,8 @@ static final long SYNTAX =D.SYNTAX;
       str1 = outputStatement(g_showStatement,
           0 );
       let(&str1,edit(str1,128));
-      if (str1[strlen(str1)-1] == '\n') let(&str1, left(str1,
-          (long)strlen(str1) - 1));
+      if (str1[C.strlen(str1)-1] == '\n') let(&str1, left(str1,
+          (long)C.strlen(str1) - 1));
       printLongLine(str1, "", "");
       let(&str1,"");
       continue;
@@ -2012,7 +2012,7 @@ static final long SYNTAX =D.SYNTAX;
                         ].tokenName, i);
                     if (!str2[0]) continue;
 
-                    for (k = 0; k < (signed)(strlen(str1)); k++) {
+                    for (k = 0; k < (signed)(C.strlen(str1)); k++) {
                       if (str1[k] == '&') {
                         let(&str1, cat(left(str1, k), "&amp;",
                             right(str1, k + 2), null));
@@ -2093,7 +2093,7 @@ static final long SYNTAX =D.SYNTAX;
                 } else {
                   let(&str1, "");
                   str1 = getDescription(i);
-                  if (strlen(str1) > 29)
+                  if (C.strlen(str1) > 29)
                     let(&str1, cat(left(str1, 26), "...", null));
                   let(&str1, cat(str1, "</TD></TR>", null));
                   printLongLine(str1, "", "\"");
@@ -2632,8 +2632,8 @@ static final long SYNTAX =D.SYNTAX;
           let(&str3, " ");
           for (j = g_showStatement + 1; j <= g_statements; j++) {
             if (str1[j] == 'Y') {
-              if ((long)strlen(str3) + 1 +
-                  (long)strlen(g_Statement[j].labelName) > g_screenWidth) {
+              if ((long)C.strlen(str3) + 1 +
+                  (long)C.strlen(g_Statement[j].labelName) > g_screenWidth) {
 
                 mminou.print2("%s\n", str3);
                 let(&str3, " ");
@@ -2641,7 +2641,7 @@ static final long SYNTAX =D.SYNTAX;
               let(&str3, cat(str3, " ", g_Statement[j].labelName, null));
             }
           }
-          if (strlen(str3) > 1) mminou.print2("%s\n", str3);
+          if (C.strlen(str3) > 1) mminou.print2("%s\n", str3);
           let(&str3, "");
         } else {
           mminou.print2("  (None)\n");
@@ -2978,7 +2978,7 @@ static final long SYNTAX =D.SYNTAX;
           }
 
 
-          l = (long)(strlen(str1));
+          l = (long)(C.strlen(str1));
 
 
           if  (1
@@ -3028,7 +3028,7 @@ static final long SYNTAX =D.SYNTAX;
                 }
 
                 g_Statement[outStatement].labelSectionChanged = 1;
-                g_Statement[outStatement].labelSectionLen = (long)strlen(str3);
+                g_Statement[outStatement].labelSectionLen = (long)C.strlen(str3);
                 g_Statement[outStatement].labelSectionPtr = str3;
                 str3 = "";
 
@@ -3064,7 +3064,7 @@ static final long SYNTAX =D.SYNTAX;
 
                   g_Statement[outStatement + 1].labelSectionChanged = 1;
                   g_Statement[outStatement + 1].labelSectionLen
-                      = (long)strlen(str3);
+                      = (long)C.strlen(str3);
                   g_Statement[outStatement + 1].labelSectionPtr = str3;
                   str3 = "";
 
@@ -3100,11 +3100,11 @@ static final long SYNTAX =D.SYNTAX;
 
             g_Statement[outStatement].proofSectionChanged = 1;
             if (strcmp(" $.\n",
-                right(g_printString, (long)strlen(g_printString) - 3))) {
+                right(g_printString, (long)C.strlen(g_printString) - 3))) {
               bug(1128);
             }
             g_Statement[outStatement].proofSectionLen
-                = (long)strlen(g_printString) - 3;
+                = (long)C.strlen(g_printString) - 3;
             g_Statement[outStatement].proofSectionPtr = g_printString;
             g_printString = "";
             g_outputToString = 0;
@@ -4419,7 +4419,7 @@ static final long SYNTAX =D.SYNTAX;
           g_proveStatement,
           0
           ));
-      origCompressedLength = (long)strlen(str1);
+      origCompressedLength = (long)C.strlen(str1);
       mminou.print2(
 "Bytes refer to compressed proof size, steps to uncompressed length.\n");
 
@@ -4553,7 +4553,7 @@ static final long SYNTAX =D.SYNTAX;
                 let(&str1, cat(" ", str1, " $.", null));
 
                 g_Statement[g_proveStatement].proofSectionLen
-                    = (long)strlen(str1) - 2;
+                    = (long)C.strlen(str1) - 2;
                 g_Statement[g_proveStatement].proofSectionPtr = str1;
 
 
@@ -4615,7 +4615,7 @@ static final long SYNTAX =D.SYNTAX;
                   g_proveStatement,
                   0
                   ));
-              newCompressedLength = (long)strlen(str1);
+              newCompressedLength = (long)C.strlen(str1);
               if (!mayGrowFlag && newCompressedLength > oldCompressedLength) {
 
                 if (verboseMode) {
@@ -4651,7 +4651,7 @@ static final long SYNTAX =D.SYNTAX;
 
               let(&str1, cat(" ", str1, " $.", null));
 
-              g_Statement[g_proveStatement].proofSectionLen = (long)strlen(str1) - 2;
+              g_Statement[g_proveStatement].proofSectionLen = (long)C.strlen(str1) - 2;
               g_Statement[g_proveStatement].proofSectionPtr = str1;
 
 
@@ -5106,7 +5106,7 @@ static final long SYNTAX =D.SYNTAX;
         let(&str1, edit(str1, 8 + 16 + 128));
 
 
-        q = (long)strlen(str1);
+        q = (long)C.strlen(str1);
         let(&str3, space(q + q));
         s = 0;
         for (p = 0; p < q; p++) {
@@ -5181,10 +5181,10 @@ static final long SYNTAX =D.SYNTAX;
           }
 
           let(&str2, edit(str2, 4 + 8 + 16 + 128));
-          j = j + ((long)strlen(str1) / 2);
-          p = g_screenWidth - 7 - (long)strlen(str((double)i)) - (long)strlen(g_Statement[i].labelName);
+          j = j + ((long)C.strlen(str1) / 2);
+          p = g_screenWidth - 7 - (long)C.strlen(str((double)i)) - (long)C.strlen(g_Statement[i].labelName);
 
-          q = (long)strlen(str2);
+          q = (long)C.strlen(str2);
           if (q <= p) {
             let(&str3, str2);
           } else {
@@ -5224,7 +5224,7 @@ static final long SYNTAX =D.SYNTAX;
           }
 
 
-          q = (long)strlen(str2);
+          q = (long)C.strlen(str2);
           let(&str3, space(q + q));
           s = 0;
           for (p = 0; p < q; p++) {
@@ -5385,11 +5385,11 @@ static final long SYNTAX =D.SYNTAX;
         if (instr(1, g_rootDirectory, "\\") != 0
             || instr(1, g_input_fn, "\\") != 0
             || instr(1, g_output_fn, "\\") != 0 ) {
-          if (g_rootDirectory[strlen(g_rootDirectory) - 1] != '\\') {
+          if (g_rootDirectory[C.strlen(g_rootDirectory) - 1] != '\\') {
             let(&g_rootDirectory, cat(g_rootDirectory, "\\", null));
           }
         } else {
-          if (g_rootDirectory[strlen(g_rootDirectory) - 1] != '/') {
+          if (g_rootDirectory[C.strlen(g_rootDirectory) - 1] != '/') {
             let(&g_rootDirectory, cat(g_rootDirectory, "/", null));
           }
         }
@@ -5568,7 +5568,7 @@ static final long SYNTAX =D.SYNTAX;
             }
             m++;
             if (!mminou.print2("%ld:  %s\n", j, left(str1,
-                MAX_LEN - (long)strlen(str((double)j)) - 3))) break;
+                MAX_LEN - (long)C.strlen(str((double)j)) - 3))) break;
           }
         }
         for (k = 1; k < searchWindow; k++) {

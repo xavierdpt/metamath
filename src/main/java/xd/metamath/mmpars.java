@@ -2691,8 +2691,8 @@ char parseCompressedProof(long statemNum)
     digits = "UVWXY";
     labelChar = 'Z';
 
-    lettersLen = (long)strlen(letters);
-    digitsLen = (long)strlen(digits);
+    lettersLen = (long)C.strlen(letters);
+    digitsLen = (long)C.strlen(digits);
 
 
 
@@ -3465,7 +3465,7 @@ vstring shortDumpRPNStack() {
         right(tmpStr2,m + 1),null));
   }
   if (g_WrkProof.RPNStackPtr > 2) {
-    for (m = (long)strlen(tmpStr2); m > 0; m--) {
+    for (m = (long)C.strlen(tmpStr2); m > 0; m--) {
       if (tmpStr2[m - 1] == ',') break;
     }
     let(&tmpStr2,cat(left(tmpStr2,m - 1),", and ",
@@ -3577,7 +3577,7 @@ long whiteSpaceLen(char *ptr)
           }
 
           if (!ptr1) {
-            return(i + (long)strlen(&ptr[i]));
+            return(i + (long)C.strlen(&ptr[i]));
           }
           if (ptr1[1] == ')') break;
           i = ptr1 - ptr;
@@ -3812,7 +3812,7 @@ vstring outputStatement(long stmt,
 
 
         let(&labelSection, edit(labelSection, 128 ));
-        slen = (long)strlen(labelSection);
+        slen = (long)C.strlen(labelSection);
 
 
         if (slen != 0 && labelSection[slen - 1] != '\n') {
@@ -3846,27 +3846,27 @@ vstring outputStatement(long stmt,
         if (g_Statement[stmt].type == d_) {
           let(&mathSection, edit(mathSection,
                + 16));
-          if (strlen(edit(labelSection, 4 + 2))
+          if (C.strlen(edit(labelSection, 4 + 2))
               == 0)
               {
             if (previousType == d_) {
 
-              if (dollarDpos + 2 + (signed)(strlen(mathSection)) + 4
+              if (dollarDpos + 2 + (signed)(C.strlen(mathSection)) + 4
                   <= g_screenWidth) {
                 let(&labelSection, "  ");
-                dollarDpos = dollarDpos + 2 + (long)strlen(mathSection) + 4;
+                dollarDpos = dollarDpos + 2 + (long)C.strlen(mathSection) + 4;
               } else {
 
 
-                dollarDpos = indent + (long)strlen(mathSection) + 4;
+                dollarDpos = indent + (long)C.strlen(mathSection) + 4;
 
                 let(&labelSection, cat("\n", space(indent), null));
               }
             } else {
-              dollarDpos = indent + (long)strlen(mathSection) + 4;
+              dollarDpos = indent + (long)C.strlen(mathSection) + 4;
             }
           } else {
-            dollarDpos = indent + (long)strlen(mathSection) + 4;
+            dollarDpos = indent + (long)C.strlen(mathSection) + 4;
           }
         }
 
@@ -3907,7 +3907,7 @@ vstring outputStatement(long stmt,
         if (pos == 0 && stmt > 1) {
           let(&labelSection, cat(edit(labelSection, 128 ),
               "\n", null));
-          pos = (long)strlen(labelSection) + 1;
+          pos = (long)C.strlen(labelSection) + 1;
         }
 
 
@@ -3960,7 +3960,7 @@ vstring outputStatement(long stmt,
           g_outputToString = 0;
           static final long ASCII_4 =D.ASCII_4;
 
-          length = (long)strlen(comment);
+          length = (long)C.strlen(comment);
           for (pos = 2; pos < length - 2; pos++) {
 
 
@@ -3995,7 +3995,7 @@ vstring outputStatement(long stmt,
         if (pos == 0 && stmt > 1) {
           let(&labelSection, cat(edit(labelSection, 128 ),
               "\n", null));
-          pos = (long)strlen(labelSection) + 1;
+          pos = (long)C.strlen(labelSection) + 1;
         }
         let(&labelSection, left(labelSection, pos));
         if ((previousType == d_
@@ -4093,7 +4093,7 @@ vstring outputStatement(long stmt,
 
 
   if (strcmp(labelSection, labelSectionSave)) {
-    g_Statement[stmt].labelSectionLen = (long)strlen(labelSection);
+    g_Statement[stmt].labelSectionLen = (long)C.strlen(labelSection);
     if (g_Statement[stmt].labelSectionChanged == 1) {
       let(&(g_Statement[stmt].labelSectionPtr), labelSection);
     } else {
@@ -4104,7 +4104,7 @@ vstring outputStatement(long stmt,
     }
   }
   if (strcmp(mathSection, mathSectionSave)) {
-    g_Statement[stmt].mathSectionLen = (long)strlen(mathSection);
+    g_Statement[stmt].mathSectionLen = (long)C.strlen(mathSection);
     if (g_Statement[stmt].mathSectionChanged == 1) {
       let(&(g_Statement[stmt].mathSectionPtr), mathSection);
     } else {
@@ -4116,7 +4116,7 @@ vstring outputStatement(long stmt,
   }
   if (strcmp(proofSection, proofSectionSave)) {
     bug(1757);
-    g_Statement[stmt].proofSectionLen = (long)strlen(proofSection);
+    g_Statement[stmt].proofSectionLen = (long)C.strlen(proofSection);
     if (g_Statement[stmt].proofSectionChanged == 1) {
       let(&(g_Statement[stmt].proofSectionPtr), proofSection);
     } else {
@@ -4205,7 +4205,7 @@ vstring rewrapComment(vstring comment1)
   }
 
 
-  length = (long)strlen(comment);
+  length = (long)C.strlen(comment);
   for (pos = 2; pos < length - 2; pos++) {
     if (comment[pos] == '\n' && comment[pos - 1] != '\n'
         && comment[pos + 1] != '\n')
@@ -4215,7 +4215,7 @@ vstring rewrapComment(vstring comment1)
 
 
   while (true) {
-    length = (long)strlen(comment);
+    length = (long)C.strlen(comment);
     if (comment[length - 3] != ' ') bug(1730);
 
     if (comment[length - 4] != ' ' && comment[length - 4] != '\n') break;
@@ -4224,7 +4224,7 @@ vstring rewrapComment(vstring comment1)
   }
 
 
-  length = (long)strlen(comment);
+  length = (long)C.strlen(comment);
   if (islower((unsigned char)(comment[length - 4]))) {
     let(&comment, cat(left(comment, length - 3), ". $)", null));
   }
@@ -4245,7 +4245,7 @@ vstring rewrapComment(vstring comment1)
   }
   pos = instr(1, comment, g_proofDiscouragedMarkup);
   if (pos != 0) {
-    i = (long)strlen(g_proofDiscouragedMarkup);
+    i = (long)C.strlen(g_proofDiscouragedMarkup);
     for (j = pos; j < pos + i - 1; j++) {
       if (comment[j] == ' ') {
         comment[j] = ASCII_4;
@@ -4254,7 +4254,7 @@ vstring rewrapComment(vstring comment1)
   }
   pos = instr(1, comment, g_usageDiscouragedMarkup);
   if (pos != 0) {
-    i = (long)strlen(g_usageDiscouragedMarkup);
+    i = (long)C.strlen(g_usageDiscouragedMarkup);
     for (j = pos; j < pos + i - 1; j++) {
       if (comment[j] == ' ') {
         comment[j] = ASCII_4;
@@ -4289,7 +4289,7 @@ vstring rewrapComment(vstring comment1)
     }
   }
 
-  length = (long)strlen(comment);
+  length = (long)C.strlen(comment);
   let(&commentTemplate, space(length));
   for (pos = 3; pos < length - 2; pos++) {
     if (comment[pos] == ' ') {
@@ -4400,7 +4400,7 @@ nmbrString *parseMathTokens(vstring userText, long statemNum)
 
 
 
-  wrkLen = (long)strlen(userText);
+  wrkLen = (long)C.strlen(userText);
   wrkNmbrPtr = malloc((size_t)wrkLen * sizeof(nmbrString));
   if (!wrkNmbrPtr) outOfMemory("#22 (wrkNmbrPtr)");
   wrkStrPtr = malloc((size_t)wrkLen + 1);
@@ -4758,7 +4758,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
     if (i == 0) {
 
       printf("?End of comment not found\n");
-      i = (long)strlen(fileBuf);
+      i = (long)C.strlen(fileBuf);
       fbPtr = fileBuf + i;
     } else {
       fbPtr = fbPtr + i + 2 - 1;
@@ -4973,14 +4973,14 @@ vstring writeSourceToBuffer()
     } else if (cmdType == 'S') {
 
       let(&tmpStr1, cat("$[ ", includeFn, " $]", null));
-      startOffset = cmdPos1 - 1 + (long)strlen(tmpStr1);
+      startOffset = cmdPos1 - 1 + (long)C.strlen(tmpStr1);
       let(&(*fileBuf), cat(left(*fileBuf, cmdPos1 - 1), tmpStr1,
           right(*fileBuf, cmdPos2), null));
       continue;
     } else if (cmdType == 'B') {
 
       let(&tmpStr1, cat("$[ ", includeFn, " $]", null));
-      startOffset = cmdPos1 - 1 + (long)strlen(tmpStr1);
+      startOffset = cmdPos1 - 1 + (long)C.strlen(tmpStr1);
       let(&includeBuf, seg(*fileBuf, cmdPos2, endPos1 - 1));
       let(&(*fileBuf), cat(left(*fileBuf, cmdPos1 - 1), tmpStr1,
           right(*fileBuf, endPos2), null));
@@ -5245,14 +5245,14 @@ if(db5)mminou.print2("'Include' call table was increased to %ld entries.\n",
 
           let(&inclSource, "");
           inclSource = readInclude(tmpSource,
-              fileBufOffset + cmdPos1 - 1 + (long)strlen(inclPrefix),
+              fileBufOffset + cmdPos1 - 1 + (long)C.strlen(inclPrefix),
                sourceFileName,
               &inclSize , befInclLineNum, &(*errorFlag));
 
           oldInclSize = endPos2 - cmdPos1;
 
-          newInclSize = (long)strlen(inclPrefix) + inclSize +
-                (long)strlen(inclSuffix);
+          newInclSize = (long)C.strlen(inclPrefix) + inclSize +
+                (long)C.strlen(inclSuffix);
 
 
 
@@ -5297,7 +5297,7 @@ if(db5)mminou.print2("'Include' call table was increased to %ld entries.\n",
 
           let(&inclSource, "");
           inclSource = readInclude(tmpSource,
-              fileBufOffset + cmdPos1 - 1 + (long)strlen(inclPrefix),
+              fileBufOffset + cmdPos1 - 1 + (long)C.strlen(inclPrefix),
                includeFn,
               &inclSize , 1, &(*errorFlag));
 
@@ -5305,10 +5305,10 @@ if(db5)mminou.print2("'Include' call table was increased to %ld entries.\n",
           let(&newFileBuf, cat(left(newFileBuf, cmdPos1 - 1),
               inclPrefix, inclSource, inclSuffix,
               right(newFileBuf, cmdPos2), null));
-          *size = *size - (cmdPos2 - cmdPos1) + (long)strlen(inclPrefix)
-              + inclSize + (long)strlen(inclSuffix);
-          newInclSize = (long)strlen(inclPrefix) + inclSize +
-                (long)strlen(inclSuffix);
+          *size = *size - (cmdPos2 - cmdPos1) + (long)C.strlen(inclPrefix)
+              + inclSize + (long)C.strlen(inclSuffix);
+          newInclSize = (long)C.strlen(inclPrefix) + inclSize +
+                (long)C.strlen(inclSuffix);
           startOffset = cmdPos1 + newInclSize - 1;
               ;
 
@@ -5349,7 +5349,7 @@ if(db5)mminou.print2("'Include' call table was increased to %ld entries.\n",
 
           let(&inclSource, "");
           inclSource = readInclude(tmpSource,
-              fileBufOffset + cmdPos1 - 1 + (long)strlen(inclPrefix),
+              fileBufOffset + cmdPos1 - 1 + (long)C.strlen(inclPrefix),
                includeFn,
               &inclSize , 1, &(*errorFlag));
 
@@ -5357,10 +5357,10 @@ if(db5)mminou.print2("'Include' call table was increased to %ld entries.\n",
           let(&newFileBuf, cat(left(newFileBuf, cmdPos1 - 1),
               inclPrefix, inclSource, inclSuffix,
               right(newFileBuf, cmdPos2), null));
-          newInclSize = (long)strlen(inclPrefix) + inclSize +
-                (long)strlen(inclSuffix);
-          *size = *size - (cmdPos2 - cmdPos1) + (long)strlen(inclPrefix)
-              + inclSize + (long)strlen(inclSuffix);
+          newInclSize = (long)C.strlen(inclPrefix) + inclSize +
+                (long)C.strlen(inclSuffix);
+          *size = *size - (cmdPos2 - cmdPos1) + (long)C.strlen(inclPrefix)
+              + inclSize + (long)C.strlen(inclSuffix);
 
           startOffset = cmdPos1 + newInclSize - 1;
 
@@ -5384,10 +5384,10 @@ if(db5)mminou.print2("'Include' call table was increased to %ld entries.\n",
 
             mminou.print2(
         "?Warning: \"$( Begin $[...\" source, with %ld characters, mismatches\n",
-                (long)strlen(inclSource));
+                (long)C.strlen(inclSource));
             mminou.print2(
                 "  earlier inclusion, with %ld characters.\n",
-                (long)strlen(oldSource));
+                (long)C.strlen(oldSource));
           }
           oldSource = "";
 
@@ -5411,7 +5411,7 @@ if(db5)mminou.print2("'Include' call table was increased to %ld entries.\n",
           let(&newFileBuf, cat(left(newFileBuf, cmdPos1 - 1),
               inclPrefix,
               right(newFileBuf, endPos2), null));
-          newInclSize = (long)strlen(inclPrefix);
+          newInclSize = (long)C.strlen(inclPrefix);
           *size = *size - (endPos2 - cmdPos1) + newInclSize;
           startOffset = cmdPos1 + newInclSize - 1;
           break;
@@ -5437,8 +5437,8 @@ if(db5)mminou.print2("'Include' call table was increased to %ld entries.\n",
           let(&newFileBuf, cat(left(newFileBuf, cmdPos1 - 1),
               inclPrefix,
               right(newFileBuf, cmdPos2), null));
-          newInclSize = (long)strlen(inclPrefix);
-          *size = *size - (cmdPos2 - cmdPos1) + (long)strlen(inclPrefix);
+          newInclSize = (long)C.strlen(inclPrefix);
+          *size = *size - (cmdPos2 - cmdPos1) + (long)C.strlen(inclPrefix);
 
           startOffset = cmdPos1 + newInclSize - 1;
           break;
@@ -5474,7 +5474,7 @@ if(db5)mminou.print2("'Include' call table was increased to %ld entries.\n",
 
     g_IncludeCall[saveInclCalls - 1].source_fn = "";
     g_IncludeCall[saveInclCalls - 1].current_offset = fileBufOffset + cmdPos1 - 1
-        + (long)strlen(inclPrefix) - 1;
+        + (long)C.strlen(inclPrefix) - 1;
     if (alreadyInclBy >= 0 || cmdType == 'B') {
       let(&g_IncludeCall[saveInclCalls - 1].source_fn, sourceFileName);
     } else {

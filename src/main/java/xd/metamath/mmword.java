@@ -369,7 +369,7 @@ void gosub_7330() {
       }
       let(&l2_, edit(l2_, 4 + 128 + 2048));
       if (!strcmp(edit(delStartTag_, 2), left(edit(l2_, 2 + 4),
-          (long)strlen(edit(delStartTag_, 2))))) {
+          (long)C.strlen(edit(delStartTag_, 2))))) {
         if (getRevision(l2_) == getRevision(addTag_)) {
 
 
@@ -379,7 +379,7 @@ void gosub_7330() {
       }
       if (stripDeletedSectionMode) {
         if (!strcmp(edit(delEndTag_, 2), left(edit(l2_, 2 + 4),
-            (long)strlen(edit(delEndTag_, 2))))  &&
+            (long)C.strlen(edit(delEndTag_, 2))))  &&
             getRevision(l2_) == getRevision(addTag_) ) {
           stripDeletedSectionMode = 0;
         }
@@ -474,10 +474,10 @@ vstring stripAndTag(vstring line, vstring tag, flag tagBlankLines)
     i = j;
   }
   j = instr(i, line1, "*/");
-  if (i && j == (signed)(strlen(line1)) - 1) {
+  if (i && j == (signed)(C.strlen(line1)) - 1) {
     let(&comment, seg(line1, i + 2, j - 1));
     validTag = 1;
-    for (k = 0; k < (signed)(strlen(comment)); k++) {
+    for (k = 0; k < (signed)(C.strlen(comment)); k++) {
 
       if (instr(1, " 1234567890#", mid(comment, k + 1, 1))) continue;
       validTag = 0;
@@ -493,12 +493,12 @@ vstring stripAndTag(vstring line, vstring tag, flag tagBlankLines)
 
 
   if (tag[0]) {
-    if ((long)strlen(line1) - n < lineLength - 1 - (long)strlen(tag))
+    if ((long)C.strlen(line1) - n < lineLength - 1 - (long)C.strlen(tag))
       let(&line1, cat(line1,
-          space(lineLength - 1 - (long)strlen(tag) - (long)strlen(line1) + n),
+          space(lineLength - 1 - (long)C.strlen(tag) - (long)C.strlen(line1) + n),
           null));
     let(&line1, cat(line1, " ", tag, null));
-    if ((signed)(strlen(line1)) - n > lineLength) {
+    if ((signed)(C.strlen(line1)) - n > lineLength) {
         mminou.print2(
 "Warning: The following line has > %ld characters after tag is added:\n",
           lineLength);
@@ -511,7 +511,7 @@ vstring stripAndTag(vstring line, vstring tag, flag tagBlankLines)
   if (tagBlankLines && n > 0) {
     let(&line1, right(line1, n + 1));
     for (i = 1; i <= n; i++) {
-      let(&line1, cat(space(lineLength - (long)strlen(tag)), tag, "\n",
+      let(&line1, cat(space(lineLength - (long)C.strlen(tag)), tag, "\n",
           line1, null));
     }
   }
@@ -557,8 +557,8 @@ long getRevision(vstring line)
   if (!strcmp(str1, str2)) {
     revision = 0;
   } else {
-    let(&tag, edit(seg(str1, (long)strlen(str2) + 3,
-        (long)strlen(str1) - 2), 2));
+    let(&tag, edit(seg(str1, (long)C.strlen(str2) + 3,
+        (long)C.strlen(str1) - 2), 2));
     if (tag[0] == '#') let(&tag, right(tag, 2));
     revision = (long)(val(tag));
   }
