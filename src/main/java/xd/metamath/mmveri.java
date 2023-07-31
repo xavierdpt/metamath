@@ -779,7 +779,7 @@ if(db7)printLongLine(cat("result ", nmbrCvtMToVString(result), NULL),""," ");
 }
 
 
-void cleanWrkProof(void) {
+void cleanWrkProof() {
 
   long step;
   char type;

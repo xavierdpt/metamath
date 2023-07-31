@@ -84,7 +84,7 @@ vstring extHtmlBibliographyTags = "";
 
 
 
-void eraseTexDefs(void) {
+void eraseTexDefs() {
 
   long i;
   if (g_texDefsRead) {
@@ -5643,7 +5643,7 @@ long getMathboxNum(long stmt) {
 
 
   static final String MB_LABEL =D.MB_LABEL;
-void assignMathboxInfo(void) {
+void assignMathboxInfo() {
   if (g_mathboxStmt == 0) {
     g_mathboxStmt = lookupLabel(MB_LABEL);
     if (g_mathboxStmt == -1) {

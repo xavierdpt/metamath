@@ -25,7 +25,7 @@ long g_tempAllocStackTop = 0;
 long g_startTempAllocStack = 0;
 void *tempAllocStack[MAX_ALLOC_STACK];
 
-static void freeTempAlloc(void)
+static void freeTempAlloc()
 {
 
   long i;

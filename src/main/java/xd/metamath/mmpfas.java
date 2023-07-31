@@ -979,7 +979,7 @@ vstring getIndepKnownSteps(long proofStmt, long refStep)
 
 
 
-vstring getKnownSubProofs(void)
+vstring getKnownSubProofs()
 {
   long proofLen, hyp;
   vstring unkSubPrfSteps = "";
@@ -2056,7 +2056,7 @@ print2("step %ld stmt %ld\n",step,stmt);
 
 
 
-void assignKnownSubProofs(void)
+void assignKnownSubProofs()
 {
   long plen, pos, subplen, q;
   flag breakFlag;

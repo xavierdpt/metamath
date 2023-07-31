@@ -3525,7 +3525,7 @@ vstring traceUsage(long statemNum,
 
 
 
-void readInput(void)
+void readInput()
 {
   vstring fullInput_fn = "";
 
@@ -4265,14 +4265,14 @@ void fixUndefinedLabels(vstring extractNeeded,
 }
 
 
-void writeDict(void)
+void writeDict()
 {
   print2("This function has not been implemented yet.\n");
   return;
 }
 
 
-void eraseSource(void)
+void eraseSource()
 {
   long i;
   vstring tmpStr = "";
@@ -5290,7 +5290,7 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
 
 
 
-void showDiscouraged(void) {
+void showDiscouraged() {
   long stmt, s, usageCount;
   long lowStmt = 0, highStmt = 0;
   flag notQuitPrint = 1;

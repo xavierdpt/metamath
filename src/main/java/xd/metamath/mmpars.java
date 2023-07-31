@@ -176,7 +176,7 @@ char *readRawSource(
 
 }
 
-void parseKeywords(void)
+void parseKeywords()
 {
   long i, j, k;
   char *fbPtr;
@@ -420,7 +420,7 @@ if(db5){for (i=1; i<=g_statements; i++){
 
 }
 
-void parseLabels(void)
+void parseLabels()
 {
   long i, j, k;
   char *fbPtr;
@@ -547,7 +547,7 @@ if(db5){print2("The first (up to 5) sorted labels are:\n");
 
 }
 
-void parseMathDecl(void)
+void parseMathDecl()
 {
   long potentialSymbols;
   long stmt;
@@ -684,7 +684,7 @@ if(db5){print2("The first (up to 5) sorted math tokens are:\n");
 
 
 
-void parseStatements(void)
+void parseStatements()
 {
   long stmt;
   char type;
@@ -3444,7 +3444,7 @@ void mathTokenError(long tokenNum ,
       stmtNum, errMsg);
 }
 
-vstring shortDumpRPNStack(void) {
+vstring shortDumpRPNStack() {
 
   vstring tmpStr = "";
   vstring tmpStr2 = "";
@@ -4782,7 +4782,7 @@ void getNextInclusion(char *fileBuf, long startOffset,
 
 
 
-vstring writeSourceToBuffer(void)
+vstring writeSourceToBuffer()
 {
   long stmt, size;
   vstring buf = "";

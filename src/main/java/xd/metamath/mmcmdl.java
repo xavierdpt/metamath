@@ -35,7 +35,7 @@ vstring g_rootDirectory = "";
 
 
 
-flag processCommandLine(void)
+flag processCommandLine()
 {
   vstring defaultArg = "";
   vstring tmpStr = "";

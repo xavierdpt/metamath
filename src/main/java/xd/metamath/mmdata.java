@@ -356,7 +356,7 @@ void getPoolStats(long *freeAlloc, long *usedAlloc, long *usedActual)
 
 
 
-void initBigArrays(void)
+void initBigArrays()
 {
 
 
