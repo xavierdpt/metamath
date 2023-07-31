@@ -421,7 +421,7 @@ void outOfMemory(vstring msg)
   let(&tmpStr, left(tmpStr, 0));
 
   if (g_logFileOpenFlag) {
-    fclose(g_logFilePtr);
+    C.fclose(g_logFilePtr);
     g_logFileOpenFlag = 0;
   }
 
@@ -521,7 +521,7 @@ void bug(int bugNum)
   if (g_logFileOpenFlag) {
     mminou.print2("The log file \"%s\" was closed %s %s.\n", g_logFileName,
         date(), time_());
-    fclose(g_logFilePtr);
+    C.fclose(g_logFilePtr);
     g_logFileOpenFlag = 0;
   }
   mminou.print2("The program was aborted.\n");

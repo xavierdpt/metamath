@@ -1,5 +1,7 @@
 package xd.metamath;
 
+import java.io.File;
+
 public class mminou {
 
 
@@ -770,7 +772,7 @@ vstring cmdInput1(vstring ask)
     } else {
       commandLn = cmdInput(g_commandFilePtr[g_commandFileNestingLevel], null);
       if (!commandLn) {
-        fclose(g_commandFilePtr[g_commandFileNestingLevel]);
+          C.fclose(g_commandFilePtr[g_commandFileNestingLevel]);
         print2("%s[End of command file \"%s\".]\n", ask1,
             g_commandFileName[g_commandFileNestingLevel]);
         let(&(g_commandFileName[g_commandFileNestingLevel]), "");
@@ -926,7 +928,7 @@ File fSafeOpen(vstring fileName, vstring mode, flag noVersioningFlag)
     fp = fopen(fileName, "r");
 
     if (fp) {
-      fclose(fp);
+        C.fclose(fp);
 
 static final long VERSIONS =D.VERSIONS;
 
@@ -941,7 +943,7 @@ static final long VERSIONS =D.VERSIONS;
       let(&bakName, cat(prefix, str(1), postfix, null));
       fp = fopen(bakName, "r");
       if (fp) {
-        fclose(fp);
+          C.fclose(fp);
 
 
 
@@ -950,7 +952,7 @@ static final long VERSIONS =D.VERSIONS;
           let(&bakName, cat(prefix, str((double)v), postfix, null));
           fp = fopen(bakName, "r");
           if (!fp) break;
-          fclose(fp);
+            C.fclose(fp);
           lastVersion = v;
         }
 
@@ -959,7 +961,7 @@ static final long VERSIONS =D.VERSIONS;
           let(&bakName, cat(prefix, str((double)VERSIONS), postfix, null));
           fp = fopen(bakName, "r");
           if (fp) {
-            fclose(fp);
+              C.fclose(fp);
             remove(bakName);
           }
           lastVersion--;
@@ -969,7 +971,7 @@ static final long VERSIONS =D.VERSIONS;
           let(&bakName, cat(prefix, str((double)v), postfix, null));
           fp = fopen(bakName, "r");
           if (!fp) continue;
-          fclose(fp);
+            C.fclose(fp);
           let(&newBakName, cat(prefix, str((double)v + 1), postfix, null));
           rename(bakName, newBakName);
         }
@@ -1026,7 +1028,7 @@ int fSafeRename(vstring oldFileName, vstring newFileName)
   if (!fp) error = -1;
 
   if (!error) {
-    error = fclose(fp);
+    error = C.fclose(fp);
     if (error) print2("?Empty \"%s\" couldn't be closed.\n", newFileName);
   }
   if (!error) {
@@ -1071,7 +1073,7 @@ vstring fGetTmpName(vstring filePrefix)
     if (!fp) break;
 
 
-    fclose(fp);
+      C.fclose(fp);
 
     if (counter > 1000) {
       print2("?Warning: too many %snnn.tmp files - will reuse %s\n",
@@ -1114,7 +1116,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
 
 
 
-  fclose(inputFp);
+    C.fclose(inputFp);
   inputFp = fopen(fileName, "r");
   if (!inputFp) bug(1512);
 
@@ -1126,7 +1128,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
     if (verbose) print2(
         "?Sorry, there was not enough memory to read the file \"%s\".\n",
         fileName);
-    fclose(inputFp);
+      C.fclose(inputFp);
     return (null);
   }
 
@@ -1137,7 +1139,7 @@ vstring readFileToString(vstring fileName, char verbose, long *charCount) {
     print2("Note:  This bug will occur if there is a disk file read error.\n");
     bug(1513);
   }
-  fclose(inputFp);
+    C.fclose(inputFp);
 
   fileBuf[(*charCount)] = 0;
 

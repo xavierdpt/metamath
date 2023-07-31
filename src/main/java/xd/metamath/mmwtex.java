@@ -673,7 +673,7 @@ flag readTexDefs(
                 "", " ");
             warningFound = 1;
           } else {
-            fclose(tmpFp);
+            C.fclose(tmpFp);
           }
         }
       }
@@ -4334,7 +4334,7 @@ void writeTheoremList(long theoremsPerPage, flag showLemmas, flag noVersioning)
     let(&g_printString, "");
 
 
-    fclose(outputFilePtr);
+    C.fclose(outputFilePtr);
   }
 
   C.label("TL_ABORT");
@@ -5201,7 +5201,7 @@ flag writeBibliography(vstring bibFile,
       return 1;
     }
     if (errorsOnly == 0) {
-      fclose(list1_fp);
+      C.fclose(list1_fp);
 
       list2_fp = fSafeOpen(bibFile, "w", 0);
       if (list2_fp == null) {
@@ -5592,9 +5592,9 @@ flag writeBibliography(vstring bibFile,
 
   C.label("BIB_ERROR");
   if (noFileCheck == 0) {
-    fclose(list1_fp);
+    C.fclose(list1_fp);
     if (errorsOnly == 0) {
-      fclose(list2_fp);
+      C.fclose(list2_fp);
     }
     if (errorsOnly == 0) {
       if (errFlag) {

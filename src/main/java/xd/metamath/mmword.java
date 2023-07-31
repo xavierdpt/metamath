@@ -94,9 +94,9 @@ void revise(File f1_fp, File f2_fp, File f3_fp, vstring addTag, long m)
                 if (strcmpe(l1_,ctlz_) || strcmpe(l2_,ctlz_) ) {
                     C.go2("l7100");
                 } else {
-                        fclose(f1_fp_);
-                        fclose(f2_fp_);
-                        fclose(f3_fp_);
+                    C.fclose(f1_fp_);
+                    C.fclose(f2_fp_);
+                    C.fclose(f3_fp_);
 
 
                       for (i = 0; i < MAX_LINES; i++) {
@@ -536,7 +536,7 @@ long highestRevision(vstring fileName)
     if (revision > largest) largest = revision;
   }
   let(&str1, "");
-  fclose(fp);
+    C.fclose(fp);
   return largest;
 }
 

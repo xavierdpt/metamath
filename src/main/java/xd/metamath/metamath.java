@@ -25,9 +25,9 @@ public class metamath {
   command(args);
 
 
-  if (mmdata.g_listMode.asBoolean() && mminou.g_listFile_fp != null) {
-    fclose(mminou.g_listFile_fp);
-  }
+    if (mmdata.g_listMode.asBoolean() && mminou.g_listFile_fp != null) {
+      C.fclose(mminou.g_listFile_fp);
+    }
 
   System.exit(0);
 }
@@ -491,13 +491,13 @@ static final long SYNTAX =D.SYNTAX;
           mminou.print2("The %s file \"%s\" was closed.\n",
               g_htmlFlag ? "HTML" : "LaTeX", g_texFileName);
           printTexTrailer(texHeaderFlag);
-          fclose(g_texFilePtr);
+          C.fclose(g_texFilePtr);
           g_texFileOpenFlag = 0;
         }
         if (g_logFileOpenFlag) {
           mminou.print2("The log file \"%s\" was closed %s %s.\n",g_logFileName,
               date(),time_());
-          fclose(g_logFilePtr);
+          C.fclose(g_logFilePtr);
           g_logFileOpenFlag = 0;
         }
 
@@ -900,8 +900,8 @@ static final long SYNTAX =D.SYNTAX;
               (changedLines == 0) ? "" : " First output line:");
           if (changedLines != 0) mminou.print2("%s\n", str3);
         }
-        fclose(list1_fp);
-        fclose(list2_fp);
+        C.fclose(list1_fp);
+        C.fclose(list2_fp);
         fSafeRename(list2_ftmpname, list2_fname);
 
         let(&tagStartMatch, "");
@@ -941,7 +941,7 @@ static final long SYNTAX =D.SYNTAX;
         }
 
 
-        fclose(list1_fp);
+        C.fclose(list1_fp);
         list1_fp = fSafeOpen(g_fullArg[1], "r", 0);
 
         pntrLet(&pntrTmp, pntrSpace(lines));
@@ -1037,8 +1037,8 @@ static final long SYNTAX =D.SYNTAX;
         for (i = 0; i < lines; i++) let((vstring *)(&pntrTmp[i]), "");
         pntrLet(&pntrTmp,NULL_PNTRSTRING);
 
-        fclose(list1_fp);
-        fclose(list2_fp);
+        C.fclose(list1_fp);
+        C.fclose(list2_fp);
         fSafeRename(list2_ftmpname, list2_fname);
         continue;
       }
@@ -1091,9 +1091,9 @@ static final long SYNTAX =D.SYNTAX;
         }
         mminou.print2("%s\n", str3);
 
-        fclose(list1_fp);
-        fclose(list2_fp);
-        fclose(list3_fp);
+        C.fclose(list1_fp);
+        C.fclose(list2_fp);
+        C.fclose(list3_fp);
         fSafeRename(list3_ftmpname, g_fullArg[3]);
         continue;
       }
@@ -1110,7 +1110,7 @@ static final long SYNTAX =D.SYNTAX;
           let(&str1, str((double)i));
           fprintf(list1_fp, "%s\n", str1);
         }
-        fclose(list1_fp);
+        C.fclose(list1_fp);
         continue;
       }
 
@@ -1171,7 +1171,7 @@ static final long SYNTAX =D.SYNTAX;
         printLongLine(cat(
             "Stripping all but digits, \".\", and \"-\", the sum of lines is ",
             str((double)sum), null), "    ", " ");
-        fclose(list1_fp);
+        C.fclose(list1_fp);
         continue;
       }
 
@@ -1192,7 +1192,7 @@ static final long SYNTAX =D.SYNTAX;
           if (!linput(list1_fp, null, &str1)) break;
           if (!mminou.print2("%s\n", str1)) break;
         }
-        fclose(list1_fp);
+        C.fclose(list1_fp);
         continue;
       }
 
@@ -1244,10 +1244,10 @@ static final long SYNTAX =D.SYNTAX;
           if (instr(1, g_fullArg[1], ",")) {
             mminou.print2("The input file \"%s\" has %ld lines.\n", str3, n);
           }
-          fclose(list1_fp);
+          C.fclose(list1_fp);
         }
         if (j) continue;
-        fclose(list2_fp);
+        C.fclose(list2_fp);
         mminou.print2("The output file \"%s\" has %ld lines.\n", g_fullArg[2], lines);
         fSafeRename(list2_ftmpname, g_fullArg[2]);
         continue;
@@ -1285,7 +1285,7 @@ static final long SYNTAX =D.SYNTAX;
       let(&str1, cat(g_rootDirectory, g_input_fn, null));
       g_input_fp = fSafeOpen(str1, "r", 0);
       if (!g_input_fp) continue;
-      fclose(g_input_fp);
+      C.fclose(g_input_fp);
 
       readInput();
 
@@ -1456,7 +1456,7 @@ static final long SYNTAX =D.SYNTAX;
 
         continue;
       }
-      fclose(list1_fp);
+      C.fclose(list1_fp);
 
       list2_fp = fSafeOpen(g_fullArg[2], "w", 0);
       if (list2_fp == null) {
@@ -1684,8 +1684,8 @@ static final long SYNTAX =D.SYNTAX;
       mminou.print2("The %ld most recent theorem(s) were written.\n", n);
 
      C.label("wrrecent_error");
-      fclose(list1_fp);
-      fclose(list2_fp);
+      C.fclose(list1_fp);
+      C.fclose(list2_fp);
       if (tmpFlag) {
 
         remove(g_fullArg[2]);
@@ -2134,7 +2134,7 @@ static final long SYNTAX =D.SYNTAX;
         C.label("ABORT_S");
 
         printTexTrailer(1 );
-        fclose(g_texFilePtr);
+        C.fclose(g_texFilePtr);
         g_texFileOpenFlag = 0;
         let(&g_texFileName,"");
 
@@ -2232,7 +2232,7 @@ static final long SYNTAX =D.SYNTAX;
         fprintf(g_texFilePtr, "%s\n",str1);
       }
 
-      fclose(g_texFilePtr);
+      C.fclose(g_texFilePtr);
       g_texFileOpenFlag = 0;
       let(&g_texFileName,"");
       let(&str1,"");
@@ -5450,7 +5450,7 @@ static final long SYNTAX =D.SYNTAX;
         } else {
           mminou.print2("The log file \"%s\" was closed %s %s.\n",g_logFileName,
               date(),time_());
-          fclose(g_logFilePtr);
+          C.fclose(g_logFilePtr);
           g_logFileOpenFlag = 0;
         }
         let(&g_logFileName,"");
@@ -5507,7 +5507,7 @@ static final long SYNTAX =D.SYNTAX;
         mminou.print2("The LaTeX output file \"%s\" has been closed.\n",
             g_texFileName);
         printTexTrailer(texHeaderFlag);
-        fclose(g_texFilePtr);
+        C.fclose(g_texFilePtr);
         g_texFileOpenFlag = 0;
       }
       let(&g_texFileName,"");
@@ -5523,7 +5523,7 @@ static final long SYNTAX =D.SYNTAX;
 
         if (!mminou.print2("%s\n", str1)) break;
       }
-      fclose(list1_fp);
+      C.fclose(list1_fp);
       continue;
     }
 
@@ -5589,7 +5589,7 @@ static final long SYNTAX =D.SYNTAX;
         }
       }
 
-      fclose(type_fp);
+      C.fclose(type_fp);
 
 
       for (i = 0; i < searchWindow; i++) {

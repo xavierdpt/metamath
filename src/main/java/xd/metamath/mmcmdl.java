@@ -1819,7 +1819,7 @@ flag getFullArg(long arg, vstring cmdList1)
         printCommandError(errorLine, arg, tmpStr);
         C.go2("return0");
       }
-      fclose(tmpFp);
+      C.fclose(tmpFp);
     }
     C.go2("return1");
   }

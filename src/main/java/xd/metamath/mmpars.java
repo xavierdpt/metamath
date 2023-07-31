@@ -4965,7 +4965,7 @@ vstring writeSourceToBuffer()
         } else {
           mminou.print2("Writing \"%s\"...\n", fileNameWithPath);
           fprintf(fp, "%s", *fileBuf);
-          fclose(fp);
+          C.fclose(fp);
           break;
         }
       }
@@ -5037,7 +5037,7 @@ vstring writeSourceToBuffer()
 
       fp = fopen(fileNameWithPath, "r");
       if (fp != null) {
-        fclose(fp);
+        C.fclose(fp);
         if (noVersioningFlag == 1) {
           mminou.print2("Deleting \"%s\"...\n", fileNameWithPath);
         } else {

@@ -3631,7 +3631,7 @@ void writeSource(
       mminou.print2("?Error trying to write \"%s\".\n", fp);
     } else {
       fprintf(fp, "%s", buffer);
-      fclose(fp);
+      C.fclose(fp);
       if (keepSplitsFlag == 0) {
         deleteSplits(&buffer, noVersioningFlag);
       }
@@ -4134,7 +4134,7 @@ void writeExtractedSource(
   }
 
 
-  fclose(fp);
+  C.fclose(fp);
 
 
   j = 0; p1 = 0; p2 = 0; p3 = 0; p4 = 0;
@@ -5278,7 +5278,7 @@ void processMarkup(vstring inputFileName, vstring outputFileName,
       0,
       actionBits,
       0 );
-  fclose(g_texFilePtr);
+  C.fclose(g_texFilePtr);
   g_texFilePtr = null;
 
   C.label("PROCESS_MARKUP_RETURN");
@@ -5944,7 +5944,7 @@ void outputMidi(long plen, nmbrString *indentationLevels,
 
   fprintf(midiFilePtr, "%ld Meta TrkEnd\n", midiTime);
   fprintf(midiFilePtr, "TrkEnd\n");
-  fclose(midiFilePtr);
+  C.fclose(midiFilePtr);
 
   mminou.print2(" length = %ld sec\n", (long)(midiTime / (2 * midiTempo)));
 
