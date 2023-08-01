@@ -42,9 +42,6 @@ static void pushTempAlloc(void *mem)
 {
   if (g_tempAllocStackTop >= (MAX_ALLOC_STACK-1)) {
     printf("*** FATAL ERROR ***  Temporary string stack overflow\n");
-#if __STDC__
-    fflush(stdout);
-#endif
     bug(2201);
   }
   tempAllocStack[g_tempAllocStackTop++] = mem;
@@ -55,11 +52,8 @@ static void* tempAlloc(long size)
 {
   void* memptr = malloc((size_t)size);
   if (!memptr || size == 0) {
-    printf("*** FATAL ERROR ***  Temporary string allocation failed\n");
-#if __STDC__
-    fflush(stdout);
-#endif
-    bug(2202);
+    C.printf("*** FATAL ERROR ***  Temporary string allocation failed\n");
+    mmdata.bug(2202);
   }
   pushTempAlloc(memptr);
 INCDB1(size);
@@ -78,86 +72,73 @@ db-=(long)C.strlen(s) + 1;
 }
 
 
-
-void let(vstring *target, vstring source)
-
-
-
-
-
-{
-
-  size_t sourceLength = C.strlen(source);
-  size_t targetLength = C.strlen(*target);
-if (targetLength) {
-  db -= (long)targetLength+1;
-
-}
-if (sourceLength) {
-  db += (long)sourceLength+1;
-
-}
-  if (targetLength < sourceLength) {
-
-    if (targetLength)
-      free(*target);
-    *target = malloc(sourceLength + 1);
-    if (!*target) {
-      printf("*** FATAL ERROR ***  String memory couldn't be allocated\n");
-#if __STDC__
-      fflush(stdout);
-#endif
-      bug(2204);
+  void let(P<vstring> target, vstring source) {
+    size_t sourceLength = size_t.of(C.strlen(source));
+    size_t targetLength = size_t.of(C.strlen(target.get()));
+    if (targetLength.toBoolean()) {
+      mmdata.db -= targetLength.toLong() + 1;
     }
-  }
-  if (sourceLength) {
-    strcpy(*target, source);
-  } else {
-
-    if (targetLength) {
-      free(*target);
+    if (sourceLength.toBoolean()) {
+      mmdata.db += sourceLength.toLong() + 1;
     }
-    *target= "";
+    if (size_t.lt(targetLength, sourceLength)) {
+      if (targetLength.toBoolean()) {
+        C.free(target.get());
+      }
+      C.malloc(target.get(), sourceLength.getValue() + 1);
+      if (target.get() == null) {
+        C.printf("*** FATAL ERROR ***  String memory couldn't be allocated\n");
+        mmdata.bug(2204);
+      }
+    }
+    if (sourceLength.toBoolean()) {
+      C.strcpy(target.get(), source);
+    } else {
+      if (targetLength.toBoolean()) {
+        C.free(target.get());
+      }
+      vstring other = vstring.empty();
+      target.set(other);
+    }
+    freeTempAlloc();
   }
 
-  freeTempAlloc();
-
-}
-
-vstring cat(vstring string1,...)
-  static final long  MAX_CAT_ARGS=D.MAX_CAT_ARGS;
+  static final int  MAX_CAT_ARGS=D.MAX_CAT_ARGS;
+  vstring cat(vstring ...strings)
 {
-  va_list ap;
-  vstring arg[MAX_CAT_ARGS];
-  size_t argPos[MAX_CAT_ARGS];
+  vstring[] arg = new vstring[MAX_CAT_ARGS];
+  size_t[] argPos = new size_t[MAX_CAT_ARGS];
   vstring result;
   int i;
   int numArgs = 0;
 
-  size_t pos = 0;
-  char* curArg = string1;
+  int idx=0;
+  size_t pos = size_t.of(0);
+  vstring string1 = strings[idx];
+  P<Byte> curArg = string1.toCharPointer();
 
-  va_start(ap, string1);
+
   do {
-
     if (numArgs >= MAX_CAT_ARGS) {
-      printf("*** FATAL ERROR ***  Too many cat() arguments\n");
-#if __STDC__
-      fflush(stdout);
-#endif
-      bug(2206);
+      C.printf("*** FATAL ERROR ***  Too many cat() arguments\n");
+      mmdata.bug(2206);
     }
-    arg[numArgs] = curArg;
+    arg[numArgs] = vstring.from(curArg);
     argPos[numArgs] = pos;
-    pos += C.strlen(curArg);
-  } while (++numArgs, (curArg = va_arg(ap,char *)) != 0);
-  va_end(ap);
-
+    pos.pluseq(size_t.of(C.strlen(curArg)));
+    ++numArgs;
+    ++idx;
+    if (idx >= strings.length) {
+      curArg = null;
+    } else {
+      curArg = strings[idx].toCharPointer();
+    }
+  } while ( curArg!=null);
 
   result = tempAlloc((long)pos+1);
 
   for (i = 0; i < numArgs; ++i)
-    strcpy(result + argPos[i], arg[i]);
+    C.strcpy(result + argPos[i], arg[i]);
   return result;
 }
 
@@ -172,9 +153,6 @@ int linput(File stream, const char* ask, vstring *target)
   int eol_found = 0;
   if (ask) {
     printf("%s", ask);
-#if __STDC__
-    fflush(stdout);
-#endif
   }
   if (stream == null) stream = stdin;
   while (!eol_found && fgets(f, sizeof(f), stream))

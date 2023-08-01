@@ -30,8 +30,37 @@ public class C {
         }
     }
 
+    public static int strlen(vstring s) {
+        return s.length();
+    }
+    public static int strlen(P<Byte> bytes) {
+        return bytes.length();
+    }
+
+
     public static int strlen(String s) {
         return s.length();
     }
+
+    static public void free(vstring str) {
+        str.free();
+    }
+    static public <T> void free(T what) {
+
+    }
+
+    static public void malloc(vstring v, int size) {
+        v.malloc(size);
+    }
+
+    static public void strcpy(vstring left, vstring right) {
+
+    }
+
+    public static void printf(String str) {
+        System.out.println(str);
+    }
+
+
 
 }

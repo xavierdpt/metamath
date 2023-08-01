@@ -1,6 +1,8 @@
 package xd.metamath;
 
 public class D {
+
+    public static final Byte BZERO = (byte) 0;
     public static final char lb_ = '{';
     public static final char rb_ = '}';
     public static final char v_ = 'v';
@@ -144,7 +146,7 @@ public class D {
     public static final long MAX_GROWTH_FACTOR =2;
     public static final long DEFAULT_UNDO_STACK_SIZE =20;
     public static final long MAX_ALLOC_STACK =100;
-    public static final long MAX_CAT_ARGS =50;
+    public static final int MAX_CAT_ARGS =50;
     public static final long LINE_LENGTH =80;
     public static final long MAX_LINES = 10000;
     public static final long MAX_BUF = 1000;

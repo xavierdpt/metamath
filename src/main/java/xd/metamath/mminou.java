@@ -77,9 +77,6 @@ static flag print2(char* fmt,...)
 
     if (pntrLen(backBuffer)) {
       printf("*** BUG #1501\n");
-#if __STDC__
-      fflush(stdout);
-#endif
     }
     backBufferPos = 1;
     pntrLet(&backBuffer, pntrAddElement(backBuffer));
@@ -98,24 +95,15 @@ static flag print2(char* fmt,...)
       if (backBufferPos < 1 || backBufferPos > pntrLen(backBuffer)) {
 
         printf("*** BUG #1502 %ld\n", backBufferPos);
-#if __STDC__
-        fflush(stdout);
-#endif
       }
       if (backBufferPos == 1) {
         printf(
 "Press <return> for more, Q <return> to quit, S <return> to scroll to end... "
           );
-#if __STDC__
-        fflush(stdout);
-#endif
       } else {
         printf(
 "Press <return> for more, Q <ret> quit, S <ret> scroll, B <ret> back up... "
          );
-#if __STDC__
-        fflush(stdout);
-#endif
       }
       c = (char)(getchar());
       if (c == '\n') {
@@ -126,9 +114,6 @@ static flag print2(char* fmt,...)
 
           backBufferPos++;
           printf("%s", (vstring)(backBuffer[backBufferPos - 1]));
-#if __STDC__
-          fflush(stdout);
-#endif
           continue;
         }
       }
@@ -146,9 +131,6 @@ static flag print2(char* fmt,...)
             while (backBufferPos + 1 <= pntrLen(backBuffer)) {
               backBufferPos++;
               printf("%s", (vstring)(backBuffer[backBufferPos - 1]));
-#if __STDC__
-              fflush(stdout);
-#endif
             }
           }
           if (!backFromCmdInput)
@@ -160,17 +142,11 @@ static flag print2(char* fmt,...)
           if (c == 'b' || c == 'B') {
             backBufferPos--;
             printf("%s", (vstring)(backBuffer[backBufferPos - 1]));
-#if __STDC__
-            fflush(stdout);
-#endif
             continue;
           }
         }
 
         printf("%c", 7);
-#if __STDC__
-        fflush(stdout);
-#endif
         continue;
       }
       while (c != '\n') c = (char)(getchar());
@@ -238,15 +214,9 @@ static flag print2(char* fmt,...)
 
 
 
-#if __STDC__
-      fflush(stdout);
-#endif
 
     } else {
       printf("%s", printBuffer);
-#if __STDC__
-      fflush(stdout);
-#endif
       printedLines++;
       if (!(g_scrollMode == 1 && localScrollMode == 1)) {
 
@@ -262,9 +232,6 @@ static flag print2(char* fmt,...)
 
     if (backBufferPos < 1) {
       printf("*** PROGRAM BUG #1504\n");
-#if __STDC__
-      fflush(stdout);
-#endif
     }
     let((vstring *)(&(backBuffer[backBufferPos - 1])), cat(
         (vstring)(backBuffer[backBufferPos - 1]), printBuffer, null));
@@ -272,10 +239,6 @@ static flag print2(char* fmt,...)
 
   if (g_logFileOpenFlag && !g_outputToString ) {
     fprintf(g_logFilePtr, "%s", printBuffer);
-#if __STDC__
-
-    fflush(g_logFilePtr);
-#endif
   }
 
   if (mmdata.g_listMode.asBoolean() && g_listFile_fp != null && !g_outputToString) {
@@ -295,17 +258,11 @@ static flag print2(char* fmt,...)
     printf("Line exceeds screen width; caller should use printLongLine.\n");
     printf("%ld %s\n", lineLen, printBuffer);
 
-#if __STDC__
-    fflush(stdout);
-#endif
   }
 
 
   if (nlpos != 0 && nlpos != lineLen) {
     printf("*** PROGRAM BUG #1506\n");
-#if __STDC__
-    fflush(stdout);
-#endif
   }
 
   free(printBuffer);
@@ -597,9 +554,6 @@ vstring cmdInput(File stream, vstring ask)
   while (true) {
     if (ask != null && !g_commandFileSilentFlag) {
       printf("%s",ask);
-#if __STDC__
-      fflush(stdout);
-#endif
     }
     let(&g, mmvstr.space(CMD_BUFFER_SIZE));
     if (g[CMD_BUFFER_SIZE]) bug(1520);
@@ -613,27 +567,18 @@ vstring cmdInput(File stream, vstring ask)
 
 
       printf("***BUG #1508\n");
-#if __STDC__
-      fflush(stdout);
-#endif
     }
     i = (long)C.strlen(g);
 db = db - (CMD_BUFFER_SIZE - i);
 
     if (!i) {
       printf("***BUG #1507\n");
-#if __STDC__
-      fflush(stdout);
-#endif
 
     } else {
       if (g[i - 1] != '\n') {
 
         if (!feof(stream)) {
           printf("***BUG #1525\n");
-#if __STDC__
-          fflush(stdout);
-#endif
         }
 
         let(&g, cat(g, chr('\n'), null));
@@ -648,18 +593,12 @@ db = db + (CMD_BUFFER_SIZE - i);
       i--;
       if (g[i] != '\n') {
         printf("***BUG #1519\n");
-#if __STDC__
-        fflush(stdout);
-#endif
       }
       g[i]=0;
 db = db - 1;
     } else {
       if (g[0] != '\n') {
         printf("***BUG #1521\n");
-#if __STDC__
-        fflush(stdout);
-#endif
       }
       let(&g, "");
     }
@@ -672,9 +611,6 @@ db = db - 1;
 
       backBufferPos = pntrLen(backBuffer) - 1;
       printf("%s", (vstring)(backBuffer[backBufferPos - 1]));
-#if __STDC__
-      fflush(stdout);
-#endif
       backFromCmdInput = 1;
       print2("");
       backFromCmdInput = 0;
@@ -682,9 +618,6 @@ db = db - 1;
       if (g_commandFileNestingLevel > 0) break;
       if (ask == null) {
         printf("***BUG #1523\n");
-#if __STDC__
-        fflush(stdout);
-#endif
       }
       if (g[0]) break;
       if (ask != null &&

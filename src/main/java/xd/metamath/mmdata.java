@@ -10,7 +10,16 @@ public class mmdata {
 
 
 
-long db=0,db0=0,db2=0,db3=0,db4=0,db5=0,db6=0,db7=0,db8=0,db9=0;
+static long db=0;
+  static long db0=0;
+  static long db2=0;
+  static long db3=0;
+  static long db4=0;
+  static long db5=0;
+  static long db6=0;
+  static long db7=0;
+  static long db8=0;
+  static long db9=0;
   static flag g_listMode = flag.of(0);
   static flag g_toolsMode = flag.of(0);
 
@@ -431,7 +440,7 @@ void outOfMemory(vstring msg)
 
 
 
-void bug(int bugNum)
+static void bug(int bugNum)
 {
   vstring tmpStr = "";
   flag oldMode;
@@ -734,9 +743,6 @@ void nmbrMakeTempAlloc(nmbrString *s)
     if (g_nmbrTempAllocStackTop>=(M_MAX_ALLOC_STACK-1)) {
       printf(
       "*** FATAL ERROR ***  Temporary nmbrString stack overflow in nmbrMakeTempAlloc()\n");
-#if __STDC__
-      fflush(stdout);
-#endif
       bug(1368);
     }
     if (s[0] != -1) {
@@ -877,9 +883,6 @@ nmbrString *nmbrCat(nmbrString *string1,...)
 
     if (numArgs>=M_MAX_CAT_ARGS-1) {
       printf("*** FATAL ERROR ***  Too many cat() arguments\n");
-#if __STDC__
-      fflush(stdout);
-#endif
       bug(1369);
     }
   va_end(ap);
@@ -2165,9 +2168,6 @@ void pntrMakeTempAlloc(pntrString *s)
     if (g_pntrTempAllocStackTop>=(M_MAX_ALLOC_STACK-1)) {
       printf(
       "*** FATAL ERROR ***  Temporary pntrString stack overflow in pntrMakeTempAlloc()\n");
-#if __STDC__
-      fflush(stdout);
-#endif
       bug(1370);
     }
     if (s[0] != null) {
